@@ -13,7 +13,7 @@ namespace ConventionModelBuilder.Sources
             _useCoreConventions = useCoreConventions;
         }
 
-        public ConventionSet CreateConventionSet(ConventionModelBuilderOptions options)
+        public virtual ConventionSet CreateConventionSet(ConventionModelBuilderOptions options)
         {
             return _useCoreConventions ? new CoreConventionSetBuilder().CreateConventionSet() : new ConventionSet();
         }

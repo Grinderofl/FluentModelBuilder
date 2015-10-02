@@ -3,42 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ConventionModelBuilder.Conventions;
-using ConventionModelBuilder.Conventions.Options.Extensions;
 using ConventionModelBuilder.Conventions.Overrides;
-using ConventionModelBuilder.Extensions;
-using ConventionModelBuilder.Options.Extensions;
-using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata.Builders;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.DependencyInjection.Extensions;
 
 namespace ModelBuilderSample
 {
-    public class Program
+    public class Startup
     {
         public void Main(string[] args)
         {
             var services = new ServiceCollection();
-            services.AddEntityFramework().AddDbContext<DbContext>(options =>
-            {
-                options.BuildModelUsingConventions(opts =>
-                {
-                    opts.AddEntities(x => x
-                        .WithBaseType<Entity>()
-                        .FromAssemblyContaining<Program>()
-                        );
-                    
-                    opts.AddOverrides(x => x.FromAssemblyContaining<Program>());
-                });
-                options.UseSqlServer("Server=.;Initial Catalog=eftest;Integrated Security=True;");
-            }).AddSqlServer();
-
+            Configure(services);
             var provider = services.BuildServiceProvider();
-            var context = provider.GetService<DbContext>();
+            
+            var context = provider.GetService<ProjectDbContext>();
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             context.Set<TestEntity>().Add(new TestEntity() {Name = "Hi"});
             context.SaveChanges();
             Console.Read();
+        }
+
+        public void Configure(IServiceCollection services)
+        {
+            services.AddEntityFramework().AddDbContext<ProjectDbContext>().AddSqlServer();
         }
     }
 
