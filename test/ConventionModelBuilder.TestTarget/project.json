@@ -5,7 +5,9 @@
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
-
+  "dependencies": {
+    "ConventionModelBuilder": ""
+  },
   "frameworks": {
     "dnx451": { }
   }

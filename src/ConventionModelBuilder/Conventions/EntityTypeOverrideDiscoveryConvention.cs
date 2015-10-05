@@ -8,9 +8,16 @@ using Microsoft.Data.Entity;
 
 namespace ConventionModelBuilder.Conventions
 {
+    /// <summary>
+    /// Convention for adding entity type overrides from specified assemblies
+    /// </summary>
     public class EntityTypeOverrideDiscoveryConvention : IModelBuilderConvention
     {
+        /// <summary>
+        /// Options for configuring <see cref="EntityTypeOverrideDiscoveryConvention"/>
+        /// </summary>
         public EntityTypeOverrideDiscoveryConventionOptions Options { get; } = new EntityTypeOverrideDiscoveryConventionOptions();
+
         public void Apply(ModelBuilder builder)
         {
             var types = Options.Assemblies.SelectMany(x => x.GetExportedTypes());
@@ -23,18 +30,28 @@ namespace ConventionModelBuilder.Conventions
                                     c.GetTypeInfo().IsGenericType &&
                                     c.GetGenericTypeDefinition() == typeof (IEntityTypeOverride<>)));
 
+            // MethodCall => Entity<>()
             var entityMethod = typeof (ModelBuilder).GetMethods().First(x => x.Name == "Entity" && x.IsGenericMethod);
             foreach (var type in types)
             {
+                // IEntityTypeOverride<>().Configure(ModelBuilder)
                 var method = type.GetMethod("Configure");
+
+                // <T>
                 var target =
                     type.GetInterfaces()
                         .Single(x => x.GetGenericTypeDefinition() == typeof (IEntityTypeOverride<>))
                         .GenericTypeArguments.First();
-                var invokedEntity = entityMethod.MakeGenericMethod(target).Invoke(builder, new object[] {});
-                //var entity = builder.Entity(type);
-                var obj = Activator.CreateInstance(type);
-                method.Invoke(obj, new object[] {invokedEntity});
+
+                // invokedEntity = ModelBuilder.Entity<T>()
+                var entity = entityMethod.MakeGenericMethod(target)
+                    .Invoke(builder, new object[] {});
+
+                // entityTypeOverride = new IEntityTypeOverride<T>()
+                var entityTypeOverride = Activator.CreateInstance(type);
+
+                // entityTypeOverride.Configure(entity);
+                method.Invoke(entityTypeOverride, new[] {entity});
 
             }
         }

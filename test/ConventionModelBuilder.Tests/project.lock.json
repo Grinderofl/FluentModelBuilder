@@ -10,7 +10,10 @@
         }
       },
       "ConventionModelBuilder.TestTarget/1.0.0": {
-        "type": "project"
+        "type": "project",
+        "dependencies": {
+          "ConventionModelBuilder": null
+        }
       },
       "EntityFramework.Core/7.0.0-beta7": {
         "type": "package",

@@ -6,7 +6,7 @@ namespace ConventionModelBuilder.Sources
 {
     public class DefaultConventionApplier : IConventionApplier
     {
-        public void Apply(ModelBuilder modelBuilder, ConventionModelBuilderOptions options)
+        public virtual void Apply(ModelBuilder modelBuilder, ConventionModelBuilderOptions options)
         {
             foreach(var convention in options.Conventions.ToList())
                 convention.Apply(modelBuilder);

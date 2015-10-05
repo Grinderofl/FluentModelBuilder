@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using ConventionModelBuilder.Conventions.Criteria;
-using ConventionModelBuilder.Extensions;
 
 namespace ConventionModelBuilder.Conventions.Options.Extensions
 {
     public static class EntityDiscoveryConventionOptionsExtensions
     {
+        /// <summary>
+        /// Adds a base type criteria to <see cref="EntityDiscoveryConvention"/>
+        /// </summary>
+        /// <param name="options"><see cref="EntityTypeOverrideDiscoveryConventionOptions"/></param>
+        /// <param name="type">Specified entity base type</param>
+        /// <returns><see cref="EntityDiscoveryConventionOptions"/></returns>
         public static EntityDiscoveryConventionOptions WithBaseType(this EntityDiscoveryConventionOptions options,
             Type type)
         {
@@ -27,6 +29,12 @@ namespace ConventionModelBuilder.Conventions.Options.Extensions
             return options;
         }
 
+        /// <summary>
+        /// Adds a base type criteria to <see cref="EntityDiscoveryConvention"/>
+        /// </summary>
+        /// <typeparam name="T">Type of entity base to add</typeparam>
+        /// <param name="options"><see cref="EntityTypeOverrideDiscoveryConventionOptions"/></param>
+        /// <returns><see cref="EntityDiscoveryConventionOptions"/></returns>
         public static EntityDiscoveryConventionOptions WithBaseType<T>(this EntityDiscoveryConventionOptions options)
             where T : class
         {

@@ -3,6 +3,9 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace ConventionModelBuilder
 {
+    /// <summary>
+    /// Builds model using conventions
+    /// </summary>
     public class ConventionModelBuilder
     {
         private readonly ConventionModelBuilderOptions _options;

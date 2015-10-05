@@ -8,6 +8,12 @@ namespace ConventionModelBuilder.Extensions
 {
     public static class ConventionModelBuilderOptionsExtensions
     {
+        /// <summary>
+        /// Adds entities from assemblies that correspond to given conditions
+        /// </summary>
+        /// <param name="options"><see cref="ConventionModelBuilderOptions"/></param>
+        /// <param name="optionsAction">Actions to apply to <see cref="EntityDiscoveryConventionOptions"/></param>
+        /// <returns><see cref="ConventionModelBuilderOptions"/></returns>
         public static ConventionModelBuilderOptions AddEntities(this ConventionModelBuilderOptions options, Action<EntityDiscoveryConventionOptions> optionsAction = null)
         {
             var convention = options.Conventions.FirstOrDefault(x => x is EntityDiscoveryConvention) as EntityDiscoveryConvention;
@@ -21,6 +27,12 @@ namespace ConventionModelBuilder.Extensions
             return options;
         }
 
+        /// <summary>
+        /// Adds a convention to <see cref="ConventionModelBuilder"/>
+        /// </summary>
+        /// <param name="options"><see cref="ConventionModelBuilderOptions"/></param>
+        /// <param name="convention">Convention to add</param>
+        /// <returns><see cref="ConventionModelBuilderOptions"/></returns>
         public static ConventionModelBuilderOptions AddConvention(this ConventionModelBuilderOptions options,
             IModelBuilderConvention convention)
         {
@@ -28,6 +40,12 @@ namespace ConventionModelBuilder.Extensions
             return options;
         }
 
+        /// <summary>
+        /// Adds a strongly typed convention to <see cref="ConventionModelBuilder"/>
+        /// </summary>
+        /// <typeparam name="T">Convention type to add</typeparam>
+        /// <param name="options"><see cref="ConventionModelBuilderOptions"/></param>
+        /// <returns><see cref="ConventionModelBuilderOptions"/></returns>
         public static ConventionModelBuilderOptions AddConvention<T>(this ConventionModelBuilderOptions options)
             where T : IModelBuilderConvention, new()
         {
@@ -35,6 +53,12 @@ namespace ConventionModelBuilder.Extensions
             return options;
         }
 
+        /// <summary>
+        /// Adds IEntityTypeOverride to override model builder actions
+        /// </summary>
+        /// <param name="options"><see cref="ConventionModelBuilderOptions"/></param>
+        /// <param name="optionsAction">Actions to apply to <see cref="EntityTypeOverrideDiscoveryConventionOptions"/></param>
+        /// <returns><see cref="ConventionModelBuilderOptions"/></returns>
         public static ConventionModelBuilderOptions AddOverrides(this ConventionModelBuilderOptions options,
             Action<EntityTypeOverrideDiscoveryConventionOptions> optionsAction = null)
         {

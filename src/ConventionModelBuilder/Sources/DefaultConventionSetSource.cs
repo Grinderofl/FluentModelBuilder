@@ -7,6 +7,7 @@ namespace ConventionModelBuilder.Sources
     public class DefaultConventionSetSource : IConventionSetSource
     {
         private readonly bool _useCoreConventions;
+        private static readonly ICoreConventionSetBuilder CoreConventionSetBuilder = new CoreConventionSetBuilder();
 
         public DefaultConventionSetSource(bool useCoreConventions = true)
         {
@@ -15,7 +16,7 @@ namespace ConventionModelBuilder.Sources
 
         public virtual ConventionSet CreateConventionSet(ConventionModelBuilderOptions options)
         {
-            return _useCoreConventions ? new CoreConventionSetBuilder().CreateConventionSet() : new ConventionSet();
+            return _useCoreConventions ? CoreConventionSetBuilder.CreateConventionSet() : new ConventionSet();
         }
     }
 }

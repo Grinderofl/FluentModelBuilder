@@ -6,10 +6,29 @@ namespace ConventionModelBuilder.Options
 {
     public class ConventionModelBuilderOptions
     {
+        /// <summary>
+        /// Conventions for configuring ModelBuilder
+        /// </summary>
         public LinkedList<IModelBuilderConvention> Conventions { get; } = new LinkedList<IModelBuilderConvention>();
-        public IConventionSetSource ConventionSetSource { get; set; } = new DefaultConventionSetSource();
-        public IModelBuilderSource ModelBuilderSource { get; set; } = new DefaultModelBuilderSource();
+
+        /// <summary>
+        /// Source for configuring the initial Model
+        /// </summary>
         public IModelSource ModelSource { get; set; } = new DefaultModelSource();
+
+        /// <summary>
+        /// Source for creating conventions for the initial Model
+        /// </summary>
+        public IConventionSetSource ConventionSetSource { get; set; } = new DefaultConventionSetSource();
+
+        /// <summary>
+        /// Source for creating the intial ModelBuilder
+        /// </summary>
+        public IModelBuilderSource ModelBuilderSource { get; set; } = new DefaultModelBuilderSource();
+
+        /// <summary>
+        /// Applies conventions to Model
+        /// </summary>
         public IConventionApplier ConventionApplier { get; set; } = new DefaultConventionApplier();
     }
 }

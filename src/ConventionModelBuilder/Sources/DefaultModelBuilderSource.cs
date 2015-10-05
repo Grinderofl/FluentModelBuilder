@@ -7,7 +7,7 @@ namespace ConventionModelBuilder.Sources
 {
     public class DefaultModelBuilderSource : IModelBuilderSource
     {
-        public ModelBuilder CreateModelBuilder(ConventionModelBuilderOptions options, ConventionSet conventionSet, Model model = null)
+        public virtual ModelBuilder CreateModelBuilder(ConventionModelBuilderOptions options, ConventionSet conventionSet, Model model = null)
         {
             return model != null
                 ? new ModelBuilder(conventionSet, model)

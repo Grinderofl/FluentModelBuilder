@@ -5,7 +5,7 @@ namespace ConventionModelBuilder.Sources
 {
     public class DefaultModelSource : IModelSource
     {
-        public Model CreateModel(ConventionModelBuilderOptions options)
+        public virtual Model CreateModel(ConventionModelBuilderOptions options)
         {
             return new Model();
         }

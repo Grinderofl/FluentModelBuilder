@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using ConventionModelBuilder.Options;
 using ConventionModelBuilder.Sources;
 using Microsoft.Data.Entity.Metadata.Conventions;
+using Microsoft.Data.Entity.Metadata.Conventions.Internal;
 using Microsoft.Data.Entity.SqlServer;
 
 namespace ConventionModelBuilder.SqlServer
 {
     public class SqlServerConventionSetSource : DefaultConventionSetSource
     {
+        private static readonly IConventionSetBuilder ConventionSetBuilder = new SqlServerConventionSetBuilder();
         public SqlServerConventionSetSource(bool useCoreConventions = true) : base(useCoreConventions)
         {
         }
@@ -18,7 +20,7 @@ namespace ConventionModelBuilder.SqlServer
         public override ConventionSet CreateConventionSet(ConventionModelBuilderOptions options)
         {
             var baseConventions = base.CreateConventionSet(options);
-            return new SqlServerConventionSetBuilder().AddConventions(baseConventions);
+            return ConventionSetBuilder.AddConventions(baseConventions);
         }
     }
 }

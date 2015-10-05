@@ -9,8 +9,14 @@ using Microsoft.Data.Entity;
 
 namespace ConventionModelBuilder.Conventions
 {
+    /// <summary>
+    /// Convention for adding entities based on criterias from specified assemblies
+    /// </summary>
     public class EntityDiscoveryConvention : IModelBuilderConvention
     {
+        /// <summary>
+        /// Options for <see cref="EntityDiscoveryConvention"/>
+        /// </summary>
         public EntityDiscoveryConventionOptions Options { get; } = new EntityDiscoveryConventionOptions();
         
         public void Apply(ModelBuilder builder)
