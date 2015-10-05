@@ -1,0 +1,12 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "ConventionModelBuilder.TestTarget Class Library",
+  "authors": [ "Nero" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "frameworks": {
+    "dnx451": { }
+  }
+}
