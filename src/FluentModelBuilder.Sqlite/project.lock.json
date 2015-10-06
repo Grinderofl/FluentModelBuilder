@@ -84,7 +84,7 @@
           "lib/net45/EntityFramework.Sqlite.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0": {
+      "FluentModelBuilder/0.1.0-alpha": {
         "type": "project",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta7"
@@ -400,7 +400,7 @@
           "lib/dotnet/EntityFramework.Sqlite.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0": {
+      "FluentModelBuilder/0.1.0-alpha": {
         "type": "project",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta7",
@@ -1273,7 +1273,7 @@
     }
   },
   "libraries": {
-    "FluentModelBuilder/1.0.0": {
+    "FluentModelBuilder/0.1.0-alpha": {
       "type": "project",
       "path": "../FluentModelBuilder/project.json"
     },

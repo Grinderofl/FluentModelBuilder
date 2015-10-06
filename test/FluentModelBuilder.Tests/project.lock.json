@@ -45,7 +45,7 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0": {
+      "FluentModelBuilder/0.1.0-alpha": {
         "type": "project",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta7"
@@ -541,7 +541,7 @@
     }
   },
   "libraries": {
-    "FluentModelBuilder/1.0.0": {
+    "FluentModelBuilder/0.1.0-alpha": {
       "type": "project",
       "path": "../../src/FluentModelBuilder/project.json"
     },

@@ -131,13 +131,13 @@
           "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0": {
+      "FluentModelBuilder/0.1.0-alpha": {
         "type": "project",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta7"
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0": {
+      "FluentModelBuilder.SqlServer/0.1.0-alpha-": {
         "type": "project",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta7",
@@ -941,7 +941,7 @@
           "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0": {
+      "FluentModelBuilder/0.1.0-alpha": {
         "type": "project",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta7",
@@ -950,7 +950,7 @@
           "System.Reflection.Extensions": "4.0.0"
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0": {
+      "FluentModelBuilder.SqlServer/0.1.0-alpha-": {
         "type": "project",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta7",
@@ -2796,11 +2796,11 @@
     }
   },
   "libraries": {
-    "FluentModelBuilder/1.0.0": {
+    "FluentModelBuilder/0.1.0-alpha": {
       "type": "project",
       "path": "../../src/FluentModelBuilder/project.json"
     },
-    "FluentModelBuilder.SqlServer/1.0.0": {
+    "FluentModelBuilder.SqlServer/0.1.0-alpha-": {
       "type": "project",
       "path": "../../src/FluentModelBuilder.SqlServer/project.json"
     },

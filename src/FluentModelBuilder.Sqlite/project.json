@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.0-*",
+  "version": "0.1.0-alpha-*",
   "description": "FluentModelBuilder.Sqlite Class Library",
   "authors": [ "Nero Sule" ],
   "tags": [ "Fluent", "ModelBuilder", "FluentModelBuilder", "Sqlite" ],

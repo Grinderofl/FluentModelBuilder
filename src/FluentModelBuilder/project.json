@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.0-*",
+  "version": "0.1.0-alpha-*",
   "description": "Provides a fluent way to configure your DbContext's Model",
   "authors": [ "Nero Sule" ],
   "tags": [ "Fluent", "ModelBuilder", "FluentModelBuilder", "EntityFramework", "Entity Framework", "Fluent Entity Framework", "Fluent EntityFramework" ],
