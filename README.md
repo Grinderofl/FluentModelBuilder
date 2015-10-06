@@ -2,7 +2,7 @@
 
 Alternative for creating DbContext: using fluent interface and possible conventions
 
-# Basic Usage
+## Basic usage as part of servicecollection
 
 ```c#
 public void Configure(IServiceCollection services)
@@ -13,39 +13,70 @@ public void Configure(IServiceCollection services)
     
       dbContextOptions.UseSqlServer(...);
       
-      dbContextOptions.BuildModel(opts =>
+      dbContextOptions.BuildModel(fluently =>
       
-        opts.AddEntities(entities => {
+        fluently.AddEntities(entities => {
           entities.WithBaseType<EntityBase>();
           entities.FromAssemblyContaining<ClassFromAssembly>();
         });
         
-        opts.AddEntity<YourSingleEntity>();
+        fluently.AddEntity<YourSingleEntity>();
         
-        opts.AddOverrides(overrides => {
+        fluently.AddOverrides(overrides => {
           overrides.FromAssemblyContaining<ClassFromAssembly>();
         });
         
-        opts.UseSqlServer();
+        fluently.UseSqlServer();
       );
     });
 }
 ```
 
-### Adding single entities:
+## Basic usage in DbContext
 ```c#
-BuildModel(opts => opts
+public class MyContext : DbContext
+{
+  protected override void OnConfiguring(DbContextOptionsBuilder options)
+  {
+    options.BuildModel(fluently => {
+      fluently.AddEntities(x => x.WithBaseType<Entity>().FromAssemblyContaining<EntityOne>());
+      fluently.UseSqlServer();
+    });
+  }
+}
+```
+
+### Adding single entities
+```c#
+BuildModel(fluently => fluently
   .AddEntity<YourSingleEntity>()
   .AddEntity<YourOtherSingleEntity>());
 ```
 
 ### Adding and configuring single entities
 ```c#
-BuildModel(opts => opts
+BuildModel(fluently => fluently
   .AddEntity<YourSingleEntity>(x => x.Ignore(p => p.Prop)));
 ```
 
-### To enable generation of proper database specific identities, add
+### Adding entities of specific base type from assembly
+```c#
+BuildModel(fluently =>
+  fluently.AddEntities(x => {
+    x.WithBaseType<BaseEntity>(); // Specify the base type
+    x.FromAssemblyContaining<YourEntity>(); // Specify the assembly that contains the entity for scanning
+  })
+);
+```
+
+### Adding overrides for entity types from assembly (searches for ```IEntityTypeOverride<>``` implementations)
+```c#
+BuildModel(fluently =>
+  fluently.AddOverrides(x => x.FromAssemblyContaining<YourOverride>());
+);
+```
+
+### Adding database specific generation options
 ```c#
 opts.UseSqlServer();
 ```
@@ -54,4 +85,26 @@ or
 
 ```c#
 opts.UseSqlite();
+```
+
+## Creating your own conventions
+
+* Implement `IModelBuilderConvention`:
+
+```c#
+public class MyConvention : IModelBuilderConvention
+{
+  public void Apply(ModelBuilder builder)
+  {
+    // Magic!
+  }
+}
+```
+
+* Add it to builder
+
+```c#
+BuildModel(fluently => {
+  fluently.AddConvention<MyConvention>();
+});
 ```
