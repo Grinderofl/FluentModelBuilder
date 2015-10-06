@@ -23,7 +23,7 @@ namespace FluentModelBuilder.Tests
                 var collection = new ServiceCollection();
                 collection.AddEntityFramework().AddDbContext<DbContext>(o =>
                 {
-                    o.BuildModelUsingConventions(c =>
+                    o.BuildModel(c =>
                     {
                         c.AddEntity<EntityWithNoBaseType>();
                         c.AddEntities(e => e.WithBaseType<EntityBase>().FromAssemblyContaining<NotAnEntity>());

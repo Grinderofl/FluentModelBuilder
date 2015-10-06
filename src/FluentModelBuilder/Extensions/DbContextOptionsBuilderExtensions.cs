@@ -15,7 +15,7 @@ namespace FluentModelBuilder.Extensions
         /// <param name="builder"><see cref="DbContextOptionsBuilder"/></param>
         /// <param name="optionsAction">Configure <see cref="FluentModelBuilderOptions"/></param>
         /// <returns>Extension of type <see cref="FluentModelBuilderExtension"/></returns>
-        public static FluentModelBuilderExtension BuildModelUsingConventions(this DbContextOptionsBuilder builder, Action<FluentModelBuilderOptions> optionsAction = null)
+        public static FluentModelBuilderExtension BuildModel(this DbContextOptionsBuilder builder, Action<FluentModelBuilderOptions> optionsAction = null)
         {
             var options = new FluentModelBuilderOptions();
             optionsAction?.Invoke(options);
