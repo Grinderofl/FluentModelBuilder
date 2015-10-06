@@ -84,6 +84,12 @@
           "lib/net45/EntityFramework.Sqlite.dll": {}
         }
       },
+      "FluentModelBuilder/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-beta7"
+        }
+      },
       "Ix-Async/1.2.5": {
         "type": "package",
         "frameworkAssemblies": [
@@ -392,6 +398,15 @@
         },
         "runtime": {
           "lib/dotnet/EntityFramework.Sqlite.dll": {}
+        }
+      },
+      "FluentModelBuilder/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-beta7",
+          "System.Linq.Expressions": "4.0.10",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0"
         }
       },
       "Ix-Async/1.2.5": {
@@ -1258,6 +1273,10 @@
     }
   },
   "libraries": {
+    "FluentModelBuilder/1.0.0": {
+      "type": "project",
+      "path": "../FluentModelBuilder/project.json"
+    },
     "EntityFramework.Core/7.0.0-beta7": {
       "type": "package",
       "serviceable": true,
@@ -2650,7 +2669,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "FluentModelBuilder ",
+      "FluentModelBuilder >= 1.0.0",
       "EntityFramework.Sqlite >= 7.0.0-beta7"
     ],
     "DNX,Version=v4.5.1": [],

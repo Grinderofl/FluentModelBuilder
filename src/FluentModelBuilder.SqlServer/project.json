@@ -1,12 +1,12 @@
 ﻿{
   "version": "1.0.0-*",
   "description": "FluentModelBuilder.SqlServer Class Library",
-  "authors": [ "Nero" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
+  "authors": [ "Nero Sule" ],
+  "tags": [ "Fluent", "ModelBuilder", "FluentModelBuilder", "SqlServer" ],
+  "projectUrl": "https://github.com/Grinderofl/FluentModelBuilder",
+  "licenseUrl": "https://github.com/Grinderofl/FluentModelBuilder/blob/master/LICENSE.md",
   "dependencies": {
-    "FluentModelBuilder": "",
+    "FluentModelBuilder": "1.0.0",
     "EntityFramework.SqlServer": "7.0.0-beta7"
   },
   "frameworks": {
