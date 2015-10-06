@@ -1,8 +1,8 @@
-# ConventionModelBuilder
+# FluentModelBuilder
 
-Alternative for creating DbContext manually in EF7, by using conventions instead
+Alternative for creating DbContext: using fluent interface and possible conventions
 
-# Usage
+# Basic Usage
 
 ```c#
 public void Configure(IServiceCollection services)
@@ -13,12 +13,14 @@ public void Configure(IServiceCollection services)
     
       dbContextOptions.UseSqlServer(...);
       
-      dbContextOptions.BuildModelUsingConventions(opts =>
+      dbContextOptions.BuildModel(opts =>
       
         opts.AddEntities(entities => {
           entities.WithBaseType<EntityBase>();
           entities.FromAssemblyContaining<ClassFromAssembly>();
         });
+        
+        opts.AddEntity<YourSingleEntity>();
         
         opts.AddOverrides(overrides => {
           overrides.FromAssemblyContaining<ClassFromAssembly>();
@@ -28,4 +30,28 @@ public void Configure(IServiceCollection services)
       );
     });
 }
+```
+
+### Adding single entities:
+```c#
+BuildModel(opts => opts
+  .AddEntity<YourSingleEntity>()
+  .AddEntity<YourOtherSingleEntity>());
+```
+
+### Adding and configuring single entities
+```c#
+BuildModel(opts => opts
+  .AddEntity<YourSingleEntity>(x => x.Ignore(p => p.Prop)));
+```
+
+### To enable generation of proper database specific identities, add
+```c#
+opts.UseSqlServer();
+```
+
+or
+
+```c#
+opts.UseSqlite();
 ```
