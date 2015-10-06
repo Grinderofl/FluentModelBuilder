@@ -19,7 +19,7 @@ namespace ConventionModelBuilder.Conventions
         /// </summary>
         public EntityDiscoveryConventionOptions Options { get; } = new EntityDiscoveryConventionOptions();
         
-        public void Apply(ModelBuilder builder)
+        public virtual void Apply(ModelBuilder builder)
         {
             var entities = FindEntities();
             foreach (var entity in entities)

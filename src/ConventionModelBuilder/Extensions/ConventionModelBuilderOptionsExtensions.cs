@@ -3,6 +3,7 @@ using System.Linq;
 using ConventionModelBuilder.Conventions;
 using ConventionModelBuilder.Conventions.Options;
 using ConventionModelBuilder.Options;
+using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace ConventionModelBuilder.Extensions
 {
@@ -24,6 +25,45 @@ namespace ConventionModelBuilder.Extensions
             }
             
             optionsAction?.Invoke(convention.Options);
+            return options;
+        }
+        
+        /// <summary>
+        /// Adds single entity to model
+        /// </summary>
+        /// <param name="options"><see cref="ConventionModelBuilderOptions"/></param>
+        /// <param name="type">Type of entity to add</param>
+        /// <returns><see cref="ConventionModelBuilderOptions"/></returns>
+        public static ConventionModelBuilderOptions AddEntity(this ConventionModelBuilderOptions options, Type type)
+        {
+            options.AddConvention(new EntityConvention(type));
+            return options;
+        }
+
+        /// <summary>
+        /// Adds single entity to model
+        /// </summary>
+        /// <typeparam name="T">Type of entity to add</typeparam>
+        /// <param name="options"><see cref="ConventionModelBuilderOptions"/></param>
+        /// <returns><see cref="ConventionModelBuilderOptions"/></returns>
+        public static ConventionModelBuilderOptions AddEntity<T>(this ConventionModelBuilderOptions options)
+            where T : class
+        {
+            options.AddConvention(new EntityConvention(typeof (T)));
+            return options;
+        }
+
+        /// <summary>
+        /// Adds and configures single entity on model
+        /// </summary>
+        /// <typeparam name="T">Type of entity to add and configure</typeparam>
+        /// <param name="options"><see cref="ConventionModelBuilderOptions"/></param>
+        /// <param name="action">Configuration to perform on entity</param>
+        /// <returns><see cref="ConventionModelBuilderOptions"/></returns>
+        public static ConventionModelBuilderOptions AddEntity<T>(this ConventionModelBuilderOptions options,
+            Action<EntityTypeBuilder<T>> action) where T : class
+        {
+            options.AddConvention(new EntityConfigurationConvention<T>(action));
             return options;
         }
 

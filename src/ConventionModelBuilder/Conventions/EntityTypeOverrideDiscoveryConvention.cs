@@ -18,17 +18,9 @@ namespace ConventionModelBuilder.Conventions
         /// </summary>
         public EntityTypeOverrideDiscoveryConventionOptions Options { get; } = new EntityTypeOverrideDiscoveryConventionOptions();
 
-        public void Apply(ModelBuilder builder)
+        public virtual void Apply(ModelBuilder builder)
         {
-            var types = Options.Assemblies.SelectMany(x => x.GetExportedTypes());
-            types =
-                types.Where(
-                    x =>
-                        x.GetInterfaces()
-                            .Any(
-                                c =>
-                                    c.GetTypeInfo().IsGenericType &&
-                                    c.GetGenericTypeDefinition() == typeof (IEntityTypeOverride<>)));
+            var types = FindEntities();
 
             // MethodCall => Entity<>()
             var entityMethod = typeof (ModelBuilder).GetMethods().First(x => x.Name == "Entity" && x.IsGenericMethod);
@@ -54,6 +46,24 @@ namespace ConventionModelBuilder.Conventions
                 method.Invoke(entityTypeOverride, new[] {entity});
 
             }
+        }
+
+        protected virtual IEnumerable<Type> FindEntities()
+        {
+            var types = Options.Assemblies.SelectMany(x => x.GetExportedTypes())
+                .Where(x => ImplementsInterfaceOfType(x, typeof (IEntityTypeOverride<>)));
+                //.Where(x => x.GetInterfaces()
+                //        .Any(
+                //            c =>
+                //                c.GetTypeInfo().IsGenericType &&
+                //                c.GetGenericTypeDefinition() == typeof (IEntityTypeOverride<>)));
+            return types;
+        }
+
+        protected virtual bool ImplementsInterfaceOfType(Type type, Type interfaceType)
+        {
+            var interfaces = type.GetInterfaces();
+            return interfaces.Any(x => x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == interfaceType);
         }
     }
 }

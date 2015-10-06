@@ -1,5 +1,7 @@
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using ConventionModelBuilder.Conventions.Options;
+using System.Threading.Tasks;
 using ConventionModelBuilder.Conventions.Options.Extensions;
 using ConventionModelBuilder.Extensions;
 using ConventionModelBuilder.Options.Extensions;
@@ -10,15 +12,8 @@ using Xunit;
 
 namespace ConventionModelBuilder.Tests
 {
-    public class BuildingModelWithSingleBaseTypeAndOverridesEndToEnd : IClassFixture<BuildingModelWithSingleBaseTypeAndOverridesEndToEnd.Fixture>
+    public class BuildingModelWithSingleBaseTypeAndEntityEndToEnd : IClassFixture<BuildingModelWithSingleBaseTypeAndEntityEndToEnd.Fixture>
     {
-        private readonly Fixture _fixture;
-
-        public BuildingModelWithSingleBaseTypeAndOverridesEndToEnd(Fixture fixture)
-        {
-            _fixture = fixture;
-        }
-
         public class Fixture
         {
             public DbContext Context;
@@ -30,12 +25,19 @@ namespace ConventionModelBuilder.Tests
                 {
                     o.BuildModelUsingConventions(c =>
                     {
-                        c.AddEntities(e => EntityDiscoveryConventionOptionsExtensions.WithBaseType<EntityBase>((EntityDiscoveryConventionOptions) e).FromAssemblyContaining<NotAnEntity>());
-                        c.AddOverrides(ov => ov.FromAssemblyContaining<NotAnEntity>());
+                        c.AddEntity<EntityWithNoBaseType>();
+                        c.AddEntities(e => e.WithBaseType<EntityBase>().FromAssemblyContaining<NotAnEntity>());
                     });
                 });
                 Context = collection.BuildServiceProvider().GetService<DbContext>();
             }
+        }
+
+        private readonly Fixture _fixture;
+
+        public BuildingModelWithSingleBaseTypeAndEntityEndToEnd(Fixture fixture)
+        {
+            _fixture = fixture;
         }
 
         [Fact]
@@ -47,21 +49,17 @@ namespace ConventionModelBuilder.Tests
         [Fact]
         public void AddsEntitiesToModel()
         {
-            Assert.True(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof(EntityOne)));
-            Assert.True(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof(EntityTwo)));
+            Assert.True(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof (EntityOne)));
+            Assert.True(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof (EntityTwo)));
+            Assert.True(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof (EntityWithNoBaseType)));
         }
 
         [Fact]
         public void AddsPropertiesToModel()
         {
+            Assert.True(_fixture.Context.Model.EntityTypes.Any(c => c.GetProperties().Any(p => p.Name == "IgnoredInOverride")));
             Assert.True(_fixture.Context.Model.EntityTypes.Any(c => c.GetProperties().Any(p => p.Name == "NotIgnored")));
             Assert.True(_fixture.Context.Model.EntityTypes.Any(c => c.GetProperties().Any(p => p.Name == "Id")));
-        }
-
-        [Fact]
-        public void DoesNotAddIgnoredPropertiesToModel()
-        {
-            Assert.False(_fixture.Context.Model.EntityTypes.Any(c => c.GetProperties().Any(p => p.Name == "IgnoredInOverride")));
         }
     }
 }
