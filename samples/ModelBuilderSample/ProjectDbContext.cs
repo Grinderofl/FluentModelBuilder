@@ -1,7 +1,7 @@
-using ConventionModelBuilder.Conventions.Options.Extensions;
-using ConventionModelBuilder.Extensions;
-using ConventionModelBuilder.Options.Extensions;
-using ConventionModelBuilder.SqlServer.Extensions;
+using FluentModelBuilder.Conventions.Options.Extensions;
+using FluentModelBuilder.Extensions;
+using FluentModelBuilder.Options.Extensions;
+using FluentModelBuilder.SqlServer.Extensions;
 using Microsoft.Data.Entity;
 
 namespace ModelBuilderSample

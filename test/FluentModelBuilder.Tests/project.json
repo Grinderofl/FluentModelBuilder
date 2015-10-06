@@ -1,0 +1,20 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "FluentModelBuilder.Tests Class Library",
+  "authors": [ "Nero" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "dependencies": {
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-beta5-build165",
+    "FluentModelBuilder": "",
+    "FluentModelBuilder.TestTarget": ""
+  },
+  "commands": {
+    "test": "xunit.runner.dnx"
+  },
+  "frameworks": {
+    "dnx451": { }
+  }
+}

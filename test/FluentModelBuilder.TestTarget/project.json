@@ -1,0 +1,14 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "FluentModelBuilder.TestTarget Class Library",
+  "authors": [ "Nero" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "dependencies": {
+    "FluentModelBuilder": ""
+  },
+  "frameworks": {
+    "dnx451": { }
+  }
+}
