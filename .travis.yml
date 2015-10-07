@@ -5,7 +5,12 @@ mono:
  - latest 
 
 install:
- - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh - dnvm upgrade - dnvm install - dnu restore 
+ - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh
+ - source ~/.dnx/dnvm/dnvm.sh
+ - dnvm upgrade
+ - dnvm install
+ - source /home/travis/.dnx/dnvm/dnvm.sh
+ - dnu restore
  
 script:
  - dnx /home/travis/build/grinderofl/FluentModelBuilder/FluentModelBuilder.Tests/project.json test -parallel none
