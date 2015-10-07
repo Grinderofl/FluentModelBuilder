@@ -94,7 +94,7 @@ namespace FluentModelBuilder.Extensions
         }
 
         /// <summary>
-        /// Adds IEntityTypeOverride to override model builder actions
+        /// Adds IEntityTypeOverrides to override model builder actions
         /// </summary>
         /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
         /// <param name="optionsAction">Actions to apply to <see cref="EntityTypeOverrideDiscoveryConventionOptions"/></param>
@@ -113,6 +113,17 @@ namespace FluentModelBuilder.Extensions
 
             optionsAction?.Invoke(convention.Options);
             return options;
+        }
+
+        /// <summary>
+        /// Adds single IEntityTypeOverride to model builder configuration
+        /// </summary>
+        /// <typeparam name="T">Type of IEntityTypeOverride to add</typeparam>
+        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
+        public static FluentModelBuilderOptions AddOverride<T>(this FluentModelBuilderOptions options)
+        {
+            return options.AddConvention(new EntityTypeOverrideConvention<T>());
         }
     }
 }

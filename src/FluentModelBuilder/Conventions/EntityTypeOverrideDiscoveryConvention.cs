@@ -18,12 +18,15 @@ namespace FluentModelBuilder.Conventions
         /// </summary>
         public EntityTypeOverrideDiscoveryConventionOptions Options { get; } = new EntityTypeOverrideDiscoveryConventionOptions();
 
+        public static MethodInfo EntityMethod =
+            typeof(ModelBuilder).GetMethods().First(x => x.Name == "Entity" && x.IsGenericMethod);
+
         public virtual void Apply(ModelBuilder builder)
         {
             var types = FindEntities();
 
             // MethodCall => Entity<>()
-            var entityMethod = typeof (ModelBuilder).GetMethods().First(x => x.Name == "Entity" && x.IsGenericMethod);
+            //var EntityMethod = typeof (ModelBuilder).GetMethods().First(x => x.Name == "Entity" && x.IsGenericMethod);
             foreach (var type in types)
             {
                 // IEntityTypeOverride<>().Configure(ModelBuilder)
@@ -36,7 +39,7 @@ namespace FluentModelBuilder.Conventions
                         .GenericTypeArguments.First();
 
                 // invokedEntity = ModelBuilder.Entity<T>()
-                var entity = entityMethod.MakeGenericMethod(target)
+                var entity = EntityMethod.MakeGenericMethod(target)
                     .Invoke(builder, new object[] {});
 
                 // entityTypeOverride = new IEntityTypeOverride<T>()
@@ -52,15 +55,10 @@ namespace FluentModelBuilder.Conventions
         {
             var types = Options.Assemblies.SelectMany(x => x.GetExportedTypes())
                 .Where(x => ImplementsInterfaceOfType(x, typeof (IEntityTypeOverride<>)));
-                //.Where(x => x.GetInterfaces()
-                //        .Any(
-                //            c =>
-                //                c.GetTypeInfo().IsGenericType &&
-                //                c.GetGenericTypeDefinition() == typeof (IEntityTypeOverride<>)));
             return types;
         }
 
-        protected virtual bool ImplementsInterfaceOfType(Type type, Type interfaceType)
+        public static bool ImplementsInterfaceOfType(Type type, Type interfaceType)
         {
             var interfaces = type.GetInterfaces();
             return interfaces.Any(x => x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == interfaceType);
