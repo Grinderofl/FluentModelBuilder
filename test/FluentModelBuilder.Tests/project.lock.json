@@ -464,34 +464,6 @@
           "xunit.extensibility.execution": "[2.1.0-rc2-build3178]"
         }
       },
-      "xunit.execution.AspNet/2.0.0-aspnet-beta7-10360": {
-        "type": "package",
-        "dependencies": {
-          "xunit.abstractions": "2.0.0-rc3-build2880",
-          "xunit.extensibility.core": "2.0.0-rc3-build2880"
-        },
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Collections",
-          "System.Core",
-          "System.Diagnostics.Debug",
-          "System.Globalization",
-          "System.Linq",
-          "System.Reflection",
-          "System.Reflection.Extensions",
-          "System.Runtime",
-          "System.Runtime.Extensions",
-          "System.Threading.Tasks"
-        ],
-        "compile": {
-          "lib/dnx451/xunit.execution.AspNet.dll": {}
-        },
-        "runtime": {
-          "lib/dnx451/xunit.execution.AspNet.dll": {}
-        }
-      },
       "xunit.extensibility.core/2.1.0-rc2-build3178": {
         "type": "package",
         "dependencies": {
@@ -1032,19 +1004,6 @@
         "xunit.core.nuspec"
       ]
     },
-    "xunit.execution.AspNet/2.0.0-aspnet-beta7-10360": {
-      "type": "package",
-      "sha512": "lovLuKXxvTmsITUxrWqCl3yQtQD/49sxfQKGRVhLCjaDK64qPfuTXlWsXXUEzeJtq8YwNovYhWYISlSWbjqH9Q==",
-      "files": [
-        "lib/dnx451/xunit.execution.AspNet.dll",
-        "lib/dnx451/xunit.execution.AspNet.xml",
-        "lib/dnxcore50/xunit.execution.AspNet.dll",
-        "lib/dnxcore50/xunit.execution.AspNet.xml",
-        "xunit.execution.AspNet.2.0.0-aspnet-beta7-10360.nupkg",
-        "xunit.execution.AspNet.2.0.0-aspnet-beta7-10360.nupkg.sha512",
-        "xunit.execution.AspNet.nuspec"
-      ]
-    },
     "xunit.extensibility.core/2.1.0-rc2-build3178": {
       "type": "package",
       "sha512": "e4TVCzDFKvOmOQDBG6AutAn+vrjdgsweVStVa7+sZJHync9cSTnv+an4IuOkjPNICzPn0Pd67rpoj4hlMmF4yg==",
@@ -1157,7 +1116,6 @@
     "": [
       "xunit >= 2.1.0-rc2-build3178",
       "xunit.runner.dnx >= 2.1.0-beta5-build165",
-      "xunit.execution.AspNet >= 2.0.0-aspnet-beta7-10360",
       "FluentModelBuilder ",
       "FluentModelBuilder.TestTarget "
     ],
