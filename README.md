@@ -1,6 +1,6 @@
 # FluentModelBuilder
-
 Alternative for creating DbContext: using fluent interface and possible conventions
+
 
 ## Basic usage as part of servicecollection
 
@@ -108,3 +108,6 @@ BuildModel(fluently => {
   fluently.AddConvention<MyConvention>();
 });
 ```
+
+### Build status
+[![Build status](https://ci.appveyor.com/api/projects/status/yccb8ad2msd26bad/branch/master?svg=true)](https://ci.appveyor.com/project/Grinderofl/fluentmodelbuilder/branch/master)
