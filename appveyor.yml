@@ -1,0 +1,37 @@
+version: 0.1.{build}
+os: Visual Studio 2015
+environment:
+  DNX_BUILD_VERSION: beta7-%APPVEYOR_BUILD_NUMBER%
+install:
+- cmd: >-
+    echo %DNX_BUILD_VERSION%
+
+    echo %WEBPROJ_ENABLEBETA7RENAMES%
+
+    echo on
+
+    set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+
+    dnvm update-self
+
+    dnvm install 1.0.0-beta7
+
+    dnvm setup
+
+    dnvm exec 1.0.0-beta7 dnu restore --quiet --parallel
+build:
+  project: FluentModelBuilder.sln
+  publish_nuget: true
+  publish_nuget_symbols: true
+  verbosity: minimal
+test_script:
+- cmd: >-
+    echo on
+
+    echo %CD%
+
+    cd ./test/FluentModelBuilder.Tests
+
+    dnvm exec 1.0.0-beta7 dnx test
+artifacts:
+- path: '**\*.nupkg'
