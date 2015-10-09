@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
+using FluentModelBuilder.Sources;
 
 namespace FluentModelBuilder.Options
 {
@@ -8,6 +9,6 @@ namespace FluentModelBuilder.Options
     /// </summary>
     public interface IAssemblyOptions
     {
-        IList<Assembly> Assemblies { get; }
+        IList<IAssemblySource> AssemblySources { get; }
     }
 }

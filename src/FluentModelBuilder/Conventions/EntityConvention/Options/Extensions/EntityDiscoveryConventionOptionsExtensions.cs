@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using FluentModelBuilder.Conventions.Criteria;
+using FluentModelBuilder.Options.Extensions;
 
-namespace FluentModelBuilder.Conventions.Options.Extensions
+namespace FluentModelBuilder.Conventions.EntityConvention.Options.Extensions
 {
     public static class EntityDiscoveryConventionOptionsExtensions
     {
@@ -39,6 +40,12 @@ namespace FluentModelBuilder.Conventions.Options.Extensions
             where T : class
         {
             return options.WithBaseType(typeof (T));
+        }
+
+        public static EntityDiscoveryConventionOptions FromAssemblyContaining<T>(
+            this EntityDiscoveryConventionOptions options) where T : new()
+        {
+            return options.FromAssemblyContaining<EntityDiscoveryConventionOptions, T>();
         }
     }
 }

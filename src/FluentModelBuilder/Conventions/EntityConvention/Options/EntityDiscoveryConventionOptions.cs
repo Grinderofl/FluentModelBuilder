@@ -1,14 +1,13 @@
 using System.Collections.Generic;
-using System.Reflection;
 using FluentModelBuilder.Conventions.Criteria;
-using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options;
+using FluentModelBuilder.Sources;
 
-namespace FluentModelBuilder.Conventions.Options
+namespace FluentModelBuilder.Conventions.EntityConvention.Options
 {
     public class EntityDiscoveryConventionOptions : IAssemblyOptions
     {
-        public IList<Assembly> Assemblies { get; set; } = new List<Assembly>();
+        public IList<IAssemblySource> AssemblySources { get; set; } = new List<IAssemblySource>();
         public IList<ITypeInfoCriteria> Criterias { get; set; } = new List<ITypeInfoCriteria>();
     }
 }

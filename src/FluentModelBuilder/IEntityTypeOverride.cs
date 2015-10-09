@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.Entity.Metadata.Builders;
 
-namespace FluentModelBuilder.Conventions.Overrides
+namespace FluentModelBuilder
 {
     /// <summary>
     /// Overrides a single entity type mapping configuration

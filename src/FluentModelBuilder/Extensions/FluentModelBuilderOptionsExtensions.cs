@@ -1,129 +1,235 @@
 using System;
 using System.Linq;
 using FluentModelBuilder.Conventions;
-using FluentModelBuilder.Conventions.Options;
+using FluentModelBuilder.Conventions.Core;
+using FluentModelBuilder.Conventions.Core.Options;
+using FluentModelBuilder.Conventions.Core.Options.Extensions;
+using FluentModelBuilder.Conventions.EntityConvention;
+using FluentModelBuilder.Conventions.EntityConvention.Options;
 using FluentModelBuilder.Options;
+using FluentModelBuilder.Options.Extensions;
+using FluentModelBuilder.Sources;
 using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace FluentModelBuilder.Extensions
 {
     public static class FluentModelBuilderOptionsExtensions
     {
-        /// <summary>
-        /// Adds entities from assemblies that correspond to given conditions
-        /// </summary>
-        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
-        /// <param name="optionsAction">Actions to apply to <see cref="EntityDiscoveryConventionOptions"/></param>
-        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
-        public static FluentModelBuilderOptions AddEntities(this FluentModelBuilderOptions options, Action<EntityDiscoveryConventionOptions> optionsAction = null)
-        {
-            var convention = options.Conventions.FirstOrDefault(x => x is EntityDiscoveryConvention) as EntityDiscoveryConvention;
-            if (convention == null)
-            {
-                convention = new EntityDiscoveryConvention();
-                options.Conventions.AddFirst(convention);
-            }
+        ///// <summary>
+        ///// Adds entities from assemblies that correspond to given conditions
+        ///// </summary>
+        ///// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        ///// <param name="optionsAction">Actions to apply to <see cref="EntityDiscoveryConventionOptions"/></param>
+        ///// <returns><see cref="FluentModelBuilderOptions"/></returns>
+        //public static FluentModelBuilderOptions AddEntities(this FluentModelBuilderOptions options, Action<EntityDiscoveryConventionOptions> optionsAction = null)
+        //{
+        //    var convention = options.Conventions.FirstOrDefault(x => x is EntityDiscoveryConvention) as EntityDiscoveryConvention;
+        //    if (convention == null)
+        //    {
+        //        convention = new EntityDiscoveryConvention();
+        //        options.Conventions.Insert(0, convention);
+        //    }
             
-            optionsAction?.Invoke(convention.Options);
-            return options;
-        }
-        
-        /// <summary>
-        /// Adds single entity to model
-        /// </summary>
-        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
-        /// <param name="type">Type of entity to add</param>
-        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
-        public static FluentModelBuilderOptions AddEntity(this FluentModelBuilderOptions options, Type type)
-        {
-            options.AddConvention(new EntityConvention(type));
-            return options;
-        }
+        //    optionsAction?.Invoke(convention.Options);
+        //    return options;
+        //}
 
-        /// <summary>
-        /// Adds single entity to model
-        /// </summary>
-        /// <typeparam name="T">Type of entity to add</typeparam>
-        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
-        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
-        public static FluentModelBuilderOptions AddEntity<T>(this FluentModelBuilderOptions options)
-            where T : class
+        public static T WithConvention<T>(this FluentModelBuilderOptions options) where T : class, IModelBuilderConvention, new()
         {
-            options.AddConvention(new EntityConvention(typeof (T)));
-            return options;
-        }
-
-        /// <summary>
-        /// Adds and configures single entity on model
-        /// </summary>
-        /// <typeparam name="T">Type of entity to add and configure</typeparam>
-        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
-        /// <param name="action">Configuration to perform on entity</param>
-        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
-        public static FluentModelBuilderOptions AddEntity<T>(this FluentModelBuilderOptions options,
-            Action<EntityTypeBuilder<T>> action) where T : class
-        {
-            options.AddConvention(new EntityConfigurationConvention<T>(action));
-            return options;
-        }
-
-        /// <summary>
-        /// Adds a convention to <see cref="FluentModelBuilder"/>
-        /// </summary>
-        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
-        /// <param name="convention">Convention to add</param>
-        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
-        public static FluentModelBuilderOptions AddConvention(this FluentModelBuilderOptions options,
-            IModelBuilderConvention convention)
-        {
-            options.Conventions.AddLast(convention);
-            return options;
-        }
-
-        /// <summary>
-        /// Adds a strongly typed convention to <see cref="FluentModelBuilder"/>
-        /// </summary>
-        /// <typeparam name="T">Convention type to add</typeparam>
-        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
-        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
-        public static FluentModelBuilderOptions AddConvention<T>(this FluentModelBuilderOptions options)
-            where T : IModelBuilderConvention, new()
-        {
-            options.AddConvention(new T());
-            return options;
-        }
-
-        /// <summary>
-        /// Adds IEntityTypeOverrides to override model builder actions
-        /// </summary>
-        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
-        /// <param name="optionsAction">Actions to apply to <see cref="EntityTypeOverrideDiscoveryConventionOptions"/></param>
-        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
-        public static FluentModelBuilderOptions AddOverrides(this FluentModelBuilderOptions options,
-            Action<EntityTypeOverrideDiscoveryConventionOptions> optionsAction = null)
-        {
-            var convention =
-                options.Conventions.FirstOrDefault(x => x is EntityTypeOverrideDiscoveryConvention) as
-                    EntityTypeOverrideDiscoveryConvention;
+            var convention = options.Conventions.FirstOrDefault(x => x is T) as T;
             if (convention == null)
             {
-                convention = new EntityTypeOverrideDiscoveryConvention();
-                options.Conventions.AddLast(convention);
+                convention = new T();
+                options.Conventions.Add(convention);
             }
 
+            return convention;
+        }
+
+        ///// <summary>
+        ///// Adds single entity to model
+        ///// </summary>
+        ///// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        ///// <param name="type">Type of entity to add</param>
+        ///// <returns><see cref="FluentModelBuilderOptions"/></returns>
+        //public static FluentModelBuilderOptions AddEntity(this FluentModelBuilderOptions options, Type type)
+        //{
+        //    options.AddConvention(new SingleEntityConvention(type));
+        //    return options;
+        //}
+
+        ///// <summary>
+        ///// Adds single entity to model
+        ///// </summary>
+        ///// <typeparam name="T">Type of entity to add</typeparam>
+        ///// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        ///// <returns><see cref="FluentModelBuilderOptions"/></returns>
+        //public static FluentModelBuilderOptions AddEntity<T>(this FluentModelBuilderOptions options)
+        //    where T : class
+        //{
+        //    options.AddConvention(new SingleEntityConvention(typeof (T)));
+        //    return options;
+        //}
+
+        ///// <summary>
+        ///// Adds and configures single entity on model
+        ///// </summary>
+        ///// <typeparam name="T">Type of entity to add and configure</typeparam>
+        ///// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        ///// <param name="action">Configuration to perform on entity</param>
+        ///// <returns><see cref="FluentModelBuilderOptions"/></returns>
+        //public static FluentModelBuilderOptions AddEntity<T>(this FluentModelBuilderOptions options,
+        //    Action<EntityTypeBuilder<T>> action) where T : class
+        //{
+        //    options.AddConvention(new EntityConfigurationConvention<T>(action));
+        //    return options;
+        //}
+
+        ///// <summary>
+        ///// Adds a convention to <see cref="FluentModelBuilder"/>
+        ///// </summary>
+        ///// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        ///// <param name="convention">Convention to add</param>
+        ///// <returns><see cref="FluentModelBuilderOptions"/></returns>
+        //public static FluentModelBuilderOptions AddConvention(this FluentModelBuilderOptions options,
+        //    IModelBuilderConvention convention)
+        //{
+        //    options.Conventions.Add(convention);
+        //    return options;
+        //}
+
+        ///// <summary>
+        ///// Adds a strongly typed convention to <see cref="FluentModelBuilder"/>
+        ///// </summary>
+        ///// <typeparam name="T">Convention type to add</typeparam>
+        ///// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        ///// <returns><see cref="FluentModelBuilderOptions"/></returns>
+        //public static FluentModelBuilderOptions AddConvention<T>(this FluentModelBuilderOptions options)
+        //    where T : IModelBuilderConvention, new()
+        //{
+        //    options.AddConvention(new T());
+        //    return options;
+        //}
+
+        ///// <summary>
+        ///// Adds IEntityTypeOverrides to override model builder actions
+        ///// </summary>
+        ///// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        ///// <param name="optionsAction">Actions to apply to <see cref="EntityTypeOverrideDiscoveryConventionOptions"/></param>
+        ///// <returns><see cref="FluentModelBuilderOptions"/></returns>
+        //public static FluentModelBuilderOptions AddOverrides(this FluentModelBuilderOptions options,
+        //    Action<EntityTypeOverrideDiscoveryConventionOptions> optionsAction = null)
+        //{
+        //    var convention =
+        //        options.Conventions.FirstOrDefault(x => x is EntityTypeOverrideDiscoveryConvention) as
+        //            EntityTypeOverrideDiscoveryConvention;
+        //    if (convention == null)
+        //    {
+        //        convention = new EntityTypeOverrideDiscoveryConvention();
+        //        options.Conventions.Add(convention);
+        //    }
+
+        //    optionsAction?.Invoke(convention.Options);
+        //    return options;
+        //}
+
+        ///// <summary>
+        ///// Adds single IEntityTypeOverride to model builder configuration
+        ///// </summary>
+        ///// <typeparam name="T">Type of IEntityTypeOverride to add</typeparam>
+        ///// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        ///// <returns><see cref="FluentModelBuilderOptions"/></returns>
+        //public static FluentModelBuilderOptions AddOverride<T>(this FluentModelBuilderOptions options)
+        //{
+        //    return options.AddConvention(new EntityTypeOverrideConvention<T>());
+        //}
+
+
+
+        public static FluentModelBuilderOptions Entities(this FluentModelBuilderOptions options,
+            Action<EntityConventionOptions> optionsAction = null)
+        {
+            var convention = options.WithConvention<EntityConvention>();
             optionsAction?.Invoke(convention.Options);
             return options;
         }
 
-        /// <summary>
-        /// Adds single IEntityTypeOverride to model builder configuration
-        /// </summary>
-        /// <typeparam name="T">Type of IEntityTypeOverride to add</typeparam>
-        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
-        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
-        public static FluentModelBuilderOptions AddOverride<T>(this FluentModelBuilderOptions options)
+        public static FluentModelBuilderOptions Assemblies(this FluentModelBuilderOptions options,
+            Action<AssemblyConventionOptions> actions = null)
         {
-            return options.AddConvention(new EntityTypeOverrideConvention<T>());
+            var convention = options.WithConvention<AssemblyConvention>();
+            actions?.Invoke(convention.Options);
+            return options;
+        }
+
+        public static FluentModelBuilderOptions Overrides(this FluentModelBuilderOptions options,
+            Action<OverrideConventionOptions> optionsAction = null)
+        {
+            var convention = options.WithConvention<OverrideConvention>();
+            optionsAction?.Invoke(convention.Options);
+            return options;
         }
     }
+
+    public static class FluentModelBuilderOptionsEntitiesExtensions
+    {
+        public static FluentModelBuilderOptions AddEntity<T>(this FluentModelBuilderOptions options)
+        {
+            var convention = options.WithConvention<EntityConvention>();
+            convention.Options.ModelBuilderConventions.Add(new SingleEntityConvention(typeof (T)));
+            return options;
+        }
+
+        public static FluentModelBuilderOptions AddEntity<T>(this FluentModelBuilderOptions options, Action<EntityTypeBuilder<T>> configurationAction) where T : class
+        {
+            var convention = options.WithConvention<EntityConvention>();
+            convention.Options.ModelBuilderConventions.Add(new SingleEntityConfigurationConvention<T>(configurationAction));
+            return options;
+        }
+
+        public static FluentModelBuilderOptions DiscoverEntities(this FluentModelBuilderOptions options,
+            Action<EntityDiscoveryConventionOptions> optionsAction = null)
+        {
+            return options.Entities(x => x.Discover(optionsAction));
+        }
+
+        public static FluentModelBuilderOptions DiscoverEntitiesFromCommonAssemblies(
+            this FluentModelBuilderOptions options, Action<EntityDiscoveryConventionOptions> optionsAction = null)
+        {
+            return options.DiscoverEntities(discover =>
+            {
+                discover.FromAssemblyConvention(options);
+                optionsAction?.Invoke(discover);
+            });
+        }
+    }
+
+    public static class FluentModelBuilderOptionsOverridesExtensions
+    {
+        public static FluentModelBuilderOptions DiscoverOverrides(this FluentModelBuilderOptions options,
+            Action<EntityTypeOverrideDiscoveryConventionOptions> optionsAction = null)
+        {
+            return options.Overrides(x => x.Discover(optionsAction));
+        }
+
+        public static FluentModelBuilderOptions DiscoverOverridesFromCommonAssemblies(
+            this FluentModelBuilderOptions options,
+            Action<EntityTypeOverrideDiscoveryConventionOptions> optionsAction = null)
+        {
+            return options.DiscoverOverrides(discover =>
+            {
+                discover.FromAssemblyConvention(options);
+                optionsAction?.Invoke(discover);
+            });
+        }
+    }
+
+    public static class FluentModelBuilderOptionsAssemblyExtensions
+    {
+        public static FluentModelBuilderOptions AddAssemblyContaining<T>(this FluentModelBuilderOptions options)
+        {
+            return options.Assemblies(assembly => assembly.AddAssemblyContaining<T>());
+        }
+    }
+
 }

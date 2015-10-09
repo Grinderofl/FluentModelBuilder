@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentModelBuilder.Conventions.Options.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options.Extensions;
 using FluentModelBuilder.TestTarget;

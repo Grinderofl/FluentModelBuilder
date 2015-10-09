@@ -1,17 +1,16 @@
 using System;
-using System.Reflection;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Conventions
+namespace FluentModelBuilder.Conventions.EntityConvention
 {
     /// <summary>
     /// Convention for adding single entity to model
     /// </summary>
-    public class EntityConvention : IModelBuilderConvention
+    public class SingleEntityConvention : IModelBuilderConvention
     {
         protected Type EntityType;
 
-        public EntityConvention(Type entityType)
+        public SingleEntityConvention(Type entityType)
         {
             EntityType = entityType;
         }

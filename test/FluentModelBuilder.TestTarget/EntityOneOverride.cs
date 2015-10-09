@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentModelBuilder.Conventions.Overrides;
 using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace FluentModelBuilder.TestTarget

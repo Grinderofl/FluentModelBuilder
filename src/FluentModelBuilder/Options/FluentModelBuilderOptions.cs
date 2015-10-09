@@ -4,12 +4,12 @@ using FluentModelBuilder.Sources;
 
 namespace FluentModelBuilder.Options
 {
-    public class FluentModelBuilderOptions
+    public class FluentModelBuilderOptions : IConventionList
     {
         /// <summary>
         /// Conventions for configuring ModelBuilder
         /// </summary>
-        public LinkedList<IModelBuilderConvention> Conventions { get; } = new LinkedList<IModelBuilderConvention>();
+        public IList<IModelBuilderConvention> Conventions { get; } = new List<IModelBuilderConvention>();
 
         /// <summary>
         /// Source for configuring the initial Model
@@ -30,5 +30,10 @@ namespace FluentModelBuilder.Options
         /// Applies conventions to Model
         /// </summary>
         public IConventionApplier ConventionApplier { get; set; } = new DefaultConventionApplier();
+    }
+
+    public interface IConventionList
+    {
+        IList<IModelBuilderConvention> Conventions { get; }
     }
 }

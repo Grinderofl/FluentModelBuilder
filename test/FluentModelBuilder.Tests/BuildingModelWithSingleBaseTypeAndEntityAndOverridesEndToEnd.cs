@@ -1,6 +1,4 @@
 using System.Linq;
-using FluentModelBuilder.Conventions.Options;
-using FluentModelBuilder.Conventions.Options.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options.Extensions;
 using FluentModelBuilder.TestTarget;

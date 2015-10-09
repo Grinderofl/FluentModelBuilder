@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Conventions
+namespace FluentModelBuilder
 {
     /// <summary>
     /// Single convention for <see cref="FluentModelBuilder"/>
