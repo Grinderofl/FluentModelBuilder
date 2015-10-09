@@ -56,6 +56,13 @@ namespace FluentModelBuilder.Options.Extensions
             return options;
         }
 
+        /// <summary>
+        /// Adds an assembly source
+        /// </summary>
+        /// <typeparam name="T">Option type</typeparam>
+        /// <param name="options"><see cref="IAssemblyOptions"/></param>
+        /// <param name="source">Instance of Assembly Source</param>
+        /// <returns><see cref="IAssemblyOptions"/></returns>
         public static T FromAssemblySource<T>(this T options, IAssemblySource source) where T : IAssemblyOptions
         {
             if (!options.AssemblySources.Contains(source))
@@ -63,6 +70,13 @@ namespace FluentModelBuilder.Options.Extensions
             return options;
         }
 
+        /// <summary>
+        /// Adds assemblies from assembly convention
+        /// </summary>
+        /// <typeparam name="T">Option type</typeparam>
+        /// <param name="options"><see cref="IAssemblyOptions"/></param>
+        /// <param name="fmbOptions"><see cref="FluentModelBuilderOptions"/></param>
+        /// <returns><see cref="IAssemblyOptions"/></returns>
         public static T FromAssemblyConvention<T>(this T options, FluentModelBuilderOptions fmbOptions) where T : IAssemblyOptions
         {
             if(options.AssemblySources.All(ContainsCommonAssemblySource))

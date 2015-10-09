@@ -1,5 +1,5 @@
-using FluentModelBuilder.Conventions.Core.Options.Extensions;
-using FluentModelBuilder.Conventions.EntityConvention.Options.Extensions;
+using FluentModelBuilder.Conventions.Assemblies.Options.Extensions;
+using FluentModelBuilder.Conventions.Entities.Options.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options.Extensions;
 using FluentModelBuilder.SqlServer.Extensions;
@@ -34,19 +34,19 @@ namespace ModelBuilderSample
                 opts.AddEntity<Entity>(x => x.Ignore(c => c.Id));
 
                 opts.DiscoverEntities(discover => { });
-                opts.DiscoverEntitiesFromCommonAssemblies(discover => { });
+                opts.DiscoverEntitiesFromAssemblyConvention(discover => { });
                 
                 opts.Overrides(x =>
                 {
                     x.Discover(discover =>
                     {
                         discover.FromAssemblyConvention(opts);
-                        discover.FromAssemblyContaining<Startup>();
+                        EntityTypeOverrideDiscoveryConventionOptionsExtensions.FromAssemblyContaining<Startup>(discover);
                     });
                 });
 
                 opts.DiscoverOverrides(discover => { });
-                opts.DiscoverOverridesFromCommonAssemblies(discover => { });
+                opts.DiscoverOverridesFromAssemblyConvention(discover => { });
 
                 opts.Assemblies(x =>
                 {

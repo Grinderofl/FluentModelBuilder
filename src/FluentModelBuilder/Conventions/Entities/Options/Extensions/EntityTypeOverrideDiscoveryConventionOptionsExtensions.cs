@@ -1,6 +1,6 @@
 ﻿using FluentModelBuilder.Options.Extensions;
 
-namespace FluentModelBuilder.Conventions.EntityConvention.Options.Extensions
+namespace FluentModelBuilder.Conventions.Entities.Options.Extensions
 {
     public static class EntityTypeOverrideDiscoveryConventionOptionsExtensions
     {

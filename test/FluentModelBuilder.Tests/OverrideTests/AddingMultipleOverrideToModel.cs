@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentModelBuilder.Conventions.Core.Options.Extensions;
+﻿using System.Linq;
+using FluentModelBuilder.Conventions.Assemblies.Options.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options;
 using FluentModelBuilder.TestTarget;
-using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Metadata.Builders;
 using Xunit;
 
-namespace FluentModelBuilder.Tests
+namespace FluentModelBuilder.Tests.OverrideTests
 {
     public class AddingMultipleOverridesToModel : ClassFixture<AddingMultipleOverridesToModel.Fixture>
     {

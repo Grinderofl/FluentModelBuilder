@@ -1,7 +1,7 @@
-﻿using FluentModelBuilder.Conventions.Core.Options;
+﻿using FluentModelBuilder.Conventions.Overrides.Options;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Conventions.Core
+namespace FluentModelBuilder.Conventions.Overrides
 {
     public class OverrideConvention : IModelBuilderConvention
     {

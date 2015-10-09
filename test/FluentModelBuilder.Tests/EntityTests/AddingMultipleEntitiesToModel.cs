@@ -4,7 +4,7 @@ using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options;
 using Xunit;
 
-namespace FluentModelBuilder.Tests
+namespace FluentModelBuilder.Tests.EntityTests
 {
     public class AddingMultipleEntitiesToModel : ClassFixture<AddingMultipleEntitiesToModel.Fixture>
     {

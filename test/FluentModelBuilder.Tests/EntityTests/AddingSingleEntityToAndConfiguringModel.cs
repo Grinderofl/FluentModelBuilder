@@ -2,11 +2,9 @@ using System;
 using System.Linq;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options;
-using FluentModelBuilder.TestTarget;
-using Microsoft.Data.Entity.Metadata;
 using Xunit;
 
-namespace FluentModelBuilder.Tests
+namespace FluentModelBuilder.Tests.EntityTests
 {
     public class AddingSingleEntityToAndConfiguringModel : ClassFixture<AddingSingleEntityToAndConfiguringModel.Fixture>
     {

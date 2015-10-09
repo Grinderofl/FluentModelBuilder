@@ -1,7 +1,7 @@
-using FluentModelBuilder.Conventions.Core.Options;
+using FluentModelBuilder.Conventions.Assemblies.Options;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Conventions.Core
+namespace FluentModelBuilder.Conventions.Assemblies
 {
 
     /// <summary>

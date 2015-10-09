@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Conventions.EntityConvention
+namespace FluentModelBuilder.Conventions.Entities
 {
     /// <summary>
     /// Convention for adding single entity to model

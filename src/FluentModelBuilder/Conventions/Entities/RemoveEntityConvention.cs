@@ -1,6 +1,6 @@
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Conventions.EntityConvention
+namespace FluentModelBuilder.Conventions.Entities
 {
     public class RemoveEntityConvention<T> : IModelBuilderConvention
     {

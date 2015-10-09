@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace FluentModelBuilder.Conventions.Criteria
+namespace FluentModelBuilder.Conventions.Core.Criteria
 {
     public class BaseTypeCriteria : ITypeInfoCriteria
     {

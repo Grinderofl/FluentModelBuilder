@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using FluentModelBuilder.Conventions.Core;
+using FluentModelBuilder.Conventions.Assemblies;
 using FluentModelBuilder.Options;
 
 namespace FluentModelBuilder.Sources.Assemblies

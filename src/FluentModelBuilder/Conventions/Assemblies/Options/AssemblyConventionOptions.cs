@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace FluentModelBuilder.Conventions.Core.Options
+namespace FluentModelBuilder.Conventions.Assemblies.Options
 {
     public class AssemblyConventionOptions
     {

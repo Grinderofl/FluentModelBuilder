@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using FluentModelBuilder.Options;
-using FluentModelBuilder.Sources;
 using FluentModelBuilder.Sources.Assemblies;
 
-namespace FluentModelBuilder.Conventions.EntityConvention.Options
+namespace FluentModelBuilder.Conventions.Entities.Options
 {
     public class EntityTypeOverrideDiscoveryConventionOptions : IAssemblyOptions
     {

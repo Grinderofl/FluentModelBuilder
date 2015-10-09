@@ -1,11 +1,11 @@
 using System.Linq;
-using FluentModelBuilder.Conventions.Core.Options.Extensions;
+using FluentModelBuilder.Conventions.Assemblies.Options.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options;
 using FluentModelBuilder.TestTarget;
 using Xunit;
 
-namespace FluentModelBuilder.Tests
+namespace FluentModelBuilder.Tests.OverrideTests
 {
     public class AddingSingleOverrideToModel : ClassFixture<AddingSingleOverrideToModel.AddingSingleOverrideToModelFixture>
     {

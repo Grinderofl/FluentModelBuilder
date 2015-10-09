@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FluentModelBuilder.Conventions.Core.Options
+namespace FluentModelBuilder.Conventions.Overrides.Options
 {
     public class OverrideConventionOptions
     {

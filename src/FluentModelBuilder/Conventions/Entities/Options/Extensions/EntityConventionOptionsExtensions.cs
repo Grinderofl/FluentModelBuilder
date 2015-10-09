@@ -1,9 +1,7 @@
 ﻿using System;
-using FluentModelBuilder.Conventions.EntityConvention;
-using FluentModelBuilder.Conventions.EntityConvention.Options;
 using Microsoft.Data.Entity.Metadata.Builders;
 
-namespace FluentModelBuilder.Conventions.Core.Options.Extensions
+namespace FluentModelBuilder.Conventions.Entities.Options.Extensions
 {
     public static class EntityConventionOptionsExtensions
     {

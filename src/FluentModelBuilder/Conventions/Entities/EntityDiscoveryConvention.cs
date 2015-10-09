@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using FluentModelBuilder.Conventions.EntityConvention.Options;
+using FluentModelBuilder.Conventions.Entities.Options;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Conventions.EntityConvention
+namespace FluentModelBuilder.Conventions.Entities
 {
     /// <summary>
     /// Convention for adding entities based on criterias from specified assemblies

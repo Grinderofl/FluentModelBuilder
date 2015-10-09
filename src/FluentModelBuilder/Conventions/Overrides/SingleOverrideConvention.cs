@@ -4,7 +4,7 @@ using System.Reflection;
 using FluentModelBuilder.Extensions;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Conventions.OverrideConvention
+namespace FluentModelBuilder.Conventions.Overrides
 {
     public class SingleOverrideConvention<T> : IModelBuilderConvention
     {

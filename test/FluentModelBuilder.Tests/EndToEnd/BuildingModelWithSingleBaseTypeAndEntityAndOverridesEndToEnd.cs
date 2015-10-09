@@ -1,13 +1,12 @@
 using System.Linq;
-using FluentModelBuilder.Conventions.EntityConvention.Options.Extensions;
+using FluentModelBuilder.Conventions.Entities.Options.Extensions;
 using FluentModelBuilder.Extensions;
-using FluentModelBuilder.Options.Extensions;
 using FluentModelBuilder.TestTarget;
 using Microsoft.Data.Entity;
 using Microsoft.Framework.DependencyInjection;
 using Xunit;
 
-namespace FluentModelBuilder.Tests
+namespace FluentModelBuilder.Tests.EndToEnd
 {
     public class BuildingModelWithSingleBaseTypeAndEntityAndOverridesEndToEnd : IClassFixture<BuildingModelWithSingleBaseTypeAndEntityAndOverridesEndToEnd.Fixture>
     {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using FluentModelBuilder.Conventions.EntityConvention.Options;
+using FluentModelBuilder.Conventions.Entities.Options;
 using FluentModelBuilder.Extensions;
 using Microsoft.Data.Entity;
+using System.Reflection;
 
-namespace FluentModelBuilder.Conventions.OverrideConvention
+namespace FluentModelBuilder.Conventions.Overrides
 {
     /// <summary>
     /// Convention for adding entity type overrides from specified assemblies

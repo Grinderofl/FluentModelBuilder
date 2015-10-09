@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentModelBuilder.Conventions.Core.Options.Extensions;
-using FluentModelBuilder.Conventions.EntityConvention.Options.Extensions;
+using FluentModelBuilder.Conventions.Assemblies.Options.Extensions;
+using FluentModelBuilder.Conventions.Entities.Options.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options;
 using FluentModelBuilder.TestTarget;
@@ -56,7 +56,7 @@ namespace FluentModelBuilder.Tests.AssemblyTests
             protected override void ConfigureOptions(FluentModelBuilderOptions options)
             {
                 options.Assemblies(d => d.AddAssemblyContaining<EntityOne>());
-                options.DiscoverEntitiesFromCommonAssemblies(x => x.WithBaseType<EntityBase>());
+                options.DiscoverEntitiesFromAssemblyConvention(x => x.WithBaseType<EntityBase>());
             }
         }
 

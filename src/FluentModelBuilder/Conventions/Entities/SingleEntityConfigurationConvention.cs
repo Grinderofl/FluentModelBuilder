@@ -2,7 +2,7 @@
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata.Builders;
 
-namespace FluentModelBuilder.Conventions.EntityConvention
+namespace FluentModelBuilder.Conventions.Entities
 {
     /// <summary>
     /// Convention for adding and configuring single entity to model

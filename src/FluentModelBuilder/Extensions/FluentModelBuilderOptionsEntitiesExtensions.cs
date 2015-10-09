@@ -1,8 +1,7 @@
 using System;
-using FluentModelBuilder.Conventions.Core;
-using FluentModelBuilder.Conventions.Core.Options.Extensions;
-using FluentModelBuilder.Conventions.EntityConvention;
-using FluentModelBuilder.Conventions.EntityConvention.Options;
+using FluentModelBuilder.Conventions.Entities;
+using FluentModelBuilder.Conventions.Entities.Options;
+using FluentModelBuilder.Conventions.Entities.Options.Extensions;
 using FluentModelBuilder.Options;
 using FluentModelBuilder.Options.Extensions;
 using Microsoft.Data.Entity.Metadata.Builders;
@@ -11,6 +10,13 @@ namespace FluentModelBuilder.Extensions
 {
     public static class FluentModelBuilderOptionsEntitiesExtensions
     {
+
+        /// <summary>
+        /// Adds single entity to model
+        /// </summary>
+        /// <typeparam name="T">Type of entity to add</typeparam>
+        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
         public static FluentModelBuilderOptions AddEntity<T>(this FluentModelBuilderOptions options)
         {
             var convention = options.WithConvention<EntityConvention>();
@@ -18,6 +24,13 @@ namespace FluentModelBuilder.Extensions
             return options;
         }
 
+        /// <summary>
+        /// Adds to and configures single entity on model
+        /// </summary>
+        /// <typeparam name="T">Type of entity to add and configure</typeparam>
+        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        /// <param name="configurationAction">Configuration to perform on entity</param>
+        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
         public static FluentModelBuilderOptions AddEntity<T>(this FluentModelBuilderOptions options, Action<EntityTypeBuilder<T>> configurationAction) where T : class
         {
             var convention = options.WithConvention<EntityConvention>();
@@ -25,13 +38,25 @@ namespace FluentModelBuilder.Extensions
             return options;
         }
 
+        /// <summary>
+        /// Discovers entities to add to model
+        /// </summary>
+        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        /// <param name="optionsAction">Actions to perform during discovery</param>
+        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
         public static FluentModelBuilderOptions DiscoverEntities(this FluentModelBuilderOptions options,
             Action<EntityDiscoveryConventionOptions> optionsAction = null)
         {
             return options.Entities(x => x.Discover(optionsAction));
         }
 
-        public static FluentModelBuilderOptions DiscoverEntitiesFromCommonAssemblies(
+        /// <summary>
+        /// Discovers entities from common assembly convention
+        /// </summary>
+        /// <param name="options"><see cref="FluentModelBuilderOptions"/></param>
+        /// <param name="optionsAction">Actions to perform during discovery</param>
+        /// <returns><see cref="FluentModelBuilderOptions"/></returns>
+        public static FluentModelBuilderOptions DiscoverEntitiesFromAssemblyConvention(
             this FluentModelBuilderOptions options, Action<EntityDiscoveryConventionOptions> optionsAction = null)
         {
             return options.DiscoverEntities(discover =>
