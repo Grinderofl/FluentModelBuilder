@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using FluentModelBuilder.Sources;
+using FluentModelBuilder.Sources.Assemblies;
 
 namespace FluentModelBuilder.Options
 {

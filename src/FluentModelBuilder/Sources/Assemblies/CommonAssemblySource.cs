@@ -2,11 +2,10 @@
 using System.Linq;
 using System.Management.Instrumentation;
 using System.Reflection;
-using FluentModelBuilder.Conventions;
 using FluentModelBuilder.Conventions.Core;
 using FluentModelBuilder.Options;
 
-namespace FluentModelBuilder.Sources
+namespace FluentModelBuilder.Sources.Assemblies
 {
     public class CommonAssemblySource : IAssemblySource
     {

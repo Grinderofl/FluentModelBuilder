@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using FluentModelBuilder.Sources;
+using FluentModelBuilder.Sources.Assemblies;
 
 namespace FluentModelBuilder.Options.Extensions
 {

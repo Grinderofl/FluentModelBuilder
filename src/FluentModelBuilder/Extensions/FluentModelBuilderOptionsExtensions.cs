@@ -3,13 +3,8 @@ using System.Linq;
 using FluentModelBuilder.Conventions;
 using FluentModelBuilder.Conventions.Core;
 using FluentModelBuilder.Conventions.Core.Options;
-using FluentModelBuilder.Conventions.Core.Options.Extensions;
-using FluentModelBuilder.Conventions.EntityConvention;
-using FluentModelBuilder.Conventions.EntityConvention.Options;
 using FluentModelBuilder.Options;
-using FluentModelBuilder.Options.Extensions;
 using FluentModelBuilder.Sources;
-using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace FluentModelBuilder.Extensions
 {
@@ -170,66 +165,4 @@ namespace FluentModelBuilder.Extensions
             return options;
         }
     }
-
-    public static class FluentModelBuilderOptionsEntitiesExtensions
-    {
-        public static FluentModelBuilderOptions AddEntity<T>(this FluentModelBuilderOptions options)
-        {
-            var convention = options.WithConvention<EntityConvention>();
-            convention.Options.ModelBuilderConventions.Add(new SingleEntityConvention(typeof (T)));
-            return options;
-        }
-
-        public static FluentModelBuilderOptions AddEntity<T>(this FluentModelBuilderOptions options, Action<EntityTypeBuilder<T>> configurationAction) where T : class
-        {
-            var convention = options.WithConvention<EntityConvention>();
-            convention.Options.ModelBuilderConventions.Add(new SingleEntityConfigurationConvention<T>(configurationAction));
-            return options;
-        }
-
-        public static FluentModelBuilderOptions DiscoverEntities(this FluentModelBuilderOptions options,
-            Action<EntityDiscoveryConventionOptions> optionsAction = null)
-        {
-            return options.Entities(x => x.Discover(optionsAction));
-        }
-
-        public static FluentModelBuilderOptions DiscoverEntitiesFromCommonAssemblies(
-            this FluentModelBuilderOptions options, Action<EntityDiscoveryConventionOptions> optionsAction = null)
-        {
-            return options.DiscoverEntities(discover =>
-            {
-                discover.FromAssemblyConvention(options);
-                optionsAction?.Invoke(discover);
-            });
-        }
-    }
-
-    public static class FluentModelBuilderOptionsOverridesExtensions
-    {
-        public static FluentModelBuilderOptions DiscoverOverrides(this FluentModelBuilderOptions options,
-            Action<EntityTypeOverrideDiscoveryConventionOptions> optionsAction = null)
-        {
-            return options.Overrides(x => x.Discover(optionsAction));
-        }
-
-        public static FluentModelBuilderOptions DiscoverOverridesFromCommonAssemblies(
-            this FluentModelBuilderOptions options,
-            Action<EntityTypeOverrideDiscoveryConventionOptions> optionsAction = null)
-        {
-            return options.DiscoverOverrides(discover =>
-            {
-                discover.FromAssemblyConvention(options);
-                optionsAction?.Invoke(discover);
-            });
-        }
-    }
-
-    public static class FluentModelBuilderOptionsAssemblyExtensions
-    {
-        public static FluentModelBuilderOptions AddAssemblyContaining<T>(this FluentModelBuilderOptions options)
-        {
-            return options.Assemblies(assembly => assembly.AddAssemblyContaining<T>());
-        }
-    }
-
 }

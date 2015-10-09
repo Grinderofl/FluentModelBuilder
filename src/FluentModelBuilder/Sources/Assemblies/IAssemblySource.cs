@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Threading.Tasks;
 
-namespace FluentModelBuilder.Sources
+namespace FluentModelBuilder.Sources.Assemblies
 {
     public interface IAssemblySource
     {

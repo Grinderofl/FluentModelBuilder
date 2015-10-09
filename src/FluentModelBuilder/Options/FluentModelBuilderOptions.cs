@@ -4,7 +4,7 @@ using FluentModelBuilder.Sources;
 
 namespace FluentModelBuilder.Options
 {
-    public class FluentModelBuilderOptions : IConventionList
+    public class FluentModelBuilderOptions
     {
         /// <summary>
         /// Conventions for configuring ModelBuilder
@@ -32,8 +32,4 @@ namespace FluentModelBuilder.Options
         public IConventionApplier ConventionApplier { get; set; } = new DefaultConventionApplier();
     }
 
-    public interface IConventionList
-    {
-        IList<IModelBuilderConvention> Conventions { get; }
-    }
 }

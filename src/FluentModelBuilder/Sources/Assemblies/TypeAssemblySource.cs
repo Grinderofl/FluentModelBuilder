@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace FluentModelBuilder.Sources
+namespace FluentModelBuilder.Sources.Assemblies
 {
     public class TypeContainingAssemblySource : IAssemblySource
     {
