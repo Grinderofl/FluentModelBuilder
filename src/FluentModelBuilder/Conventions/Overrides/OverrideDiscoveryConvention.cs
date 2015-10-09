@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using FluentModelBuilder.Conventions.EntityConvention.Options;
 using FluentModelBuilder.Extensions;
 using Microsoft.Data.Entity;
@@ -14,7 +15,6 @@ namespace FluentModelBuilder.Conventions.OverrideConvention
     {
         public OverrideDiscoveryConvention() : this(new EntityTypeOverrideDiscoveryConventionOptions())
         {
-            
         }
         public OverrideDiscoveryConvention(EntityTypeOverrideDiscoveryConventionOptions conventionOptions)
         {

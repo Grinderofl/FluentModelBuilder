@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentModelBuilder.Conventions.EntityConvention.Options.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options.Extensions;
 using FluentModelBuilder.TestTarget;
@@ -28,9 +29,9 @@ namespace FluentModelBuilder.Tests
                 {
                     o.BuildModel(c =>
                     {
+                        c.DiscoverEntities(x => x.WithBaseType<EntityBase>().FromAssemblyContaining<EntityOneOverride>());
                         c.AddEntity<EntityWithNoBaseType>();
-                        c.AddEntities(e => e.WithBaseType<EntityBase>().FromAssemblyContaining<NotAnEntity>());
-                        c.AddOverrides(ov => ov.FromAssemblyContaining<NotAnEntity>());
+                        c.DiscoverOverrides(x => x.FromAssemblyContaining<EntityOneOverride>());
                     });
                 });
                 Context = collection.BuildServiceProvider().GetService<DbContext>();
@@ -44,18 +45,33 @@ namespace FluentModelBuilder.Tests
         }
 
         [Fact]
-        public void AddsEntitiesToModel()
+        public void AddsEntityOneToModel()
         {
             Assert.True(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof(EntityOne)));
+        }
+
+        [Fact]
+        public void AddsEntityTwoToModel()
+        {
             Assert.True(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof(EntityTwo)));
+        }
+
+        [Fact]
+        public void AddsEntityWithNoBaseToModel()
+        {
             Assert.True(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof(EntityWithNoBaseType)));
         }
 
         [Fact]
-        public void AddsPropertiesToModel()
+        public void AddsIdPropertyToModel()
+        {
+            Assert.True(_fixture.Context.Model.EntityTypes.Any(c => c.GetProperties().Any(p => p.Name == "Id")));
+        }
+
+        [Fact]
+        public void AddsNotIgnoredPropertyToModel()
         {
             Assert.True(_fixture.Context.Model.EntityTypes.Any(c => c.GetProperties().Any(p => p.Name == "NotIgnored")));
-            Assert.True(_fixture.Context.Model.EntityTypes.Any(c => c.GetProperties().Any(p => p.Name == "Id")));
         }
 
         [Fact]

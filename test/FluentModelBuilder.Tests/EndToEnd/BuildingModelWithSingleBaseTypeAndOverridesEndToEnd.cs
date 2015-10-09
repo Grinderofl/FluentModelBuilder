@@ -1,4 +1,6 @@
 using System.Linq;
+using FluentModelBuilder.Conventions.Core.Options.Extensions;
+using FluentModelBuilder.Conventions.EntityConvention.Options.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options.Extensions;
 using FluentModelBuilder.TestTarget;
@@ -28,8 +30,9 @@ namespace FluentModelBuilder.Tests
                 {
                     o.BuildModel(c =>
                     {
-                        c.AddEntities(e => e.WithBaseType<EntityBase>().FromAssemblyContaining<NotAnEntity>());
-                        c.AddOverrides(ov => ov.FromAssemblyContaining<NotAnEntity>());
+                        c.Entities(
+                            e => e.Discover(d => d.WithBaseType<EntityBase>().FromAssemblyContaining<NotAnEntity>()));
+                        c.Overrides(ov => ov.Discover(d => d.FromAssemblyContaining<NotAnEntity>()));
                     });
                 });
                 Context = collection.BuildServiceProvider().GetService<DbContext>();

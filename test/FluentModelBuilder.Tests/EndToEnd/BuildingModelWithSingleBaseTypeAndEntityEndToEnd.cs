@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentModelBuilder.Conventions.Core.Options.Extensions;
+using FluentModelBuilder.Conventions.EntityConvention.Options.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options.Extensions;
 using FluentModelBuilder.TestTarget;
@@ -11,7 +13,7 @@ using Xunit;
 
 namespace FluentModelBuilder.Tests
 {
-    public class BuildingModelWithSingleBaseTypeEndToEnd : IClassFixture<BuildingModelWithSingleBaseTypeEndToEnd.Fixture>
+    public class BuildingModelWithSingleBaseTypeAndEntityEndToEnd : IClassFixture<BuildingModelWithSingleBaseTypeAndEntityEndToEnd.Fixture>
     {
         public class Fixture
         {
@@ -24,7 +26,9 @@ namespace FluentModelBuilder.Tests
                 {
                     o.BuildModel(c =>
                     {
-                        c.AddEntities(e => e.WithBaseType<EntityBase>().FromAssemblyContaining<NotAnEntity>());
+                        c.AddEntity<EntityWithNoBaseType>();
+                        c.Entities(
+                            x => x.Discover(d => d.WithBaseType<EntityBase>().FromAssemblyContaining<NotAnEntity>()));
                     });
                 });
                 Context = collection.BuildServiceProvider().GetService<DbContext>();
@@ -33,7 +37,7 @@ namespace FluentModelBuilder.Tests
 
         private readonly Fixture _fixture;
 
-        public BuildingModelWithSingleBaseTypeEndToEnd(Fixture fixture)
+        public BuildingModelWithSingleBaseTypeAndEntityEndToEnd(Fixture fixture)
         {
             _fixture = fixture;
         }
@@ -45,17 +49,11 @@ namespace FluentModelBuilder.Tests
         }
 
         [Fact]
-        public void DoesNotAddSingleEntitiesToModel()
-        {
-            Assert.False(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof(EntityWithNoBaseType)));
-            Assert.False(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof(NotAnEntity)));
-        }
-
-        [Fact]
         public void AddsEntitiesToModel()
         {
             Assert.True(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof (EntityOne)));
             Assert.True(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof (EntityTwo)));
+            Assert.True(_fixture.Context.Model.EntityTypes.Any(x => x.ClrType == typeof (EntityWithNoBaseType)));
         }
 
         [Fact]

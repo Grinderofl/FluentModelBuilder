@@ -16,7 +16,7 @@ namespace FluentModelBuilder.Options.Extensions
         /// <param name="options"><see cref="IAssemblyOptions"/></param>
         /// <param name="type">Type of which assembly to add</param>
         /// <returns><see cref="IAssemblyOptions"/></returns>
-        public static T FromAssemblyContaining<T>(this T options, Type type)
+        public static T FromAssemblyContaining<T>(this T options, Type type) where T : IAssemblyOptions
         {
             return options.FromAssembly(type.GetTypeInfo().Assembly);
         }
