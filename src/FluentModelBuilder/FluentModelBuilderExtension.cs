@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using FluentModelBuilder.Options;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
@@ -67,9 +69,24 @@ namespace FluentModelBuilder
 
     public class EntityAddingConvention : IModelBuilderConvention
     {
+        private readonly IEnumerable<ITypeSource> _typeSources;
+
+        public EntityAddingConvention(IEnumerable<ITypeSource> typeSources)
+        {
+            _typeSources = typeSources;
+        }
+
         public void Apply(ModelBuilder builder)
         {
-            
+            foreach (var type in _typeSources.SelectMany(x => x.GetTypes()))
+                builder.Entity(type);
         }
+    }
+
+
+
+    public interface ITypeSource
+    {
+        IEnumerable<Type> GetTypes();
     }
 }

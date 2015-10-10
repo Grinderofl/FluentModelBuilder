@@ -14,6 +14,10 @@ namespace ModelBuilderSample
             options.UseSqlServer("Server=.;Initial Catalog=eftest;Integrated Security=True;");
 
             // options.UseModel(new FluentModelBuilder(opts => {}).Build());
+            // options.BuildModel()
+            //    .Entities(x => x.Discover())
+            //    .Overrides(x => x.Discover())
+            //    .Assemblies()
             options.BuildModel(opts =>
             {
                 // EntityConvention
