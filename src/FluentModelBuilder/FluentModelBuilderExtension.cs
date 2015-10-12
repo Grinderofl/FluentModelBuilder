@@ -12,23 +12,58 @@ using Microsoft.Framework.DependencyInjection.Extensions;
 
 namespace FluentModelBuilder
 {
+
+    public static class DbContextOptionsExtensions
+    {
+        public static v2.FluentModelBuilder BuildModel(this DbContextOptionsBuilder builder)
+        {
+            var extension = builder.Options.FindExtension<FluentModelBuilderExtension>();
+            if (extension == null)
+            {
+                extension = new FluentModelBuilderExtension();
+                builder.Options.WithExtension(extension);
+            }
+
+            return extension.Builder;
+        }
+    }
+
     public class FluentModelBuilderExtension : IDbContextOptionsExtension
     {
+        public v2.FluentModelBuilder Builder { get; } = new v2.FluentModelBuilder();
 
+        
 
-        public FluentModelBuilderExtension(DbContextOptionsBuilder builder, FluentModelBuilderOptions options)
-        {
-            var internalBuilder = new FluentModelBuilder(options);
-            ((IDbContextOptionsBuilderInfrastructure) builder).AddOrUpdateExtension(this);
-            //applier.UseModel(internalBuilder.Build());
-        }
+        //public FluentModelBuilderExtension(DbContextOptionsBuilder builder)
+        //{
+        //    //var internalBuilder = new FluentModelBuilder(options);
+        //    //((IDbContextOptionsBuilderInfrastructure) builder).AddOrUpdateExtension(this);
+        //    //applier.UseModel(internalBuilder.Build());
+        //}
 
         public void ApplyServices(EntityFrameworkServicesBuilder builder)
         {
             var services = builder.GetService();
-            services.Replace(ServiceDescriptor.Scoped<IModelSource, FluentModelSource>());
+            Builder.ApplyServices(services);
+            //services.Replace(ServiceDescriptor.Scoped<IModelSource, FluentModelSource>());
         }
     }
+
+
+    public static class FluentModelBuilderExtensions
+    {
+        public static FluentModelEntitiesBuilder Entities(this v2.FluentModelBuilder builder)
+        {
+            
+        }
+    }
+
+    public class FluentModelEntitiesBuilder : v2.FluentModelBuilder
+    {
+        public IList<ITypeSource> TypeSources { get; } = new List<ITypeSource>();
+    }
+
+    
 
     public class FluentModelSource : ModelSource
     {

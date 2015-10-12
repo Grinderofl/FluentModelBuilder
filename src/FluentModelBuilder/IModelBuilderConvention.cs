@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Entity;
+﻿using FluentModelBuilder.v2;
+using Microsoft.Data.Entity;
 
 namespace FluentModelBuilder
 {

@@ -9,7 +9,7 @@ namespace FluentModelBuilder.Tests
         {
             var options = new FluentModelBuilderOptions();
             ConfigureOptions(options);
-            Model = new FluentModelBuilder(options).Build();
+            Model = new v2.FluentModelBuilder(options).Build();
         }
 
         protected abstract void ConfigureOptions(FluentModelBuilderOptions options);

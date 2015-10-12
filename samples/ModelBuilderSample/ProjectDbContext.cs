@@ -3,6 +3,7 @@ using FluentModelBuilder.Conventions.Entities.Options.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Options.Extensions;
 using FluentModelBuilder.SqlServer.Extensions;
+using FluentModelBuilder.v2;
 using Microsoft.Data.Entity;
 
 namespace ModelBuilderSample
@@ -14,10 +15,33 @@ namespace ModelBuilderSample
             options.UseSqlServer("Server=.;Initial Catalog=eftest;Integrated Security=True;");
 
             // options.UseModel(new FluentModelBuilder(opts => {}).Build());
-            // options.BuildModel()
-            //    .Entities(x => x.Discover())
+
+            // options.BuildModel() // FluentModelBuilder
+            //    .Entities()       // FluentEntitiesBuilder
+            //    .
             //    .Overrides(x => x.Discover())
             //    .Assemblies()
+            options.BuildModel()
+                .AddAssemblyContaining<ProjectDbContext>()
+                .DiscoverEntitiesFromSharedAssemblies(x => x.WithBaseType<Entity>())
+                ;
+                
+
+            options.BuildModel()
+                .Entities()
+                    .Discover(x => {
+                        x.FromSharedAssemblies();
+                    })
+                    .Add<MyEntity>()
+                .Assemblies()
+                    .AddAssembly(typeof(ProjectDbContext).Assembly)
+                    .AddAssemblyContaining<ProjectDbContext>()
+                    .Add(assembly =>
+                    {
+                        assembly.Single(typeof (ProjectDbContext).Assembly);
+                        assembly.Containing<ProjectDbContext>();
+                    });
+
             options.BuildModel(opts =>
             {
                 // EntityConvention

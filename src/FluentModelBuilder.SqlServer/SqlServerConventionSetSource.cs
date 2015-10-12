@@ -31,4 +31,9 @@ namespace FluentModelBuilder.SqlServer
         {
         }
     }
+
+    public class MyExtension : SqlServerOptionsExtension
+    {
+        
+    }
 }
