@@ -21,9 +21,10 @@ namespace FluentModelBuilder
             if (extension == null)
             {
                 extension = new FluentModelBuilderExtension();
-                builder.Options.WithExtension(extension);
+                ((IDbContextOptionsBuilderInfrastructure)builder).AddOrUpdateExtension(extension);
+                //builder.Options.WithExtension(extension);
             }
-
+            
             return extension.Builder;
         }
     }
@@ -31,9 +32,7 @@ namespace FluentModelBuilder
     public class FluentModelBuilderExtension : IDbContextOptionsExtension
     {
         public v2.FluentModelBuilder Builder { get; } = new v2.FluentModelBuilder();
-
         
-
         //public FluentModelBuilderExtension(DbContextOptionsBuilder builder)
         //{
         //    //var internalBuilder = new FluentModelBuilder(options);
@@ -45,29 +44,15 @@ namespace FluentModelBuilder
         {
             var services = builder.GetService();
             Builder.ApplyServices(services);
+
             //services.Replace(ServiceDescriptor.Scoped<IModelSource, FluentModelSource>());
         }
     }
 
 
-    public static class FluentModelBuilderExtensions
-    {
-        public static FluentModelEntitiesBuilder Entities(this v2.FluentModelBuilder builder)
-        {
-            
-        }
-    }
-
-    public class FluentModelEntitiesBuilder : v2.FluentModelBuilder
-    {
-        public IList<ITypeSource> TypeSources { get; } = new List<ITypeSource>();
-    }
-
-    
-
     public class FluentModelSource : ModelSource
     {
-        private IModelBuilderApplier _applier;
+        private readonly IModelBuilderApplier _applier;
 
         public FluentModelSource(IDbSetFinder setFinder, ICoreConventionSetBuilder coreConventionSetBuilder, IModelBuilderApplier applier) : base(setFinder, coreConventionSetBuilder)
         {

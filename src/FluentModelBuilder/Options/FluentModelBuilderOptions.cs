@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using FluentModelBuilder.Conventions;
 using FluentModelBuilder.Sources;
+using FluentModelBuilder.v2;
 
 namespace FluentModelBuilder.Options
 {
@@ -30,6 +32,9 @@ namespace FluentModelBuilder.Options
         /// Applies conventions to Model
         /// </summary>
         public IConventionApplier ConventionApplier { get; set; } = new DefaultConventionApplier();
+
+        public Type ModelSourceType { get; set; } = typeof (FluentModelSource);
+        public IModelSourceApplier ModelSourceApplier { get; set; }
     }
 
 }

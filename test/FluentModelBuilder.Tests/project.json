@@ -9,7 +9,9 @@
     "xunit": "2.1.0-rc2-build3178",
     "xunit.runner.dnx": "2.1.0-beta5-build165",
     "FluentModelBuilder": "",
-    "FluentModelBuilder.TestTarget": ""
+    "FluentModelBuilder.TestTarget": "",
+    "FluentModelBuilder.InMemory": "",
+    "EntityFramework.InMemory": "7.0.0-beta7"
   },
   "commands": {
     "test": "xunit.runner.dnx"

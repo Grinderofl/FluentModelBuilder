@@ -45,10 +45,35 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
+      "EntityFramework.InMemory/7.0.0-beta7": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-beta7"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.InMemory.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.InMemory.dll": {}
+        }
+      },
       "FluentModelBuilder/0.1.0-alpha": {
         "type": "project",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta7"
+        }
+      },
+      "FluentModelBuilder.InMemory/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "EntityFramework.InMemory": "7.0.0-beta7",
+          "FluentModelBuilder": null
         }
       },
       "FluentModelBuilder.TestTarget/1.0.0": {
@@ -545,6 +570,10 @@
       "type": "project",
       "path": "../../src/FluentModelBuilder/project.json"
     },
+    "FluentModelBuilder.InMemory/1.0.0": {
+      "type": "project",
+      "path": "../../src/FluentModelBuilder.InMemory/project.json"
+    },
     "FluentModelBuilder.TestTarget/1.0.0": {
       "type": "project",
       "path": "../FluentModelBuilder.TestTarget/project.json"
@@ -566,6 +595,21 @@
         "repo.json"
       ]
     },
+    "EntityFramework.InMemory/7.0.0-beta7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "zF/i7uIRl15VnAg1guEMhaiLFb96akk6oNN3Bldo8LYY1ohbVySVXVZkNNEJaUO/CB7EpcHgOecfTqgaxCo9UA==",
+      "files": [
+        "EntityFramework.InMemory.7.0.0-beta7.nupkg",
+        "EntityFramework.InMemory.7.0.0-beta7.nupkg.sha512",
+        "EntityFramework.InMemory.nuspec",
+        "lib/dotnet/EntityFramework.InMemory.dll",
+        "lib/dotnet/EntityFramework.InMemory.xml",
+        "lib/net45/EntityFramework.InMemory.dll",
+        "lib/net45/EntityFramework.InMemory.xml",
+        "repo.json"
+      ]
+    },
     "Ix-Async/1.2.5": {
       "type": "package",
       "sha512": "8EXO8q7cpDUH9G2q+UOPOO/6uZ9aN7mx/4xjFIfkp+qLWVJiYuglkRhjY8Ggs2CucXzHR8GHnovJKB5yQoYaJg==",
@@ -583,7 +627,7 @@
     },
     "Microsoft.CodeAnalysis.Analyzers/1.1.0-beta1-20150812-01": {
       "type": "package",
-      "sha512": "lIhWRroF8XRQZ/czkqDjiEsXb3ZKUNPhKZTCN1gybgNvMJ0K4k+SnbCbCTA5Ag7WoB9tiC13gHhX8M4kGR4ZEQ==",
+      "sha512": "mGKPHMowSaS6frF/ze8eM/gJqZr5A1TniBTU7MI41Cg9zeKgrgwZltCJ6JjDvYnVtfkHlTWM8oHIaL7q5yxpgg==",
       "files": [
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.Analyzers.dll",
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
@@ -599,7 +643,7 @@
     },
     "Microsoft.CodeAnalysis.Common/1.1.0-beta1-20150812-01": {
       "type": "package",
-      "sha512": "0fKn7s4ZxdHPJvlQ0VAmtpWh8lsijHbr3AsSxTtvY0+2Yci3g8vn+Na24664978YLMbMJx+jshw/ymyqRCTePg==",
+      "sha512": "0aqVF3qcBwmm5KOrtgu3YvHVkMGaH03UvkU+zknwvmsyqcv9MuYIvD1VHRamAGRRvxsn8QEfqdSWcTIn/0qrFw==",
       "files": [
         "lib/net45/Microsoft.CodeAnalysis.dll",
         "lib/net45/Microsoft.CodeAnalysis.xml",
@@ -613,7 +657,7 @@
     },
     "Microsoft.CodeAnalysis.CSharp/1.1.0-beta1-20150812-01": {
       "type": "package",
-      "sha512": "RTQAcTU65h2NBHmzVkx/PmM7skiybNM4OiLfnvWVmGh62GxuAegPD47hWzINQQhB/zqIN79jwpg7cU3Lr0nliw==",
+      "sha512": "IPwDPTdOWRbgAvnFp0my3p6CO2STL+Ejx4xnwf2VzRWdxbpujSQqUS3LLWVSKvr9EeRKT66eYf6T9NlEkviEMw==",
       "files": [
         "lib/net45/Microsoft.CodeAnalysis.CSharp.dll",
         "lib/net45/Microsoft.CodeAnalysis.CSharp.xml",
@@ -937,7 +981,7 @@
     "System.Reflection.Metadata/1.1.0-alpha-00009": {
       "type": "package",
       "serviceable": true,
-      "sha512": "KiUpXjNsXH27WwbtS5szL8qagPTlIzxrwPAAatLsPqlgkZtCQuA+Ss1XqbTUJxv1KweaNh/q5jGFdUFV0HILRw==",
+      "sha512": "/ZU4HyvuFjJuVZuGh5nGNe188dRg3EUAGGVbTtMEnuHrPwKft+YzOzPINJvItWNWJXng+QufzCsWmW++O+o53Q==",
       "files": [
         "lib/portable-net45+win8/System.Reflection.Metadata.dll",
         "lib/portable-net45+win8/System.Reflection.Metadata.pdb",
@@ -1117,7 +1161,9 @@
       "xunit >= 2.1.0-rc2-build3178",
       "xunit.runner.dnx >= 2.1.0-beta5-build165",
       "FluentModelBuilder ",
-      "FluentModelBuilder.TestTarget "
+      "FluentModelBuilder.TestTarget ",
+      "FluentModelBuilder.InMemory ",
+      "EntityFramework.InMemory >= 7.0.0-beta7"
     ],
     "DNX,Version=v4.5.1": []
   }

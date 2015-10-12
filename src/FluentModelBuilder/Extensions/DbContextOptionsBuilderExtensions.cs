@@ -19,7 +19,7 @@ namespace FluentModelBuilder.Extensions
         {
             var options = new FluentModelBuilderOptions();
             optionsAction?.Invoke(options);
-            return new FluentModelBuilderExtension(builder, options);
+            return new FluentModelBuilderExtension();
         }
     }
 }

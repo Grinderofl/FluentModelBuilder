@@ -1,3 +1,4 @@
+using System.Reflection;
 using FluentModelBuilder.Conventions.Assemblies.Options.Extensions;
 using FluentModelBuilder.Conventions.Entities.Options.Extensions;
 using FluentModelBuilder.Extensions;
@@ -27,20 +28,19 @@ namespace ModelBuilderSample
                 ;
                 
 
-            options.BuildModel()
-                .Entities()
-                    .Discover(x => {
-                        x.FromSharedAssemblies();
-                    })
-                    .Add<MyEntity>()
-                .Assemblies()
-                    .AddAssembly(typeof(ProjectDbContext).Assembly)
-                    .AddAssemblyContaining<ProjectDbContext>()
-                    .Add(assembly =>
-                    {
-                        assembly.Single(typeof (ProjectDbContext).Assembly);
-                        assembly.Containing<ProjectDbContext>();
-                    });
+            //options.BuildModel()
+                //.Entities.Discover(x => {
+                //        x.FromSharedAssemblies();
+                //    })
+                //    .Add<MyEntity>()
+                //.Assemblies()
+                //    .AddAssembly(typeof(ProjectDbContext).GetTypeInfo().Assembly)
+                //    .AddAssemblyContaining<ProjectDbContext>()
+                //    .Add(assembly =>
+                //    {
+                //        assembly.Single(typeof (ProjectDbContext).GetTypeInfo().Assembly);
+                //        assembly.Containing<ProjectDbContext>();
+                //    });
 
             options.BuildModel(opts =>
             {
