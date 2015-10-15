@@ -1,4 +1,5 @@
 using System;
+using FluentModelBuilder.InMemory;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
@@ -35,8 +36,12 @@ namespace FluentModelBuilder.Tests
             services.AddEntityFramework().AddDbContext<DbContext>(x =>
             {
                 x.UseInMemoryDatabase();
-                ConfigureOptions(x);
-            }).AddInMemoryDatabase();
+                x.UseFluentBuilder();
+                //x.UseInMemoryDatabase();
+                //((IDbContextOptionsBuilderInfrastructure)x).AddOrUpdateExtension(new MyExtension("str"));
+                //x.UseInMemoryDatabase();
+                //ConfigureOptions(x);
+            }).AddFluentBuilderProvider<InMemoryProvider>();
         }
 
         protected abstract void ConfigureOptions(DbContextOptionsBuilder options);

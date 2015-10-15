@@ -6,11 +6,11 @@ using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace FluentModelBuilder.TestTarget
 {
-    public class EntityOneOverride : IEntityTypeOverride<EntityOne>
-    {
-        public void Configure(EntityTypeBuilder<EntityOne> mapping)
-        {
-            mapping.Ignore(x => x.IgnoredInOverride);
-        }
-    }
+    //public class EntityOneOverride : IEntityTypeOverride<EntityOne>
+    //{
+    //    public void Configure(EntityTypeBuilder<EntityOne> mapping)
+    //    {
+    //        mapping.Ignore(x => x.IgnoredInOverride);
+    //    }
+    //}
 }

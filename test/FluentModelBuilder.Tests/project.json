@@ -11,12 +11,13 @@
     "FluentModelBuilder": "",
     "FluentModelBuilder.TestTarget": "",
     "FluentModelBuilder.InMemory": "",
+    "FluentModelBuilder.SqlServer": "",
     "EntityFramework.InMemory": "7.0.0-beta7"
   },
-  "commands": {
+  "commands": { 
     "test": "xunit.runner.dnx"
   },
-  "frameworks": {
-    "dnx451": { }
+  "frameworks": { 
+    "dnx451": { } 
   }
 }

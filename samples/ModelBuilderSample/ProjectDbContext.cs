@@ -1,10 +1,5 @@
 using System.Reflection;
-using FluentModelBuilder.Conventions.Assemblies.Options.Extensions;
-using FluentModelBuilder.Conventions.Entities.Options.Extensions;
-using FluentModelBuilder.Extensions;
-using FluentModelBuilder.Options.Extensions;
-using FluentModelBuilder.SqlServer.Extensions;
-using FluentModelBuilder.v2;
+
 using Microsoft.Data.Entity;
 
 namespace ModelBuilderSample
@@ -22,10 +17,10 @@ namespace ModelBuilderSample
             //    .
             //    .Overrides(x => x.Discover())
             //    .Assemblies()
-            options.BuildModel()
-                .AddAssemblyContaining<ProjectDbContext>()
-                .DiscoverEntitiesFromSharedAssemblies(x => x.WithBaseType<Entity>())
-                ;
+            //options.BuildModel()
+            //    .AddAssemblyContaining<ProjectDbContext>()
+            //    .DiscoverEntitiesFromSharedAssemblies(x => x.WithBaseType<Entity>())
+            //    ;
                 
 
             //options.BuildModel()
@@ -42,49 +37,49 @@ namespace ModelBuilderSample
                 //        assembly.Containing<ProjectDbContext>();
                 //    });
 
-            options.BuildModel(opts =>
-            {
-                // EntityConvention
-                opts.Entities(x =>
-                {
-                    // SubConvention: 
-                    x.Discover(discover =>
-                    {
-                        discover.FromAssemblyConvention(opts);
-                        discover.FromAssemblyContaining<Startup>();
-                        discover.WithBaseType<Entity>();
-                    });
-                    x.Add<Entity>();
-                    x.Add<Entity>(e => e.Ignore(c => c.Id));
-                });
+            //options.BuildModel(opts =>
+            //{
+            //    // EntityConvention
+            //    opts.Entities(x =>
+            //    {
+            //        // SubConvention: 
+            //        x.Discover(discover =>
+            //        {
+            //            discover.FromAssemblyConvention(opts);
+            //            discover.FromAssemblyContaining<Startup>();
+            //            discover.WithBaseType<Entity>();
+            //        });
+            //        x.Add<Entity>();
+            //        x.Add<Entity>(e => e.Ignore(c => c.Id));
+            //    });
 
-                opts.AddEntity<Entity>();
-                opts.AddEntity<Entity>(x => x.Ignore(c => c.Id));
+            //    opts.AddEntity<Entity>();
+            //    opts.AddEntity<Entity>(x => x.Ignore(c => c.Id));
 
-                opts.DiscoverEntities(discover => { });
-                opts.DiscoverEntitiesFromAssemblyConvention(discover => { });
+            //    opts.DiscoverEntities(discover => { });
+            //    opts.DiscoverEntitiesFromAssemblyConvention(discover => { });
                 
-                opts.Overrides(x =>
-                {
-                    x.Discover(discover =>
-                    {
-                        discover.FromAssemblyConvention(opts);
-                        EntityTypeOverrideDiscoveryConventionOptionsExtensions.FromAssemblyContaining<Startup>(discover);
-                    });
-                });
+            //    opts.Overrides(x =>
+            //    {
+            //        x.Discover(discover =>
+            //        {
+            //            discover.FromAssemblyConvention(opts);
+            //            EntityTypeOverrideDiscoveryConventionOptionsExtensions.FromAssemblyContaining<Startup>(discover);
+            //        });
+            //    });
 
-                opts.DiscoverOverrides(discover => { });
-                opts.DiscoverOverridesFromAssemblyConvention(discover => { });
+            //    opts.DiscoverOverrides(discover => { });
+            //    opts.DiscoverOverridesFromAssemblyConvention(discover => { });
 
-                opts.Assemblies(x =>
-                {
-                    x.AddAssemblyContaining<Entity>();
-                });
+            //    opts.Assemblies(x =>
+            //    {
+            //        x.AddAssemblyContaining<Entity>();
+            //    });
 
-                opts.AddAssemblyContaining<Entity>();
+            //    opts.AddAssemblyContaining<Entity>();
 
-                opts.UseSqlServer();
-            });
+            //    opts.UseSqlServer();
+            //});
         }
     }
 

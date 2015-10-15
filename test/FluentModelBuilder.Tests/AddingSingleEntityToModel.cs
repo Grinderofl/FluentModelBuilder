@@ -1,6 +1,9 @@
+//using FluentModelBuilder.InMemory;
+using FluentModelBuilder;
 using FluentModelBuilder.InMemory;
-using FluentModelBuilder.v2;
 using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
+using Microsoft.Framework.DependencyInjection;
 using Xunit;
 
 namespace FluentModelBuilder.Tests
@@ -13,7 +16,9 @@ namespace FluentModelBuilder.Tests
 
         protected override void ConfigureOptions(DbContextOptionsBuilder options)
         {
-            options.BuildModel().UsingInMemory().AddEntity<SingleEntity>();
+            //((IDbContextOptionsBuilderInfrastructure)options).AddOrUpdateExtension(new MyExtension());
+            //options.UseInMemoryDatabase();
+            //options.UseFluentBuilder().UseModelSource(new InMemoryModelSourceBuilder()); //.AddEntity<SingleEntity>(); //.UsingInMemory();
         }
 
         [Fact]
@@ -30,4 +35,5 @@ namespace FluentModelBuilder.Tests
             Assert.Equal("DateProperty", Model.EntityTypes[1].Name);
         }
     }
+
 }

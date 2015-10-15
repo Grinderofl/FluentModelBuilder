@@ -63,6 +63,44 @@
           "lib/net45/EntityFramework.InMemory.dll": {}
         }
       },
+      "EntityFramework.Relational/7.0.0-beta7": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-beta7"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Data",
+          "System.Transactions"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.Relational.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.SqlServer/7.0.0-beta7": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-beta7"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
+        }
+      },
       "FluentModelBuilder/0.1.0-alpha": {
         "type": "project",
         "dependencies": {
@@ -74,6 +112,13 @@
         "dependencies": {
           "EntityFramework.InMemory": "7.0.0-beta7",
           "FluentModelBuilder": null
+        }
+      },
+      "FluentModelBuilder.SqlServer/0.1.0-alpha": {
+        "type": "project",
+        "dependencies": {
+          "EntityFramework.SqlServer": "7.0.0-beta7",
+          "FluentModelBuilder": "1.0.0"
         }
       },
       "FluentModelBuilder.TestTarget/1.0.0": {
@@ -574,6 +619,10 @@
       "type": "project",
       "path": "../../src/FluentModelBuilder.InMemory/project.json"
     },
+    "FluentModelBuilder.SqlServer/0.1.0-alpha": {
+      "type": "project",
+      "path": "../../src/FluentModelBuilder.SqlServer/project.json"
+    },
     "FluentModelBuilder.TestTarget/1.0.0": {
       "type": "project",
       "path": "../FluentModelBuilder.TestTarget/project.json"
@@ -607,6 +656,36 @@
         "lib/dotnet/EntityFramework.InMemory.xml",
         "lib/net45/EntityFramework.InMemory.dll",
         "lib/net45/EntityFramework.InMemory.xml",
+        "repo.json"
+      ]
+    },
+    "EntityFramework.Relational/7.0.0-beta7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "o1M0u1AwiOjBWliU7ccnd6D3kanyBsHQWvuXZEKegq4suv9Eurb+tLiT8I/eziBrerRra1xBGqojO8XYm7be0Q==",
+      "files": [
+        "EntityFramework.Relational.7.0.0-beta7.nupkg",
+        "EntityFramework.Relational.7.0.0-beta7.nupkg.sha512",
+        "EntityFramework.Relational.nuspec",
+        "lib/dotnet/EntityFramework.Relational.dll",
+        "lib/dotnet/EntityFramework.Relational.xml",
+        "lib/net45/EntityFramework.Relational.dll",
+        "lib/net45/EntityFramework.Relational.xml",
+        "repo.json"
+      ]
+    },
+    "EntityFramework.SqlServer/7.0.0-beta7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "BnWIuGFwN5Gauc2spVR95KBXL7jDVcyBb25wSxddMty7wTe+JqOlCHcLdHWaUQj8f7+GvMQEZC9NZV+/T+57pw==",
+      "files": [
+        "EntityFramework.SqlServer.7.0.0-beta7.nupkg",
+        "EntityFramework.SqlServer.7.0.0-beta7.nupkg.sha512",
+        "EntityFramework.SqlServer.nuspec",
+        "lib/dnxcore50/EntityFramework.SqlServer.dll",
+        "lib/dnxcore50/EntityFramework.SqlServer.xml",
+        "lib/net45/EntityFramework.SqlServer.dll",
+        "lib/net45/EntityFramework.SqlServer.xml",
         "repo.json"
       ]
     },
@@ -1163,6 +1242,7 @@
       "FluentModelBuilder ",
       "FluentModelBuilder.TestTarget ",
       "FluentModelBuilder.InMemory ",
+      "FluentModelBuilder.SqlServer ",
       "EntityFramework.InMemory >= 7.0.0-beta7"
     ],
     "DNX,Version=v4.5.1": []

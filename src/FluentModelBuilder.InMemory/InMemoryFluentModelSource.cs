@@ -7,14 +7,15 @@ using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.InMemory;
 using Microsoft.Data.Entity.Internal;
 using Microsoft.Data.Entity.Metadata.Conventions.Internal;
-using FluentModelBuilder.v2;
+using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.DependencyInjection.Extensions;
 
 namespace FluentModelBuilder.InMemory
 {
     public class InMemoryFluentModelSource : InMemoryModelSource
     {
-        private readonly IModelBuilderApplier _applier;
-        public InMemoryFluentModelSource(IDbSetFinder setFinder, ICoreConventionSetBuilder coreConventionSetBuilder, IModelBuilderApplier applier) : base(setFinder, coreConventionSetBuilder)
+        private readonly IFluentBuilderApplier _applier;
+        public InMemoryFluentModelSource(IDbSetFinder setFinder, ICoreConventionSetBuilder coreConventionSetBuilder, IFluentBuilderApplier applier) : base(setFinder, coreConventionSetBuilder)
         {
             _applier = applier;
         }
@@ -22,21 +23,38 @@ namespace FluentModelBuilder.InMemory
         protected override void FindSets(ModelBuilder modelBuilder, DbContext context)
         {
             base.FindSets(modelBuilder, context);
-            _applier.Apply(modelBuilder);
+            _applier.Apply(modelBuilder, context);
         }
     }
 
-    public class InMemoryModelSourceApplier : ModelSourceApplierBase
+    public class InMemoryProvider : IProvider
     {
-        protected override Type ServiceType => typeof (InMemoryModelSource);
-        protected override Type ImplementationType => typeof (InMemoryFluentModelSource);
+        public void ApplyServices(EntityFrameworkServicesBuilder services)
+        {
+            services.AddInMemoryDatabase();
+            services.GetService().Replace(ServiceDescriptor.Singleton<InMemoryModelSource, InMemoryFluentModelSource>());
+        }
+    }
+
+    public class InMemoryModelSourceBuilder : IModelSourceBuilder
+    {
+        public void ApplyServices(IServiceCollection services)
+        {
+            services.Replace(ServiceDescriptor.Singleton(typeof (InMemoryModelSource),
+                typeof (InMemoryFluentModelSource)));
+        }
+
+        public void ApplyServices(EntityFrameworkServicesBuilder builder)
+        {
+            builder.AddInMemoryDatabase();
+        }
     }
 
     public static class Extensions
     {
-        public static v2.FluentModelBuilder UsingInMemory(this v2.FluentModelBuilder fmb)
+        public static FluentModelBuilderExtension UsingInMemory(this FluentModelBuilderExtension fmb)
         {
-            fmb.UsingModelSource<InMemoryModelSourceApplier>();
+            fmb.UseModelSource(new InMemoryModelSourceBuilder());
             return fmb;
         }
     }
