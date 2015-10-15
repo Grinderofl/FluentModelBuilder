@@ -35,13 +35,13 @@ namespace FluentModelBuilder.Tests
         {
             services.AddEntityFramework().AddDbContext<DbContext>(x =>
             {
-                x.UseInMemoryDatabase();
-                x.UseFluentBuilder();
+                //x.UseInMemoryDatabase();
+                ConfigureOptions(x);
                 //x.UseInMemoryDatabase();
                 //((IDbContextOptionsBuilderInfrastructure)x).AddOrUpdateExtension(new MyExtension("str"));
                 //x.UseInMemoryDatabase();
                 //ConfigureOptions(x);
-            }).AddFluentBuilderProvider<InMemoryProvider>();
+            }).AddInMemoryFluentProvider();
         }
 
         protected abstract void ConfigureOptions(DbContextOptionsBuilder options);

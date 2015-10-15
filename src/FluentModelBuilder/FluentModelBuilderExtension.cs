@@ -17,12 +17,11 @@ namespace FluentModelBuilder
         }
 
         public EntitiesBuilder Entities { get; }
-        public IModelSourceBuilder ModelSourceBuilder { get; set; }
+        public IBuilderExtension ModelSourceBuilder { get; set; }
         
         public void ApplyServices(EntityFrameworkServicesBuilder builder)
-        {
-            ModelSourceBuilder.ApplyServices(builder);
-            builder.AddFluentBuilder();
+        { 
+            //ModelSourceBuilder.ApplyServices(builder);
         }
     }
 }

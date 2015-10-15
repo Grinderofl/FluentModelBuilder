@@ -1,4 +1,6 @@
 //using FluentModelBuilder.InMemory;
+
+using System.Linq;
 using FluentModelBuilder;
 using FluentModelBuilder.InMemory;
 using Microsoft.Data.Entity;
@@ -16,6 +18,7 @@ namespace FluentModelBuilder.Tests
 
         protected override void ConfigureOptions(DbContextOptionsBuilder options)
         {
+            options.UseFluentBuilder().Entities(c => c.Add<SingleEntity>()).WithInMemoryDatabase();
             //((IDbContextOptionsBuilderInfrastructure)options).AddOrUpdateExtension(new MyExtension());
             //options.UseInMemoryDatabase();
             //options.UseFluentBuilder().UseModelSource(new InMemoryModelSourceBuilder()); //.AddEntity<SingleEntity>(); //.UsingInMemory();
@@ -30,9 +33,10 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsProperties()
         {
-            Assert.Equal("Id", Model.EntityTypes[0].Name);
-            Assert.Equal("StringProperty", Model.EntityTypes[1].Name);
-            Assert.Equal("DateProperty", Model.EntityTypes[1].Name);
+            var properties = Model.EntityTypes[0].GetProperties().ToArray();
+            Assert.Equal("Id", properties[0].Name);
+            Assert.Equal("DateProperty", properties[1].Name);
+            Assert.Equal("StringProperty", properties[2].Name);
         }
     }
 

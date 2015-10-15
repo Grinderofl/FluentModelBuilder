@@ -8,43 +8,32 @@ using Microsoft.Framework.DependencyInjection;
 
 namespace FluentModelBuilder
 {
-    public interface IFluentBuilderApplier
+    public interface IModelBuilderContributor
     {
-        void Apply(ModelBuilder modelBuilder, DbContext context);
+        void Contribute(ModelBuilder modelBuilder);
     }
 
-    public interface IModelSourceBuilder
+    public interface IFluentBuilderContributor : IModelBuilderContributor
+    { }
+
+    public interface IBuilderExtension
     {
-        void ApplyServices(IServiceCollection services);
-        void ApplyServices(EntityFrameworkServicesBuilder builder);
+        void ApplyServices(DbContextOptionsBuilder builder);
     }
 
-    public static class EntitiesBuilderExtensions
-    {
-        public static EntitiesBuilder Add<T>(this EntitiesBuilder builder)
-        {
-            return builder.Add(typeof (T));
-        }
-
-        public static EntitiesBuilder Add(this EntitiesBuilder builder, Type type)
-        {
-            builder.Sources.Add(new SingleEntityApplier(type));
-            return builder;
-        }
-    }
 
     public class EntitiesBuilder
     {
-        public IList<IEntityApplier> Sources { get; set; } = new List<IEntityApplier>();
+        public IList<IEntityContributor> Contributors { get; set; } = new List<IEntityContributor>();
         
         public void Apply(ModelBuilder modelBuilder)
         {
-            foreach (var source in Sources)
-                source.Apply(modelBuilder);
+            foreach (var source in Contributors)
+                source.Contribute(modelBuilder);
         }
     }
 
-    public interface IProvider
+    public interface IModelSourceProvider
     {
         void ApplyServices(EntityFrameworkServicesBuilder builder);
     }
@@ -54,24 +43,18 @@ namespace FluentModelBuilder
         void ApplyServices(IServiceCollection services);
     }
 
-
-    public class SingleEntityApplier : IEntityApplier
+    public class SingleEntityContributor : IEntityContributor
     {
         private readonly Type _type;
 
-        public SingleEntityApplier(Type type)
+        public SingleEntityContributor(Type type)
         {
             _type = type;
         }
 
-        public void Apply(ModelBuilder builder)
+        public void Contribute(ModelBuilder builder)
         {
             builder.Entity(_type);
         }
-    }
-    
-    public interface IEntityApplier
-    {
-        void Apply(ModelBuilder builder);
     }
 }

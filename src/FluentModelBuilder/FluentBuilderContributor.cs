@@ -4,20 +4,21 @@ using System.Linq;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Internal;
+using Microsoft.Framework.DependencyInjection;
 
 namespace FluentModelBuilder
 {
-    public class FluentBuilderApplier : IFluentBuilderApplier, IAccessor<IServiceProvider>
+    public class FluentBuilderContributor : IFluentBuilderContributor, IAccessor<IServiceProvider>
     {
         private LazyRef<DbContextOptions> _options;
         private IServiceProvider _serviceProvider;
 
-        protected FluentBuilderApplier()
+        protected FluentBuilderContributor()
         {
             Initialize(DbContextActivator.ServiceProvider);
         }
 
-        public FluentBuilderApplier(IServiceProvider serviceProvider)
+        public FluentBuilderContributor(IServiceProvider serviceProvider)
         {
             Initialize(serviceProvider);
         }
@@ -25,10 +26,10 @@ namespace FluentModelBuilder
         private void Initialize(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-            _options = new LazyRef<DbContextOptions>(this.GetService<DbContextOptions>);
+            _options = new LazyRef<DbContextOptions>(GetService<DbContextOptions>);
         }
 
-        public virtual void Apply(ModelBuilder modelBuilder, DbContext context)
+        public virtual void Contribute(ModelBuilder modelBuilder)
         {
             var extension = _options.Value.FindExtension<FluentModelBuilderExtension>();
             ApplyEntities(extension.Entities, modelBuilder);
@@ -39,6 +40,7 @@ namespace FluentModelBuilder
             builder.Apply(modelBuilder);
         }
 
+        protected T GetService<T>() => _serviceProvider.GetService<T>();
         IServiceProvider IAccessor<IServiceProvider>.Service => _serviceProvider;
     }
 }

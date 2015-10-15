@@ -3,21 +3,22 @@ using Microsoft.Framework.DependencyInjection.Extensions;
 
 namespace FluentModelBuilder
 {
-    public static class FluentBuilderEntityFrameworkServicesBuilderExtensions
+    public static class FluentModelBuilderEntityFrameworkServicesBuilderExtensions
     {
-        public static EntityFrameworkServicesBuilder AddFluentBuilder(this EntityFrameworkServicesBuilder builder)
+        public static EntityFrameworkServicesBuilder AddFluentBuilderContributor(this EntityFrameworkServicesBuilder builder)
         {
             var service = builder.GetService();
-            service.TryAddScoped<IFluentBuilderApplier, FluentBuilderApplier>();
+            service.TryAddScoped<IFluentBuilderContributor, FluentBuilderContributor>();
             return builder;
         }
 
-        public static EntityFrameworkServicesBuilder AddFluentBuilderProvider<TProvider>(
-            this EntityFrameworkServicesBuilder builder) where TProvider : IProvider, new()
+
+        public static EntityFrameworkServicesBuilder AddModelSourceProvider<TProvider>(
+            this EntityFrameworkServicesBuilder builder) where TProvider : IModelSourceProvider, new()
         {
-            var service = builder.AddFluentBuilder();
-            var applier = new TProvider();
-            applier.ApplyServices(service);
+            var service = builder.AddFluentBuilderContributor();
+            var provider = new TProvider();
+            provider.ApplyServices(service);
             return service;
         }
     }

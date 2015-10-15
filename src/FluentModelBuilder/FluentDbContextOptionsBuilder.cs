@@ -4,7 +4,7 @@ using Microsoft.Data.Entity.Infrastructure;
 
 namespace FluentModelBuilder
 {
-    public class FluentDbContextOptionsBuilder
+    public class FluentDbContextOptionsBuilder : DbContextOptionsBuilder
     {
         protected virtual DbContextOptionsBuilder OptionsBuilder { get; }
 
@@ -13,9 +13,18 @@ namespace FluentModelBuilder
             OptionsBuilder = optionsBuilder;
         }
 
-        public virtual FluentDbContextOptionsBuilder ModelSource(IModelSourceBuilder modelSource)
+        public virtual FluentDbContextOptionsBuilder ModelSource(IBuilderExtension modelSource)
         {
-            return SetOption(x => x.ModelSourceBuilder = modelSource);
+            modelSource.ApplyServices(OptionsBuilder);
+            return this;
+        }
+
+        public virtual FluentDbContextOptionsBuilder Entities(Action<EntitiesBuilder> builderAction = null)
+        {
+            return SetOption(x =>
+            {
+                builderAction?.Invoke(x.Entities);
+            });
         }
 
         protected virtual FluentDbContextOptionsBuilder SetOption(Action<FluentModelBuilderExtension> setAction)
