@@ -9,22 +9,15 @@ namespace FluentModelBuilder
             return builder.Add(typeof (T));
         }
 
-        public static EntitiesBuilder AddContributor<T>(this EntitiesBuilder builder) where T : IEntityContributor, new()
-        {
-            builder.Contributors.Add(new T());
-            return builder;
-        }
-
-        public static EntitiesBuilder AddContributor(this EntitiesBuilder builder, IEntityContributor contributor)
-        {
-            builder.Contributors.Add(contributor);
-            return builder;
-        }
-
         public static EntitiesBuilder Add(this EntitiesBuilder builder, Type type)
         {
-            builder.AddContributor(new SingleEntityContributor(type));
-            return builder;
+            return builder.WithContributor<ListEntityContributor>(x => x.Add(type));
+        }
+
+        public static EntitiesBuilder Discover(this EntitiesBuilder builder,
+            Action<DiscoveryEntityContributor> contributorAction = null)
+        {
+            return builder.WithContributor<DiscoveryEntityContributor>(contributorAction);
         }
     }
 }

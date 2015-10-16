@@ -36,5 +36,4 @@ namespace FluentModelBuilder.Tests
             Assert.Equal("StringProperty", properties[2].Name);
         }
     }
-
 }

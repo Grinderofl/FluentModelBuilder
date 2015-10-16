@@ -35,12 +35,7 @@ namespace FluentModelBuilder.Tests
         {
             services.AddEntityFramework().AddDbContext<DbContext>(x =>
             {
-                //x.UseInMemoryDatabase();
                 ConfigureOptions(x);
-                //x.UseInMemoryDatabase();
-                //((IDbContextOptionsBuilderInfrastructure)x).AddOrUpdateExtension(new MyExtension("str"));
-                //x.UseInMemoryDatabase();
-                //ConfigureOptions(x);
             }).AddInMemoryFluentProvider();
         }
 
@@ -52,6 +47,12 @@ namespace FluentModelBuilder.Tests
         public int Id { get; set; }
         public string StringProperty { get; set; }
         public DateTime DateProperty { get; set; }
+    }
+
+    public class OtherSingleEntity
+    {
+        public int Id { get; set; }
+        public string OtherStringProperty { get; set; }
     }
 
     public class ModelFixture
