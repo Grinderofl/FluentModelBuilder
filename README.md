@@ -1,8 +1,30 @@
 # FluentModelBuilder
-Alternative for creating DbContext: using fluent interface and possible conventions
 
+Provides an extension for Entity Framework 7 to configure `ModelBuilder` from outside `DbContext`, with a fluent interface, convention-based assembly scanning and set of useful extension methods to suit different situations of model alterations.
 
-## Basic usage as part of servicecollection
+## Goals
+
+The default way of creating the backing model to use with EntityFramework 7 DbContext __requires__ subclassing:
+
+```c#
+public class ApplicationContext : DbContext
+{
+  public DbSet<EntityOne> EntityOnes { get; set; } // Available as both context.EntityOnes and context.Set<EntityOne>();
+  public DbSet<EntityTwo> EntityTwos { get; set; } // Available as both context.EntityTwos and context.Set<EntityTwo>();
+  
+  protected override void OnModelCreating(ModelBuilder builder)
+  {
+    // Alternatively:
+    builder.Entity<EntityThree>(); // Available as context.Set<EntityThree>();
+  }
+}
+```
+
+FluentModelBuilder aims to provide an alternative way to add and configure those entities on your data model.
+
+## Quick start
+
+Easiest way to add an impromptu DbContext is while setting up the container, like in `Configure(IServiceCollection)` method in an ASP.NET 5 Web Application:
 
 ```c#
 public void Configure(IServiceCollection services)
@@ -10,104 +32,25 @@ public void Configure(IServiceCollection services)
   services.AddEntityFramework()
     .AddSqlServer()
     .AddDbContext<DbContext>(dbContextOptions => {
-    
-      dbContextOptions.UseSqlServer(...);
-      
-      dbContextOptions.BuildModel(fluently =>
-      
-        fluently.AddEntities(entities => {
-          entities.WithBaseType<EntityBase>();
-          entities.FromAssemblyContaining<ClassFromAssembly>();
-        });
-        
-        fluently.AddEntity<YourSingleEntity>();
-        
-        fluently.AddOverrides(overrides => {
-          overrides.FromAssemblyContaining<ClassFromAssembly>();
-        });
-        
-        fluently.UseSqlServer();
-      );
-    });
+      dbContextOptions.ConfigureModel() 
+        .DiscoverEntities(entity => // Scans assemblies for entities
+          entity
+            .Namespace(ns => ns.EndsWith("Domain")) // Namespace criterion
+            .BaseType<EntityBase>()) // Only if base type matches
+        .DiscoverOverrides() // Scans assemblies for overrides
+        .FromAssemblyContaining<YourEntity>() // Specifies which assembly to scan
+        .WithSqlServer("... connectionstring ..."); // Specifies to use SQL Server as well as connection string
 }
 ```
 
-## Basic usage in DbContext
+Alternatively, you can use the `OnConfiguring(DbContextOptions)` override in your DbContext:
+
 ```c#
 public class MyContext : DbContext
 {
-  protected override void OnConfiguring(DbContextOptionsBuilder options)
+  protected override void OnConfiguring(DbContextOptionsBuilder builder)
   {
-    options.BuildModel(fluently => {
-      fluently.AddEntities(x => x.WithBaseType<Entity>().FromAssemblyContaining<EntityOne>());
-      fluently.UseSqlServer();
-    });
+    builder.BuildModel(); // ...
   }
 }
 ```
-
-### Adding single entities
-```c#
-BuildModel(fluently => fluently
-  .AddEntity<YourSingleEntity>()
-  .AddEntity<YourOtherSingleEntity>());
-```
-
-### Adding and configuring single entities
-```c#
-BuildModel(fluently => fluently
-  .AddEntity<YourSingleEntity>(x => x.Ignore(p => p.Prop)));
-```
-
-### Adding entities of specific base type from assembly
-```c#
-BuildModel(fluently =>
-  fluently.AddEntities(x => {
-    x.WithBaseType<BaseEntity>(); // Specify the base type
-    x.FromAssemblyContaining<YourEntity>(); // Specify the assembly that contains the entity for scanning
-  })
-);
-```
-
-### Adding overrides for entity types from assembly (searches for ```IEntityTypeOverride<>``` implementations)
-```c#
-BuildModel(fluently =>
-  fluently.AddOverrides(x => x.FromAssemblyContaining<YourOverride>());
-);
-```
-
-### Adding database specific generation options
-```c#
-opts.UseSqlServer();
-```
-
-or
-
-```c#
-opts.UseSqlite();
-```
-
-## Creating your own conventions
-
-* Implement `IModelBuilderConvention`:
-
-```c#
-public class MyConvention : IModelBuilderConvention
-{
-  public void Apply(ModelBuilder builder)
-  {
-    // Magic!
-  }
-}
-```
-
-* Add it to builder
-
-```c#
-BuildModel(fluently => {
-  fluently.AddConvention<MyConvention>();
-});
-```
-
-### Build status
-[![Build status](https://ci.appveyor.com/api/projects/status/yccb8ad2msd26bad/branch/master?svg=true)](https://ci.appveyor.com/project/Grinderofl/fluentmodelbuilder/branch/master)
