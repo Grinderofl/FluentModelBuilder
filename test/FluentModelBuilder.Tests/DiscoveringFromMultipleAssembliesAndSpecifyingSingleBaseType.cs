@@ -24,7 +24,7 @@ namespace FluentModelBuilder.Tests
                             from =>
                                 from.AssemblyContaining<EntityOne>()
                                     .AssemblyContaining<EntityOneWannabe>()
-                                    .WithBaseType<EntityBase>()))
+                                    .BaseType<EntityBase>()))
                 .WithInMemoryDatabase();
         }
 

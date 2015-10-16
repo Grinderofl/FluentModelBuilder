@@ -15,7 +15,7 @@ namespace FluentModelBuilder.Extensions
             return contributor.AddAssembly(typeof(T).GetTypeInfo().Assembly);
         }
 
-        public static DiscoveryEntityContributor WithBaseType<T>(this DiscoveryEntityContributor contributor)
+        public static DiscoveryEntityContributor BaseType<T>(this DiscoveryEntityContributor contributor)
         {
             return
                 contributor.WithCriterion<NonAbstractCriterion>()

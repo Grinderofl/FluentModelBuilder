@@ -17,4 +17,5 @@ namespace FluentModelBuilder.Contributors.Internal
             builder.Entity(_type);
         }
     }
+
 }

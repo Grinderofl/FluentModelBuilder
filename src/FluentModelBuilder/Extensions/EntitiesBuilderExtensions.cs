@@ -24,9 +24,13 @@ namespace FluentModelBuilder.Extensions
         }
 
         public static EntitiesBuilder Discover(this EntitiesBuilder builder,
-            Action<DiscoveryEntityContributor> contributorAction = null)
+            Action<DiscoveryEntityContributor> contributorAction = null, AssembliesBuilder assembliesBuilder = null)
         {
-            return builder.WithContributor<DiscoveryEntityContributor>(contributorAction);
+            var contributor = assembliesBuilder == null
+                ? new DiscoveryEntityContributor()
+                : new DiscoveryEntityContributor(assembliesBuilder);
+            contributorAction?.Invoke(contributor);
+            return builder.AddContributor(contributor);
         }
     }
 }

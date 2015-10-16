@@ -9,9 +9,9 @@ using Xunit;
 
 namespace FluentModelBuilder.Tests
 {
-    public class DiscoveringFromMultipleAssembliesAndSpecifyingMultipleBaseTypes : TestBase
+    public class DiscoveringFromMultipleAssembliesAndSpecifyingMultipleBaseTypesUsingMultipleCalls : TestBase
     {
-        public DiscoveringFromMultipleAssembliesAndSpecifyingMultipleBaseTypes(ModelFixture fixture) : base(fixture)
+        public DiscoveringFromMultipleAssembliesAndSpecifyingMultipleBaseTypesUsingMultipleCalls(ModelFixture fixture) : base(fixture)
         {
         }
 
@@ -23,26 +23,28 @@ namespace FluentModelBuilder.Tests
                         e.Discover(
                             from =>
                                 from.AssemblyContaining<EntityOne>()
-                                    .AssemblyContaining<EntityOneWannabe>()
-                                    .BaseType<EntityBase>()
-                                    .BaseType<EntityBaseWannabe>()))
+                                    .BaseType<EntityBase>())
+                            .Discover(
+                                from => 
+                                    from
+                                        .AssemblyContaining<EntityOneWannabe>()
+                                        .BaseType<EntityBaseWannabe>()))
                 .WithInMemoryDatabase();
         }
 
         [Fact]
         public void AddsCorrectNumberOfEntities()
         {
-            Assert.Equal(4, Model.EntityTypes.Count);
+            Assert.Equal(3, Model.EntityTypes.Count);
         }
 
         [Theory]
         [InlineData(typeof(EntityOne), 0)]
         [InlineData(typeof(EntityTwo), 1)]
-        [InlineData(typeof(EntityOneWannabe), 2)]
-        [InlineData(typeof(EntityTwoWannabe), 3)]
+        [InlineData(typeof(EntityTwoWannabe), 2)]
         public void AddsCorrectEntities(Type expected, int index)
         {
-            
+
             Assert.Equal(expected, Model.EntityTypes[index].ClrType);
         }
     }

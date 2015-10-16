@@ -12,6 +12,16 @@ namespace FluentModelBuilder.Contributors.Internal
         public IList<Assembly> Assemblies { get; set; } = new List<Assembly>();
         public IList<ITypeInfoCriterion> Criteria { get; set; } = new List<ITypeInfoCriterion>();
 
+        protected AssembliesBuilder AssembliesBuilder;
+
+        public DiscoveryEntityContributor(AssembliesBuilder builder)
+        {
+            AssembliesBuilder = builder;
+        }
+
+        public DiscoveryEntityContributor()
+        {}
+
         public DiscoveryEntityContributor AddAssembly(Assembly assembly)
         {
             if(!Assemblies.Contains(assembly))
@@ -39,11 +49,18 @@ namespace FluentModelBuilder.Contributors.Internal
             return this;
         }
 
+        protected virtual IEnumerable<Assembly> GetAssemblies()
+        {
+            return AssembliesBuilder == null ? Assemblies : AssembliesBuilder.Assemblies.Union(Assemblies);
+        }
+
         public void Contribute(ModelBuilder modelBuilder)
         {
             var types =
-                Assemblies.SelectMany(x => x.GetExportedTypes())
-                    .Where(x => Criteria.All(c => c.IsSatisfiedBy(x.GetTypeInfo())));
+                GetAssemblies()
+                .Distinct()
+                .SelectMany(x => x.GetExportedTypes())
+                .Where(x => Criteria.All(c => c.IsSatisfiedBy(x.GetTypeInfo())));
 
             foreach (var type in types)
                 modelBuilder.Entity(type);

@@ -17,7 +17,7 @@ namespace FluentModelBuilder.Tests
         protected override void ConfigureOptions(DbContextOptionsBuilder options)
         {
             options.ConfigureModel()
-                .Entities(e => e.Discover(from => from.AssemblyContaining<EntityOne>().WithBaseType<EntityBase>()))
+                .Entities(e => e.Discover(from => from.AssemblyContaining<EntityOne>().BaseType<EntityBase>()))
                 .WithInMemoryDatabase();
         }
 
