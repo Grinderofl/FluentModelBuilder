@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentModelBuilder.Conventions;
-using FluentModelBuilder.Conventions.Overrides;
+using FluentModelBuilder;
 using Microsoft.Data.Entity.Metadata.Builders;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.DependencyInjection.Extensions;
@@ -32,13 +31,13 @@ namespace ModelBuilderSample
         }
     }
 
-    public class MyConvention : IEntityTypeOverride<TestEntity>
-    {
-        public void Configure(EntityTypeBuilder<TestEntity> mapping)
-        {
-            mapping.Key(x => x.Id);
-        }
-    }
+    //public class MyConvention : IEntityTypeOverride<TestEntity>
+    //{
+    //    public void Configure(EntityTypeBuilder<TestEntity> mapping)
+    //    {
+    //        mapping.Key(x => x.Id);
+    //    }
+    //}
 
     public abstract class Entity
     {

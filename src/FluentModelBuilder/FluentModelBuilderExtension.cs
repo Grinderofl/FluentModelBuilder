@@ -1,20 +1,27 @@
-﻿using FluentModelBuilder.Options;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
+﻿using Microsoft.Data.Entity.Infrastructure;
+using Microsoft.Framework.DependencyInjection;
 
 namespace FluentModelBuilder
 {
     public class FluentModelBuilderExtension : IDbContextOptionsExtension
     {
-        public FluentModelBuilderExtension(DbContextOptionsBuilder builder, FluentModelBuilderOptions options)
+        public FluentModelBuilderExtension()
         {
-            var internalBuilder = new FluentModelBuilder(options);
-            ((IDbContextOptionsBuilderInfrastructure) builder).AddOrUpdateExtension(this);
-            builder.UseModel(internalBuilder.Build());
+            Entities = new EntitiesBuilder();
         }
 
-        public void ApplyServices(EntityFrameworkServicesBuilder builder)
+        public FluentModelBuilderExtension(FluentModelBuilderExtension copyFrom)
         {
+            Entities = copyFrom.Entities;
+            Extension = copyFrom.Extension;
+        }
+
+        public EntitiesBuilder Entities { get; }
+        public IBuilderExtension Extension { get; set; }
+        
+        public void ApplyServices(EntityFrameworkServicesBuilder builder)
+        { 
+            Extension.Apply(builder);
         }
     }
 }
