@@ -25,6 +25,7 @@ namespace FluentModelBuilder.Tests
         public void AddsSingleEntity()
         {
             Assert.Equal(1, Model.EntityTypes.Count);
+            Assert.Equal(typeof(SingleEntity), Model.EntityTypes[0].ClrType);
         }
 
         [Fact]

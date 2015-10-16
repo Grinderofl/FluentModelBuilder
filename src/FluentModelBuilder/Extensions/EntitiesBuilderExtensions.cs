@@ -1,9 +1,17 @@
 using System;
+using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace FluentModelBuilder
 {
     public static class EntitiesBuilderExtensions
     {
+
+        public static EntitiesBuilder Add<T>(this EntitiesBuilder builder, Action<EntityTypeBuilder<T>> builderAction)
+            where T : class
+        {
+            return builder.AddContributor(new EntityConfigurationContributor<T>(builderAction));
+        }
+
         public static EntitiesBuilder Add<T>(this EntitiesBuilder builder)
         {
             return builder.Add(typeof (T));

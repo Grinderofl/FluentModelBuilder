@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Microsoft.Data.Entity;
 
@@ -26,7 +27,12 @@ namespace FluentModelBuilder
 
         public void Contribute(ModelBuilder modelBuilder)
         {
-            
+            var types =
+                Assemblies.SelectMany(x => x.GetExportedTypes())
+                    .Where(x => Criteria.Any(c => c.IsSatisfiedBy(x.GetTypeInfo())));
+
+            foreach (var type in types)
+                modelBuilder.Entity(type);
         }
     }
 }
