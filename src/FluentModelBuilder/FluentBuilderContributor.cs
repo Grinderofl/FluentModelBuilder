@@ -10,7 +10,7 @@ namespace FluentModelBuilder
 {
     public class FluentBuilderContributor : IFluentBuilderContributor, IAccessor<IServiceProvider>
     {
-        private LazyRef<DbContextOptions> _options;
+        private DbContextOptions _options;
         private IServiceProvider _serviceProvider;
 
         protected FluentBuilderContributor()
@@ -26,12 +26,12 @@ namespace FluentModelBuilder
         private void Initialize(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-            _options = new LazyRef<DbContextOptions>(GetService<DbContextOptions>);
+            _options = GetService<DbContextOptions>();
         }
 
         public virtual void Contribute(ModelBuilder modelBuilder)
         {
-            var extension = _options.Value.FindExtension<FluentModelBuilderExtension>();
+            var extension = _options.FindExtension<FluentModelBuilderExtension>();
             ApplyEntities(extension.Entities, modelBuilder);
         }
 

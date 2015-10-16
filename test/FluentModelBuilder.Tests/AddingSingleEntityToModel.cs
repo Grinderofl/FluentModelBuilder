@@ -18,10 +18,7 @@ namespace FluentModelBuilder.Tests
 
         protected override void ConfigureOptions(DbContextOptionsBuilder options)
         {
-            options.UseFluentBuilder().Entities(c => c.Add<SingleEntity>()).WithInMemoryDatabase();
-            //((IDbContextOptionsBuilderInfrastructure)options).AddOrUpdateExtension(new MyExtension());
-            //options.UseInMemoryDatabase();
-            //options.UseFluentBuilder().UseModelSource(new InMemoryModelSourceBuilder()); //.AddEntity<SingleEntity>(); //.UsingInMemory();
+            options.ConfigureModel().Entities(c => c.Add<SingleEntity>()).WithInMemoryDatabase();
         }
 
         [Fact]

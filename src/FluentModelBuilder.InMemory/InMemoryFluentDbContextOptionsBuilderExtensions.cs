@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Entity.Infrastructure;
+﻿using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
 
 namespace FluentModelBuilder.InMemory
 {
@@ -6,9 +7,9 @@ namespace FluentModelBuilder.InMemory
     {
         public static FluentDbContextOptionsBuilder WithInMemoryDatabase(this FluentDbContextOptionsBuilder builder)
         {
-            return builder.ModelSource<InMemoryBuilderExtension>();
+            builder.OptionsBuilder.UseInMemoryDatabase();
+            return builder.WithExtension<InMemoryBuilderExtension>();
         }
-
     }
 
     public static class InMemoryFluentEntityFrameworkServicesBuilderExtensions

@@ -5,7 +5,7 @@ namespace FluentModelBuilder
 {
     public static class FluentBuilderDbContextOptionsExtensions
     {
-        public static FluentDbContextOptionsBuilder UseFluentBuilder(this DbContextOptionsBuilder builder)
+        public static FluentDbContextOptionsBuilder ConfigureModel(this DbContextOptionsBuilder builder)
         {
             var extension = GetOrCreateExtension(builder);
             ((IDbContextOptionsBuilderInfrastructure)builder).AddOrUpdateExtension(extension);

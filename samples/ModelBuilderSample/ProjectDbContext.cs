@@ -1,5 +1,5 @@
 using System.Reflection;
-
+using FluentModelBuilder;
 using Microsoft.Data.Entity;
 
 namespace ModelBuilderSample
@@ -21,21 +21,21 @@ namespace ModelBuilderSample
             //    .AddAssemblyContaining<ProjectDbContext>()
             //    .DiscoverEntitiesFromSharedAssemblies(x => x.WithBaseType<Entity>())
             //    ;
-                
+
 
             //options.BuildModel()
-                //.Entities.Discover(x => {
-                //        x.FromSharedAssemblies();
-                //    })
-                //    .Add<MyEntity>()
-                //.Assemblies()
-                //    .AddAssembly(typeof(ProjectDbContext).GetTypeInfo().Assembly)
-                //    .AddAssemblyContaining<ProjectDbContext>()
-                //    .Add(assembly =>
-                //    {
-                //        assembly.Single(typeof (ProjectDbContext).GetTypeInfo().Assembly);
-                //        assembly.Containing<ProjectDbContext>();
-                //    });
+            //.Entities.Discover(x => {
+            //        x.FromSharedAssemblies();
+            //    })
+            //    .Add<MyEntity>()
+            //.Assemblies()
+            //    .AddAssembly(typeof(ProjectDbContext).GetTypeInfo().Assembly)
+            //    .AddAssemblyContaining<ProjectDbContext>()
+            //    .Add(assembly =>
+            //    {
+            //        assembly.Single(typeof (ProjectDbContext).GetTypeInfo().Assembly);
+            //        assembly.Containing<ProjectDbContext>();
+            //    });
 
             //options.BuildModel(opts =>
             //{
@@ -58,7 +58,7 @@ namespace ModelBuilderSample
 
             //    opts.DiscoverEntities(discover => { });
             //    opts.DiscoverEntitiesFromAssemblyConvention(discover => { });
-                
+
             //    opts.Overrides(x =>
             //    {
             //        x.Discover(discover =>

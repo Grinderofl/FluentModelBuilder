@@ -6,13 +6,12 @@
   "projectUrl": "",
   "licenseUrl": "",
   "dependencies": {
-    "xunit": "2.1.0-rc2-build3178",
-    "xunit.runner.dnx": "2.1.0-beta5-build165",
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-beta6-build191",
     "FluentModelBuilder": "",
     "FluentModelBuilder.TestTarget": "",
     "FluentModelBuilder.InMemory": "",
-    "FluentModelBuilder.SqlServer": "",
-    "EntityFramework.InMemory": "7.0.0-beta7"
+    "FluentModelBuilder.SqlServer": ""
   },
   "commands": { 
     "test": "xunit.runner.dnx"

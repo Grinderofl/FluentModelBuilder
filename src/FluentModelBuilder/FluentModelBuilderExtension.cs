@@ -13,15 +13,15 @@ namespace FluentModelBuilder
         public FluentModelBuilderExtension(FluentModelBuilderExtension copyFrom)
         {
             Entities = copyFrom.Entities;
-            ModelSourceBuilder = copyFrom.ModelSourceBuilder;
+            Extension = copyFrom.Extension;
         }
 
         public EntitiesBuilder Entities { get; }
-        public IBuilderExtension ModelSourceBuilder { get; set; }
+        public IBuilderExtension Extension { get; set; }
         
         public void ApplyServices(EntityFrameworkServicesBuilder builder)
         { 
-            //ModelSourceBuilder.ApplyServices(builder);
+            Extension.Apply(builder);
         }
     }
 }

@@ -7,7 +7,7 @@
   "licenseUrl": "https://github.com/Grinderofl/FluentModelBuilder/blob/master/LICENSE.md",
   "dependencies": {
     "FluentModelBuilder": "1.0.0",
-    "EntityFramework.SqlServer": "7.0.0-beta7"
+    "EntityFramework.SqlServer": "7.0.0-beta8"
   },
   "frameworks": {
     "dnx451": { },
