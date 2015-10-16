@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Contributors.Internal.Criteria
 {
     public interface ITypeInfoCriterion
     {

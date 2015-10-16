@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Contributors.Internal
 {
     public class ListEntityContributor : IEntityContributor
     {

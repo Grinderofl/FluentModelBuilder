@@ -1,6 +1,4 @@
-using Microsoft.Data.Entity;
-
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Contributors
 {
     public interface IEntityContributor : IModelBuilderContributor
     {

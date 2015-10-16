@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.DependencyInjection;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Contributors.Internal
 {
     public class SingleEntityContributor : IEntityContributor
     {

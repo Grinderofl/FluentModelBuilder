@@ -1,4 +1,4 @@
-﻿namespace FluentModelBuilder
+﻿namespace FluentModelBuilder.Extensions
 {
     public static class FluentDbContextOptionsBuilderExtensions
     {

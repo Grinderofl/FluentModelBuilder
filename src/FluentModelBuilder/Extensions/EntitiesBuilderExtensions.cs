@@ -1,7 +1,8 @@
 using System;
+using FluentModelBuilder.Contributors.Internal;
 using Microsoft.Data.Entity.Metadata.Builders;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Extensions
 {
     public static class EntitiesBuilderExtensions
     {

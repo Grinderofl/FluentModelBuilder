@@ -1,7 +1,8 @@
+using FluentModelBuilder.Contributors;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Framework.DependencyInjection.Extensions;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Extensions
 {
     public static class FluentModelBuilderEntityFrameworkServicesBuilderExtensions
     {

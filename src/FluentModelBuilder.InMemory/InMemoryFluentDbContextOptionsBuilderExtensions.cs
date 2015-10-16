@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Entity;
+﻿using FluentModelBuilder.Extensions;
+using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 
 namespace FluentModelBuilder.InMemory

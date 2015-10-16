@@ -1,6 +1,9 @@
 using System;
 using System.Linq;
+using FluentModelBuilder.Extensions;
 using FluentModelBuilder.InMemory;
+using FluentModelBuilder.Tests.Core;
+using FluentModelBuilder.Tests.Entities;
 using Microsoft.Data.Entity;
 using Xunit;
 

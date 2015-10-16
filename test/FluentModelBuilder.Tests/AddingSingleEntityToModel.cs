@@ -1,11 +1,9 @@
-//using FluentModelBuilder.InMemory;
-
 using System.Linq;
-using FluentModelBuilder;
+using FluentModelBuilder.Extensions;
 using FluentModelBuilder.InMemory;
+using FluentModelBuilder.Tests.Core;
+using FluentModelBuilder.Tests.Entities;
 using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Framework.DependencyInjection;
 using Xunit;
 
 namespace FluentModelBuilder.Tests
