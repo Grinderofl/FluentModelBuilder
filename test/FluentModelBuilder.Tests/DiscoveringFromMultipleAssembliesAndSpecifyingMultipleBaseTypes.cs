@@ -1,6 +1,7 @@
 using System;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.InMemory;
+using FluentModelBuilder.InMemory.Extensions;
 using FluentModelBuilder.Tests.Core;
 using FluentModelBuilder.Tests.Entities;
 using FluentModelBuilder.TestTarget;

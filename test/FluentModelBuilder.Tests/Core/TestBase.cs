@@ -1,4 +1,5 @@
 using FluentModelBuilder.InMemory;
+using FluentModelBuilder.InMemory.Extensions;
 using Microsoft.Data.Entity;
 using Microsoft.Framework.DependencyInjection;
 
@@ -12,10 +13,7 @@ namespace FluentModelBuilder.Tests.Core
 
         protected override void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFramework().AddDbContext<DbContext>(x =>
-            {
-                ConfigureOptions(x);
-            }).AddInMemoryFluentProvider();
+            services.AddEntityFramework().AddDbContext<DbContext>(ConfigureOptions).AddInMemoryFluentProvider();
         }
 
         protected abstract void ConfigureOptions(DbContextOptionsBuilder options);
