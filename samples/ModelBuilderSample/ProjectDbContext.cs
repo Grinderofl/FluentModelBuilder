@@ -1,5 +1,7 @@
 using System.Reflection;
 using FluentModelBuilder;
+using FluentModelBuilder.Extensions;
+using FluentModelBuilder.SqlServer.Extensions;
 using Microsoft.Data.Entity;
 
 namespace ModelBuilderSample
@@ -8,34 +10,13 @@ namespace ModelBuilderSample
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer("Server=.;Initial Catalog=eftest;Integrated Security=True;");
+            //options.UseSqlServer("Server=.;Initial Catalog=eftest;Integrated Security=True;");
 
-            // options.UseModel(new FluentModelBuilder(opts => {}).Build());
-
-            // options.BuildModel() // FluentModelBuilder
-            //    .Entities()       // FluentEntitiesBuilder
-            //    .
-            //    .Overrides(x => x.Discover())
-            //    .Assemblies()
-            //options.BuildModel()
-            //    .AddAssemblyContaining<ProjectDbContext>()
-            //    .DiscoverEntitiesFromSharedAssemblies(x => x.WithBaseType<Entity>())
-            //    ;
-
-
-            //options.BuildModel()
-            //.Entities.Discover(x => {
-            //        x.FromSharedAssemblies();
-            //    })
-            //    .Add<MyEntity>()
-            //.Assemblies()
-            //    .AddAssembly(typeof(ProjectDbContext).GetTypeInfo().Assembly)
-            //    .AddAssemblyContaining<ProjectDbContext>()
-            //    .Add(assembly =>
-            //    {
-            //        assembly.Single(typeof (ProjectDbContext).GetTypeInfo().Assembly);
-            //        assembly.Containing<ProjectDbContext>();
-            //    });
+            options.ConfigureModel()
+                .Entities(
+                    entities =>
+                        entities.Discover(from => 
+                        from.AssemblyContaining<ProjectDbContext>().BaseType<Entity>())).WithSqlServerDatabase("Server=.;Initial Catalog=eftest;Integrated Security=True;");
 
             //options.BuildModel(opts =>
             //{

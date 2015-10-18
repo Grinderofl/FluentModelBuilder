@@ -83,7 +83,7 @@
           "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/0.1.0-alpha": {
+      "FluentModelBuilder/1.0.0-alpha": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -384,7 +384,7 @@
           "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/0.1.0-alpha": {
+      "FluentModelBuilder/1.0.0-alpha": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -1294,7 +1294,7 @@
           "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/0.1.0-alpha": {
+      "FluentModelBuilder/1.0.0-alpha": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1606,7 +1606,7 @@
           "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/0.1.0-alpha": {
+      "FluentModelBuilder/1.0.0-alpha": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1907,7 +1907,7 @@
           "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/0.1.0-alpha": {
+      "FluentModelBuilder/1.0.0-alpha": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -3033,7 +3033,7 @@
           "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/0.1.0-alpha": {
+      "FluentModelBuilder/1.0.0-alpha": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -4091,7 +4091,7 @@
     }
   },
   "libraries": {
-    "FluentModelBuilder/0.1.0-alpha": {
+    "FluentModelBuilder/1.0.0-alpha": {
       "type": "project",
       "path": "../FluentModelBuilder/project.json"
     },

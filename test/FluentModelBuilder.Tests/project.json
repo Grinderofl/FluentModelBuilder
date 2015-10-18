@@ -11,7 +11,8 @@
     "FluentModelBuilder": "",
     "FluentModelBuilder.TestTarget": "",
     "FluentModelBuilder.InMemory": "",
-    "FluentModelBuilder.SqlServer": ""
+    "FluentModelBuilder.SqlServer": "",
+    "FluentModelBuilder.Sqlite": ""
   },
   "commands": { 
     "test": "xunit.runner.dnx"

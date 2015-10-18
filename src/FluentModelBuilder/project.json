@@ -1,8 +1,8 @@
 ﻿{
-  "version": "0.1.0-alpha-*",
+  "version": "1.0.0-alpha",
   "description": "Provides a fluent way to configure your DbContext's Model",
   "authors": [ "Nero Sule" ],
-  "tags": [ "Fluent", "ModelBuilder", "FluentModelBuilder", "EntityFramework", "Entity Framework", "Fluent Entity Framework", "Fluent EntityFramework" ],
+  "tags": [ "Fluent", "ModelBuilder", "FluentModelBuilder", "EntityFramework", "EF" ],
   "projectUrl": "https://github.com/Grinderofl/FluentModelBuilder",
   "licenseUrl": "https://github.com/Grinderofl/FluentModelBuilder/blob/master/LICENSE.md",
   "dependencies": {

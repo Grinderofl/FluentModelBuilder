@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentModelBuilder;
+using FluentModelBuilder.SqlServer.Extensions;
 using Microsoft.Data.Entity.Metadata.Builders;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.DependencyInjection.Extensions;
 
 namespace ModelBuilderSample
 {
-    public class Startup
+    public class Program
     {
         public void Main(string[] args)
         {
@@ -27,7 +28,7 @@ namespace ModelBuilderSample
 
         public void Configure(IServiceCollection services)
         {
-            services.AddEntityFramework().AddDbContext<ProjectDbContext>().AddSqlServer();
+            services.AddEntityFramework().AddDbContext<ProjectDbContext>().AddSqlServerFluentProvider();
         }
     }
 
