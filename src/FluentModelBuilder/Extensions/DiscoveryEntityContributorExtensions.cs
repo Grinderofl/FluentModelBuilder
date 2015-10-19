@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using FluentModelBuilder.Contributors.Core;
-using FluentModelBuilder.Contributors.Core.Criteria;
+using FluentModelBuilder.Core.Contributors.Impl;
+using FluentModelBuilder.Core.Criteria;
 
 namespace FluentModelBuilder.Extensions
 {

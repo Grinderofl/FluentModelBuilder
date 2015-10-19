@@ -1,4 +1,4 @@
-﻿using FluentModelBuilder.Contributors;
+﻿using FluentModelBuilder.Core;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Internal;
 using Microsoft.Data.Entity.Metadata.Conventions.Internal;

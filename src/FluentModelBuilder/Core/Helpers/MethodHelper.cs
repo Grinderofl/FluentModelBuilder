@@ -2,7 +2,7 @@
 using System.Reflection;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Helpers
+namespace FluentModelBuilder.Core.Helpers
 {
     public class MethodHelper
     {

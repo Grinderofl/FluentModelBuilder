@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 
-namespace FluentModelBuilder.Contributors.Core.Criteria
+namespace FluentModelBuilder.Core.Criteria
 {
     public class BaseTypeCriterion : ITypeInfoCriterion
     {

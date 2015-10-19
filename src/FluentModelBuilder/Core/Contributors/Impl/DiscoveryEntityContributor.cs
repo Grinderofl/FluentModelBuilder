@@ -2,7 +2,7 @@
 using System.Reflection;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Contributors.Core
+namespace FluentModelBuilder.Core.Contributors.Impl
 {
     public class DiscoveryEntityContributor : DiscoveryContributorBase<DiscoveryEntityContributor>, IEntityContributor
     {

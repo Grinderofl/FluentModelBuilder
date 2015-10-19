@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
+using FluentModelBuilder.Core.Helpers;
 using FluentModelBuilder.Extensions;
-using FluentModelBuilder.Helpers;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Contributors.Core
+namespace FluentModelBuilder.Core.Contributors.Impl
 {
     public class SingleOverrideContributor : IOverrideContributor
     {

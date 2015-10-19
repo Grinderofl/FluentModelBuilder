@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Contributors.Core
+namespace FluentModelBuilder.Core.Contributors.Impl
 {
     public class SingleEntityContributor : IEntityContributor
     {

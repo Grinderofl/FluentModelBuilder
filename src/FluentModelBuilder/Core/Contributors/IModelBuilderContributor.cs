@@ -1,6 +1,6 @@
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Contributors
+namespace FluentModelBuilder.Core.Contributors
 {
     public interface IModelBuilderContributor
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using FluentModelBuilder.Contributors;
 using System.Linq;
+using FluentModelBuilder.Core.Contributors;
 using Microsoft.Data.Entity;
 
 namespace FluentModelBuilder

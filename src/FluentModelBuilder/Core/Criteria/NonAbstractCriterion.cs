@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace FluentModelBuilder.Contributors.Core.Criteria
+namespace FluentModelBuilder.Core.Criteria
 {
     public class NonAbstractCriterion : ITypeInfoCriterion
     {

@@ -1,4 +1,4 @@
-using FluentModelBuilder.Contributors;
+using FluentModelBuilder.Core;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Framework.DependencyInjection.Extensions;
 

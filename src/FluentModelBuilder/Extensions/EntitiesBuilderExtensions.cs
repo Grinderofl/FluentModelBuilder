@@ -1,5 +1,5 @@
 using System;
-using FluentModelBuilder.Contributors.Core;
+using FluentModelBuilder.Core.Contributors.Impl;
 using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace FluentModelBuilder.Extensions
@@ -24,11 +24,21 @@ namespace FluentModelBuilder.Extensions
         }
 
         public static EntitiesBuilder Discover(this EntitiesBuilder builder,
-            Action<DiscoveryEntityContributor> contributorAction = null, AssembliesBuilder assembliesBuilder = null)
+            Action<DiscoveryEntityContributor> contributorAction = null)
         {
             var contributor = new DiscoveryEntityContributor();
             contributorAction?.Invoke(contributor);
             return builder.AddContributor(contributor);
+        }
+
+        public static EntitiesBuilder DiscoverFromSharedAssemblies(this EntitiesBuilder builder,
+            Action<DiscoveryEntityContributor> contributorAction = null)
+        {
+            return builder.Discover(x =>
+            {
+                x.FromSharedAssemblies();
+                contributorAction?.Invoke(x);
+            });
         }
     }
 }

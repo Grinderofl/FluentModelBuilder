@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using FluentModelBuilder.Contributors.Core;
+using FluentModelBuilder.Core.Contributors.Impl;
 
 namespace FluentModelBuilder.Extensions
 {
@@ -23,6 +23,16 @@ namespace FluentModelBuilder.Extensions
             var contributor = new DiscoveryOverrideContributor();
             contributorAction?.Invoke(contributor);
             return builder.AddContributor(contributor);
+        }
+
+        public static OverridesBuilder DiscoverFromSharedAssemblies(this OverridesBuilder builder,
+            Action<DiscoveryOverrideContributor> contributorAction = null)
+        {
+            return builder.Discover(x =>
+            {
+                x.FromSharedAssemblies();
+                contributorAction?.Invoke(x);
+            });
         }
     }
 }
