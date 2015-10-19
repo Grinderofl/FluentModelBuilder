@@ -3,33 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Contributors.Internal.Criteria;
+using FluentModelBuilder.Extensions;
 using Microsoft.Data.Entity;
 
 namespace FluentModelBuilder.Contributors.Internal
 {
-    public class DiscoveryEntityContributor : IEntityContributor
+    public class DiscoveryOverrideContributor : IOverrideContributor
     {
         public IList<Assembly> Assemblies { get; set; } = new List<Assembly>();
         public IList<ITypeInfoCriterion> Criteria { get; set; } = new List<ITypeInfoCriterion>();
 
         protected AssembliesBuilder AssembliesBuilder;
 
-        public DiscoveryEntityContributor(AssembliesBuilder builder)
+        public DiscoveryOverrideContributor(AssembliesBuilder builder)
         {
             AssembliesBuilder = builder;
         }
 
-        public DiscoveryEntityContributor()
+        public DiscoveryOverrideContributor()
         {}
 
-        public DiscoveryEntityContributor AddAssembly(Assembly assembly)
+        public DiscoveryOverrideContributor AddAssembly(Assembly assembly)
         {
             if(!Assemblies.Contains(assembly))
                 Assemblies.Add(assembly);
             return this;
         }
 
-        public DiscoveryEntityContributor AddCriterion(ITypeInfoCriterion criterion)
+        public DiscoveryOverrideContributor AddCriterion(ITypeInfoCriterion criterion)
         {
             if(!Criteria.Contains(criterion))
                 Criteria.Add(criterion);
@@ -37,7 +38,7 @@ namespace FluentModelBuilder.Contributors.Internal
             return this;
         }
 
-        public DiscoveryEntityContributor WithCriterion<T>(Action<T> criterionAction = null) where T : ITypeInfoCriterion
+        public DiscoveryOverrideContributor WithCriterion<T>(Action<T> criterionAction = null) where T : ITypeInfoCriterion
         {
             T criterion = (T) Criteria.FirstOrDefault(x => x is T);
             if (criterion == null)
@@ -56,14 +57,22 @@ namespace FluentModelBuilder.Contributors.Internal
 
         public void Contribute(ModelBuilder modelBuilder)
         {
-            var types =
-                GetAssemblies()
-                .Distinct()
-                .SelectMany(x => x.GetExportedTypes())
-                .Where(x => Criteria.All(c => c.IsSatisfiedBy(x.GetTypeInfo())));
+            var types = GetAssemblies().Distinct().SelectMany(x => x.GetExportedTypes());
+            var overrideTypes = types.Where(x => x.ImplementsInterfaceOfType(typeof(IEntityTypeOverride<>)));
+            var criteriaTypes = overrideTypes.Where(x => Criteria.All(c => c.IsSatisfiedBy(x.GetTypeInfo())));
 
-            foreach (var type in types)
-                modelBuilder.Entity(type);
+            //var types =
+            //    GetAssemblies()
+            //        .Distinct()
+            //        .SelectMany(x => x.GetExportedTypes())
+            //        .Where(x => typeof(IEntityTypeOverride<>).IsAssignableFrom(x))
+            //        .Where(x => Criteria.All(c => c.IsSatisfiedBy(x.GetTypeInfo())));
+
+            foreach (var type in criteriaTypes)
+            {
+                var contributor = new SingleOverrideContributor(type);
+                contributor.Contribute(modelBuilder);
+            }
         }
     }
 }

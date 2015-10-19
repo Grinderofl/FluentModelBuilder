@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Internal;
 using Microsoft.Data.Entity;
 
@@ -12,7 +13,7 @@ namespace FluentModelBuilder.Contributors.Internal
 
         public SingleOverrideContributor(Type type)
         {
-            if(!typeof(IEntityTypeOverride<>).IsAssignableFrom(type))
+            if(!type.ImplementsInterfaceOfType(typeof(IEntityTypeOverride<>)))
                 throw new ArgumentException("Type does not implement IEntityTypeOverride<>");
             _type = type;
         }
