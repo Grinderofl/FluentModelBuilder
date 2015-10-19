@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentModelBuilder;
+using FluentModelBuilder.Extensions;
 using FluentModelBuilder.SqlServer.Extensions;
 using Microsoft.Data.Entity.Metadata.Builders;
 using Microsoft.Framework.DependencyInjection;
@@ -31,14 +32,6 @@ namespace ModelBuilderSample
             services.AddEntityFramework().AddDbContext<ProjectDbContext>().AddSqlServerFluentProvider();
         }
     }
-
-    //public class MyConvention : IEntityTypeOverride<TestEntity>
-    //{
-    //    public void Configure(EntityTypeBuilder<TestEntity> mapping)
-    //    {
-    //        mapping.Key(x => x.Id);
-    //    }
-    //}
 
     public abstract class Entity
     {

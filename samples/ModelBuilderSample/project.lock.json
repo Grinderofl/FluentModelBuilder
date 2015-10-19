@@ -144,7 +144,7 @@
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": "1.0.0"
+          "FluentModelBuilder": null
         }
       },
       "Ix-Async/1.2.5": {
@@ -1035,7 +1035,7 @@
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": "1.0.0",
+          "FluentModelBuilder": null,
           "Microsoft.CSharp": "4.0.1-beta-23225",
           "System.Collections": "4.0.11-beta-23225",
           "System.Linq": "4.0.1-beta-23225",
@@ -2788,7 +2788,7 @@
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": "1.0.0"
+          "FluentModelBuilder": null
         }
       },
       "Ix-Async/1.2.5": {
@@ -3702,7 +3702,7 @@
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": "1.0.0"
+          "FluentModelBuilder": null
         }
       },
       "Ix-Async/1.2.5": {
@@ -4593,7 +4593,7 @@
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": "1.0.0",
+          "FluentModelBuilder": null,
           "Microsoft.CSharp": "4.0.1-beta-23225",
           "System.Collections": "4.0.11-beta-23225",
           "System.Linq": "4.0.1-beta-23225",
@@ -6719,7 +6719,7 @@
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": "1.0.0",
+          "FluentModelBuilder": null,
           "Microsoft.CSharp": "4.0.1-beta-23225",
           "System.Collections": "4.0.11-beta-23225",
           "System.Linq": "4.0.1-beta-23225",

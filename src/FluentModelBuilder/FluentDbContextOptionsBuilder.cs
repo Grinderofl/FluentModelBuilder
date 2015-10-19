@@ -31,7 +31,7 @@ namespace FluentModelBuilder
             var extension = CloneExtension();
             setAction(extension);
             ((IDbContextOptionsBuilderInfrastructure)OptionsBuilder).AddOrUpdateExtension(extension);
-            return this;
+            return new FluentDbContextOptionsBuilder(OptionsBuilder);
         }
 
         protected FluentModelBuilderExtension CloneExtension()

@@ -18,7 +18,7 @@ namespace FluentModelBuilder.Tests
 
         protected override void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFramework().AddDbContext<DbContext>(ConfigureOptions).AddSqlServer();
+            services.AddEntityFramework().AddDbContext<DbContext>(ConfigureOptions).AddSqlServerFluentProvider();
         }
 
         protected override void ConfigureOptions(DbContextOptionsBuilder options)

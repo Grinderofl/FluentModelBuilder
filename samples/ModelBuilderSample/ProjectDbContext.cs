@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using FluentModelBuilder;
 using FluentModelBuilder.Extensions;
@@ -8,15 +9,19 @@ namespace ModelBuilderSample
 {
     public class ProjectDbContext : DbContext
     {
+        public ProjectDbContext(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
+            
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             //options.UseSqlServer("Server=.;Initial Catalog=eftest;Integrated Security=True;");
-
+            //options.Options.WithExtension<FluentModelBuilderExtension>(new FluentModelBuilderExtension());
             options.ConfigureModel()
                 .Entities(
                     entities =>
-                        entities.Discover(from => 
-                        from.AssemblyContaining<ProjectDbContext>().BaseType<Entity>())).WithSqlServerDatabase("Server=.;Initial Catalog=eftest;Integrated Security=True;");
+                        entities.Discover(from =>
+                        from.AssemblyContaining<ProjectDbContext>().BaseType<Entity>())).WithSqlServerDatabase("Data Source=.;Initial Catalog=eftest;Integrated Security=SSPI;");
 
             //options.BuildModel(opts =>
             //{

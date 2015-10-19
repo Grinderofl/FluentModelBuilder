@@ -148,7 +148,7 @@
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": "1.0.0"
+          "FluentModelBuilder": null
         }
       },
       "FluentModelBuilder.TestTarget/1.0.0": {
@@ -738,7 +738,7 @@
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": "1.0.0"
+          "FluentModelBuilder": null
         }
       },
       "FluentModelBuilder.TestTarget/1.0.0": {
@@ -1331,7 +1331,7 @@
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": "1.0.0"
+          "FluentModelBuilder": null
         }
       },
       "FluentModelBuilder.TestTarget/1.0.0": {
