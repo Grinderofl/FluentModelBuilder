@@ -10,11 +10,11 @@ using Xunit;
 
 namespace FluentModelBuilder.Tests
 {
-    public class AddingAndConfiguringSingleEntityToModelFromCustomDbContext : IClassFixture<DbContextFixture<AddingAndConfiguringSingleEntityToModelFromCustomDbContext.TestContext>>
+    public class AddingAndConfiguringSingleEntityToModelInCustomDbContextWithExistingEntity : IClassFixture<DbContextFixture<AddingAndConfiguringSingleEntityToModelInCustomDbContextWithExistingEntity.TestContext>>
     {
         protected IModel Model;
 
-        public AddingAndConfiguringSingleEntityToModelFromCustomDbContext(DbContextFixture<TestContext> fixture)
+        public AddingAndConfiguringSingleEntityToModelInCustomDbContextWithExistingEntity(DbContextFixture<TestContext> fixture)
         {
             ConfigureServices(fixture.Services);
             Model = fixture.CreateModel();
@@ -31,10 +31,6 @@ namespace FluentModelBuilder.Tests
 
             protected override void OnConfiguring(DbContextOptionsBuilder options)
             {
-                //options.UseInMemoryDatabase();
-                //options.ConfigureModel()
-                //.Entities(e => e.Add<SingleEntity>(c => c.Property<long>("CustomProperty")))
-                //.WithInMemoryDatabase();
             }
         }
 

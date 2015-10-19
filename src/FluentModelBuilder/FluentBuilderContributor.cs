@@ -9,30 +9,13 @@ using Microsoft.Framework.DependencyInjection;
 
 namespace FluentModelBuilder
 {
-    public class FluentBuilderContributor : IFluentBuilderContributor, IAccessor<IServiceProvider>
+    public class FluentBuilderContributor : IFluentBuilderContributor
     {
-        private DbContextOptions _options;
-        private IServiceProvider _serviceProvider;
-
-        protected FluentBuilderContributor()
+        public virtual void Contribute(ModelBuilder modelBuilder, DbContext dbContext)
         {
-            Initialize(DbContextActivator.ServiceProvider);
-        }
-
-        public FluentBuilderContributor(IServiceProvider serviceProvider)
-        {
-            Initialize(serviceProvider);
-        }
-
-        private void Initialize(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-            _options = GetService<DbContextOptions>();
-        }
-
-        public virtual void Contribute(ModelBuilder modelBuilder)
-        {
-            var extension = _options.FindExtension<FluentModelBuilderExtension>();
+            var services = dbContext.GetService<IDbContextServices>();
+            var options = services.ContextOptions;
+            var extension = options.FindExtension<FluentModelBuilderExtension>();
             ApplyEntities(extension.Entities, modelBuilder);
         }
 
@@ -40,8 +23,5 @@ namespace FluentModelBuilder
         {
             builder.Apply(modelBuilder);
         }
-
-        protected T GetService<T>() => _serviceProvider.GetService<T>();
-        IServiceProvider IAccessor<IServiceProvider>.Service => _serviceProvider;
     }
 }

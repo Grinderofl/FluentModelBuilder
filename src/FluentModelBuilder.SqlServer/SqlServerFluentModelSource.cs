@@ -16,7 +16,7 @@ namespace FluentModelBuilder.SqlServer
         protected override void FindSets(ModelBuilder modelBuilder, DbContext context)
         {
             base.FindSets(modelBuilder, context);
-            _contributor.Contribute(modelBuilder);
+            _contributor.Contribute(modelBuilder, context);
         }
     }
 }

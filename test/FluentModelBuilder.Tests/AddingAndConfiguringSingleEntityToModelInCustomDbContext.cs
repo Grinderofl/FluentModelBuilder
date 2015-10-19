@@ -1,8 +1,7 @@
 using System;
 using System.Linq;
+using FluentModelBuilder.Extensions;
 using FluentModelBuilder.InMemory.Extensions;
-using FluentModelBuilder.SqlServer.Extensions;
-using FluentModelBuilder.Tests.Core;
 using FluentModelBuilder.Tests.Entities;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata;
@@ -11,11 +10,11 @@ using Xunit;
 
 namespace FluentModelBuilder.Tests
 {
-    public class AddingAndConfiguringSingleEntityToModelFromDbContext : IClassFixture<DbContextFixture<AddingAndConfiguringSingleEntityToModelFromDbContext.TestContext>>
+    public class AddingAndConfiguringSingleEntityToModelInCustomDbContext : IClassFixture<DbContextFixture<AddingAndConfiguringSingleEntityToModelInCustomDbContext.TestContext>>
     {
         protected IModel Model;
 
-        public AddingAndConfiguringSingleEntityToModelFromDbContext(DbContextFixture<TestContext> fixture)
+        public AddingAndConfiguringSingleEntityToModelInCustomDbContext(DbContextFixture<TestContext> fixture)
         {
             ConfigureServices(fixture.Services);
             Model = fixture.CreateModel();
@@ -30,20 +29,21 @@ namespace FluentModelBuilder.Tests
 
             protected override void OnConfiguring(DbContextOptionsBuilder options)
             {
-                options.UseInMemoryDatabase();
-                //options.ConfigureModel()
-                //.Entities(e => e.Add<SingleEntity>(c => c.Property<long>("CustomProperty")))
-                //.WithInMemoryDatabase();
             }
         }
 
         protected virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFramework().AddDbContext<TestContext>().AddInMemoryFluentProvider();
+            services.AddEntityFramework().AddDbContext<TestContext>(options =>
+            {
+                options.ConfigureModel()
+                    .Entities(e => e.Add<SingleEntity>(c => c.Property<long>("CustomProperty")))
+                    .WithInMemoryDatabase();
+            }).AddInMemoryFluentProvider();
         }
 
         [Fact]
-        public void AddsSingleEntity()
+        public void AddsEntityAndKeepsPreviousOne()
         {
             Assert.Equal(1, Model.EntityTypes.Count);
             Assert.Equal(typeof(SingleEntity), Model.EntityTypes[0].ClrType);
@@ -62,24 +62,6 @@ namespace FluentModelBuilder.Tests
             Assert.Equal(typeof(long), properties[1].ClrType);
             Assert.Equal(typeof(DateTime), properties[2].ClrType);
             Assert.Equal(typeof(string), properties[3].ClrType);
-        }
-    }
-
-    public class DbContextFixture<T> where T : DbContext
-    {
-        public IServiceCollection Services;
-
-        public DbContextFixture()
-        {
-            Services = new ServiceCollection();
-        }
-
-        public IModel CreateModel()
-        {
-            return
-                Services.BuildServiceProvider()
-                    .GetService<T>()
-                    .Model;
         }
     }
 }
