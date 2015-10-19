@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
+using FluentModelBuilder.Contributors.Internal;
 
 namespace FluentModelBuilder
 {
@@ -12,6 +13,16 @@ namespace FluentModelBuilder
             if(!Assemblies.Contains(assembly))
                 Assemblies.Add(assembly);
             return this;
+        }
+
+        public AssembliesBuilder AddAssemblyContaining<T>()
+        {
+            return AddAssembly(typeof(T).GetTypeInfo().Assembly);
+        }
+
+        public void Apply<T>(T contributor) where T : DiscoveryContributorBase<T>
+        {
+            contributor.SetAssembliesBuilder(this);
         }
     }
 }

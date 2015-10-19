@@ -9,15 +9,7 @@ namespace FluentModelBuilder.Contributors.Internal
 {
     public class DiscoveryEntityContributor : DiscoveryContributorBase<DiscoveryEntityContributor>, IEntityContributor
     {
-        public DiscoveryEntityContributor(AssembliesBuilder builder)
-        {
-            AssembliesBuilder = builder;
-        }
-
-        public DiscoveryEntityContributor()
-        {}
-
-        public override void Contribute(ModelBuilder modelBuilder)
+        protected override void ContributeCore(ModelBuilder modelBuilder)
         {
             var types =
                 GetAssemblies()

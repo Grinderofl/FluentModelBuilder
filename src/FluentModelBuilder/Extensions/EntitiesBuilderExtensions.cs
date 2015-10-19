@@ -26,9 +26,7 @@ namespace FluentModelBuilder.Extensions
         public static EntitiesBuilder Discover(this EntitiesBuilder builder,
             Action<DiscoveryEntityContributor> contributorAction = null, AssembliesBuilder assembliesBuilder = null)
         {
-            var contributor = assembliesBuilder == null
-                ? new DiscoveryEntityContributor()
-                : new DiscoveryEntityContributor(assembliesBuilder);
+            var contributor = new DiscoveryEntityContributor();
             contributorAction?.Invoke(contributor);
             return builder.AddContributor(contributor);
         }

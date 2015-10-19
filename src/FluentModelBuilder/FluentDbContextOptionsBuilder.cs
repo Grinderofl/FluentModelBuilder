@@ -34,6 +34,14 @@ namespace FluentModelBuilder
             });
         }
 
+        public virtual FluentDbContextOptionsBuilder Assemblies(Action<AssembliesBuilder> builderAction = null)
+        {
+            return SetOption(x =>
+            {
+                builderAction?.Invoke(x.Assemblies);
+            });
+        }
+
         protected virtual FluentDbContextOptionsBuilder SetOption(Action<FluentModelBuilderExtension> setAction)
         {
             var extension = CloneExtension();

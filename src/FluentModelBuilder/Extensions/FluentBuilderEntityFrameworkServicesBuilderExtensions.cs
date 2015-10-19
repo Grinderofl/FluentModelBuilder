@@ -9,7 +9,7 @@ namespace FluentModelBuilder.Extensions
         public static EntityFrameworkServicesBuilder AddFluentBuilderContributor(this EntityFrameworkServicesBuilder builder)
         {
             var service = builder.GetService();
-            service.TryAddScoped<IFluentBuilderContributor, FluentBuilderContributor>();
+            service.TryAddScoped<IModelBuilderMutator, ModelBuilderMutator>();
             return builder;
         }
 

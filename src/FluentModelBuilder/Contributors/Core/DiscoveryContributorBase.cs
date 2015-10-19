@@ -7,20 +7,38 @@ using Microsoft.Data.Entity;
 
 namespace FluentModelBuilder.Contributors.Internal
 {
-    public abstract class DiscoveryContributorBase<T> where T : DiscoveryContributorBase<T>
+    public abstract class DiscoveryContributorBase
     {
-        protected AssembliesBuilder AssembliesBuilder;
+        protected AssembliesBuilder AssembliesBuilder { get; private set; }
+        public bool UseSharedAssemblies { get; set; }
+        public IList<Assembly> Assemblies { get; set; } = new List<Assembly>();
+        public IList<ITypeInfoCriterion> Criteria { get; set; } = new List<ITypeInfoCriterion>();
 
-        protected DiscoveryContributorBase(AssembliesBuilder builder)
+        internal void SetAssembliesBuilder(AssembliesBuilder builder)
         {
             AssembliesBuilder = builder;
         }
 
-        protected DiscoveryContributorBase()
-        {}
+        public void Contribute(ModelBuilder modelBuilder)
+        {
+            ContributeCore(modelBuilder);
+        }
 
-        public IList<Assembly> Assemblies { get; set; } = new List<Assembly>();
-        public IList<ITypeInfoCriterion> Criteria { get; set; } = new List<ITypeInfoCriterion>();
+        protected abstract void ContributeCore(ModelBuilder modelBuilder);
+
+        protected virtual IEnumerable<Assembly> GetAssemblies()
+        {
+            return AssembliesBuilder?.Assemblies.Union(Assemblies) ?? Assemblies;
+        }
+    }
+
+    public abstract class DiscoveryContributorBase<T> : DiscoveryContributorBase where T : DiscoveryContributorBase<T>
+    {
+        public T FromSharedAssemblies(bool useSharedAssemblies = true)
+        {
+            UseSharedAssemblies = useSharedAssemblies;
+            return (T) this;
+        }
 
         public T AddAssembly(Assembly assembly)
         {
@@ -47,13 +65,6 @@ namespace FluentModelBuilder.Contributors.Internal
             }
             criterionAction?.Invoke(criterion);
             return (T)this;
-        }
-
-        public abstract void Contribute(ModelBuilder modelBuilder);
-
-        protected virtual IEnumerable<Assembly> GetAssemblies()
-        {
-            return AssembliesBuilder?.Assemblies.Union(Assemblies) ?? Assemblies;
         }
     }
 }

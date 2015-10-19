@@ -19,11 +19,9 @@ namespace FluentModelBuilder.Extensions
         }
 
         public static OverridesBuilder Discover(this OverridesBuilder builder,
-            Action<DiscoveryOverrideContributor> contributorAction = null, AssembliesBuilder assembliesBuilder = null)
+            Action<DiscoveryOverrideContributor> contributorAction = null)
         {
-            var contributor = assembliesBuilder == null
-                ? new DiscoveryOverrideContributor()
-                : new DiscoveryOverrideContributor(assembliesBuilder);
+            var contributor = new DiscoveryOverrideContributor();
             contributorAction?.Invoke(contributor);
             return builder.AddContributor(contributor);
         }

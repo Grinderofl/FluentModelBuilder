@@ -7,26 +7,11 @@ namespace FluentModelBuilder.Contributors.Internal
 {
     public class DiscoveryOverrideContributor : DiscoveryContributorBase<DiscoveryOverrideContributor>, IOverrideContributor
     {
-        public DiscoveryOverrideContributor(AssembliesBuilder builder) : base(builder)
-        {
-        }
-
-        public DiscoveryOverrideContributor()
-        {
-        }
-
-        public override void Contribute(ModelBuilder modelBuilder)
+        protected override void ContributeCore(ModelBuilder modelBuilder)
         {
             var types = GetAssemblies().Distinct().SelectMany(x => x.GetExportedTypes());
             var overrideTypes = types.Where(x => x.ImplementsInterfaceOfType(typeof(IEntityTypeOverride<>)));
             var criteriaTypes = overrideTypes.Where(x => Criteria.All(c => c.IsSatisfiedBy(x.GetTypeInfo())));
-
-            //var types =
-            //    GetAssemblies()
-            //        .Distinct()
-            //        .SelectMany(x => x.GetExportedTypes())
-            //        .Where(x => typeof(IEntityTypeOverride<>).IsAssignableFrom(x))
-            //        .Where(x => Criteria.All(c => c.IsSatisfiedBy(x.GetTypeInfo())));
 
             foreach (var type in criteriaTypes)
             {

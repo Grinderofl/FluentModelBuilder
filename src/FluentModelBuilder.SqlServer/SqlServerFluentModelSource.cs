@@ -7,16 +7,16 @@ namespace FluentModelBuilder.SqlServer
 {
     public class SqlServerFluentModelSource : SqlServerModelSource
     {
-        private readonly IFluentBuilderContributor _contributor;
-        public SqlServerFluentModelSource(IDbSetFinder setFinder, ICoreConventionSetBuilder coreConventionSetBuilder, IFluentBuilderContributor contributor) : base(setFinder, coreConventionSetBuilder)
+        private readonly IModelBuilderMutator _mutator;
+        public SqlServerFluentModelSource(IDbSetFinder setFinder, ICoreConventionSetBuilder coreConventionSetBuilder, IModelBuilderMutator mutator) : base(setFinder, coreConventionSetBuilder)
         {
-            _contributor = contributor;
+            _mutator = mutator;
         }
 
         protected override void FindSets(ModelBuilder modelBuilder, DbContext context)
         {
             base.FindSets(modelBuilder, context);
-            _contributor.Contribute(modelBuilder, context);
+            _mutator.Apply(modelBuilder, context);
         }
     }
 }
