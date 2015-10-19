@@ -11,6 +11,7 @@ namespace FluentModelBuilder
         {
             Entities = new EntitiesBuilder();
             Assemblies = new AssembliesBuilder();
+            Overrides = new OverridesBuilder();
         }
 
         public FluentModelBuilderExtension(FluentModelBuilderExtension copyFrom)
@@ -18,11 +19,13 @@ namespace FluentModelBuilder
             Entities = copyFrom.Entities;
             Extension = copyFrom.Extension;
             Assemblies = copyFrom.Assemblies;
+            Overrides = copyFrom.Overrides;
         }
 
         public EntitiesBuilder Entities { get; }
         public IBuilderExtension Extension { get; set; }
         public AssembliesBuilder Assemblies { get; } 
+        public OverridesBuilder Overrides { get; }
 
         public void ApplyServices(EntityFrameworkServicesBuilder builder)
         { 

@@ -1,24 +1,33 @@
 {
-  "locked": true,
+  "locked": false,
   "version": 2,
   "targets": {
     "DNX,Version=v4.5.1": {
       "EntityFramework.Commands/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "EntityFramework.Relational.Design": "7.0.0-beta8",
           "Microsoft.AspNet.Hosting": "1.0.0-beta8",
           "Microsoft.CodeAnalysis.CSharp": "1.1.0-beta1-20150928-02",
           "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-beta8",
-          "Microsoft.Framework.CommandLineUtils.Sources": "1.0.0-beta8",
           "Microsoft.Framework.DependencyInjection.Abstractions": "1.0.0-beta8"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
+        "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
           "Microsoft.Framework.Caching.Abstractions": "1.0.0-beta8",
@@ -29,11 +38,15 @@
           "Microsoft.Framework.Logging.Abstractions": "1.0.0-beta8",
           "Microsoft.Framework.OptionsModel": "1.0.0-beta8",
           "Remotion.Linq": "2.0.0-beta-002",
-          "System.Collections.Immutable": "1.1.38-beta-23409"
+          "System.Collections.Immutable": "1.1.36"
         },
         "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
           "System.Collections",
           "System.ComponentModel.DataAnnotations",
+          "System.Core",
           "System.Diagnostics.Debug",
           "System.Diagnostics.Tools",
           "System.Globalization",
@@ -47,22 +60,36 @@
           "System.Runtime",
           "System.Runtime.Extensions",
           "System.Threading"
-        ]
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Core.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Core.dll": {}
+        }
       },
       "EntityFramework.Relational/7.0.0-beta8": {
-        "type": "project",
-        "framework": ".NETFramework,Version=v4.5",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8"
         },
         "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
           "System.Data",
           "System.Transactions"
-        ]
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.Relational.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.Relational.dll": {}
+        }
       },
       "EntityFramework.Relational.Design/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "Microsoft.AspNet.Razor": "4.0.0-beta8",
@@ -71,17 +98,38 @@
           "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-beta8"
         },
         "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
           "System.ComponentModel.DataAnnotations",
+          "System.Core",
           "System.IO",
           "System.Text.Encoding",
           "System.Threading.Tasks"
-        ]
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        }
       },
       "EntityFramework.SqlServer/7.0.0-beta8": {
-        "type": "project",
-        "framework": ".NETFramework,Version=v4.5",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
       "FluentModelBuilder/1.0.0-alpha": {
@@ -539,21 +587,6 @@
           "lib/dnx451/Microsoft.Framework.Caching.Memory.dll": {}
         }
       },
-      "Microsoft.Framework.CommandLineUtils.Sources/1.0.0-beta8": {
-        "type": "package",
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": {
-          "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
-        },
-        "runtime": {
-          "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
-        }
-      },
       "Microsoft.Framework.Configuration/1.0.0-beta8": {
         "type": "package",
         "dependencies": {
@@ -830,41 +863,13 @@
           "lib/net45/Remotion.Linq.dll": {}
         }
       },
-      "System.Collections/4.0.0": {
+      "System.Collections.Immutable/1.1.36": {
         "type": "package",
         "compile": {
-          "ref/net45/_._": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         },
         "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
-      "System.Collections.Immutable/1.1.38-beta-23409": {
-        "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.0",
-          "System.Diagnostics.Debug": "4.0.0",
-          "System.Globalization": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Runtime.Extensions": "4.0.0",
-          "System.Threading": "4.0.0"
-        },
-        "compile": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
-        }
-      },
-      "System.Diagnostics.Debug/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         }
       },
       "System.Diagnostics.Tracing.Telemetry/4.0.0-beta-23409": {
@@ -880,24 +885,6 @@
           "lib/dotnet/System.Diagnostics.Tracing.Telemetry.dll": {}
         }
       },
-      "System.Globalization/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
-      "System.Linq/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
       "System.Reflection.Metadata/1.1.0-alpha-00014": {
         "type": "package",
         "dependencies": {
@@ -910,25 +897,7 @@
           "lib/portable-net45+win8/System.Reflection.Metadata.dll": {}
         }
       },
-      "System.Resources.ResourceManager/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
       "System.Runtime/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
-      "System.Runtime.Extensions/4.0.0": {
         "type": "package",
         "compile": {
           "ref/net45/_._": {}
@@ -949,21 +918,24 @@
     },
     "DNXCore,Version=v5.0": {
       "EntityFramework.Commands/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "EntityFramework.Relational.Design": "7.0.0-beta8",
           "Microsoft.AspNet.Hosting": "1.0.0-beta8",
           "Microsoft.CodeAnalysis.CSharp": "1.1.0-beta1-20150928-02",
           "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-beta8",
-          "Microsoft.Framework.CommandLineUtils.Sources": "1.0.0-beta8",
           "Microsoft.Framework.DependencyInjection.Abstractions": "1.0.0-beta8"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
           "Microsoft.Framework.Caching.Abstractions": "1.0.0-beta8",
@@ -976,7 +948,7 @@
           "Remotion.Linq": "2.0.0-beta-002",
           "System.Collections": "4.0.11-beta-23409",
           "System.Collections.Concurrent": "4.0.11-beta-23409",
-          "System.Collections.Immutable": "1.1.38-beta-23409",
+          "System.Collections.Immutable": "1.1.36",
           "System.ComponentModel": "4.0.1-beta-23409",
           "System.ComponentModel.Annotations": "4.0.11-beta-23409",
           "System.Diagnostics.Debug": "4.0.11-beta-23409",
@@ -984,7 +956,7 @@
           "System.Linq": "4.0.1-beta-23409",
           "System.Linq.Queryable": "4.0.1-beta-23409",
           "System.ObjectModel": "4.0.11-beta-23409",
-          "System.Reflection": "4.1.0-beta-23409",
+          "System.Reflection": "4.0.10",
           "System.Reflection.Extensions": "4.0.1-beta-23409",
           "System.Resources.ResourceManager": "4.0.1-beta-23409",
           "System.Runtime": "4.0.21-beta-23409",
@@ -992,21 +964,31 @@
           "System.Runtime.InteropServices": "4.0.21-beta-23409",
           "System.Threading": "4.0.11-beta-23409",
           "System.Threading.Tasks": "4.0.11-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Core.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Core.dll": {}
         }
       },
       "EntityFramework.Relational/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8",
           "Microsoft.CSharp": "4.0.1-beta-23409",
           "System.Data.Common": "4.0.1-beta-23409",
           "System.Text.RegularExpressions": "4.0.11-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Relational.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Relational.dll": {}
         }
       },
       "EntityFramework.Relational.Design/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "Microsoft.AspNet.Razor": "4.0.0-beta8",
@@ -1014,17 +996,28 @@
           "Microsoft.Dnx.Compilation.CSharp": "1.0.0-beta8",
           "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-beta8",
           "System.ComponentModel.Annotations": "4.0.11-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
         }
       },
       "EntityFramework.SqlServer/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "System.Data.SqlClient": "4.0.0-beta-23409",
           "System.Text.Encoding.CodePages": "4.0.1-beta-23409",
           "System.Threading.Thread": "4.0.0-beta-23409",
           "System.Threading.ThreadPool": "4.0.10-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
       "FluentModelBuilder/1.0.0-alpha": {
@@ -1480,18 +1473,6 @@
           "lib/dnxcore50/Microsoft.Framework.Caching.Memory.dll": {}
         }
       },
-      "Microsoft.Framework.CommandLineUtils.Sources/1.0.0-beta8": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.0.21-beta-23409"
-        },
-        "compile": {
-          "lib/dnxcore50/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
-        },
-        "runtime": {
-          "lib/dnxcore50/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
-        }
-      },
       "Microsoft.Framework.Configuration/1.0.0-beta8": {
         "type": "package",
         "dependencies": {
@@ -1808,23 +1789,13 @@
           "lib/dotnet/System.Collections.Concurrent.dll": {}
         }
       },
-      "System.Collections.Immutable/1.1.38-beta-23409": {
+      "System.Collections.Immutable/1.1.36": {
         "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.0",
-          "System.Diagnostics.Debug": "4.0.0",
-          "System.Globalization": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Runtime.Extensions": "4.0.0",
-          "System.Threading": "4.0.0"
-        },
         "compile": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         }
       },
       "System.Collections.NonGeneric/4.0.0": {
@@ -2677,21 +2648,30 @@
     },
     "DNX,Version=v4.5.1/win7-x86": {
       "EntityFramework.Commands/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "EntityFramework.Relational.Design": "7.0.0-beta8",
           "Microsoft.AspNet.Hosting": "1.0.0-beta8",
           "Microsoft.CodeAnalysis.CSharp": "1.1.0-beta1-20150928-02",
           "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-beta8",
-          "Microsoft.Framework.CommandLineUtils.Sources": "1.0.0-beta8",
           "Microsoft.Framework.DependencyInjection.Abstractions": "1.0.0-beta8"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
+        "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
           "Microsoft.Framework.Caching.Abstractions": "1.0.0-beta8",
@@ -2702,11 +2682,15 @@
           "Microsoft.Framework.Logging.Abstractions": "1.0.0-beta8",
           "Microsoft.Framework.OptionsModel": "1.0.0-beta8",
           "Remotion.Linq": "2.0.0-beta-002",
-          "System.Collections.Immutable": "1.1.38-beta-23409"
+          "System.Collections.Immutable": "1.1.36"
         },
         "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
           "System.Collections",
           "System.ComponentModel.DataAnnotations",
+          "System.Core",
           "System.Diagnostics.Debug",
           "System.Diagnostics.Tools",
           "System.Globalization",
@@ -2720,22 +2704,36 @@
           "System.Runtime",
           "System.Runtime.Extensions",
           "System.Threading"
-        ]
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Core.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Core.dll": {}
+        }
       },
       "EntityFramework.Relational/7.0.0-beta8": {
-        "type": "project",
-        "framework": ".NETFramework,Version=v4.5",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8"
         },
         "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
           "System.Data",
           "System.Transactions"
-        ]
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.Relational.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.Relational.dll": {}
+        }
       },
       "EntityFramework.Relational.Design/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "Microsoft.AspNet.Razor": "4.0.0-beta8",
@@ -2744,17 +2742,38 @@
           "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-beta8"
         },
         "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
           "System.ComponentModel.DataAnnotations",
+          "System.Core",
           "System.IO",
           "System.Text.Encoding",
           "System.Threading.Tasks"
-        ]
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        }
       },
       "EntityFramework.SqlServer/7.0.0-beta8": {
-        "type": "project",
-        "framework": ".NETFramework,Version=v4.5",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
       "FluentModelBuilder/1.0.0-alpha": {
@@ -3212,21 +3231,6 @@
           "lib/dnx451/Microsoft.Framework.Caching.Memory.dll": {}
         }
       },
-      "Microsoft.Framework.CommandLineUtils.Sources/1.0.0-beta8": {
-        "type": "package",
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": {
-          "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
-        },
-        "runtime": {
-          "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
-        }
-      },
       "Microsoft.Framework.Configuration/1.0.0-beta8": {
         "type": "package",
         "dependencies": {
@@ -3503,41 +3507,13 @@
           "lib/net45/Remotion.Linq.dll": {}
         }
       },
-      "System.Collections/4.0.0": {
+      "System.Collections.Immutable/1.1.36": {
         "type": "package",
         "compile": {
-          "ref/net45/_._": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         },
         "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
-      "System.Collections.Immutable/1.1.38-beta-23409": {
-        "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.0",
-          "System.Diagnostics.Debug": "4.0.0",
-          "System.Globalization": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Runtime.Extensions": "4.0.0",
-          "System.Threading": "4.0.0"
-        },
-        "compile": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
-        }
-      },
-      "System.Diagnostics.Debug/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         }
       },
       "System.Diagnostics.Tracing.Telemetry/4.0.0-beta-23409": {
@@ -3553,24 +3529,6 @@
           "lib/dotnet/System.Diagnostics.Tracing.Telemetry.dll": {}
         }
       },
-      "System.Globalization/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
-      "System.Linq/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
       "System.Reflection.Metadata/1.1.0-alpha-00014": {
         "type": "package",
         "dependencies": {
@@ -3583,25 +3541,7 @@
           "lib/portable-net45+win8/System.Reflection.Metadata.dll": {}
         }
       },
-      "System.Resources.ResourceManager/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
       "System.Runtime/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
-      "System.Runtime.Extensions/4.0.0": {
         "type": "package",
         "compile": {
           "ref/net45/_._": {}
@@ -3622,21 +3562,30 @@
     },
     "DNX,Version=v4.5.1/win7-x64": {
       "EntityFramework.Commands/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "EntityFramework.Relational.Design": "7.0.0-beta8",
           "Microsoft.AspNet.Hosting": "1.0.0-beta8",
           "Microsoft.CodeAnalysis.CSharp": "1.1.0-beta1-20150928-02",
           "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-beta8",
-          "Microsoft.Framework.CommandLineUtils.Sources": "1.0.0-beta8",
           "Microsoft.Framework.DependencyInjection.Abstractions": "1.0.0-beta8"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
+        "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
           "Microsoft.Framework.Caching.Abstractions": "1.0.0-beta8",
@@ -3647,11 +3596,15 @@
           "Microsoft.Framework.Logging.Abstractions": "1.0.0-beta8",
           "Microsoft.Framework.OptionsModel": "1.0.0-beta8",
           "Remotion.Linq": "2.0.0-beta-002",
-          "System.Collections.Immutable": "1.1.38-beta-23409"
+          "System.Collections.Immutable": "1.1.36"
         },
         "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
           "System.Collections",
           "System.ComponentModel.DataAnnotations",
+          "System.Core",
           "System.Diagnostics.Debug",
           "System.Diagnostics.Tools",
           "System.Globalization",
@@ -3665,22 +3618,36 @@
           "System.Runtime",
           "System.Runtime.Extensions",
           "System.Threading"
-        ]
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Core.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Core.dll": {}
+        }
       },
       "EntityFramework.Relational/7.0.0-beta8": {
-        "type": "project",
-        "framework": ".NETFramework,Version=v4.5",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8"
         },
         "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
           "System.Data",
           "System.Transactions"
-        ]
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.Relational.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.Relational.dll": {}
+        }
       },
       "EntityFramework.Relational.Design/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "Microsoft.AspNet.Razor": "4.0.0-beta8",
@@ -3689,17 +3656,38 @@
           "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-beta8"
         },
         "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
           "System.ComponentModel.DataAnnotations",
+          "System.Core",
           "System.IO",
           "System.Text.Encoding",
           "System.Threading.Tasks"
-        ]
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        }
       },
       "EntityFramework.SqlServer/7.0.0-beta8": {
-        "type": "project",
-        "framework": ".NETFramework,Version=v4.5",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
       "FluentModelBuilder/1.0.0-alpha": {
@@ -4157,21 +4145,6 @@
           "lib/dnx451/Microsoft.Framework.Caching.Memory.dll": {}
         }
       },
-      "Microsoft.Framework.CommandLineUtils.Sources/1.0.0-beta8": {
-        "type": "package",
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": {
-          "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
-        },
-        "runtime": {
-          "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
-        }
-      },
       "Microsoft.Framework.Configuration/1.0.0-beta8": {
         "type": "package",
         "dependencies": {
@@ -4448,41 +4421,13 @@
           "lib/net45/Remotion.Linq.dll": {}
         }
       },
-      "System.Collections/4.0.0": {
+      "System.Collections.Immutable/1.1.36": {
         "type": "package",
         "compile": {
-          "ref/net45/_._": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         },
         "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
-      "System.Collections.Immutable/1.1.38-beta-23409": {
-        "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.0",
-          "System.Diagnostics.Debug": "4.0.0",
-          "System.Globalization": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Runtime.Extensions": "4.0.0",
-          "System.Threading": "4.0.0"
-        },
-        "compile": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
-        }
-      },
-      "System.Diagnostics.Debug/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         }
       },
       "System.Diagnostics.Tracing.Telemetry/4.0.0-beta-23409": {
@@ -4498,24 +4443,6 @@
           "lib/dotnet/System.Diagnostics.Tracing.Telemetry.dll": {}
         }
       },
-      "System.Globalization/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
-      "System.Linq/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
       "System.Reflection.Metadata/1.1.0-alpha-00014": {
         "type": "package",
         "dependencies": {
@@ -4528,25 +4455,7 @@
           "lib/portable-net45+win8/System.Reflection.Metadata.dll": {}
         }
       },
-      "System.Resources.ResourceManager/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
       "System.Runtime/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/_._": {}
-        }
-      },
-      "System.Runtime.Extensions/4.0.0": {
         "type": "package",
         "compile": {
           "ref/net45/_._": {}
@@ -4567,21 +4476,24 @@
     },
     "DNXCore,Version=v5.0/win7-x86": {
       "EntityFramework.Commands/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "EntityFramework.Relational.Design": "7.0.0-beta8",
           "Microsoft.AspNet.Hosting": "1.0.0-beta8",
           "Microsoft.CodeAnalysis.CSharp": "1.1.0-beta1-20150928-02",
           "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-beta8",
-          "Microsoft.Framework.CommandLineUtils.Sources": "1.0.0-beta8",
           "Microsoft.Framework.DependencyInjection.Abstractions": "1.0.0-beta8"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
           "Microsoft.Framework.Caching.Abstractions": "1.0.0-beta8",
@@ -4594,7 +4506,7 @@
           "Remotion.Linq": "2.0.0-beta-002",
           "System.Collections": "4.0.11-beta-23409",
           "System.Collections.Concurrent": "4.0.11-beta-23409",
-          "System.Collections.Immutable": "1.1.38-beta-23409",
+          "System.Collections.Immutable": "1.1.36",
           "System.ComponentModel": "4.0.1-beta-23409",
           "System.ComponentModel.Annotations": "4.0.11-beta-23409",
           "System.Diagnostics.Debug": "4.0.11-beta-23409",
@@ -4602,7 +4514,7 @@
           "System.Linq": "4.0.1-beta-23409",
           "System.Linq.Queryable": "4.0.1-beta-23409",
           "System.ObjectModel": "4.0.11-beta-23409",
-          "System.Reflection": "4.1.0-beta-23409",
+          "System.Reflection": "4.0.10",
           "System.Reflection.Extensions": "4.0.1-beta-23409",
           "System.Resources.ResourceManager": "4.0.1-beta-23409",
           "System.Runtime": "4.0.21-beta-23409",
@@ -4610,21 +4522,31 @@
           "System.Runtime.InteropServices": "4.0.21-beta-23409",
           "System.Threading": "4.0.11-beta-23409",
           "System.Threading.Tasks": "4.0.11-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Core.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Core.dll": {}
         }
       },
       "EntityFramework.Relational/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8",
           "Microsoft.CSharp": "4.0.1-beta-23409",
           "System.Data.Common": "4.0.1-beta-23409",
           "System.Text.RegularExpressions": "4.0.11-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Relational.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Relational.dll": {}
         }
       },
       "EntityFramework.Relational.Design/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "Microsoft.AspNet.Razor": "4.0.0-beta8",
@@ -4632,17 +4554,28 @@
           "Microsoft.Dnx.Compilation.CSharp": "1.0.0-beta8",
           "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-beta8",
           "System.ComponentModel.Annotations": "4.0.11-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
         }
       },
       "EntityFramework.SqlServer/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "System.Data.SqlClient": "4.0.0-beta-23409",
           "System.Text.Encoding.CodePages": "4.0.1-beta-23409",
           "System.Threading.Thread": "4.0.0-beta-23409",
           "System.Threading.ThreadPool": "4.0.10-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
       "FluentModelBuilder/1.0.0-alpha": {
@@ -5096,18 +5029,6 @@
         },
         "runtime": {
           "lib/dnxcore50/Microsoft.Framework.Caching.Memory.dll": {}
-        }
-      },
-      "Microsoft.Framework.CommandLineUtils.Sources/1.0.0-beta8": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.0.21-beta-23409"
-        },
-        "compile": {
-          "lib/dnxcore50/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
-        },
-        "runtime": {
-          "lib/dnxcore50/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
         }
       },
       "Microsoft.Framework.Configuration/1.0.0-beta8": {
@@ -5655,23 +5576,13 @@
           "lib/dotnet/System.Collections.Concurrent.dll": {}
         }
       },
-      "System.Collections.Immutable/1.1.38-beta-23409": {
+      "System.Collections.Immutable/1.1.36": {
         "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.0",
-          "System.Diagnostics.Debug": "4.0.0",
-          "System.Globalization": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Runtime.Extensions": "4.0.0",
-          "System.Threading": "4.0.0"
-        },
         "compile": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         }
       },
       "System.Collections.NonGeneric/4.0.0": {
@@ -6691,21 +6602,24 @@
     },
     "DNXCore,Version=v5.0/win7-x64": {
       "EntityFramework.Commands/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "EntityFramework.Relational.Design": "7.0.0-beta8",
           "Microsoft.AspNet.Hosting": "1.0.0-beta8",
           "Microsoft.CodeAnalysis.CSharp": "1.1.0-beta1-20150928-02",
           "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-beta8",
-          "Microsoft.Framework.CommandLineUtils.Sources": "1.0.0-beta8",
           "Microsoft.Framework.DependencyInjection.Abstractions": "1.0.0-beta8"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
           "Microsoft.Framework.Caching.Abstractions": "1.0.0-beta8",
@@ -6718,7 +6632,7 @@
           "Remotion.Linq": "2.0.0-beta-002",
           "System.Collections": "4.0.11-beta-23409",
           "System.Collections.Concurrent": "4.0.11-beta-23409",
-          "System.Collections.Immutable": "1.1.38-beta-23409",
+          "System.Collections.Immutable": "1.1.36",
           "System.ComponentModel": "4.0.1-beta-23409",
           "System.ComponentModel.Annotations": "4.0.11-beta-23409",
           "System.Diagnostics.Debug": "4.0.11-beta-23409",
@@ -6726,7 +6640,7 @@
           "System.Linq": "4.0.1-beta-23409",
           "System.Linq.Queryable": "4.0.1-beta-23409",
           "System.ObjectModel": "4.0.11-beta-23409",
-          "System.Reflection": "4.1.0-beta-23409",
+          "System.Reflection": "4.0.10",
           "System.Reflection.Extensions": "4.0.1-beta-23409",
           "System.Resources.ResourceManager": "4.0.1-beta-23409",
           "System.Runtime": "4.0.21-beta-23409",
@@ -6734,21 +6648,31 @@
           "System.Runtime.InteropServices": "4.0.21-beta-23409",
           "System.Threading": "4.0.11-beta-23409",
           "System.Threading.Tasks": "4.0.11-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Core.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Core.dll": {}
         }
       },
       "EntityFramework.Relational/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8",
           "Microsoft.CSharp": "4.0.1-beta-23409",
           "System.Data.Common": "4.0.1-beta-23409",
           "System.Text.RegularExpressions": "4.0.11-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Relational.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Relational.dll": {}
         }
       },
       "EntityFramework.Relational.Design/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "Microsoft.AspNet.Razor": "4.0.0-beta8",
@@ -6756,17 +6680,28 @@
           "Microsoft.Dnx.Compilation.CSharp": "1.0.0-beta8",
           "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-beta8",
           "System.ComponentModel.Annotations": "4.0.11-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
         }
       },
       "EntityFramework.SqlServer/7.0.0-beta8": {
-        "type": "project",
-        "framework": "DNXCore,Version=v5.0",
+        "type": "package",
         "dependencies": {
           "EntityFramework.Relational": "7.0.0-beta8",
           "System.Data.SqlClient": "4.0.0-beta-23409",
           "System.Text.Encoding.CodePages": "4.0.1-beta-23409",
           "System.Threading.Thread": "4.0.0-beta-23409",
           "System.Threading.ThreadPool": "4.0.10-beta-23409"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
       "FluentModelBuilder/1.0.0-alpha": {
@@ -7220,18 +7155,6 @@
         },
         "runtime": {
           "lib/dnxcore50/Microsoft.Framework.Caching.Memory.dll": {}
-        }
-      },
-      "Microsoft.Framework.CommandLineUtils.Sources/1.0.0-beta8": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.0.21-beta-23409"
-        },
-        "compile": {
-          "lib/dnxcore50/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
-        },
-        "runtime": {
-          "lib/dnxcore50/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
         }
       },
       "Microsoft.Framework.Configuration/1.0.0-beta8": {
@@ -7779,23 +7702,13 @@
           "lib/dotnet/System.Collections.Concurrent.dll": {}
         }
       },
-      "System.Collections.Immutable/1.1.38-beta-23409": {
+      "System.Collections.Immutable/1.1.36": {
         "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.0",
-          "System.Diagnostics.Debug": "4.0.0",
-          "System.Globalization": "4.0.0",
-          "System.Linq": "4.0.0",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.0",
-          "System.Runtime.Extensions": "4.0.0",
-          "System.Threading": "4.0.0"
-        },
         "compile": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Collections.Immutable.dll": {}
+          "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         }
       },
       "System.Collections.NonGeneric/4.0.0": {
@@ -8815,26 +8728,6 @@
     }
   },
   "libraries": {
-    "EntityFramework.Commands/7.0.0-beta8": {
-      "type": "project",
-      "path": "../../../../../_Fork/EntityFramework/src/EntityFramework.Commands/project.json"
-    },
-    "EntityFramework.Core/7.0.0-beta8": {
-      "type": "project",
-      "path": "../../../../../_Fork/EntityFramework/src/EntityFramework.Core/project.json"
-    },
-    "EntityFramework.Relational/7.0.0-beta8": {
-      "type": "project",
-      "path": "../../../../../_Fork/EntityFramework/src/EntityFramework.Relational/project.json"
-    },
-    "EntityFramework.Relational.Design/7.0.0-beta8": {
-      "type": "project",
-      "path": "../../../../../_Fork/EntityFramework/src/EntityFramework.Relational.Design/project.json"
-    },
-    "EntityFramework.SqlServer/7.0.0-beta8": {
-      "type": "project",
-      "path": "../../../../../_Fork/EntityFramework/src/EntityFramework.SqlServer/project.json"
-    },
     "FluentModelBuilder/1.0.0-alpha": {
       "type": "project",
       "path": "../../src/FluentModelBuilder/project.json"
@@ -8842,6 +8735,99 @@
     "FluentModelBuilder.SqlServer/1.0.0-alpha": {
       "type": "project",
       "path": "../../src/FluentModelBuilder.SqlServer/project.json"
+    },
+    "EntityFramework.Commands/7.0.0-beta8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "8Cm7JkdSwFHNvVOlO1MfzijBeeQW44uHHB185TwKzV+X/3o3rNoDGtiKVcrJeABATTgHfenYNJiqdQSx1lryTQ==",
+      "files": [
+        "app/ef",
+        "app/ef.cmd",
+        "app/project.json",
+        "build/uap10.0/EntityFramework.Commands.props",
+        "EntityFramework.Commands.7.0.0-beta8.nupkg",
+        "EntityFramework.Commands.7.0.0-beta8.nupkg.sha512",
+        "EntityFramework.Commands.nuspec",
+        "lib/dnx451/EntityFramework.Commands.dll",
+        "lib/dnx451/EntityFramework.Commands.xml",
+        "lib/dnxcore50/EntityFramework.Commands.dll",
+        "lib/dnxcore50/EntityFramework.Commands.xml",
+        "lib/net45/EntityFramework.Commands.dll",
+        "lib/net45/EntityFramework.Commands.xml",
+        "lib/uap10.0/_._",
+        "tools/about_EntityFramework.help.txt",
+        "tools/EntityFramework.psd1",
+        "tools/EntityFramework.psm1",
+        "tools/init.ps1",
+        "tools/install.ps1",
+        "tools/OperationHandlers.cs"
+      ]
+    },
+    "EntityFramework.Core/7.0.0-beta8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "FRCX3gAkPy21258TAewJf9wAArqxe2J+UwXXUIV1eJYShEJqKPR9N77kjpXO9kbGVm5gomGB3lhBggqPyA7IcA==",
+      "files": [
+        "EntityFramework.Core.7.0.0-beta8.nupkg",
+        "EntityFramework.Core.7.0.0-beta8.nupkg.sha512",
+        "EntityFramework.Core.nuspec",
+        "lib/dnx451/EntityFramework.Core.dll",
+        "lib/dnx451/EntityFramework.Core.xml",
+        "lib/dnxcore50/EntityFramework.Core.dll",
+        "lib/dnxcore50/EntityFramework.Core.xml",
+        "lib/dotnet/EntityFramework.Core.dll",
+        "lib/dotnet/EntityFramework.Core.xml",
+        "lib/net45/EntityFramework.Core.dll",
+        "lib/net45/EntityFramework.Core.xml"
+      ]
+    },
+    "EntityFramework.Relational/7.0.0-beta8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "9Qj1ivGdRd00OeEQf+9lM0Nlj7cdLa/IAOSgasc+bROlxKh1uMPbug5WA33Eaq+uv4GZAXJxTXs1dZ8S8P3jzQ==",
+      "files": [
+        "EntityFramework.Relational.7.0.0-beta8.nupkg",
+        "EntityFramework.Relational.7.0.0-beta8.nupkg.sha512",
+        "EntityFramework.Relational.nuspec",
+        "lib/dnxcore50/EntityFramework.Relational.dll",
+        "lib/dnxcore50/EntityFramework.Relational.xml",
+        "lib/dotnet/EntityFramework.Relational.dll",
+        "lib/dotnet/EntityFramework.Relational.xml",
+        "lib/net45/EntityFramework.Relational.dll",
+        "lib/net45/EntityFramework.Relational.xml"
+      ]
+    },
+    "EntityFramework.Relational.Design/7.0.0-beta8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "MMQlAn4kWH+bP66ZrnuBNMOuq19QnLvgVXMW2TvG6LMGjxZX6I2wLsvpSgBGSAFbPVkxgzqwKRDlJIhJslkF3A==",
+      "files": [
+        "EntityFramework.Relational.Design.7.0.0-beta8.nupkg",
+        "EntityFramework.Relational.Design.7.0.0-beta8.nupkg.sha512",
+        "EntityFramework.Relational.Design.nuspec",
+        "lib/dnx451/EntityFramework.Relational.Design.dll",
+        "lib/dnx451/EntityFramework.Relational.Design.xml",
+        "lib/dnxcore50/EntityFramework.Relational.Design.dll",
+        "lib/dnxcore50/EntityFramework.Relational.Design.xml",
+        "lib/net45/EntityFramework.Relational.Design.dll",
+        "lib/net45/EntityFramework.Relational.Design.xml"
+      ]
+    },
+    "EntityFramework.SqlServer/7.0.0-beta8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "9eZeWm2KingHYBOBxT/9xVMP1OjuRgGMphZ3pKoBkxZMGylzzs4gewJlMDuq21byWBALr1btUgaAkfyn6FyZNA==",
+      "files": [
+        "EntityFramework.SqlServer.7.0.0-beta8.nupkg",
+        "EntityFramework.SqlServer.7.0.0-beta8.nupkg.sha512",
+        "EntityFramework.SqlServer.nuspec",
+        "lib/dnxcore50/EntityFramework.SqlServer.dll",
+        "lib/dnxcore50/EntityFramework.SqlServer.xml",
+        "lib/dotnet/EntityFramework.SqlServer.dll",
+        "lib/dotnet/EntityFramework.SqlServer.xml",
+        "lib/net45/EntityFramework.SqlServer.dll",
+        "lib/net45/EntityFramework.SqlServer.xml"
+      ]
     },
     "Ix-Async/1.2.5": {
       "type": "package",
@@ -9224,25 +9210,6 @@
         "Microsoft.Framework.Caching.Memory.1.0.0-beta8.nupkg",
         "Microsoft.Framework.Caching.Memory.1.0.0-beta8.nupkg.sha512",
         "Microsoft.Framework.Caching.Memory.nuspec"
-      ]
-    },
-    "Microsoft.Framework.CommandLineUtils.Sources/1.0.0-beta8": {
-      "type": "package",
-      "sha512": "DMKMH0ryqK3xP6CKNQf/TdNJeTeeOa7MaqBMdOqjeepCkS7zVh3+wu8lO5A1jbwIIOhWluVKmyBBFzBh76Gi+Q==",
-      "files": [
-        "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.dll",
-        "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.xml",
-        "lib/dnxcore50/Microsoft.Framework.CommandLineUtils.Sources.dll",
-        "lib/dnxcore50/Microsoft.Framework.CommandLineUtils.Sources.xml",
-        "Microsoft.Framework.CommandLineUtils.Sources.1.0.0-beta8.nupkg",
-        "Microsoft.Framework.CommandLineUtils.Sources.1.0.0-beta8.nupkg.sha512",
-        "Microsoft.Framework.CommandLineUtils.Sources.nuspec",
-        "shared/AnsiConsole.cs",
-        "shared/CommandArgument.cs",
-        "shared/CommandLineApplication.cs",
-        "shared/CommandOption.cs",
-        "shared/CommandOptionType.cs",
-        "shared/CommandParsingException.cs"
       ]
     },
     "Microsoft.Framework.Configuration/1.0.0-beta8": {
@@ -9952,54 +9919,6 @@
         "System.AppContext.nuspec"
       ]
     },
-    "System.Collections/4.0.0": {
-      "type": "package",
-      "sha512": "i2vsGDIEbWdHcUSNDPKZP/ZWod6o740el7mGTCy0dqbCxQh74W4QoC+klUwPEtGEFuvzJ7bJgvwJqscosVNyZQ==",
-      "files": [
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "License.rtf",
-        "ref/dotnet/de/System.Collections.xml",
-        "ref/dotnet/es/System.Collections.xml",
-        "ref/dotnet/fr/System.Collections.xml",
-        "ref/dotnet/it/System.Collections.xml",
-        "ref/dotnet/ja/System.Collections.xml",
-        "ref/dotnet/ko/System.Collections.xml",
-        "ref/dotnet/ru/System.Collections.xml",
-        "ref/dotnet/System.Collections.dll",
-        "ref/dotnet/System.Collections.xml",
-        "ref/dotnet/zh-hans/System.Collections.xml",
-        "ref/dotnet/zh-hant/System.Collections.xml",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/netcore50/de/System.Collections.xml",
-        "ref/netcore50/es/System.Collections.xml",
-        "ref/netcore50/fr/System.Collections.xml",
-        "ref/netcore50/it/System.Collections.xml",
-        "ref/netcore50/ja/System.Collections.xml",
-        "ref/netcore50/ko/System.Collections.xml",
-        "ref/netcore50/ru/System.Collections.xml",
-        "ref/netcore50/System.Collections.dll",
-        "ref/netcore50/System.Collections.xml",
-        "ref/netcore50/zh-hans/System.Collections.xml",
-        "ref/netcore50/zh-hant/System.Collections.xml",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "System.Collections.4.0.0.nupkg",
-        "System.Collections.4.0.0.nupkg.sha512",
-        "System.Collections.nuspec"
-      ]
-    },
     "System.Collections/4.0.11-beta-23225": {
       "type": "package",
       "serviceable": true,
@@ -10056,17 +9975,16 @@
         "System.Collections.Concurrent.nuspec"
       ]
     },
-    "System.Collections.Immutable/1.1.38-beta-23409": {
+    "System.Collections.Immutable/1.1.36": {
       "type": "package",
       "serviceable": true,
-      "sha512": "4J05fBPyrQNLFUZZWC3q7K5yy1BSR3D+5WH3o4NceDRtO15v4P3wsxoahmeLgnkVD9E/BkV0u3BIMDIBH+sthQ==",
+      "sha512": "MOlivTIeAIQPPMUPWIIoMCvZczjFRLYUWSYwqi1szu8QPyeIbsaPeI+hpXe1DzTxNwnRnmfYaoToi6kXIfSPNg==",
       "files": [
-        "lib/dotnet/System.Collections.Immutable.dll",
-        "lib/dotnet/System.Collections.Immutable.xml",
         "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll",
         "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.xml",
-        "System.Collections.Immutable.1.1.38-beta-23409.nupkg",
-        "System.Collections.Immutable.1.1.38-beta-23409.nupkg.sha512",
+        "License-Stable.rtf",
+        "System.Collections.Immutable.1.1.36.nupkg",
+        "System.Collections.Immutable.1.1.36.nupkg.sha512",
         "System.Collections.Immutable.nuspec"
       ]
     },
@@ -10362,54 +10280,6 @@
         "System.Diagnostics.Contracts.nuspec"
       ]
     },
-    "System.Diagnostics.Debug/4.0.0": {
-      "type": "package",
-      "sha512": "AYJsLLGDVTC/nyURjgAo7Lpye0+HuSkcQujUf+NgQVdC/C/ky5NyamQHCforHJzgqspitMMtBe8B4UBdGXy1zQ==",
-      "files": [
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "License.rtf",
-        "ref/dotnet/de/System.Diagnostics.Debug.xml",
-        "ref/dotnet/es/System.Diagnostics.Debug.xml",
-        "ref/dotnet/fr/System.Diagnostics.Debug.xml",
-        "ref/dotnet/it/System.Diagnostics.Debug.xml",
-        "ref/dotnet/ja/System.Diagnostics.Debug.xml",
-        "ref/dotnet/ko/System.Diagnostics.Debug.xml",
-        "ref/dotnet/ru/System.Diagnostics.Debug.xml",
-        "ref/dotnet/System.Diagnostics.Debug.dll",
-        "ref/dotnet/System.Diagnostics.Debug.xml",
-        "ref/dotnet/zh-hans/System.Diagnostics.Debug.xml",
-        "ref/dotnet/zh-hant/System.Diagnostics.Debug.xml",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/netcore50/de/System.Diagnostics.Debug.xml",
-        "ref/netcore50/es/System.Diagnostics.Debug.xml",
-        "ref/netcore50/fr/System.Diagnostics.Debug.xml",
-        "ref/netcore50/it/System.Diagnostics.Debug.xml",
-        "ref/netcore50/ja/System.Diagnostics.Debug.xml",
-        "ref/netcore50/ko/System.Diagnostics.Debug.xml",
-        "ref/netcore50/ru/System.Diagnostics.Debug.xml",
-        "ref/netcore50/System.Diagnostics.Debug.dll",
-        "ref/netcore50/System.Diagnostics.Debug.xml",
-        "ref/netcore50/zh-hans/System.Diagnostics.Debug.xml",
-        "ref/netcore50/zh-hant/System.Diagnostics.Debug.xml",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "System.Diagnostics.Debug.4.0.0.nupkg",
-        "System.Diagnostics.Debug.4.0.0.nupkg.sha512",
-        "System.Diagnostics.Debug.nuspec"
-      ]
-    },
     "System.Diagnostics.Debug/4.0.11-beta-23409": {
       "type": "package",
       "serviceable": true,
@@ -10630,54 +10500,6 @@
         "System.Dynamic.Runtime.4.0.11-beta-23409.nupkg",
         "System.Dynamic.Runtime.4.0.11-beta-23409.nupkg.sha512",
         "System.Dynamic.Runtime.nuspec"
-      ]
-    },
-    "System.Globalization/4.0.0": {
-      "type": "package",
-      "sha512": "IBJyTo1y7ZtzzoJUA60T1XPvNTyw/wfFmjFoBFtlYfkekIOtD/AzDDIg0YdUa7eNtFEfliED2R7HdppTdU4t5A==",
-      "files": [
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "License.rtf",
-        "ref/dotnet/de/System.Globalization.xml",
-        "ref/dotnet/es/System.Globalization.xml",
-        "ref/dotnet/fr/System.Globalization.xml",
-        "ref/dotnet/it/System.Globalization.xml",
-        "ref/dotnet/ja/System.Globalization.xml",
-        "ref/dotnet/ko/System.Globalization.xml",
-        "ref/dotnet/ru/System.Globalization.xml",
-        "ref/dotnet/System.Globalization.dll",
-        "ref/dotnet/System.Globalization.xml",
-        "ref/dotnet/zh-hans/System.Globalization.xml",
-        "ref/dotnet/zh-hant/System.Globalization.xml",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/netcore50/de/System.Globalization.xml",
-        "ref/netcore50/es/System.Globalization.xml",
-        "ref/netcore50/fr/System.Globalization.xml",
-        "ref/netcore50/it/System.Globalization.xml",
-        "ref/netcore50/ja/System.Globalization.xml",
-        "ref/netcore50/ko/System.Globalization.xml",
-        "ref/netcore50/ru/System.Globalization.xml",
-        "ref/netcore50/System.Globalization.dll",
-        "ref/netcore50/System.Globalization.xml",
-        "ref/netcore50/zh-hans/System.Globalization.xml",
-        "ref/netcore50/zh-hant/System.Globalization.xml",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "System.Globalization.4.0.0.nupkg",
-        "System.Globalization.4.0.0.nupkg.sha512",
-        "System.Globalization.nuspec"
       ]
     },
     "System.Globalization/4.0.11-beta-23409": {
@@ -10907,39 +10729,6 @@
         "System.IO.FileSystem.Watcher.4.0.0-beta-23409.nupkg",
         "System.IO.FileSystem.Watcher.4.0.0-beta-23409.nupkg.sha512",
         "System.IO.FileSystem.Watcher.nuspec"
-      ]
-    },
-    "System.Linq/4.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "r6Hlc+ytE6m/9UBr+nNRRdoJEWjoeQiT3L3lXYFDHoXk3VYsRBCDNXrawcexw7KPLaH0zamQLiAb6avhZ50cGg==",
-      "files": [
-        "lib/dotnet/System.Linq.dll",
-        "lib/net45/_._",
-        "lib/netcore50/System.Linq.dll",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "ref/dotnet/de/System.Linq.xml",
-        "ref/dotnet/es/System.Linq.xml",
-        "ref/dotnet/fr/System.Linq.xml",
-        "ref/dotnet/it/System.Linq.xml",
-        "ref/dotnet/ja/System.Linq.xml",
-        "ref/dotnet/ko/System.Linq.xml",
-        "ref/dotnet/ru/System.Linq.xml",
-        "ref/dotnet/System.Linq.dll",
-        "ref/dotnet/System.Linq.xml",
-        "ref/dotnet/zh-hans/System.Linq.xml",
-        "ref/dotnet/zh-hant/System.Linq.xml",
-        "ref/net45/_._",
-        "ref/netcore50/System.Linq.dll",
-        "ref/netcore50/System.Linq.xml",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "System.Linq.4.0.0.nupkg",
-        "System.Linq.4.0.0.nupkg.sha512",
-        "System.Linq.nuspec"
       ]
     },
     "System.Linq/4.0.1-beta-23225": {
@@ -11415,40 +11204,6 @@
         "System.Resources.ReaderWriter.nuspec"
       ]
     },
-    "System.Resources.ResourceManager/4.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "qmqeZ4BJgjfU+G2JbrZt4Dk1LsMxO4t+f/9HarNY6w8pBgweO6jT+cknUH7c3qIrGvyUqraBhU45Eo6UtA0fAw==",
-      "files": [
-        "lib/DNXCore50/System.Resources.ResourceManager.dll",
-        "lib/net45/_._",
-        "lib/netcore50/System.Resources.ResourceManager.dll",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "ref/dotnet/de/System.Resources.ResourceManager.xml",
-        "ref/dotnet/es/System.Resources.ResourceManager.xml",
-        "ref/dotnet/fr/System.Resources.ResourceManager.xml",
-        "ref/dotnet/it/System.Resources.ResourceManager.xml",
-        "ref/dotnet/ja/System.Resources.ResourceManager.xml",
-        "ref/dotnet/ko/System.Resources.ResourceManager.xml",
-        "ref/dotnet/ru/System.Resources.ResourceManager.xml",
-        "ref/dotnet/System.Resources.ResourceManager.dll",
-        "ref/dotnet/System.Resources.ResourceManager.xml",
-        "ref/dotnet/zh-hans/System.Resources.ResourceManager.xml",
-        "ref/dotnet/zh-hant/System.Resources.ResourceManager.xml",
-        "ref/net45/_._",
-        "ref/netcore50/System.Resources.ResourceManager.dll",
-        "ref/netcore50/System.Resources.ResourceManager.xml",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "runtimes/win8-aot/lib/netcore50/System.Resources.ResourceManager.dll",
-        "System.Resources.ResourceManager.4.0.0.nupkg",
-        "System.Resources.ResourceManager.4.0.0.nupkg.sha512",
-        "System.Resources.ResourceManager.nuspec"
-      ]
-    },
     "System.Resources.ResourceManager/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
@@ -11563,54 +11318,6 @@
         "System.Runtime.4.0.21-beta-23409.nupkg",
         "System.Runtime.4.0.21-beta-23409.nupkg.sha512",
         "System.Runtime.nuspec"
-      ]
-    },
-    "System.Runtime.Extensions/4.0.0": {
-      "type": "package",
-      "sha512": "zPzwoJcA7qar/b5Ihhzfcdr3vBOR8FIg7u//Qc5mqyAriasXuMFVraBZ5vOQq5asfun9ryNEL8Z2BOlUK5QRqA==",
-      "files": [
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "License.rtf",
-        "ref/dotnet/de/System.Runtime.Extensions.xml",
-        "ref/dotnet/es/System.Runtime.Extensions.xml",
-        "ref/dotnet/fr/System.Runtime.Extensions.xml",
-        "ref/dotnet/it/System.Runtime.Extensions.xml",
-        "ref/dotnet/ja/System.Runtime.Extensions.xml",
-        "ref/dotnet/ko/System.Runtime.Extensions.xml",
-        "ref/dotnet/ru/System.Runtime.Extensions.xml",
-        "ref/dotnet/System.Runtime.Extensions.dll",
-        "ref/dotnet/System.Runtime.Extensions.xml",
-        "ref/dotnet/zh-hans/System.Runtime.Extensions.xml",
-        "ref/dotnet/zh-hant/System.Runtime.Extensions.xml",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/netcore50/de/System.Runtime.Extensions.xml",
-        "ref/netcore50/es/System.Runtime.Extensions.xml",
-        "ref/netcore50/fr/System.Runtime.Extensions.xml",
-        "ref/netcore50/it/System.Runtime.Extensions.xml",
-        "ref/netcore50/ja/System.Runtime.Extensions.xml",
-        "ref/netcore50/ko/System.Runtime.Extensions.xml",
-        "ref/netcore50/ru/System.Runtime.Extensions.xml",
-        "ref/netcore50/System.Runtime.Extensions.dll",
-        "ref/netcore50/System.Runtime.Extensions.xml",
-        "ref/netcore50/zh-hans/System.Runtime.Extensions.xml",
-        "ref/netcore50/zh-hant/System.Runtime.Extensions.xml",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "System.Runtime.Extensions.4.0.0.nupkg",
-        "System.Runtime.Extensions.4.0.0.nupkg.sha512",
-        "System.Runtime.Extensions.nuspec"
       ]
     },
     "System.Runtime.Extensions/4.0.11-beta-23409": {

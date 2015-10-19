@@ -17,6 +17,12 @@ namespace FluentModelBuilder
             var options = services.ContextOptions;
             var extension = options.FindExtension<FluentModelBuilderExtension>();
             ApplyEntities(extension.Entities, modelBuilder);
+            ApplyOverrides(extension.Overrides, modelBuilder);
+        }
+
+        protected virtual void ApplyOverrides(OverridesBuilder builder, ModelBuilder modelBuilder)
+        {
+            builder.Apply(modelBuilder);
         }
 
         protected virtual void ApplyEntities(EntitiesBuilder builder, ModelBuilder modelBuilder)
