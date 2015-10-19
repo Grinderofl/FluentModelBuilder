@@ -15,10 +15,11 @@ namespace FluentModelBuilder.Extensions
             return contributor.AddAssembly(typeof(T).GetTypeInfo().Assembly);
         }
 
-        public static DiscoveryOverrideContributor Namespace(this DiscoveryOverrideContributor contributor,
-            Func<string, bool> namespaceAction)
+        public static DiscoveryOverrideContributor BaseType<T>(this DiscoveryOverrideContributor contributor)
         {
-            return contributor.AddCriterion(new ExpressionCriterion(t => namespaceAction(t.Namespace)));
+            return
+                contributor.NotAbstract()
+                    .WithCriterion<BaseTypeCriterion>(c => c.AddType(typeof(T).GetTypeInfo()));
         }
     }
 }

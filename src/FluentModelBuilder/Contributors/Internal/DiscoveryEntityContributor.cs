@@ -7,13 +7,8 @@ using Microsoft.Data.Entity;
 
 namespace FluentModelBuilder.Contributors.Internal
 {
-    public class DiscoveryEntityContributor : IEntityContributor
+    public class DiscoveryEntityContributor : DiscoveryContributorBase<DiscoveryEntityContributor>, IEntityContributor
     {
-        public IList<Assembly> Assemblies { get; set; } = new List<Assembly>();
-        public IList<ITypeInfoCriterion> Criteria { get; set; } = new List<ITypeInfoCriterion>();
-
-        protected AssembliesBuilder AssembliesBuilder;
-
         public DiscoveryEntityContributor(AssembliesBuilder builder)
         {
             AssembliesBuilder = builder;
@@ -22,39 +17,7 @@ namespace FluentModelBuilder.Contributors.Internal
         public DiscoveryEntityContributor()
         {}
 
-        public DiscoveryEntityContributor AddAssembly(Assembly assembly)
-        {
-            if(!Assemblies.Contains(assembly))
-                Assemblies.Add(assembly);
-            return this;
-        }
-
-        public DiscoveryEntityContributor AddCriterion(ITypeInfoCriterion criterion)
-        {
-            if(!Criteria.Contains(criterion))
-                Criteria.Add(criterion);
-
-            return this;
-        }
-
-        public DiscoveryEntityContributor WithCriterion<T>(Action<T> criterionAction = null) where T : ITypeInfoCriterion
-        {
-            T criterion = (T) Criteria.FirstOrDefault(x => x is T);
-            if (criterion == null)
-            {
-                criterion = Activator.CreateInstance<T>();
-                AddCriterion(criterion);
-            }
-            criterionAction?.Invoke(criterion);
-            return this;
-        }
-
-        protected virtual IEnumerable<Assembly> GetAssemblies()
-        {
-            return AssembliesBuilder?.Assemblies.Union(Assemblies) ?? Assemblies;
-        }
-
-        public void Contribute(ModelBuilder modelBuilder)
+        public override void Contribute(ModelBuilder modelBuilder)
         {
             var types =
                 GetAssemblies()

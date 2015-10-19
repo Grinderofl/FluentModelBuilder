@@ -27,11 +27,5 @@ namespace FluentModelBuilder.Extensions
             contributorAction?.Invoke(contributor);
             return builder.AddContributor(contributor);
         }
-
-        public static DiscoveryEntityContributor When(this DiscoveryEntityContributor contributor,
-            Func<TypeInfo, bool> typeExpression)
-        {
-            return contributor.AddCriterion(new ExpressionCriterion(typeExpression));
-        }
     }
 }
