@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
+using FluentModelBuilder.Core.Extensions;
 using FluentModelBuilder.Extensions;
 using Microsoft.Data.Entity;
 

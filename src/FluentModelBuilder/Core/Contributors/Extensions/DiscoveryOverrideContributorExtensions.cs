@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using FluentModelBuilder.Core.Contributors.Impl;
 using FluentModelBuilder.Core.Criteria;
 
-namespace FluentModelBuilder.Extensions
+namespace FluentModelBuilder.Core.Contributors.Extensions
 {
     public static class DiscoveryOverrideContributorExtensions
     {

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using FluentModelBuilder.Core.Contributors.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.InMemory.Extensions;
 using FluentModelBuilder.Tests.Core;

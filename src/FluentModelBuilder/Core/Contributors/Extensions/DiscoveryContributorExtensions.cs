@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using FluentModelBuilder.Core.Contributors;
 using FluentModelBuilder.Core.Criteria;
 
-namespace FluentModelBuilder.Extensions
+namespace FluentModelBuilder.Core.Contributors.Extensions
 {
     public static class DiscoveryContributorExtensions
     {

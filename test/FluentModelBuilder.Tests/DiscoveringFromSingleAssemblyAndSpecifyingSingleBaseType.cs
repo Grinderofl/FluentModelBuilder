@@ -1,4 +1,5 @@
 using System;
+using FluentModelBuilder.Core.Contributors.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.InMemory;
 using FluentModelBuilder.InMemory.Extensions;
