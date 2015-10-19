@@ -1,5 +1,5 @@
 using System;
-using FluentModelBuilder.Contributors.Internal;
+using FluentModelBuilder.Contributors.Core;
 using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace FluentModelBuilder.Extensions

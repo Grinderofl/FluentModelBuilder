@@ -2,7 +2,7 @@
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata.Builders;
 
-namespace FluentModelBuilder.Contributors.Internal
+namespace FluentModelBuilder.Contributors.Core
 {
     public class EntityConfigurationContributor<T> : IEntityContributor where T : class
     {

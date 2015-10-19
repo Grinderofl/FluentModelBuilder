@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentModelBuilder.Contributors.Internal;
 using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace FluentModelBuilder.TestTarget

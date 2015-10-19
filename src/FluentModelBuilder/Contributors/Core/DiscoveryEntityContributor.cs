@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
-using FluentModelBuilder.Contributors.Internal.Criteria;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Contributors.Internal
+namespace FluentModelBuilder.Contributors.Core
 {
     public class DiscoveryEntityContributor : DiscoveryContributorBase<DiscoveryEntityContributor>, IEntityContributor
     {

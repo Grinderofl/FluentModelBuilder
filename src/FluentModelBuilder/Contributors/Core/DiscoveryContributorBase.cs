@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using FluentModelBuilder.Contributors.Internal.Criteria;
+using FluentModelBuilder.Contributors.Core.Criteria;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Contributors.Internal
+namespace FluentModelBuilder.Contributors.Core
 {
     public abstract class DiscoveryContributorBase
     {

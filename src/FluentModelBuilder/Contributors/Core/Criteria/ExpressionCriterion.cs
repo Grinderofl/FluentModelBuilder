@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace FluentModelBuilder.Contributors.Internal.Criteria
+namespace FluentModelBuilder.Contributors.Core.Criteria
 {
     public class ExpressionCriterion: ITypeInfoCriterion
     {

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Internal
+namespace FluentModelBuilder.Helpers
 {
     public class MethodHelper
     {

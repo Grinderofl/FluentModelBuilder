@@ -1,7 +1,6 @@
-﻿using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Metadata.Builders;
+﻿using Microsoft.Data.Entity.Metadata.Builders;
 
-namespace FluentModelBuilder.Contributors.Internal
+namespace FluentModelBuilder
 {
     public interface IEntityTypeOverride<T> where T : class
     {

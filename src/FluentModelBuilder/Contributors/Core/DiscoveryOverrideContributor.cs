@@ -3,7 +3,7 @@ using System.Reflection;
 using FluentModelBuilder.Extensions;
 using Microsoft.Data.Entity;
 
-namespace FluentModelBuilder.Contributors.Internal
+namespace FluentModelBuilder.Contributors.Core
 {
     public class DiscoveryOverrideContributor : DiscoveryContributorBase<DiscoveryOverrideContributor>, IOverrideContributor
     {

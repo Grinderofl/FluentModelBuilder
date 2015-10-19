@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using FluentModelBuilder.Contributors.Internal;
-using FluentModelBuilder.Contributors.Internal.Criteria;
+using FluentModelBuilder.Contributors.Core;
 
 namespace FluentModelBuilder.Extensions
 {

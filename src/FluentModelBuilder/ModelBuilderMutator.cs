@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentModelBuilder.Contributors;
-using FluentModelBuilder.Contributors.Internal;
+using FluentModelBuilder.Contributors.Core;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Internal;

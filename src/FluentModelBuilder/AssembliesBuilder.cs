@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
-using FluentModelBuilder.Contributors.Internal;
+using FluentModelBuilder.Contributors.Core;
 
 namespace FluentModelBuilder
 {

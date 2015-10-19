@@ -1,4 +1,3 @@
-using FluentModelBuilder.Contributors.Internal;
 using FluentModelBuilder.Tests.Entities;
 using Microsoft.Data.Entity.Metadata.Builders;
 
