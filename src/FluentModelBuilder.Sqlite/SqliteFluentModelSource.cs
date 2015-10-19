@@ -12,8 +12,8 @@ namespace FluentModelBuilder.Sqlite
 {
     public class SqliteFluentModelSource : SqliteModelSource
     {
-        private readonly IModelBuilderMutator _mutator;
-        public SqliteFluentModelSource(IDbSetFinder setFinder, ICoreConventionSetBuilder coreConventionSetBuilder, IModelBuilderMutator mutator) : base(setFinder, coreConventionSetBuilder)
+        private readonly IFluentModelBuilder _mutator;
+        public SqliteFluentModelSource(IDbSetFinder setFinder, ICoreConventionSetBuilder coreConventionSetBuilder, IFluentModelBuilder mutator) : base(setFinder, coreConventionSetBuilder)
         {
             _mutator = mutator;
         }

@@ -41,7 +41,7 @@ namespace FluentModelBuilder.Tests
                 options.ConfigureModel()
                     .Entities(e => e.Add<SingleEntity>(c => c.Property<long>("CustomProperty")))
                     .WithInMemoryDatabase();
-            }).AddInMemoryFluentProvider();
+            }).AddInMemoryFluentModelBuilder();
         }
 
         [Fact]

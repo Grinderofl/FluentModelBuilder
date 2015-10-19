@@ -5,6 +5,11 @@ namespace FluentModelBuilder.Sqlite.Extensions
 {
     public static class SqliteFluentEntityFrameworkServicesBuilderExtensions
     {
+        /// <summary>
+        /// Adds required services for Sqlite FluentModelBuilder
+        /// </summary>
+        /// <param name="builder"><see cref="EntityFrameworkServicesBuilder"/></param>
+        /// <returns><see cref="EntityFrameworkServicesBuilder"/></returns>
         public static EntityFrameworkServicesBuilder AddSqliteFluentProvider(this EntityFrameworkServicesBuilder builder)
         {
             return builder.AddModelSourceProvider<SqliteModelSourceProvider>();

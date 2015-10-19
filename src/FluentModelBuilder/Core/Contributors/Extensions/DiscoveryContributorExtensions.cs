@@ -6,6 +6,13 @@ namespace FluentModelBuilder.Core.Contributors.Extensions
 {
     public static class DiscoveryContributorExtensions
     {
+        /// <summary>
+        /// Finds types with specified base type
+        /// </summary>
+        /// <typeparam name="T">Base type to look for</typeparam>
+        /// <param name="contributor"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static T BaseType<T>(this T contributor, Type type) where T : DiscoveryContributorBase<T>
         {
             return

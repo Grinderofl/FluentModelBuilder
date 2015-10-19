@@ -5,6 +5,11 @@ namespace FluentModelBuilder.Extensions
 {
     public static class FluentBuilderDbContextOptionsExtensions
     {
+        /// <summary>
+        /// Configures the backing IModel on the DbContext with fluent interface.
+        /// </summary>
+        /// <param name="builder"><see cref="DbContextOptionsBuilder"/></param>
+        /// <returns><see cref="DbContextOptionsBuilder"/></returns>
         public static FluentDbContextOptionsBuilder ConfigureModel(this DbContextOptionsBuilder builder)
         {
             var extension = GetOrCreateExtension(builder);

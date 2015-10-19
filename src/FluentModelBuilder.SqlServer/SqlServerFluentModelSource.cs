@@ -7,8 +7,8 @@ namespace FluentModelBuilder.SqlServer
 {
     public class SqlServerFluentModelSource : SqlServerModelSource
     {
-        private readonly IModelBuilderMutator _mutator;
-        public SqlServerFluentModelSource(IDbSetFinder setFinder, ICoreConventionSetBuilder coreConventionSetBuilder, IModelBuilderMutator mutator) : base(setFinder, coreConventionSetBuilder)
+        private readonly IFluentModelBuilder _mutator;
+        public SqlServerFluentModelSource(IDbSetFinder setFinder, ICoreConventionSetBuilder coreConventionSetBuilder, IFluentModelBuilder mutator) : base(setFinder, coreConventionSetBuilder)
         {
             _mutator = mutator;
         }

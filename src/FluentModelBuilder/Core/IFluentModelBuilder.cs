@@ -2,7 +2,7 @@ using Microsoft.Data.Entity;
 
 namespace FluentModelBuilder.Core
 {
-    public interface IModelBuilderMutator
+    public interface IFluentModelBuilder
     {
         void Apply(ModelBuilder modelBuilder, DbContext dbContext);
     }

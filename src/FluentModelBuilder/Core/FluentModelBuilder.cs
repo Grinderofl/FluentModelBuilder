@@ -7,7 +7,7 @@ using Microsoft.Data.Entity.Internal;
 
 namespace FluentModelBuilder.Core
 {
-    public class ModelBuilderMutator : IModelBuilderMutator
+    public class FluentModelBuilder : IFluentModelBuilder
     {
         public virtual void Apply(ModelBuilder modelBuilder, DbContext dbContext)
         {

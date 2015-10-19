@@ -38,7 +38,7 @@ namespace FluentModelBuilder.Tests
 
         protected virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFramework().AddDbContext<TestContext>().AddInMemoryFluentProvider();
+            services.AddEntityFramework().AddDbContext<TestContext>().AddInMemoryFluentModelBuilder();
         }
 
         [Fact]

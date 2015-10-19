@@ -10,7 +10,7 @@ namespace FluentModelBuilder.InMemory
     {
         public void Apply(EntityFrameworkServicesBuilder builder)
         {
-            builder.AddInMemoryFluentProvider();
+            builder.AddInMemoryFluentModelBuilder();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace FluentModelBuilder.Tests.Core
 
         protected override void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFramework().AddDbContext<DbContext>(ConfigureOptions).AddInMemoryFluentProvider();
+            services.AddEntityFramework().AddDbContext<DbContext>(ConfigureOptions).AddInMemoryFluentModelBuilder();
         }
 
         protected abstract void ConfigureOptions(DbContextOptionsBuilder options);
