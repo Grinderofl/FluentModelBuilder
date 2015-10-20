@@ -1,6 +1,6 @@
 # FluentModelBuilder
 
-Provides an extension for Entity Framework 7 in the form of a provider, to configure `ModelBuilder` from outside `DbContext`, with a fluent interface, convention-based assembly scanning and set of useful extension methods to suit different situations of model alterations.
+Provides a provider for Entity Framework 7 that helps configure `ModelBuilder` from outside `DbContext`, with a fluent interface, convention-based assembly scanning, and useful set of extension methods to suit different convention situations of model alterations.
 
 ## Goals
 
@@ -61,6 +61,25 @@ public class MyContext : DbContext
   }
 }
 ```
+
+# Usage guide
+## Entity configuration
+Entities are configured via the `Entities()` method, which exposes `Action<EntitiesBuilder>` as parameter
+```c#
+ConfigureModel().Entities(x => {});
+```
+
+### Adding single entities
+```c#
+Entities(entities => 
+{
+    entities.Add<SingleEntity>();
+    entities.Add(typeof(SingleEntity));
+});
+```
+
+### TODO
+
 
 ## NuGet:
 
