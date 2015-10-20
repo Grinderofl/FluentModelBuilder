@@ -13,14 +13,14 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>Fluentmodelbuilder by Grinderofl</title>
+    <title>FluentModelBuilder by Grinderofl</title>
   </head>
 
   <body>
     <header>
       <div class="inner">
-        <h1>Fluentmodelbuilder</h1>
-        <h2></h2>
+        <h1>FluentModelBuilder</h1>
+        <h2>Fluently configure EntityFramework 7 DbContext</h2>
         <a href="https://github.com/Grinderofl/FluentModelBuilder" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
@@ -31,7 +31,7 @@
           <h1>
 <a id="fluentmodelbuilder" class="anchor" href="#fluentmodelbuilder" aria-hidden="true"><span class="octicon octicon-link"></span></a>FluentModelBuilder</h1>
 
-<p>Provides an extension for Entity Framework 7 in the form of a provider, to configure <code>ModelBuilder</code> from outside <code>DbContext</code>, with a fluent interface, convention-based assembly scanning and set of useful extension methods to suit different situations of model alterations.</p>
+<p>Provides a provider for Entity Framework 7 that helps configure <code>ModelBuilder</code> from outside <code>DbContext</code>, with a fluent interface, convention-based assembly scanning, and useful set of extension methods to suit different convention situations of model alterations.</p>
 
 <h2>
 <a id="goals" class="anchor" href="#goals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goals</h2>
@@ -90,9 +90,26 @@
 }</pre></div>
 
 <h1>
-<a id="detailed-guide" class="anchor" href="#detailed-guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>Detailed guide</h1>
+<a id="usage-guide" class="anchor" href="#usage-guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage guide</h1>
 
-<p>TODO</p>
+<h2>
+<a id="entity-configuration" class="anchor" href="#entity-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Entity configuration</h2>
+
+<p>Entities are configured via the <code>Entities()</code> method, which exposes <code>Action&lt;EntitiesBuilder&gt;</code> as parameter</p>
+
+<div class="highlight highlight-source-cs"><pre>ConfigureModel().Entities(x =&gt; {});</pre></div>
+
+<h3>
+<a id="adding-single-entities" class="anchor" href="#adding-single-entities" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding single entities</h3>
+
+<div class="highlight highlight-source-cs"><pre>Entities(entities =&gt; 
+{
+    entities.Add&lt;SingleEntity&gt;();
+    entities.Add(<span class="pl-k">typeof</span>(SingleEntity));
+});</pre></div>
+
+<h3>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h3>
 
 <h2>
 <a id="nuget" class="anchor" href="#nuget" aria-hidden="true"><span class="octicon octicon-link"></span></a>NuGet:</h2>
@@ -127,6 +144,16 @@
       </div>
     </div>
 
-  
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-69079635-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
