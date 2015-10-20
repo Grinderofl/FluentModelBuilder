@@ -1,7 +1,12 @@
 version: 0.1.{build}
+pull_requests:
+  do_not_increment_build_number: true
 os: Visual Studio 2015
+configuration: Release
+platform: Any CPU
+shallow_clone: true
 environment:
-  DNX_BUILD_VERSION: beta7-%APPVEYOR_BUILD_NUMBER%
+  DNX_BUILD_VERSION: alpha
 install:
 - cmd: >-
     echo %DNX_BUILD_VERSION%
@@ -14,11 +19,13 @@ install:
 
     dnvm update-self
 
-    dnvm install 1.0.0-beta7
+    dnvm install 1.0.0-beta8
 
     dnvm setup
 
-    dnvm exec 1.0.0-beta7 dnu restore --quiet --parallel
+    dnvm exec 1.0.0-beta8 dnu restore --quiet --parallel
+nuget:
+  disable_publish_on_pr: true
 build:
   project: FluentModelBuilder.sln
   publish_nuget: true
@@ -32,6 +39,6 @@ test_script:
 
     cd ./test/FluentModelBuilder.Tests
 
-    dnvm exec 1.0.0-beta7 dnx test
+    dnvm exec 1.0.0-beta8 dnx test
 artifacts:
 - path: '**\*.nupkg'
