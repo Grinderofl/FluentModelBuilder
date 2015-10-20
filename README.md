@@ -62,7 +62,11 @@ public class MyContext : DbContext
 }
 ```
 
-
+## NuGet:
+https://www.nuget.org/packages/FluentModelBuilder/
+https://www.nuget.org/packages/FluentModelBuilder.Sqlite/
+https://www.nuget.org/packages/FluentModelBuilder.SqlServer/
+https://www.nuget.org/packages/FluentModelBuilder.InMemory/
 
 ## Build status
 [![Build status](https://ci.appveyor.com/api/projects/status/yccb8ad2msd26bad/branch/master?svg=true)](https://ci.appveyor.com/project/Grinderofl/fluentmodelbuilder/branch/master)
