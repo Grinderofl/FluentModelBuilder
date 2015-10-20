@@ -12,7 +12,7 @@ namespace FluentModelBuilder.InMemory.Extensions
         /// <returns><see cref="EntityFrameworkServicesBuilder"/></returns>
         public static EntityFrameworkServicesBuilder AddInMemoryFluentModelBuilder(this EntityFrameworkServicesBuilder builder)
         {
-            return builder.AddModelSourceProvider<InMemoryModelSourceProvider>();
+            return builder.AddFluentModelBuilder<InMemoryModelSourceProvider>();
         }
     }
 }

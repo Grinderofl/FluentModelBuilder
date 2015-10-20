@@ -24,7 +24,7 @@ namespace FluentModelBuilder.Extensions
         /// <typeparam name="TProvider">Type of <see cref="IModelSourceProvider"/> to add</typeparam>
         /// <param name="builder"><see cref="EntityFrameworkServicesBuilder"/></param>
         /// <returns><see cref="EntityFrameworkServicesBuilder"/></returns>
-        public static EntityFrameworkServicesBuilder AddModelSourceProvider<TProvider>(
+        public static EntityFrameworkServicesBuilder AddFluentModelBuilder<TProvider>(
             this EntityFrameworkServicesBuilder builder) where TProvider : IModelSourceProvider, new()
         {
             var service = builder.AddFluentModelBuilder();

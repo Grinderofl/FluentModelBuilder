@@ -10,7 +10,7 @@ namespace FluentModelBuilder.Sqlite
     {
         public void Apply(EntityFrameworkServicesBuilder builder)
         {
-            builder.AddSqliteFluentProvider();
+            builder.AddSqliteFluentModelBuilder();
         }
     }
 }

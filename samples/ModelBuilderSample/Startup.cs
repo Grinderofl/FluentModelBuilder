@@ -29,7 +29,7 @@ namespace ModelBuilderSample
 
         public void Configure(IServiceCollection services)
         {
-            services.AddEntityFramework().AddDbContext<ProjectDbContext>().AddSqlServerFluentProvider();
+            services.AddEntityFramework().AddDbContext<ProjectDbContext>().AddSqlServerFluentModelBuilder();
         }
     }
 

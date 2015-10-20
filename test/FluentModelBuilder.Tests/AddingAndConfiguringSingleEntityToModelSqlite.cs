@@ -19,7 +19,7 @@ namespace FluentModelBuilder.Tests
 
         protected override void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFramework().AddDbContext<DbContext>(ConfigureOptions).AddSqliteFluentProvider();
+            services.AddEntityFramework().AddDbContext<DbContext>(ConfigureOptions).AddSqliteFluentModelBuilder();
         }
 
         protected override void ConfigureOptions(DbContextOptionsBuilder options)

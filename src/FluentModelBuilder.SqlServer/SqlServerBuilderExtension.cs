@@ -7,7 +7,7 @@ namespace FluentModelBuilder.SqlServer
     {
         public void Apply(EntityFrameworkServicesBuilder builder)
         {
-            builder.AddSqlServerFluentProvider();
+            builder.AddSqlServerFluentModelBuilder();
         }
     }
 }
