@@ -71,12 +71,37 @@ ConfigureModel().Entities(x => {});
 
 ### Adding single entities
 ```c#
-Entities(entities => 
+ConfigureModel().Entities(entities => 
 {
     entities.Add<SingleEntity>();
     entities.Add(typeof(SingleEntity));
 });
 ```
+### Adding and configuring single entities
+```c#
+ConfigureModel().Entities(entities => 
+{
+    entities.Add<SingleEntity>(entity => entity.Ignore(p => p.PropertyIWantToIgnore()));
+});
+```
+*Note: entity can be configured multiple times using `Add<>`*
+### Discoverying entities by scanning assemblies
+FluentModelBuilder offers an assembly scanning contributor, accessed via the `Discover()` extension method.
+
+### Find types that aren't abstract and have the specified base type from two different assemblies
+```c#
+ConfigureModel().Entities(entities => 
+{
+    entities.Discover(entity => 
+      entity
+        .BaseType<BaseEntity>()
+        .AssemblyContaining<AnEntity>()
+        .AddAssembly(typeof(SecondEntity).GetTypeInfo().Assembly)
+    );
+});
+```
+
+
 
 ### TODO
 
