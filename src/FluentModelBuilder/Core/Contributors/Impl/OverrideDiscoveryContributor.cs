@@ -6,7 +6,7 @@ using Microsoft.Data.Entity;
 
 namespace FluentModelBuilder.Core.Contributors.Impl
 {
-    public class DiscoveryOverrideContributor : DiscoveryContributorBase<DiscoveryOverrideContributor>, IOverrideContributor
+    public class OverrideDiscoveryContributor : DiscoveryContributorBase<OverrideDiscoveryContributor>, IOverrideContributor
     {
         protected override void ContributeCore(ModelBuilder modelBuilder)
         {
@@ -16,7 +16,7 @@ namespace FluentModelBuilder.Core.Contributors.Impl
 
             foreach (var type in criteriaTypes)
             {
-                var contributor = new SingleOverrideContributor(type);
+                var contributor = new SingleTypeOverrideContributor(type);
                 contributor.Contribute(modelBuilder);
             }
         }

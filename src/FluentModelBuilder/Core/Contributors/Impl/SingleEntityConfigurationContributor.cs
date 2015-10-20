@@ -4,12 +4,12 @@ using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace FluentModelBuilder.Core.Contributors.Impl
 {
-    public class EntityConfigurationContributor<T> : IEntityContributor where T : class
+    public class SingleEntityConfigurationContributor<T> : IEntityContributor where T : class
     {
 
         private readonly Action<EntityTypeBuilder<T>> _entityAction;
 
-        public EntityConfigurationContributor(Action<EntityTypeBuilder<T>> entityAction)
+        public SingleEntityConfigurationContributor(Action<EntityTypeBuilder<T>> entityAction)
         {
             _entityAction = entityAction;
         }

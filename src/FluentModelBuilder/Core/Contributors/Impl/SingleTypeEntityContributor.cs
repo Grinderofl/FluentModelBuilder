@@ -3,11 +3,11 @@ using Microsoft.Data.Entity;
 
 namespace FluentModelBuilder.Core.Contributors.Impl
 {
-    public class SingleEntityContributor : IEntityContributor
+    public class SingleTypeEntityContributor : IEntityContributor
     {
         private readonly Type _type;
 
-        public SingleEntityContributor(Type type)
+        public SingleTypeEntityContributor(Type type)
         {
             _type = type;
         }

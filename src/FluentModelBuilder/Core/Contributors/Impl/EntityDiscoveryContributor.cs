@@ -4,7 +4,7 @@ using Microsoft.Data.Entity;
 
 namespace FluentModelBuilder.Core.Contributors.Impl
 {
-    public class DiscoveryEntityContributor : DiscoveryContributorBase<DiscoveryEntityContributor>, IEntityContributor
+    public class EntityDiscoveryContributor : DiscoveryContributorBase<EntityDiscoveryContributor>, IEntityContributor
     {
         protected override void ContributeCore(ModelBuilder modelBuilder)
         {

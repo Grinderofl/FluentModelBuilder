@@ -4,10 +4,10 @@ using Microsoft.Data.Entity;
 
 namespace FluentModelBuilder.Core.Contributors.Impl
 {
-    public class ListEntityContributor : IEntityContributor
+    public class ListTypeEntityContributor : IEntityContributor
     {
         private readonly IList<Type> _types = new List<Type>();
-
+        
         public void Add(Type type)
         {
             if(!_types.Contains(type))

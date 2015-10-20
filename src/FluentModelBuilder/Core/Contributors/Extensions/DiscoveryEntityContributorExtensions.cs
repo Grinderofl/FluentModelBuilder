@@ -12,7 +12,7 @@ namespace FluentModelBuilder.Core.Contributors.Extensions
         /// <typeparam name="T"></typeparam>
         /// <param name="contributor"></param>
         /// <returns></returns>
-        public static DiscoveryEntityContributor AssemblyContaining<T>(this DiscoveryEntityContributor contributor)
+        public static EntityDiscoveryContributor AssemblyContaining<T>(this EntityDiscoveryContributor contributor)
         {
             return contributor.AddAssembly(typeof(T).GetTypeInfo().Assembly);
         }
@@ -23,7 +23,7 @@ namespace FluentModelBuilder.Core.Contributors.Extensions
         /// <typeparam name="T"></typeparam>
         /// <param name="contributor"></param>
         /// <returns></returns>
-        public static DiscoveryEntityContributor BaseType<T>(this DiscoveryEntityContributor contributor)
+        public static EntityDiscoveryContributor BaseType<T>(this EntityDiscoveryContributor contributor)
         {
             return
                 contributor.NotAbstract()

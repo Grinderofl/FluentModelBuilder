@@ -8,11 +8,11 @@ using Microsoft.Data.Entity;
 
 namespace FluentModelBuilder.Core.Contributors.Impl
 {
-    public class SingleOverrideContributor : IOverrideContributor
+    public class SingleTypeOverrideContributor : IOverrideContributor
     {
         private readonly Type _type;
 
-        public SingleOverrideContributor(Type type)
+        public SingleTypeOverrideContributor(Type type)
         {
             if(!type.ImplementsInterfaceOfType(typeof(IEntityTypeOverride<>)))
                 throw new ArgumentException("Type does not implement IEntityTypeOverride<>");
@@ -27,24 +27,9 @@ namespace FluentModelBuilder.Core.Contributors.Impl
                     .Single(x => x.GetGenericTypeDefinition() == typeof (IEntityTypeOverride<>))
                     .GenericTypeArguments.First();
 
-            var entity = MethodHelper.EntityMethod.MakeGenericMethod(target).Invoke(modelBuilder, new object[] {});
+            var entity = modelBuilder.GenericEntity(target);
             var overrideInstance = Activator.CreateInstance(_type);
             method.Invoke(overrideInstance, new[] {entity});
-        }
-    }
-
-    public class SingleOverrideContributor<TEntity> : IOverrideContributor where TEntity : class
-    {
-        private readonly IEntityTypeOverride<TEntity> _instance;
-
-        public SingleOverrideContributor(IEntityTypeOverride<TEntity> instance)
-        {
-            _instance = instance;
-        }
-
-        public void Contribute(ModelBuilder modelBuilder)
-        {
-            _instance.Configure(modelBuilder.Entity<TEntity>());
         }
     }
 }

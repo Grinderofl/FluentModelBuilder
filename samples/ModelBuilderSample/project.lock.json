@@ -132,14 +132,14 @@
           "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha": {
+      "FluentModelBuilder/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8"
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha": {
+      "FluentModelBuilder.SqlServer/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1020,27 +1020,22 @@
           "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha": {
+      "FluentModelBuilder/1.0.0": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8",
-          "System.Linq.Expressions": "4.0.10",
-          "System.Reflection": "4.1.0-beta-23413",
-          "System.Reflection.Extensions": "4.0.1-beta-23413"
+          "System.Linq.Expressions": "4.0.11-beta-23409",
+          "System.Reflection": "4.1.0-beta-23409",
+          "System.Reflection.Extensions": "4.0.1-beta-23409"
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha": {
+      "FluentModelBuilder.SqlServer/1.0.0": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": null,
-          "Microsoft.CSharp": "4.0.1-beta-23225",
-          "System.Collections": "4.0.11-beta-23225",
-          "System.Linq": "4.0.1-beta-23225",
-          "System.Runtime": "4.0.21-beta-23225",
-          "System.Threading": "4.0.11-beta-23225"
+          "FluentModelBuilder": null
         }
       },
       "Ix-Async/1.2.5": {
@@ -2214,7 +2209,7 @@
           "ref/dnxcore50/_._": {}
         }
       },
-      "System.Reflection/4.1.0-beta-23413": {
+      "System.Reflection/4.1.0-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.0",
@@ -2258,7 +2253,7 @@
           "lib/DNXCore50/System.Reflection.Emit.ILGeneration.dll": {}
         }
       },
-      "System.Reflection.Extensions/4.0.1-beta-23413": {
+      "System.Reflection.Extensions/4.0.1-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.Reflection": "4.0.0",
@@ -2776,14 +2771,14 @@
           "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha": {
+      "FluentModelBuilder/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8"
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha": {
+      "FluentModelBuilder.SqlServer/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -3690,14 +3685,14 @@
           "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha": {
+      "FluentModelBuilder/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8"
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha": {
+      "FluentModelBuilder.SqlServer/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -4578,27 +4573,22 @@
           "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha": {
+      "FluentModelBuilder/1.0.0": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8",
-          "System.Linq.Expressions": "4.0.10",
-          "System.Reflection": "4.1.0-beta-23413",
-          "System.Reflection.Extensions": "4.0.1-beta-23413"
+          "System.Linq.Expressions": "4.0.11-beta-23409",
+          "System.Reflection": "4.1.0-beta-23409",
+          "System.Reflection.Extensions": "4.0.1-beta-23409"
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha": {
+      "FluentModelBuilder.SqlServer/1.0.0": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": null,
-          "Microsoft.CSharp": "4.0.1-beta-23225",
-          "System.Collections": "4.0.11-beta-23225",
-          "System.Linq": "4.0.1-beta-23225",
-          "System.Runtime": "4.0.21-beta-23225",
-          "System.Threading": "4.0.11-beta-23225"
+          "FluentModelBuilder": null
         }
       },
       "Ix-Async/1.2.5": {
@@ -6060,7 +6050,7 @@
           "ref/dnxcore50/_._": {}
         }
       },
-      "System.Reflection/4.1.0-beta-23413": {
+      "System.Reflection/4.1.0-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.0",
@@ -6119,7 +6109,7 @@
           "lib/DNXCore50/System.Reflection.Emit.Lightweight.dll": {}
         }
       },
-      "System.Reflection.Extensions/4.0.1-beta-23413": {
+      "System.Reflection.Extensions/4.0.1-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.Reflection": "4.0.0",
@@ -6704,27 +6694,22 @@
           "lib/dnxcore50/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha": {
+      "FluentModelBuilder/1.0.0": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8",
-          "System.Linq.Expressions": "4.0.10",
-          "System.Reflection": "4.1.0-beta-23413",
-          "System.Reflection.Extensions": "4.0.1-beta-23413"
+          "System.Linq.Expressions": "4.0.11-beta-23409",
+          "System.Reflection": "4.1.0-beta-23409",
+          "System.Reflection.Extensions": "4.0.1-beta-23409"
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha": {
+      "FluentModelBuilder.SqlServer/1.0.0": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
           "EntityFramework.SqlServer": "7.0.0-beta8",
-          "FluentModelBuilder": null,
-          "Microsoft.CSharp": "4.0.1-beta-23225",
-          "System.Collections": "4.0.11-beta-23225",
-          "System.Linq": "4.0.1-beta-23225",
-          "System.Runtime": "4.0.21-beta-23225",
-          "System.Threading": "4.0.11-beta-23225"
+          "FluentModelBuilder": null
         }
       },
       "Ix-Async/1.2.5": {
@@ -8186,7 +8171,7 @@
           "ref/dnxcore50/_._": {}
         }
       },
-      "System.Reflection/4.1.0-beta-23413": {
+      "System.Reflection/4.1.0-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.0",
@@ -8245,7 +8230,7 @@
           "lib/DNXCore50/System.Reflection.Emit.Lightweight.dll": {}
         }
       },
-      "System.Reflection.Extensions/4.0.1-beta-23413": {
+      "System.Reflection.Extensions/4.0.1-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.Reflection": "4.0.0",
@@ -8728,11 +8713,11 @@
     }
   },
   "libraries": {
-    "FluentModelBuilder/1.0.0-alpha": {
+    "FluentModelBuilder/1.0.0": {
       "type": "project",
       "path": "../../src/FluentModelBuilder/project.json"
     },
-    "FluentModelBuilder.SqlServer/1.0.0-alpha": {
+    "FluentModelBuilder.SqlServer/1.0.0": {
       "type": "project",
       "path": "../../src/FluentModelBuilder.SqlServer/project.json"
     },
@@ -10943,10 +10928,10 @@
         "System.Private.Uri.nuspec"
       ]
     },
-    "System.Reflection/4.1.0-beta-23413": {
+    "System.Reflection/4.1.0-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "/A2UNQB8CM+WWiGVICXgEsGZ1mGySCc0BBTKnpvsWsucpbvXmvztMJi1a3Mqedy8mYfvMmBPQiP0nyN+Z/gHLg==",
+      "sha512": "mE1f9ixyaYeYcOW3zzF/d9jzXDqWhrRxd1powWiqVuvcqzpM3kB25YYh9KWgVd28eTGvcc2KAVPi3/FZ/fElcQ==",
       "files": [
         "lib/DNXCore50/System.Reflection.dll",
         "lib/MonoAndroid10/_._",
@@ -10972,8 +10957,8 @@
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "runtimes/win8-aot/lib/netcore50/System.Reflection.dll",
-        "System.Reflection.4.1.0-beta-23413.nupkg",
-        "System.Reflection.4.1.0-beta-23413.nupkg.sha512",
+        "System.Reflection.4.1.0-beta-23409.nupkg",
+        "System.Reflection.4.1.0-beta-23409.nupkg.sha512",
         "System.Reflection.nuspec"
       ]
     },
@@ -11057,10 +11042,10 @@
         "System.Reflection.Emit.Lightweight.nuspec"
       ]
     },
-    "System.Reflection.Extensions/4.0.1-beta-23413": {
+    "System.Reflection.Extensions/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "ujvXXqf0L9fKqkStgEC14egSBoERglJvICIMtrIKcvUA3idaR/Gy1riq9kJzZ2y77U1yCPCFXHf/KQNwqNLFjQ==",
+      "sha512": "0iC5fuYk88APwNXpuesygEEB5bs2vWfKqr/Cdcy8BZecQy2gSmNRymiqlWnI0DWilaW6WrN0FgxSFOYZDJEc8A==",
       "files": [
         "lib/DNXCore50/System.Reflection.Extensions.dll",
         "lib/net45/_._",
@@ -11086,8 +11071,8 @@
         "ref/wp80/_._",
         "ref/wpa81/_._",
         "runtimes/win8-aot/lib/netcore50/System.Reflection.Extensions.dll",
-        "System.Reflection.Extensions.4.0.1-beta-23413.nupkg",
-        "System.Reflection.Extensions.4.0.1-beta-23413.nupkg.sha512",
+        "System.Reflection.Extensions.4.0.1-beta-23409.nupkg",
+        "System.Reflection.Extensions.4.0.1-beta-23409.nupkg.sha512",
         "System.Reflection.Extensions.nuspec"
       ]
     },

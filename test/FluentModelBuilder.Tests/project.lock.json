@@ -120,14 +120,14 @@
           "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha": {
+      "FluentModelBuilder/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8"
         }
       },
-      "FluentModelBuilder.InMemory/1.0.0-alpha": {
+      "FluentModelBuilder.InMemory/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -135,7 +135,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.Sqlite/1.0.0-alpha": {
+      "FluentModelBuilder.Sqlite/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -143,7 +143,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha": {
+      "FluentModelBuilder.SqlServer/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -710,14 +710,14 @@
           "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha": {
+      "FluentModelBuilder/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8"
         }
       },
-      "FluentModelBuilder.InMemory/1.0.0-alpha": {
+      "FluentModelBuilder.InMemory/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -725,7 +725,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.Sqlite/1.0.0-alpha": {
+      "FluentModelBuilder.Sqlite/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -733,7 +733,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha": {
+      "FluentModelBuilder.SqlServer/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1303,14 +1303,14 @@
           "lib/net45/EntityFramework.SqlServer.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha": {
+      "FluentModelBuilder/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-beta8"
         }
       },
-      "FluentModelBuilder.InMemory/1.0.0-alpha": {
+      "FluentModelBuilder.InMemory/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1318,7 +1318,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.Sqlite/1.0.0-alpha": {
+      "FluentModelBuilder.Sqlite/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1326,7 +1326,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha": {
+      "FluentModelBuilder.SqlServer/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1780,19 +1780,19 @@
     }
   },
   "libraries": {
-    "FluentModelBuilder/1.0.0-alpha": {
+    "FluentModelBuilder/1.0.0": {
       "type": "project",
       "path": "../../src/FluentModelBuilder/project.json"
     },
-    "FluentModelBuilder.InMemory/1.0.0-alpha": {
+    "FluentModelBuilder.InMemory/1.0.0": {
       "type": "project",
       "path": "../../src/FluentModelBuilder.InMemory/project.json"
     },
-    "FluentModelBuilder.Sqlite/1.0.0-alpha": {
+    "FluentModelBuilder.Sqlite/1.0.0": {
       "type": "project",
       "path": "../../src/FluentModelBuilder.Sqlite/project.json"
     },
-    "FluentModelBuilder.SqlServer/1.0.0-alpha": {
+    "FluentModelBuilder.SqlServer/1.0.0": {
       "type": "project",
       "path": "../../src/FluentModelBuilder.SqlServer/project.json"
     },

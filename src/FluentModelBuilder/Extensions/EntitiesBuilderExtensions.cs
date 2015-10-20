@@ -17,7 +17,7 @@ namespace FluentModelBuilder.Extensions
         public static EntitiesBuilder Add<T>(this EntitiesBuilder builder, Action<EntityTypeBuilder<T>> builderAction)
             where T : class
         {
-            return builder.AddContributor(new EntityConfigurationContributor<T>(builderAction));
+            return builder.AddContributor(new SingleEntityConfigurationContributor<T>(builderAction));
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace FluentModelBuilder.Extensions
         /// <returns><see cref="EntitiesBuilder"/></returns>
         public static EntitiesBuilder Add(this EntitiesBuilder builder, Type type)
         {
-            return builder.WithContributor<ListEntityContributor>(x => x.Add(type));
+            return builder.WithContributor<ListTypeEntityContributor>(x => x.Add(type));
         }
 
         /// <summary>
@@ -50,9 +50,9 @@ namespace FluentModelBuilder.Extensions
         /// <param name="contributorAction">Additional configuration for discovery</param>
         /// <returns><see cref="EntitiesBuilder"/></returns>
         public static EntitiesBuilder Discover(this EntitiesBuilder builder,
-            Action<DiscoveryEntityContributor> contributorAction = null)
+            Action<EntityDiscoveryContributor> contributorAction = null)
         {
-            var contributor = new DiscoveryEntityContributor();
+            var contributor = new EntityDiscoveryContributor();
             contributorAction?.Invoke(contributor);
             return builder.AddContributor(contributor);
         }
@@ -65,7 +65,7 @@ namespace FluentModelBuilder.Extensions
         /// <param name="contributorAction">Additional configuration for discovery</param>
         /// <returns><see cref="EntitiesBuilder"/></returns>
         public static EntitiesBuilder DiscoverFromSharedAssemblies(this EntitiesBuilder builder,
-            Action<DiscoveryEntityContributor> contributorAction = null)
+            Action<EntityDiscoveryContributor> contributorAction = null)
         {
             return builder.Discover(x =>
             {
