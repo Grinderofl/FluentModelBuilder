@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Fluentmodelbuilder by Grinderofl</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Fluentmodelbuilder</h1>
+        <h2></h2>
+        <a href="https://github.com/Grinderofl/FluentModelBuilder" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="fluentmodelbuilder" class="anchor" href="#fluentmodelbuilder" aria-hidden="true"><span class="octicon octicon-link"></span></a>FluentModelBuilder</h1>
+
+<p>Provides an extension for Entity Framework 7 in the form of a provider, to configure <code>ModelBuilder</code> from outside <code>DbContext</code>, with a fluent interface, convention-based assembly scanning and set of useful extension methods to suit different situations of model alterations.</p>
+
+<h2>
+<a id="goals" class="anchor" href="#goals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goals</h2>
+
+<p>The default way of creating the backing model to use with EntityFramework 7 DbContext <strong>requires</strong> subclassing:</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">ApplicationContext</span> : <span class="pl-k">DbContext</span>
+{
+  <span class="pl-k">public</span> DbSet&lt;EntityOne&gt; <span class="pl-en">EntityOnes</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; } <span class="pl-c">// Available as both context.EntityOnes and context.Set&lt;EntityOne&gt;();</span>
+  <span class="pl-k">public</span> DbSet&lt;EntityTwo&gt; <span class="pl-en">EntityTwos</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; } <span class="pl-c">// Available as both context.EntityTwos and context.Set&lt;EntityTwo&gt;();</span>
+
+  <span class="pl-k">protected</span> <span class="pl-k">override</span> <span class="pl-k">void</span> <span class="pl-en">OnModelCreating</span>(<span class="pl-k">ModelBuilder</span> <span class="pl-smi">builder</span>)
+  {
+    <span class="pl-c">// Alternatively:</span>
+    builder.Entity&lt;EntityThree&gt;(); <span class="pl-c">// Available as context.Set&lt;EntityThree&gt;();</span>
+  }
+}</pre></div>
+
+<p>FluentModelBuilder aims to provide an alternative way to add and configure those entities on your data model as well as add old-style class-based <code>EntityTypeConfiguration&lt;&gt;</code>-esque mapping overrides for each entity. It also enables including a well-defined non-abstract DbContext in the service provider, with a fully configured non-prebuilt <code>IModel</code>, which is not possible with standard Entity Framework 7.</p>
+
+<h1>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick start</h1>
+
+<p>Easiest way to get started is to set up an impromptu DbContext while configuring services, like in <code>Configure(IServiceCollection)</code> method in an ASP.NET 5 Web Application:</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">void</span> Configure(IServiceCollection services)
+{
+  services.AddEntityFramework()
+    .AddSqlServerFluentModelBuilder()
+    .AddDbContext&lt;DbContext&gt;(dbContextOptions =&gt; {
+      dbContextOptions.ConfigureModel() 
+        .DiscoverEntitiesFromSharedAssemblies(entity =&gt; <span class="pl-c">// Scans assemblies for entities</span>
+          entity
+            .Namespace(ns =&gt; ns.EndsWith(<span class="pl-s"><span class="pl-pds">"</span>Domain<span class="pl-pds">"</span></span>)) <span class="pl-c">// Namespace criterion</span>
+            .BaseType&lt;EntityBase&gt;()) <span class="pl-c">// Only if base type matches</span>
+        .DiscoverOverridesFromSharedAssemblies() <span class="pl-c">// Scans assemblies for overrides</span>
+        .AddAssemblyContaining&lt;YourEntity&gt;() <span class="pl-c">// Specifies which assembly to scan</span>
+        .WithSqlServerDatabase(<span class="pl-s"><span class="pl-pds">"</span>... connectionstring ...<span class="pl-pds">"</span></span>); <span class="pl-c">// Specifies to use SQL Server as well as connection string</span>
+}</pre></div>
+
+<p>Alternatively, you can use the <code>OnConfiguring(DbContextOptions)</code> override in your DbContext:</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyContext</span> : <span class="pl-k">DbContext</span>
+{
+  <span class="pl-k">protected</span> <span class="pl-k">override</span> <span class="pl-k">void</span> <span class="pl-en">OnConfiguring</span>(<span class="pl-k">DbContextOptionsBuilder</span> <span class="pl-smi">builder</span>)
+  {
+    builder.ConfigureModel()
+      .DiscoverEntitiesFromSharedAssemblies(entity =&gt; <span class="pl-c">// Scans assemblies for entities</span>
+        entity
+          .Namespace(ns =&gt; ns.EndsWith(<span class="pl-s"><span class="pl-pds">"</span>Domain<span class="pl-pds">"</span></span>)) <span class="pl-c">// Namespace criterion</span>
+          .BaseType&lt;EntityBase&gt;()) <span class="pl-c">// Only if base type matches</span>
+      .DiscoverOverridesFromSharedAssemblies() <span class="pl-c">// Scans assemblies for overrides</span>
+      .AddAssemblyContaining&lt;YourEntity&gt;() <span class="pl-c">// Specifies which assembly to scan</span>
+      .WithSqlServerDatabase(<span class="pl-s"><span class="pl-pds">"</span>... connectionstring ...<span class="pl-pds">"</span></span>); <span class="pl-c">// Specifies to use SQL Server as well as connection string</span>
+  }
+}</pre></div>
+
+<h1>
+<a id="detailed-guide" class="anchor" href="#detailed-guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>Detailed guide</h1>
+
+<p>TODO</p>
+
+<h2>
+<a id="nuget" class="anchor" href="#nuget" aria-hidden="true"><span class="octicon octicon-link"></span></a>NuGet:</h2>
+
+<ul>
+<li><a href="https://www.nuget.org/packages/FluentModelBuilder/">https://www.nuget.org/packages/FluentModelBuilder/</a></li>
+<li><a href="https://www.nuget.org/packages/FluentModelBuilder.Sqlite/">https://www.nuget.org/packages/FluentModelBuilder.Sqlite/</a></li>
+<li><a href="https://www.nuget.org/packages/FluentModelBuilder.SqlServer/">https://www.nuget.org/packages/FluentModelBuilder.SqlServer/</a></li>
+<li><a href="https://www.nuget.org/packages/FluentModelBuilder.InMemory/">https://www.nuget.org/packages/FluentModelBuilder.InMemory/</a></li>
+</ul>
+
+<h2>
+<a id="build-status" class="anchor" href="#build-status" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build status</h2>
+
+<p><a href="https://ci.appveyor.com/project/Grinderofl/fluentmodelbuilder/branch/master"><img src="https://ci.appveyor.com/api/projects/status/yccb8ad2msd26bad/branch/master?svg=true" alt="Build status"></a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/Grinderofl/FluentModelBuilder/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/Grinderofl/FluentModelBuilder/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/Grinderofl/FluentModelBuilder"></a> is maintained by <a href="https://github.com/Grinderofl">Grinderofl</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
