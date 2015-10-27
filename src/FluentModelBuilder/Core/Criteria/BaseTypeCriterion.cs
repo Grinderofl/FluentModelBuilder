@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace FluentModelBuilder.Core.Criteria
@@ -12,6 +13,10 @@ namespace FluentModelBuilder.Core.Criteria
             if(!Types.Contains(typeInfo))
                 Types.Add(typeInfo);
         }
-        public bool IsSatisfiedBy(TypeInfo typeInfo) => Types.Contains(typeInfo.BaseType.GetTypeInfo());
+
+        public bool IsSatisfiedBy(TypeInfo typeInfo)
+        {
+            return Types.Any(type => type.IsAssignableFrom(typeInfo));
+        }
     }
 }

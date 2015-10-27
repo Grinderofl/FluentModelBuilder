@@ -34,15 +34,16 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsCorrectNumberOfEntities()
         {
-            Assert.Equal(5, Model.EntityTypes.Count);
+            Assert.Equal(6, Model.EntityTypes.Count);
         }
 
         [Theory]
         [InlineData(typeof(EntityOne), 0)]
         [InlineData(typeof(EntityTwo), 1)]
-        [InlineData(typeof(EntityOneWannabe), 2)]
-        [InlineData(typeof(EntityTwoWannabe), 3)]
-        [InlineData(typeof(SingleEntity), 4)]
+        [InlineData(typeof(EntityBaseWannabe), 2)]
+        [InlineData(typeof(EntityOneWannabe), 3)]
+        [InlineData(typeof(EntityTwoWannabe), 4)]
+        [InlineData(typeof(SingleEntity), 5)]
         public void AddsCorrectEntities(Type expected, int index)
         {
             Assert.Equal(expected, Model.EntityTypes[index].ClrType);
@@ -51,13 +52,19 @@ namespace FluentModelBuilder.Tests
         [Theory]
         [InlineData(typeof(int), "Id", 0, 0)]
         [InlineData(typeof(string), "NotIgnored", 0, 1)]
+
         [InlineData(typeof(int), "Id", 1, 0)]
+
         [InlineData(typeof(int), "Id", 2, 0)]
-        [InlineData(typeof(string), "LookAtMe", 2, 1)]
+
         [InlineData(typeof(int), "Id", 3, 0)]
-        [InlineData(typeof(string), "LookAtMeToo", 3, 1)]
+        [InlineData(typeof(string), "LookAtMe", 3, 1)]
+
         [InlineData(typeof(int), "Id", 4, 0)]
-        [InlineData(typeof(DateTime), "DateProperty", 4, 1)]
+        [InlineData(typeof(string), "LookAtMeToo", 4, 1)]
+
+        [InlineData(typeof(int), "Id", 5, 0)]
+        [InlineData(typeof(DateTime), "DateProperty", 5, 1)]
         public void MapsProperties(Type type, string name, int entityIndex, int propertyIndex)
         {
             Assert.Equal(type, Model.EntityTypes[entityIndex].GetProperties().ElementAt(propertyIndex).ClrType);

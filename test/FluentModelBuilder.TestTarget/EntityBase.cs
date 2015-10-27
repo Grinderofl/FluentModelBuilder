@@ -9,4 +9,19 @@ namespace FluentModelBuilder.TestTarget
     {
         public int Id { get; set; }
     }
+
+    public abstract class EntityBaseWithoutId
+    {
+        public string Name { get; set; }
+    }
+
+    public abstract class EntityBaseWithGenericId<T> : EntityBaseWithoutId
+    {
+        public T Id { get; set; }
+    }
+
+    public class EntityWithIntId : EntityBaseWithGenericId<int>
+    {
+        public string Property { get; set; }
+    }
 }
