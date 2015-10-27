@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
   "description": "FluentModelBuilder.Tests Class Library",
   "authors": [ "Nero" ],
@@ -12,7 +12,8 @@
     "FluentModelBuilder.TestTarget": "",
     "FluentModelBuilder.InMemory": "",
     "FluentModelBuilder.SqlServer": "",
-    "FluentModelBuilder.Sqlite": ""
+    "FluentModelBuilder.Sqlite": "",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta8"
   },
   "commands": { 
     "test": "xunit.runner.dnx"
