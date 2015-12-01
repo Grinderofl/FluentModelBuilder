@@ -26,9 +26,9 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsBothEntities()
         {
-            Assert.Equal(2, Model.EntityTypes.Count);
-            Assert.Equal(typeof(OtherSingleEntity), Model.EntityTypes[0].ClrType);
-            Assert.Equal(typeof(SingleEntity), Model.EntityTypes[1].ClrType);
+            Assert.Equal(2, Model.GetEntityTypes().Count());
+            Assert.Equal(typeof(OtherSingleEntity), Model.GetEntityTypes().ElementAt(0).ClrType);
+            Assert.Equal(typeof(SingleEntity), Model.GetEntityTypes().ElementAt(1).ClrType);
         }
 
         [Theory]
@@ -40,8 +40,8 @@ namespace FluentModelBuilder.Tests
         [InlineData(1, 2, typeof(string), "StringProperty")]
         public void MapsProperties(int entityIndex, int propertyIndex, Type propertyType, string propertyName)
         {
-            Assert.Equal(propertyType, Model.EntityTypes[entityIndex].GetProperties().ElementAt(propertyIndex).ClrType);
-            Assert.Equal(propertyName, Model.EntityTypes[entityIndex].GetProperties().ElementAt(propertyIndex).Name);
+            Assert.Equal(propertyType, Model.GetEntityTypes().ElementAt(entityIndex).GetProperties().ElementAt(propertyIndex).ClrType);
+            Assert.Equal(propertyName, Model.GetEntityTypes().ElementAt(entityIndex).GetProperties().ElementAt(propertyIndex).Name);
         }
     }
 }

@@ -1,6 +1,6 @@
 using FluentModelBuilder.Core;
 using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Framework.DependencyInjection.Extensions;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace FluentModelBuilder.Extensions
 {
@@ -13,7 +13,7 @@ namespace FluentModelBuilder.Extensions
         /// <returns><see cref="EntityFrameworkServicesBuilder"/></returns>
         public static EntityFrameworkServicesBuilder AddFluentModelBuilder(this EntityFrameworkServicesBuilder builder)
         {
-            var service = builder.GetService();
+            var service = builder.GetInfrastructure();
             service.TryAddScoped<IFluentModelBuilder, Core.FluentModelBuilder>();
             return builder;
         }

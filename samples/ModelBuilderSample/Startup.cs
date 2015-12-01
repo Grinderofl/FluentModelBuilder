@@ -6,8 +6,8 @@ using FluentModelBuilder;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.SqlServer.Extensions;
 using Microsoft.Data.Entity.Metadata.Builders;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.DependencyInjection.Extensions;
+using Microsoft.Extensions.DependencyInjection;
+
 
 namespace ModelBuilderSample
 {

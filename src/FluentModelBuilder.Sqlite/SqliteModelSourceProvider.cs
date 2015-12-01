@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Infrastructure.Internal;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.DependencyInjection.Extensions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace FluentModelBuilder.Sqlite
 {
@@ -10,7 +10,7 @@ namespace FluentModelBuilder.Sqlite
         public void ApplyServices(EntityFrameworkServicesBuilder services)
         {
             services.AddSqlite();
-            services.GetService().Replace(ServiceDescriptor.Singleton<SqliteModelSource, SqliteFluentModelSource>());
+            services.GetInfrastructure().Replace(ServiceDescriptor.Singleton<SqliteModelSource, SqliteFluentModelSource>());
         }
     }
 }

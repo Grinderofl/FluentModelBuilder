@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace FluentModelBuilder.Tests
@@ -54,13 +54,13 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsSingleEntity()
         {
-            Assert.True(Model.EntityTypes.Any(x => x.ClrType == typeof(SingleEntity)));
+            Assert.True(Model.GetEntityTypes().Any(x => x.ClrType == typeof(SingleEntity)));
         }
 
         [Fact]
         public void AddsAllEntities()
         {
-            Assert.Equal(7, Model.EntityTypes.Count);
+            Assert.Equal(7, Model.GetEntityTypes().Count());
         }
     }
 }

@@ -1,7 +1,7 @@
 using FluentModelBuilder.InMemory;
 using FluentModelBuilder.InMemory.Extensions;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentModelBuilder.Tests.Core
 {

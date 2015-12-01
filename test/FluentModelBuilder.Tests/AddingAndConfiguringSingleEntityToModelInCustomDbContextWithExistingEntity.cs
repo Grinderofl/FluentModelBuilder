@@ -5,7 +5,7 @@ using FluentModelBuilder.InMemory.Extensions;
 using FluentModelBuilder.Tests.Entities;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace FluentModelBuilder.Tests
@@ -47,15 +47,15 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsEntityAndKeepsPreviousOne()
         {
-            Assert.Equal(2, Model.EntityTypes.Count);
-            Assert.Equal(typeof(OtherSingleEntity), Model.EntityTypes[0].ClrType);
-            Assert.Equal(typeof(SingleEntity), Model.EntityTypes[1].ClrType);
+            Assert.Equal(2, Model.GetEntityTypes().Count());
+            Assert.Equal(typeof(OtherSingleEntity), Model.GetEntityTypes().ElementAt(0).ClrType);
+            Assert.Equal(typeof(SingleEntity), Model.GetEntityTypes().ElementAt(1).ClrType);
         }
 
         [Fact]
         public void MapsProperties()
         {
-            var properties = Model.EntityTypes[1].GetProperties().ToArray();
+            var properties = Model.GetEntityTypes().ElementAt(1).GetProperties().ToArray();
             Assert.Equal("Id", properties[0].Name);
             Assert.Equal("CustomProperty", properties[1].Name);
             Assert.Equal("DateProperty", properties[2].Name);

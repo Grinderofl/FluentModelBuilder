@@ -8,6 +8,7 @@ using FluentModelBuilder.Tests.Entities;
 using FluentModelBuilder.TestTarget;
 using Microsoft.Data.Entity;
 using Xunit;
+using System.Linq;
 
 namespace FluentModelBuilder.Tests
 {
@@ -37,7 +38,7 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsCorrectNumberOfEntities()
         {
-            Assert.Equal(4, Model.EntityTypes.Count);
+            Assert.Equal(4, Model.GetEntityTypes().Count());
         }
 
         [Theory]
@@ -47,7 +48,7 @@ namespace FluentModelBuilder.Tests
         [InlineData(typeof(EntityTwoWannabe), 3)]
         public void AddsCorrectEntities(Type expected, int index)
         {
-            Assert.Equal(expected, Model.EntityTypes[index].ClrType);
+            Assert.Equal(expected, Model.GetEntityTypes().ElementAt(index).ClrType);
         }
     }
 }

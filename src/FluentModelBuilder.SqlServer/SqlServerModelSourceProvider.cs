@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Internal;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.DependencyInjection.Extensions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace FluentModelBuilder.SqlServer
 {
@@ -10,7 +10,8 @@ namespace FluentModelBuilder.SqlServer
         public void ApplyServices(EntityFrameworkServicesBuilder services)
         {
             services.AddSqlServer();
-            services.GetService().Replace(ServiceDescriptor.Singleton<SqlServerModelSource, SqlServerFluentModelSource>());
+            services.GetInfrastructure()
+                .Replace(ServiceDescriptor.Singleton<SqlServerModelSource, SqlServerFluentModelSource>());
         }
     }
 }

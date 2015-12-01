@@ -25,20 +25,20 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsSingleEntity()
         {
-            Assert.Equal(1, Model.EntityTypes.Count);
-            Assert.Equal(typeof(SingleEntity), Model.EntityTypes[0].ClrType);
+            Assert.Equal(1, Model.GetEntityTypes().Count());
+            Assert.Equal(typeof(SingleEntity), Model.GetEntityTypes().ElementAt(0).ClrType);
         }
 
         [Fact]
         public void AddsCorrectNumberOfProperties()
         {
-            Assert.Equal(3, Model.EntityTypes[0].GetProperties().Count());
+            Assert.Equal(3, Model.GetEntityTypes().ElementAt(0).GetProperties().Count());
         }
 
         [Fact]
         public void AddsProperties()
         {
-            var properties = Model.EntityTypes[0].GetProperties().ToArray();
+            var properties = Model.GetEntityTypes().ElementAt(0).GetProperties().ToArray();
             Assert.Equal("Id", properties[0].Name);
             Assert.Equal("CustomProperty", properties[1].Name);
             Assert.Equal("DateProperty", properties[2].Name);

@@ -26,20 +26,20 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsCorrectNumberOfEntities()
         {
-            Assert.Equal(1, Model.EntityTypes.Count);
+            Assert.Equal(1, Model.GetEntityTypes().Count());
         }
 
         [Theory]
         [InlineData(typeof(EntityOne), 0)]
         public void AddsCorrectEntities(Type expected, int index)
         {
-            Assert.Equal(expected, Model.EntityTypes[index].ClrType);
+            Assert.Equal(expected, Model.GetEntityTypes().ElementAt(index).ClrType);
         }
 
         [Fact]
         public void MapsProperties()
         {
-            Assert.Equal(2, Model.EntityTypes.SelectMany(x => x.GetProperties()).Count());
+            Assert.Equal(2, Model.GetEntityTypes().SelectMany(x => x.GetProperties()).Count());
         }
     }
 }

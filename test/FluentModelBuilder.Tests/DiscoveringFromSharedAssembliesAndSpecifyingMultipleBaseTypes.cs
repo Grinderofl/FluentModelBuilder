@@ -34,7 +34,7 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsCorrectNumberOfEntities()
         {
-            Assert.Equal(6, Model.EntityTypes.Count);
+            Assert.Equal(6, Model.GetEntityTypes().Count());
         }
 
         [Theory]
@@ -46,7 +46,7 @@ namespace FluentModelBuilder.Tests
         [InlineData(typeof(SingleEntity), 5)]
         public void AddsCorrectEntities(Type expected, int index)
         {
-            Assert.Equal(expected, Model.EntityTypes[index].ClrType);
+            Assert.Equal(expected, Model.GetEntityTypes().ElementAt(index).ClrType);
         }
 
         [Theory]
@@ -67,8 +67,8 @@ namespace FluentModelBuilder.Tests
         [InlineData(typeof(DateTime), "DateProperty", 5, 1)]
         public void MapsProperties(Type type, string name, int entityIndex, int propertyIndex)
         {
-            Assert.Equal(type, Model.EntityTypes[entityIndex].GetProperties().ElementAt(propertyIndex).ClrType);
-            Assert.Equal(name, Model.EntityTypes[entityIndex].GetProperties().ElementAt(propertyIndex).Name);
+            Assert.Equal(type, Model.GetEntityTypes().ElementAt(entityIndex).GetProperties().ElementAt(propertyIndex).ClrType);
+            Assert.Equal(name, Model.GetEntityTypes().ElementAt(entityIndex).GetProperties().ElementAt(propertyIndex).Name);
         }
     }
 }

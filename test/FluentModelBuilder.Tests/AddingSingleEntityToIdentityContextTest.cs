@@ -5,7 +5,7 @@ using FluentModelBuilder.Tests.Core;
 using FluentModelBuilder.Tests.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace FluentModelBuilder.Tests
@@ -44,7 +44,7 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsEntity()
         {
-            Assert.True(Model.EntityTypes.Any(x => x.ClrType == typeof(SingleEntity)));
+            Assert.True(Model.GetEntityTypes().Any(x => x.ClrType == typeof(SingleEntity)));
         }
     }
 }

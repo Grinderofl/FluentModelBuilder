@@ -6,7 +6,7 @@
   "projectUrl": "https://github.com/Grinderofl/FluentModelBuilder",
   "licenseUrl": "https://github.com/Grinderofl/FluentModelBuilder/blob/master/LICENSE.md",
   "dependencies": {
-    "EntityFramework.InMemory": "7.0.0-beta8",
+    "EntityFramework.InMemory": "7.0.0-rc1-final",
     "FluentModelBuilder": ""
   },
 

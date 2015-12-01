@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using FluentModelBuilder.Core.Contributors.Extensions;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.InMemory;
@@ -26,7 +27,7 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsCorrectNumberOfEntities()
         {
-            Assert.Equal(2, Model.EntityTypes.Count);
+            Assert.Equal(2, Model.GetEntityTypes().Count());
         }
 
         [Theory]
@@ -34,7 +35,7 @@ namespace FluentModelBuilder.Tests
         [InlineData(typeof(EntityTwo), 1)]
         public void AddsCorrectEntities(Type expected, int index)
         {
-            Assert.Equal(expected, Model.EntityTypes[index].ClrType);
+            Assert.Equal(expected, Model.GetEntityTypes().ElementAt(index).ClrType);
         }
     }
 }
