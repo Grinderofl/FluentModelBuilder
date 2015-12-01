@@ -28,7 +28,7 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsCorrectNumberOfEntities()
         {
-            Assert.Equal(2, Model.GetEntityTypes().Count());
+            Assert.Equal(2, Model.GetEntityTypes().OrderBy(x => x.Name).Count());
         }
 
         [Theory]
@@ -36,7 +36,7 @@ namespace FluentModelBuilder.Tests
         [InlineData(typeof(EntityTwo), 1)]
         public void AddsCorrectEntities(Type expected, int index)
         {
-            Assert.Equal(expected, Model.GetEntityTypes().ElementAt(index).ClrType);
+            Assert.Equal(expected, Model.GetEntityTypes().OrderBy(x => x.Name).ElementAt(index).ClrType);
         }
     }
 }

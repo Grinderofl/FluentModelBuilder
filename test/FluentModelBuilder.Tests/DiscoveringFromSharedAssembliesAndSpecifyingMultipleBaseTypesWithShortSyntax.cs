@@ -30,41 +30,48 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsCorrectNumberOfEntities()
         {
-            Assert.Equal(6, Model.GetEntityTypes().Count());
+            Assert.Equal(6, Model.GetEntityTypes().OrderBy(x => x.Name).Count());
         }
 
         [Theory]
-        [InlineData(typeof(EntityOne), 0)]
-        [InlineData(typeof(EntityTwo), 1)]
-        [InlineData(typeof(EntityBaseWannabe), 2)]
-        [InlineData(typeof(EntityOneWannabe), 3)]
-        [InlineData(typeof(EntityTwoWannabe), 4)]
-        [InlineData(typeof(SingleEntity), 5)]
+        [InlineData(typeof(EntityOne), 4)]
+        [InlineData(typeof(EntityTwo), 5)]
+        [InlineData(typeof(EntityBaseWannabe), 0)]
+        [InlineData(typeof(EntityOneWannabe), 1)]
+        [InlineData(typeof(EntityTwoWannabe), 2)]
+        [InlineData(typeof(SingleEntity), 3)]
         public void AddsCorrectEntities(Type expected, int index)
         {
-            Assert.Equal(expected, Model.GetEntityTypes().ElementAt(index).ClrType);
+            Assert.Equal(expected, Model.GetEntityTypes().OrderBy(x => x.Name).ElementAt(index).ClrType);
         }
 
         [Theory]
-        [InlineData(typeof(int), "Id", 0, 0)]
-        [InlineData(typeof(string), "NotIgnored", 0, 1)]
-
-        [InlineData(typeof(int), "Id", 1, 0)]
-
-        [InlineData(typeof(int), "Id", 2, 0)]
-
-        [InlineData(typeof(int), "Id", 3, 0)]
-        [InlineData(typeof(string), "LookAtMe", 3, 1)]
-
         [InlineData(typeof(int), "Id", 4, 0)]
-        [InlineData(typeof(string), "LookAtMeToo", 4, 1)]
+        [InlineData(typeof(string), "NotIgnored", 4, 1)]
 
         [InlineData(typeof(int), "Id", 5, 0)]
-        [InlineData(typeof(DateTime), "DateProperty", 5, 1)]
+
+        [InlineData(typeof(int), "Id", 0, 0)]
+
+        [InlineData(typeof(int), "Id", 1, 0)]
+        [InlineData(typeof(string), "LookAtMe", 1, 1)]
+
+        [InlineData(typeof(int), "Id", 2, 0)]
+        [InlineData(typeof(string), "LookAtMeToo", 2, 1)]
+
+        [InlineData(typeof(int), "Id", 3, 1)]
+        [InlineData(typeof(DateTime), "DateProperty", 3, 0)]
         public void MapsProperties(Type type, string name, int entityIndex, int propertyIndex)
         {
-            Assert.Equal(type, Model.GetEntityTypes().ElementAt(entityIndex).GetProperties().ElementAt(propertyIndex).ClrType);
-            Assert.Equal(name, Model.GetEntityTypes().ElementAt(entityIndex).GetProperties().ElementAt(propertyIndex).Name);
+            var property =
+                Model.GetEntityTypes()
+                    .OrderBy(x => x.Name)
+                    .ElementAt(entityIndex)
+                    .GetProperties()
+                    .OrderBy(x => x.Name)
+                    .ElementAt(propertyIndex);
+            Assert.Equal(type, property.ClrType);
+            Assert.Equal(name, property.Name);
         }
     }
 }

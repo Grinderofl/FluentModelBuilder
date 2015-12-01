@@ -54,13 +54,13 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsSingleEntity()
         {
-            Assert.True(Model.GetEntityTypes().Any(x => x.ClrType == typeof(SingleEntity)));
+            Assert.True(Model.GetEntityTypes().OrderBy(x => x.Name).Any(x => x.ClrType == typeof(SingleEntity)));
         }
 
         [Fact]
         public void AddsAllEntities()
         {
-            Assert.Equal(7, Model.GetEntityTypes().Count());
+            Assert.Equal(7, Model.GetEntityTypes().OrderBy(x => x.Name).Count());
         }
     }
 }

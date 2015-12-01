@@ -59,14 +59,14 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void DiscoversEntities()
         {
-            Assert.True(Model.GetEntityTypes().Any(x => x.ClrType == typeof(EntityOne)));
-            Assert.True(Model.GetEntityTypes().Any(x => x.ClrType == typeof(EntityTwo)));
+            Assert.True(Model.GetEntityTypes().OrderBy(x => x.Name).Any(x => x.ClrType == typeof(EntityOne)));
+            Assert.True(Model.GetEntityTypes().OrderBy(x => x.Name).Any(x => x.ClrType == typeof(EntityTwo)));
         }
 
         [Fact]
         public void AddsAllEntities()
         {
-            Assert.Equal(8, Model.GetEntityTypes().Count());
+            Assert.Equal(8, Model.GetEntityTypes().OrderBy(x => x.Name).Count());
         }
 
 

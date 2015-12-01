@@ -44,7 +44,7 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsEntity()
         {
-            Assert.True(Model.GetEntityTypes().Any(x => x.ClrType == typeof(SingleEntity)));
+            Assert.True(Model.GetEntityTypes().OrderBy(x => x.Name).Any(x => x.ClrType == typeof(SingleEntity)));
         }
     }
 }

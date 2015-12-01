@@ -26,22 +26,22 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsBothEntities()
         {
-            Assert.Equal(2, Model.GetEntityTypes().Count());
-            Assert.Equal(typeof(OtherSingleEntity), Model.GetEntityTypes().ElementAt(0).ClrType);
-            Assert.Equal(typeof(SingleEntity), Model.GetEntityTypes().ElementAt(1).ClrType);
+            Assert.Equal(2, Model.GetEntityTypes().OrderBy(x => x.Name).Count());
+            Assert.Equal(typeof(OtherSingleEntity), Model.GetEntityTypes().OrderBy(x => x.Name).ElementAt(0).ClrType);
+            Assert.Equal(typeof(SingleEntity), Model.GetEntityTypes().OrderBy(x => x.Name).ElementAt(1).ClrType);
         }
 
         [Theory]
         [InlineData(0, 0, typeof(int), "Id")]
         [InlineData(0, 1, typeof(string), "OtherStringProperty")]
 
-        [InlineData(1, 0, typeof(int), "Id")]
-        [InlineData(1, 1, typeof(DateTime), "DateProperty")]
+        [InlineData(1, 1, typeof(int), "Id")]
+        [InlineData(1, 0, typeof(DateTime), "DateProperty")]
         [InlineData(1, 2, typeof(string), "StringProperty")]
         public void MapsProperties(int entityIndex, int propertyIndex, Type propertyType, string propertyName)
         {
-            Assert.Equal(propertyType, Model.GetEntityTypes().ElementAt(entityIndex).GetProperties().ElementAt(propertyIndex).ClrType);
-            Assert.Equal(propertyName, Model.GetEntityTypes().ElementAt(entityIndex).GetProperties().ElementAt(propertyIndex).Name);
+            Assert.Equal(propertyType, Model.GetEntityTypes().OrderBy(x => x.Name).ElementAt(entityIndex).GetProperties().OrderBy(x => x.Name).ElementAt(propertyIndex).ClrType);
+            Assert.Equal(propertyName, Model.GetEntityTypes().OrderBy(x => x.Name).ElementAt(entityIndex).GetProperties().OrderBy(x => x.Name).ElementAt(propertyIndex).Name);
         }
     }
 }

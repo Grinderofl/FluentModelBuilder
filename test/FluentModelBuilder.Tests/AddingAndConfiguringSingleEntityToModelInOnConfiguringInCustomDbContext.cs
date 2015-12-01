@@ -44,22 +44,22 @@ namespace FluentModelBuilder.Tests
         [Fact]
         public void AddsSingleEntity()
         {
-            Assert.Equal(1, Model.GetEntityTypes().Count());
-            Assert.Equal(typeof(SingleEntity), Model.GetEntityTypes().ElementAt(0).ClrType);
+            Assert.Equal(1, Model.GetEntityTypes().OrderBy(x => x.Name).Count());
+            Assert.Equal(typeof(SingleEntity), Model.GetEntityTypes().OrderBy(x => x.Name).ElementAt(0).ClrType);
         }
 
         [Fact]
         public void MapsProperties()
         {
-            var properties = Model.GetEntityTypes().ElementAt(0).GetProperties().ToArray();
-            Assert.Equal("Id", properties[0].Name);
-            Assert.Equal("CustomProperty", properties[1].Name);
-            Assert.Equal("DateProperty", properties[2].Name);
+            var properties = Model.GetEntityTypes().OrderBy(x => x.Name).ElementAt(0).GetProperties().OrderBy(x => x.Name).ToArray();
+            Assert.Equal("Id", properties[2].Name);
+            Assert.Equal("CustomProperty", properties[0].Name);
+            Assert.Equal("DateProperty", properties[1].Name);
             Assert.Equal("StringProperty", properties[3].Name);
 
-            Assert.Equal(typeof(int), properties[0].ClrType);
-            Assert.Equal(typeof(long), properties[1].ClrType);
-            Assert.Equal(typeof(DateTime), properties[2].ClrType);
+            Assert.Equal(typeof(int), properties[2].ClrType);
+            Assert.Equal(typeof(long), properties[0].ClrType);
+            Assert.Equal(typeof(DateTime), properties[1].ClrType);
             Assert.Equal(typeof(string), properties[3].ClrType);
         }
     }
