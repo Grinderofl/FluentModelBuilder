@@ -24,4 +24,24 @@ namespace FluentModelBuilder.TestTarget
     {
         public string Property { get; set; }
     }
+
+    public abstract class SecondEntityBase
+    {
+        
+    }
+
+    public abstract class SecondEntityBaseBase<TPk> where TPk : IComparable
+    {
+        public TPk Id { get; set; }
+    }
+
+    public class EntityFromSecondBase : SecondEntityBaseBase<int>
+    {
+        
+    }
+
+    public class SecondEntityFromSecondBase : SecondEntityBaseBase<long>
+    {
+        
+    }
 }
