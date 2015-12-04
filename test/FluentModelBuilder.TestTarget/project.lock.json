@@ -45,7 +45,7 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0": {
+      "FluentModelBuilder/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -322,7 +322,7 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0": {
+      "FluentModelBuilder/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -599,7 +599,7 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0": {
+      "FluentModelBuilder/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -835,7 +835,7 @@
     }
   },
   "libraries": {
-    "FluentModelBuilder/1.0.0": {
+    "FluentModelBuilder/1.0.0-alpha2": {
       "type": "project",
       "path": "../../src/FluentModelBuilder/project.json"
     },

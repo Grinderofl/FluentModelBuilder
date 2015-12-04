@@ -121,14 +121,14 @@
           "lib/net451/EntityFramework.Sqlite.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0": {
+      "FluentModelBuilder/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-rc1-final"
         }
       },
-      "FluentModelBuilder.InMemory/1.0.0": {
+      "FluentModelBuilder.InMemory/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -136,7 +136,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.Sqlite/1.0.0": {
+      "FluentModelBuilder.Sqlite/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -144,7 +144,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0": {
+      "FluentModelBuilder.SqlServer/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -152,7 +152,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.TestTarget/1.0.0": {
+      "FluentModelBuilder.TestTarget/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1099,14 +1099,14 @@
           "lib/net451/EntityFramework.Sqlite.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0": {
+      "FluentModelBuilder/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-rc1-final"
         }
       },
-      "FluentModelBuilder.InMemory/1.0.0": {
+      "FluentModelBuilder.InMemory/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1114,7 +1114,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.Sqlite/1.0.0": {
+      "FluentModelBuilder.Sqlite/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1122,7 +1122,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0": {
+      "FluentModelBuilder.SqlServer/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1130,7 +1130,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.TestTarget/1.0.0": {
+      "FluentModelBuilder.TestTarget/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -2080,14 +2080,14 @@
           "lib/net451/EntityFramework.Sqlite.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0": {
+      "FluentModelBuilder/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-rc1-final"
         }
       },
-      "FluentModelBuilder.InMemory/1.0.0": {
+      "FluentModelBuilder.InMemory/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -2095,7 +2095,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.Sqlite/1.0.0": {
+      "FluentModelBuilder.Sqlite/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -2103,7 +2103,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.SqlServer/1.0.0": {
+      "FluentModelBuilder.SqlServer/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -2111,7 +2111,7 @@
           "FluentModelBuilder": null
         }
       },
-      "FluentModelBuilder.TestTarget/1.0.0": {
+      "FluentModelBuilder.TestTarget/1.0.0-alpha2": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -2944,23 +2944,23 @@
     }
   },
   "libraries": {
-    "FluentModelBuilder/1.0.0": {
+    "FluentModelBuilder/1.0.0-alpha2": {
       "type": "project",
       "path": "../../src/FluentModelBuilder/project.json"
     },
-    "FluentModelBuilder.InMemory/1.0.0": {
+    "FluentModelBuilder.InMemory/1.0.0-alpha2": {
       "type": "project",
       "path": "../../src/FluentModelBuilder.InMemory/project.json"
     },
-    "FluentModelBuilder.Sqlite/1.0.0": {
+    "FluentModelBuilder.Sqlite/1.0.0-alpha2": {
       "type": "project",
       "path": "../../src/FluentModelBuilder.Sqlite/project.json"
     },
-    "FluentModelBuilder.SqlServer/1.0.0": {
+    "FluentModelBuilder.SqlServer/1.0.0-alpha2": {
       "type": "project",
       "path": "../../src/FluentModelBuilder.SqlServer/project.json"
     },
-    "FluentModelBuilder.TestTarget/1.0.0": {
+    "FluentModelBuilder.TestTarget/1.0.0-alpha2": {
       "type": "project",
       "path": "../FluentModelBuilder.TestTarget/project.json"
     },
