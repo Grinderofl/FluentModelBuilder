@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using FluentModelBuilder.Core.Contributors.Impl;
 
@@ -84,6 +85,19 @@ namespace FluentModelBuilder.Extensions
             Assembly assembly)
         {
             return builder.Assemblies(a => a.AddAssembly(assembly));
+        }
+
+        /// <summary>
+        /// Adds multiple shared assemblies to scan entities and/or overrides from
+        /// <remarks>Duplicate assemblies won't be added</remarks>
+        /// </summary>
+        /// <param name="builder"><see cref="FluentDbContextOptionsBuilder"/></param>
+        /// <param name="assemblies">Assemblies to add</param>
+        /// <returns><see cref="FluentDbContextOptionsBuilder"/></returns>
+        public static FluentDbContextOptionsBuilder AddAssemblies(this FluentDbContextOptionsBuilder builder,
+            IEnumerable<Assembly> assemblies)
+        {
+            return builder.Assemblies(a => a.Add(assemblies));
         }
 
         /// <summary>

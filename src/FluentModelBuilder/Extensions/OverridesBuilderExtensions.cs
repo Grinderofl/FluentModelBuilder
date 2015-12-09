@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using FluentModelBuilder.Core.Contributors.Impl;
 
 namespace FluentModelBuilder.Extensions
