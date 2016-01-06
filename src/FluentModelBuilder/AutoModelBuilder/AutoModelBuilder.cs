@@ -118,7 +118,6 @@ namespace FluentModelBuilder
         private void OverrideHelper<T>(EntityTypeBuilder<T> builder, IEntityTypeOverride<T> mappingOverride) where T : class
         {
             mappingOverride.Override(builder);
-
         }
 
         internal void Apply(InternalModelBuilder builder)
