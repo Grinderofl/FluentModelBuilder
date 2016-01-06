@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Reflection;
 using FluentModelBuilder;
+using FluentModelBuilder.Alterations;
+using FluentModelBuilder.Configuration;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata.Builders;
 using Microsoft.Extensions.DependencyInjection;
-
+using FluentModelBuilder.Extensions;
 
 namespace ModelBuilderSample
 {

@@ -45,12 +45,15 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha2": {
+      "FluentModelBuilder/1.0.0-alpha4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-rc1-final"
-        }
+        },
+        "frameworkAssemblies": [
+          "System.Runtime"
+        ]
       },
       "Ix-Async/1.2.5": {
         "type": "package",
@@ -322,12 +325,15 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha2": {
+      "FluentModelBuilder/1.0.0-alpha4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-rc1-final"
-        }
+        },
+        "frameworkAssemblies": [
+          "System.Runtime"
+        ]
       },
       "Ix-Async/1.2.5": {
         "type": "package",
@@ -599,12 +605,15 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
-      "FluentModelBuilder/1.0.0-alpha2": {
+      "FluentModelBuilder/1.0.0-alpha4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-rc1-final"
-        }
+        },
+        "frameworkAssemblies": [
+          "System.Runtime"
+        ]
       },
       "Ix-Async/1.2.5": {
         "type": "package",
@@ -835,7 +844,7 @@
     }
   },
   "libraries": {
-    "FluentModelBuilder/1.0.0-alpha2": {
+    "FluentModelBuilder/1.0.0-alpha4": {
       "type": "project",
       "path": "../../src/FluentModelBuilder/project.json"
     },

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Alterations;
@@ -29,7 +30,7 @@ namespace FluentModelBuilder.Builder
         {
             
         }
-
+        
         public AutoModelBuilder(IEntityAutoConfiguration configuration)
         {
             Configuration = configuration;
@@ -45,6 +46,18 @@ namespace FluentModelBuilder.Builder
         {
             return UseOverridesFromAssembly(typeof (T).GetTypeInfo().Assembly);
         }
+
+        public AutoModelBuilder UseOverridesFromAssembly(Assembly assembly)
+        {
+            _alterations.Add(new EntityTypeOverrideAlteration(assembly));
+            return this;
+        }
+
+        //public AutoModelBuilder UseOverridesFromThisAssembly()
+        //{
+        //    var assembly = FindTheCallingAssembly();
+        //    return UseOverridesFromAssembly(assembly);
+        //}
 
         public AutoModelBuilder AddTypeSource(ITypeSource typeSource)
         {
@@ -74,22 +87,45 @@ namespace FluentModelBuilder.Builder
             return this;
         }
 
-        public AutoModelBuilder UseOverridesFromAssembly(Assembly assembly)
+        public AutoModelBuilder AddEntityAssembly(Assembly assembly)
         {
-            _alterations.Add(new EntityTypeOverrideAlteration(assembly));
-            return this;
+            return AddTypeSource(new AssemblyTypeSource(assembly));
         }
+
+        //public AutoModelBuilder AddEntitiesFromThisAssembly()
+        //{
+        //    var assembly = FindTheCallingAssembly();
+        //    return AddEntityAssembly(assembly);
+        //}
+
+        //private static Assembly FindTheCallingAssembly()
+        //{
+        //    var trace = new StackTrace();
+
+        //    var thisAssembly = typeof (AutoModelBuilder).GetTypeInfo().Assembly;
+        //    Assembly callingAssembly = null;
+        //    for (var i = 0; i < trace.FrameCount; i++)
+        //    {
+        //        var frame = trace.GetFrame(i);
+        //        var assembly = frame.GetMethod().DeclaringType.Assembly;
+        //        if (assembly == thisAssembly) continue;
+        //        callingAssembly = assembly;
+        //        break;
+        //    }
+        //    return callingAssembly;
+        //}
 
         internal void AddOverride(Type type, Action<object> action)
         {
             _inlineOverrides.Add(new InlineOverride(type, action));
         }
 
-        public void Override(Type overrideType)
+        public AutoModelBuilder Override(Type overrideType)
         {
             var overrideMethod = typeof(AutoModelBuilder)
                 .GetMethod("OverrideHelper", BindingFlags.NonPublic | BindingFlags.Instance);
-            if (overrideMethod == null) return;
+            if (overrideMethod == null)
+                return this;
 
             var overrideInterfaces = overrideType.GetInterfaces().Where(x => x.IsEntityTypeOverrideType()).ToList();
             var overrideInstance = Activator.CreateInstance(overrideType);
@@ -104,6 +140,17 @@ namespace FluentModelBuilder.Builder
                 });
                 
             }
+            return this;
+        }
+
+        public AutoModelBuilder Override<T>(Action<EntityTypeBuilder<T>> builderAction) where T : class
+        {
+            _inlineOverrides.Add(new InlineOverride(typeof(T), x =>
+            {
+                if (x is EntityTypeBuilder<T>)
+                    builderAction((EntityTypeBuilder<T>) x);
+            }));
+            return this;
         }
 
         private object EntityTypeBuilder(InternalModelBuilder builder, Type type)
@@ -162,6 +209,9 @@ namespace FluentModelBuilder.Builder
             if (type.GetTypeInfo().IsGenericType && _ignoredTypes.Contains(type.GetGenericTypeDefinition()))
                 return false;
             if (type.GetTypeInfo().IsAbstract)
+                return false;
+
+            if (type == typeof (object))
                 return false;
 
             return true;
