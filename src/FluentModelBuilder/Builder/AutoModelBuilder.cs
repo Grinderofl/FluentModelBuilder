@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Alterations;
-using FluentModelBuilder.AutoModelBuilder.Sources;
+using FluentModelBuilder.Builder.Sources;
 using FluentModelBuilder.Configuration;
 using FluentModelBuilder.Extensions;
 using Microsoft.Data.Entity.Metadata.Builders;
 using Microsoft.Data.Entity.Metadata.Internal;
 
-namespace FluentModelBuilder.AutoModelBuilder
+namespace FluentModelBuilder.Builder
 {
     public class AutoModelBuilder
     {

@@ -3,7 +3,6 @@ using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Configuration;
-using FluentModelBuilder.ConventionSet;
 using Microsoft.Data.Entity.Metadata.Conventions.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;

@@ -1,6 +1,6 @@
 using System;
 using System.Reflection;
-using FluentModelBuilder.AutoModelBuilder;
+using FluentModelBuilder.Builder;
 
 namespace FluentModelBuilder.Configuration
 {

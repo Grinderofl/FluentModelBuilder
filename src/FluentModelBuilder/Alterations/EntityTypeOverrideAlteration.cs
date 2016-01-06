@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Reflection;
+using FluentModelBuilder.Builder;
 
 namespace FluentModelBuilder.Alterations
 {
@@ -12,7 +13,7 @@ namespace FluentModelBuilder.Alterations
             _assembly = assembly;
         }
 
-        public void Alter(AutoModelBuilder.AutoModelBuilder builder)
+        public void Alter(AutoModelBuilder builder)
         {
             var types = from type in _assembly.GetExportedTypes()
                 where !type.GetTypeInfo().IsAbstract

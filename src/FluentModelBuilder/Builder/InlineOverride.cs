@@ -1,6 +1,6 @@
 using System;
 
-namespace FluentModelBuilder.AutoModelBuilder
+namespace FluentModelBuilder.Builder
 {
     public class InlineOverride
     {

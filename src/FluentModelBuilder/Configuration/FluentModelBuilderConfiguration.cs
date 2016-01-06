@@ -1,21 +1,21 @@
 using System;
 using System.Collections.Generic;
-using FluentModelBuilder.ConventionSet;
+using FluentModelBuilder.Builder;
 using Microsoft.Data.Entity.Metadata.Internal;
 
 namespace FluentModelBuilder.Configuration
 {
     public class FluentModelBuilderConfiguration
     {
-        private readonly IList<AutoModelBuilder.AutoModelBuilder> _builders = new List<AutoModelBuilder.AutoModelBuilder>();
+        private readonly IList<AutoModelBuilder> _builders = new List<AutoModelBuilder>();
 
-        public FluentModelBuilderConfiguration Add(AutoModelBuilder.AutoModelBuilder builder)
+        public FluentModelBuilderConfiguration Add(AutoModelBuilder builder)
         {
             _builders.Add(builder);
             return this;
         }
 
-        public FluentModelBuilderConfiguration Add(Func<AutoModelBuilder.AutoModelBuilder> builder)
+        public FluentModelBuilderConfiguration Add(Func<AutoModelBuilder> builder)
         {
             _builders.Add(builder());
             return this;

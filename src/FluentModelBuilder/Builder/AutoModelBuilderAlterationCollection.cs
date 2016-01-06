@@ -1,7 +1,7 @@
 using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Core;
 
-namespace FluentModelBuilder.AutoModelBuilder
+namespace FluentModelBuilder.Builder
 {
     public class AutoModelBuilderAlterationCollection : AlterationCollectionBase<AutoModelBuilderAlterationCollection, IAutoModelBuilderAlteration>
     {
