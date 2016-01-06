@@ -1,9 +1,3 @@
-using System;
-using System.Reflection;
-using FluentModelBuilder;
-using FluentModelBuilder.Core.Contributors.Extensions;
-using FluentModelBuilder.Extensions;
-using FluentModelBuilder.SqlServer.Extensions;
 using Microsoft.Data.Entity;
 
 namespace ModelBuilderSample

@@ -10,7 +10,7 @@ namespace FluentModelBuilder
     public class AutoModelBuilder
     {
         private readonly IDictionary<Type, object> _entityTypeBuilderCache = new Dictionary<Type, object>();
-        private IList<InlineOverride> _inlineOverrides = new List<InlineOverride>();
+        private readonly IList<InlineOverride> _inlineOverrides = new List<InlineOverride>();
 
         private readonly List<ITypeSource> _typeSources = new List<ITypeSource>();
 
@@ -87,7 +87,7 @@ namespace FluentModelBuilder
                 .GetMethod("OverrideHelper", BindingFlags.NonPublic | BindingFlags.Instance);
             if (overrideMethod == null) return;
 
-            var overrideInterfaces = overrideType.GetInterfaces().Where(x => Extensions2.IsEntityTypeOverrideType(x)).ToList();
+            var overrideInterfaces = overrideType.GetInterfaces().Where(x => x.IsEntityTypeOverrideType()).ToList();
             var overrideInstance = Activator.CreateInstance(overrideType);
             
             foreach (var overrideInterface in overrideInterfaces)
@@ -95,7 +95,6 @@ namespace FluentModelBuilder
                 var entityType = overrideInterface.GetGenericArguments().First();
                 AddOverride(entityType, instance =>
                 {
-                    //var entityTypeBuilderInstance = EntityTypeBuilder(entityType);
                     overrideMethod.MakeGenericMethod(entityType)
                         .Invoke(this, new[] { instance, overrideInstance });
                 });
