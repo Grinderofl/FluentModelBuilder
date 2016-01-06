@@ -92,6 +92,11 @@ namespace FluentModelBuilder.Builder
             return AddTypeSource(new AssemblyTypeSource(assembly));
         }
 
+        public AutoModelBuilder AddEntityAssemblyOf<T>()
+        {
+            return AddEntityAssembly(typeof (T).GetTypeInfo().Assembly);
+        }
+
         //public AutoModelBuilder AddEntitiesFromThisAssembly()
         //{
         //    var assembly = FindTheCallingAssembly();

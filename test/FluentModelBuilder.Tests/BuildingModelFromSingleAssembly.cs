@@ -13,7 +13,7 @@ using Xunit;
 
 namespace FluentModelBuilder.Tests
 {
-    public class SingleAlterationFixture : FluentModelFixtureBase<DbContext>
+    public class SingleAssemblyFixture : FluentModelFixtureBase<DbContext>
     {
         protected override void ConfigureMappings(FluentModelBuilderConfiguration configuration)
         {
@@ -21,9 +21,9 @@ namespace FluentModelBuilder.Tests
         }
     }
     
-    public class BuildingModelWithSingleAlteration : TestBase<SingleAlterationFixture, DbContext>
+    public class BuildingModelFromSingleAssembly : TestBase<SingleAssemblyFixture, DbContext>
     {
-        public BuildingModelWithSingleAlteration(SingleAlterationFixture fixture) : base(fixture)
+        public BuildingModelFromSingleAssembly(SingleAssemblyFixture fixture) : base(fixture)
         {
         }
 
@@ -41,11 +41,10 @@ namespace FluentModelBuilder.Tests
         [InlineData(0, 2, "NotIgnored")]
 
         [InlineData(1, 0, "Id")]
-        public void MapsProperties(int elementIndex, int propertyIndex, string name)
+        public void MapsEntityProperty(int elementIndex, int propertyIndex, string name)
         {
             var properties = GetProperties(elementIndex);
             Assert.Equal(name, properties.ElementAt(propertyIndex).Name);
         }
-
     }
 }

@@ -1,5 +1,6 @@
 using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Tests.Entities;
+using FluentModelBuilder.TestTarget;
 using Microsoft.Data.Entity.Metadata.Builders;
 
 namespace FluentModelBuilder.Tests
@@ -9,6 +10,14 @@ namespace FluentModelBuilder.Tests
         public void Override(EntityTypeBuilder<SingleEntity> mapping)
         {
             mapping.Ignore(c => c.StringProperty);
+        }
+    }
+
+    public class EntityTwoOverride : IEntityTypeOverride<EntityTwo>
+    {
+        public void Override(EntityTypeBuilder<EntityTwo> mapping)
+        {
+            mapping.Property<string>("NotProperty");
         }
     }
 }
