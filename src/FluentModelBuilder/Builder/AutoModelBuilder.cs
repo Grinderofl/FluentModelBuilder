@@ -148,12 +148,12 @@ namespace FluentModelBuilder.Builder
             return this;
         }
 
-        public AutoModelBuilder Override<T>(Action<EntityTypeBuilder<T>> builderAction) where T : class
+        public AutoModelBuilder Override<T>(Action<EntityTypeBuilder<T>> builderAction = null) where T : class
         {
             _inlineOverrides.Add(new InlineOverride(typeof(T), x =>
             {
                 if (x is EntityTypeBuilder<T>)
-                    builderAction((EntityTypeBuilder<T>) x);
+                    builderAction?.Invoke((EntityTypeBuilder<T>) x);
             }));
             return this;
         }
