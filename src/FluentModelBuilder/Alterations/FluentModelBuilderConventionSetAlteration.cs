@@ -1,9 +1,7 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-using System.Threading.Tasks;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Metadata.Conventions;
+﻿using FluentModelBuilder.Configuration;
+using FluentModelBuilder.Conventions;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Alterations
 {
     public class FluentModelBuilderConventionSetAlteration : IConventionSetAlteration
     {
@@ -14,7 +12,7 @@ namespace FluentModelBuilder
             _configuration = configuration;
         }
 
-        public void Alter(ConventionSet conventions)
+        public void Alter(Microsoft.Data.Entity.Metadata.Conventions.ConventionSet conventions)
         {
             conventions.ModelInitializedConventions.Add(new FluentModelBuilderConvention(_configuration));
         }

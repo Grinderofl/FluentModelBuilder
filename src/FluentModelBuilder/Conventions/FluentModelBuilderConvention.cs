@@ -1,7 +1,8 @@
+using FluentModelBuilder.Configuration;
 using Microsoft.Data.Entity.Metadata.Conventions.Internal;
 using Microsoft.Data.Entity.Metadata.Internal;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Conventions
 {
     public class FluentModelBuilderConvention : IModelConvention
     {

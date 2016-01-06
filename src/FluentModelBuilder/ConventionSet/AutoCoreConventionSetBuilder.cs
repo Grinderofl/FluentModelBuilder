@@ -1,7 +1,7 @@
-using Microsoft.Data.Entity.Metadata.Conventions;
+using FluentModelBuilder.Configuration;
 using Microsoft.Data.Entity.Metadata.Conventions.Internal;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.ConventionSet
 {
     public class AutoCoreConventionSetBuilder : CoreConventionSetBuilder
     {
@@ -12,7 +12,7 @@ namespace FluentModelBuilder
             _configuration = configuration;
         }
 
-        public override ConventionSet CreateConventionSet()
+        public override Microsoft.Data.Entity.Metadata.Conventions.ConventionSet CreateConventionSet()
         {
             var conventionSet = base.CreateConventionSet();
 

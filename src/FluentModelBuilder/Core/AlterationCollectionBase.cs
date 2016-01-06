@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using FluentModelBuilder.Alterations;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Core
 {
     public class AlterationCollectionBase<T, TAlteration> : IEnumerable<TAlteration> where T : AlterationCollectionBase<T, TAlteration>
     {

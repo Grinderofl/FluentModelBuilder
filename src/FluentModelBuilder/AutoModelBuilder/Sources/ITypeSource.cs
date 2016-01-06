@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.AutoModelBuilder.Sources
 {
     public interface ITypeSource
     {

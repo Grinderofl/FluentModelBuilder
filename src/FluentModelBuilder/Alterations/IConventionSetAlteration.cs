@@ -1,9 +1,7 @@
-﻿using Microsoft.Data.Entity.Metadata.Conventions;
-
-namespace FluentModelBuilder
+﻿namespace FluentModelBuilder.Alterations
 {
     public interface IConventionSetAlteration
     {
-        void Alter(ConventionSet conventions);
+        void Alter(Microsoft.Data.Entity.Metadata.Conventions.ConventionSet conventions);
     }
 }

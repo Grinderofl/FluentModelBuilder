@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.AutoModelBuilder.Sources
 {
     public class CombinedAssemblyTypeSource : ITypeSource
     {

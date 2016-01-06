@@ -1,22 +1,21 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.Entity.ChangeTracking.Internal;
-using Microsoft.Data.Entity.Metadata.Conventions;
+using FluentModelBuilder.ConventionSet;
 using Microsoft.Data.Entity.Metadata.Internal;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Configuration
 {
     public class FluentModelBuilderConfiguration
     {
-        private readonly IList<AutoModelBuilder> _builders = new List<AutoModelBuilder>();
+        private readonly IList<AutoModelBuilder.AutoModelBuilder> _builders = new List<AutoModelBuilder.AutoModelBuilder>();
 
-        public FluentModelBuilderConfiguration Add(AutoModelBuilder builder)
+        public FluentModelBuilderConfiguration Add(AutoModelBuilder.AutoModelBuilder builder)
         {
             _builders.Add(builder);
             return this;
         }
 
-        public FluentModelBuilderConfiguration Add(Func<AutoModelBuilder> builder)
+        public FluentModelBuilderConfiguration Add(Func<AutoModelBuilder.AutoModelBuilder> builder)
         {
             _builders.Add(builder());
             return this;
@@ -30,7 +29,7 @@ namespace FluentModelBuilder
                 b.Apply(builder);
         }
 
-        internal void Apply(ConventionSet conventionSet)
+        internal void Apply(Microsoft.Data.Entity.Metadata.Conventions.ConventionSet conventionSet)
         {
             foreach(var alteration in Alterations)
                 alteration.Alter(conventionSet);

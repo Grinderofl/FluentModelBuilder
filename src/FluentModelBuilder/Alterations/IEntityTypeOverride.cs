@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.Entity.Metadata.Builders;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Alterations
 {
     /// <summary>
     /// Allows overriding the configuration for single entity type while configuring ModelBuilder.

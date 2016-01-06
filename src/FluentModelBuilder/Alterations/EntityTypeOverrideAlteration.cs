@@ -1,8 +1,7 @@
-using System;
 using System.Linq;
 using System.Reflection;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Alterations
 {
     public class EntityTypeOverrideAlteration : IAutoModelBuilderAlteration
     {
@@ -13,7 +12,7 @@ namespace FluentModelBuilder
             _assembly = assembly;
         }
 
-        public void Alter(AutoModelBuilder builder)
+        public void Alter(AutoModelBuilder.AutoModelBuilder builder)
         {
             var types = from type in _assembly.GetExportedTypes()
                 where !type.GetTypeInfo().IsAbstract

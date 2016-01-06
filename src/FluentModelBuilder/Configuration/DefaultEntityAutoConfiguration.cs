@@ -1,7 +1,8 @@
 using System;
 using System.Reflection;
+using FluentModelBuilder.AutoModelBuilder;
 
-namespace FluentModelBuilder
+namespace FluentModelBuilder.Configuration
 {
     public class DefaultEntityAutoConfiguration : IEntityAutoConfiguration
     {
