@@ -45,6 +45,24 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
+      "EntityFramework.InMemory/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net451/EntityFramework.InMemory.dll": {}
+        },
+        "runtime": {
+          "lib/net451/EntityFramework.InMemory.dll": {}
+        }
+      },
       "EntityFramework.Relational/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -926,6 +944,24 @@
         },
         "runtime": {
           "lib/dnx451/EntityFramework.Core.dll": {}
+        }
+      },
+      "EntityFramework.InMemory/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net451/EntityFramework.InMemory.dll": {}
+        },
+        "runtime": {
+          "lib/net451/EntityFramework.InMemory.dll": {}
         }
       },
       "EntityFramework.Relational/7.0.0-rc1-final": {
@@ -1811,6 +1847,24 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
+      "EntityFramework.InMemory/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Core": "7.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net451/EntityFramework.InMemory.dll": {}
+        },
+        "runtime": {
+          "lib/net451/EntityFramework.InMemory.dll": {}
+        }
+      },
       "EntityFramework.Relational/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -2677,6 +2731,22 @@
         "lib/net451/EntityFramework.Core.xml",
         "lib/netcore50/EntityFramework.Core.dll",
         "lib/netcore50/EntityFramework.Core.xml"
+      ]
+    },
+    "EntityFramework.InMemory/7.0.0-rc1-final": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "KEj27C9e/SdD/WSyzGQsjGjyKuYlRHSEcnMV8FiN/Soyu/7tulTu7YRaH4QZR95IUHNDrKFpNAkr3CcCJYKFpQ==",
+      "files": [
+        "EntityFramework.InMemory.7.0.0-rc1-final.nupkg",
+        "EntityFramework.InMemory.7.0.0-rc1-final.nupkg.sha512",
+        "EntityFramework.InMemory.nuspec",
+        "lib/dotnet5.4/EntityFramework.InMemory.dll",
+        "lib/dotnet5.4/EntityFramework.InMemory.xml",
+        "lib/net451/EntityFramework.InMemory.dll",
+        "lib/net451/EntityFramework.InMemory.xml",
+        "lib/netcore50/EntityFramework.InMemory.dll",
+        "lib/netcore50/EntityFramework.InMemory.xml"
       ]
     },
     "EntityFramework.Relational/7.0.0-rc1-final": {
@@ -3573,7 +3643,8 @@
       "xunit.runner.dnx >= 2.1.0-rc1-build204",
       "FluentModelBuilder ",
       "FluentModelBuilder.TestTarget ",
-      "Microsoft.AspNet.Identity.EntityFramework >= 3.0.0-rc1-final"
+      "Microsoft.AspNet.Identity.EntityFramework >= 3.0.0-rc1-final",
+      "EntityFramework.InMemory >= 7.0.0-rc1-final"
     ],
     "DNX,Version=v4.5.1": []
   }

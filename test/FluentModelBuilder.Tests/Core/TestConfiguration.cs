@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using FluentModelBuilder.Configuration;
 using FluentModelBuilder.TestTarget;
+using Microsoft.Data.Entity.Metadata.Internal;
 
 namespace FluentModelBuilder.Tests.Core
 {
