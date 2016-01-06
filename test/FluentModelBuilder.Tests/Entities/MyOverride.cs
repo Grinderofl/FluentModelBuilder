@@ -5,7 +5,7 @@ namespace FluentModelBuilder.Tests
 {
     public class MyOverride : IEntityTypeOverride<SingleEntity>
     {
-        public void Configure(EntityTypeBuilder<SingleEntity> mapping)
+        public void Override(EntityTypeBuilder<SingleEntity> mapping)
         {
             mapping.Ignore(c => c.StringProperty);
         }

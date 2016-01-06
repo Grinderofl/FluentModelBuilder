@@ -9,6 +9,6 @@ namespace FluentModelBuilder
     /// <typeparam name="T">Type of entity to configure</typeparam>
     public interface IEntityTypeOverride<T> where T : class
     {
-        void Configure(EntityTypeBuilder<T> mapping);
+        void Override(EntityTypeBuilder<T> mapping);
     }
 }

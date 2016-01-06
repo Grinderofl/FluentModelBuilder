@@ -8,7 +8,7 @@ namespace FluentModelBuilder.TestTarget
 {
     public class EntityOneOverride : IEntityTypeOverride<EntityOne>
     {
-        public void Configure(EntityTypeBuilder<EntityOne> mapping)
+        public void Override(EntityTypeBuilder<EntityOne> mapping)
         {
             mapping.Ignore(x => x.IgnoredInOverride);
         }

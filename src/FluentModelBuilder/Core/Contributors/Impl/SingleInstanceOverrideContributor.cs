@@ -13,7 +13,7 @@ namespace FluentModelBuilder.Core.Contributors.Impl
 
         public void Contribute(ModelBuilder modelBuilder)
         {
-            _instance.Configure(modelBuilder.Entity<TEntity>());
+            _instance.Override(modelBuilder.Entity<TEntity>());
         }
     }
 }
