@@ -1,10 +1,10 @@
 # FluentModelBuilder
 
-Provides an entry point for configuring entities and conventions of Entity Framework 7 through a fluent, convention-based, and automated way.
+Provides an entry point for configuring entities and conventions of Entity Framework 7 through a fluent, convention-based, and automated way, inspired by Fluent NHibernate.
 
 ## Getting started
-* Read the introduction
-* Get latest binaries from NuGet
+* Read the [introduction](https://github.com/Grinderofl/FluentModelBuilder/wiki/Introduction)
+* Get latest binaries from [NuGet](https://www.nuget.org/packages/FluentModelBuilder/)
 * Set up your project
 
 

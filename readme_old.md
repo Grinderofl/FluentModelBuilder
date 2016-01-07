@@ -1,3 +1,5 @@
+Cue **FluentModelBuilder** - it replaces the ICoreConventionSetBuilder service in the `IServiceCollection` with its own implementation that both enables altering the core convention sets used, as well as adds a `ModelInitializedConvention` of its own, 
+
 ## Goals
 
 The default way of creating the backing model to use with EntityFramework 7 DbContext __requires__ subclassing:
