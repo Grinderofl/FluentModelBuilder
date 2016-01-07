@@ -26,7 +26,7 @@ namespace FluentModelBuilder.Builder
 
         public readonly IEntityAutoConfiguration Configuration;
 
-        private BuilderScope _scope = BuilderScope.Early;
+        private BuilderScope _scope = BuilderScope.PreModelCreating;
 
         public AutoModelBuilder() : this(new DefaultEntityAutoConfiguration())
         {
@@ -39,12 +39,12 @@ namespace FluentModelBuilder.Builder
         }
 
         /// <summary>
-        /// Specify the scope of this AutoModelBuilder, default is Early
+        /// Specify the scope of this AutoModelBuilder, default is PreModelCreating
         /// <remarks>
-        /// You would use this to change when the changes should be applied to the model - whether Early,
-        /// i.e. before Entity Framework's own model creation, or Late, i.e. after Entity Framework
+        /// You would use this to change when the changes should be applied to the model - whether PreModelCreating,
+        /// i.e. before Entity Framework's own model creation, or PostModelCreating, i.e. after Entity Framework
         /// has already created its own model. This is useful for things like overriding the base properties
-        /// of IdentitydbContext entities, like UserName, Email, etc.
+        /// of IdentityDbContext entities, like UserName, Email, etc.
         /// </remarks>
         /// </summary>
         /// <param name="scope">Scope to use</param>

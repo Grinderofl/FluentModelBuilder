@@ -16,8 +16,8 @@ namespace FluentModelBuilder.Alterations
 
         public void Alter(ConventionSet conventions)
         {
-            conventions.ModelInitializedConventions.Add(new FluentModelBuilderConvention(_configuration, BuilderScope.Early));
-            conventions.ModelBuiltConventions.Add(new FluentModelBuilderConvention(_configuration, BuilderScope.Late));
+            conventions.ModelInitializedConventions.Add(new FluentModelBuilderConvention(_configuration, BuilderScope.PreModelCreating));
+            conventions.ModelBuiltConventions.Add(new FluentModelBuilderConvention(_configuration, BuilderScope.PostModelCreating));
         }
     }
 }
