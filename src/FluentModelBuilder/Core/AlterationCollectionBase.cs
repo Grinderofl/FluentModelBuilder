@@ -15,12 +15,22 @@ namespace FluentModelBuilder.Core
             Add((TAlteration)Activator.CreateInstance(type));
         }
 
+        /// <summary>
+        /// Creates an instance of TAlteration from a generic type parameter and adds it to alterations collection
+        /// </summary>
+        /// <typeparam name="TAlterationType">Type of TAlteration</typeparam>
+        /// <returns>T</returns>
         public T Add<TAlterationType>() where TAlterationType : TAlteration
         {
             Add(typeof (TAlterationType));
             return (T) this;
         }
 
+        /// <summary>
+        /// Adds an alteration
+        /// </summary>
+        /// <param name="alteration">Alteration to add</param>
+        /// <returns>T</returns>
         public T Add(TAlteration alteration)
         {
             if(!Alterations.Exists(a => a.GetType() == alteration.GetType() && alteration.GetType() != typeof(EntityTypeOverrideAlteration)))
@@ -28,6 +38,11 @@ namespace FluentModelBuilder.Core
             return (T) this;
         }
 
+        /// <summary>
+        /// Adds all alterations from specified assembly
+        /// </summary>
+        /// <param name="assembly">Assembly to use</param>
+        /// <returns>T</returns>
         public T AddFromAssembly(Assembly assembly)
         {
             foreach(var type in assembly.GetExportedTypes())
@@ -36,6 +51,11 @@ namespace FluentModelBuilder.Core
             return (T) this;
         }
 
+        /// <summary>
+        /// Adds all alterations from assembly which contains the specified type
+        /// </summary>
+        /// <typeparam name="TAssemblyType">Type contained in required assembly</typeparam>
+        /// <returns>T</returns>
         public T AddFromAssemblyOf<TAssemblyType>()
         {
             return AddFromAssembly(typeof(TAssemblyType).GetTypeInfo().Assembly);

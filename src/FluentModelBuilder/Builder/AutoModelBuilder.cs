@@ -36,17 +36,32 @@ namespace FluentModelBuilder.Builder
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// Add additional alterations to be used with this AutoModelBuilder
+        /// </summary>
+        /// <param name="alterationDelegate">Action delegate for alteration</param>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder Alterations(Action<AutoModelBuilderAlterationCollection> alterationDelegate)
         {
             alterationDelegate(_alterations);
             return this;
         }
 
+        /// <summary>
+        /// Add mapping overrides defined in assembly of T
+        /// </summary>
+        /// <typeparam name="T">Type contained in required assembly</typeparam>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder UseOverridesFromAssemblyOf<T>()
         {
             return UseOverridesFromAssembly(typeof (T).GetTypeInfo().Assembly);
         }
 
+        /// <summary>
+        /// Add mapping overrides from specified assembly
+        /// </summary>
+        /// <param name="assembly">Assembly to use</param>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder UseOverridesFromAssembly(Assembly assembly)
         {
             _alterations.Add(new EntityTypeOverrideAlteration(assembly));
@@ -59,39 +74,82 @@ namespace FluentModelBuilder.Builder
         //    return UseOverridesFromAssembly(assembly);
         //}
 
+        /// <summary>
+        /// Adds entities from the <see cref="ITypeSource"/>
+        /// </summary>
+        /// <param name="typeSource"><see cref="ITypeSource"/> to use</param>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder AddTypeSource(ITypeSource typeSource)
         {
             _typeSources.Add(typeSource);
             return this;
         }
 
+        /// <summary>
+        /// Explicitly includes a type to be used as part of the model
+        /// </summary>
+        /// <typeparam name="T">Type to include</typeparam>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder IncludeBase<T>()
         {
             return IncludeBase(typeof(T));
         }
 
+        /// <summary>
+        /// Explicitly includes a type to be used as part of the model
+        /// </summary>
+        /// <param name="type">Type to include</param>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder IncludeBase(Type type)
         {
             _includedTypes.Add(type);
             return this;
         }
 
+        /// <summary>
+        /// Ignores a type and ensures it will not be used as part of the model
+        /// </summary>
+        /// <remarks>
+        /// In the event that you wish to ignore an entity that would be otherwise be picked up due to <see cref="IEntityAutoConfiguration"/>,
+        /// you would want to use this method
+        /// </remarks>
+        /// <typeparam name="T">Type to ignore</typeparam>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder IgnoreBase<T>()
         {
             return IgnoreBase(typeof(T));
         }
 
+        /// <summary>
+        /// Ignores a type and ensures it will not be used as part of the model
+        /// </summary>
+        /// <remarks>
+        /// In the event that you wish to ignore an entity that would be otherwise be picked up due to <see cref="IEntityAutoConfiguration"/>,
+        /// you would want to use this method
+        /// </remarks>
+        /// <param name="type">Type to ignore</param>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder IgnoreBase(Type type)
         {
             _ignoredTypes.Add(type);
             return this;
         }
 
+        /// <summary>
+        /// Adds entities from specific assembly
+        /// </summary>
+        /// <param name="assembly">Assembly to use</param>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder AddEntityAssembly(Assembly assembly)
         {
             return AddTypeSource(new AssemblyTypeSource(assembly));
         }
 
+        /// <summary>
+        /// Adds entities from specific assembly
+        /// </summary>
+        /// <typeparam name="T">Type contained in required assembly</typeparam>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder AddEntityAssemblyOf<T>()
         {
             return AddEntityAssembly(typeof (T).GetTypeInfo().Assembly);
@@ -125,6 +183,11 @@ namespace FluentModelBuilder.Builder
             _inlineOverrides.Add(new InlineOverride(type, action));
         }
 
+        /// <summary>
+        /// Adds an IEntityTypeOverride via reflection
+        /// </summary>
+        /// <param name="overrideType">Type of override, expected to be IEntityTypeOverride</param>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder Override(Type overrideType)
         {
             var overrideMethod = typeof(AutoModelBuilder)
@@ -148,6 +211,15 @@ namespace FluentModelBuilder.Builder
             return this;
         }
 
+        /// <summary>
+        /// Override the mapping of specific entity
+        /// <remarks>
+        /// Can also be used to add single entities that are not picked up via assembly scanning
+        /// </remarks>
+        /// </summary>
+        /// <typeparam name="T">Type of entity to override</typeparam>
+        /// <param name="builderAction">Action to perform override</param>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder Override<T>(Action<EntityTypeBuilder<T>> builderAction = null) where T : class
         {
             _inlineOverrides.Add(new InlineOverride(typeof(T), x =>
