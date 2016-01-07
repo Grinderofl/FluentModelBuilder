@@ -38,6 +38,17 @@ namespace FluentModelBuilder.Builder
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// Specify the scope of this AutoModelBuilder, default is Early
+        /// <remarks>
+        /// You would use this to change when the changes should be applied to the model - whether Early,
+        /// i.e. before Entity Framework's own model creation, or Late, i.e. after Entity Framework
+        /// has already created its own model. This is useful for things like overriding the base properties
+        /// of IdentitydbContext entities, like UserName, Email, etc.
+        /// </remarks>
+        /// </summary>
+        /// <param name="scope">Scope to use</param>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder Scope(BuilderScope scope)
         {
             _scope = scope;
