@@ -63,24 +63,6 @@
           "lib/net451/EntityFramework.InMemory.dll": {}
         }
       },
-      "EntityFramework.MicrosoftSqlServer/7.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "EntityFramework.Relational": "7.0.0-rc1-final"
-        },
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": {
-          "lib/net451/EntityFramework.MicrosoftSqlServer.dll": {}
-        },
-        "runtime": {
-          "lib/net451/EntityFramework.MicrosoftSqlServer.dll": {}
-        }
-      },
       "EntityFramework.Relational/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -102,57 +84,17 @@
           "lib/net451/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.Sqlite/7.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "EntityFramework.Relational": "7.0.0-rc1-final",
-          "Microsoft.Data.Sqlite": "1.0.0-rc1-final"
-        },
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": {
-          "lib/net451/EntityFramework.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/net451/EntityFramework.Sqlite.dll": {}
-        }
-      },
-      "FluentModelBuilder/1.0.0-alpha2": {
+      "FluentModelBuilder/1.0.0-alpha4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-rc1-final"
-        }
+        },
+        "frameworkAssemblies": [
+          "System.Runtime"
+        ]
       },
-      "FluentModelBuilder.InMemory/1.0.0-alpha2": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
-        "dependencies": {
-          "EntityFramework.InMemory": "7.0.0-rc1-final",
-          "FluentModelBuilder": null
-        }
-      },
-      "FluentModelBuilder.Sqlite/1.0.0-alpha2": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
-        "dependencies": {
-          "EntityFramework.Sqlite": "7.0.0-rc1-final",
-          "FluentModelBuilder": null
-        }
-      },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha2": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
-        "dependencies": {
-          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
-          "FluentModelBuilder": null
-        }
-      },
-      "FluentModelBuilder.TestTarget/1.0.0-alpha2": {
+      "FluentModelBuilder.TestTarget/1.0.0-alpha4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -465,25 +407,6 @@
         },
         "runtime": {
           "lib/net451/Microsoft.AspNet.WebUtilities.dll": {}
-        }
-      },
-      "Microsoft.Data.Sqlite/1.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
-        },
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core",
-          "System.Data"
-        ],
-        "compile": {
-          "lib/net451/Microsoft.Data.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/net451/Microsoft.Data.Sqlite.dll": {}
         }
       },
       "Microsoft.Dnx.Compilation.Abstractions/1.0.0-rc1-final": {
@@ -1041,24 +964,6 @@
           "lib/net451/EntityFramework.InMemory.dll": {}
         }
       },
-      "EntityFramework.MicrosoftSqlServer/7.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "EntityFramework.Relational": "7.0.0-rc1-final"
-        },
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": {
-          "lib/net451/EntityFramework.MicrosoftSqlServer.dll": {}
-        },
-        "runtime": {
-          "lib/net451/EntityFramework.MicrosoftSqlServer.dll": {}
-        }
-      },
       "EntityFramework.Relational/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -1080,57 +985,17 @@
           "lib/net451/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.Sqlite/7.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "EntityFramework.Relational": "7.0.0-rc1-final",
-          "Microsoft.Data.Sqlite": "1.0.0-rc1-final"
-        },
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": {
-          "lib/net451/EntityFramework.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/net451/EntityFramework.Sqlite.dll": {}
-        }
-      },
-      "FluentModelBuilder/1.0.0-alpha2": {
+      "FluentModelBuilder/1.0.0-alpha4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-rc1-final"
-        }
+        },
+        "frameworkAssemblies": [
+          "System.Runtime"
+        ]
       },
-      "FluentModelBuilder.InMemory/1.0.0-alpha2": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
-        "dependencies": {
-          "EntityFramework.InMemory": "7.0.0-rc1-final",
-          "FluentModelBuilder": null
-        }
-      },
-      "FluentModelBuilder.Sqlite/1.0.0-alpha2": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
-        "dependencies": {
-          "EntityFramework.Sqlite": "7.0.0-rc1-final",
-          "FluentModelBuilder": null
-        }
-      },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha2": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
-        "dependencies": {
-          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
-          "FluentModelBuilder": null
-        }
-      },
-      "FluentModelBuilder.TestTarget/1.0.0-alpha2": {
+      "FluentModelBuilder.TestTarget/1.0.0-alpha4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1443,28 +1308,6 @@
         },
         "runtime": {
           "lib/net451/Microsoft.AspNet.WebUtilities.dll": {}
-        }
-      },
-      "Microsoft.Data.Sqlite/1.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
-        },
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core",
-          "System.Data"
-        ],
-        "compile": {
-          "lib/net451/Microsoft.Data.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/net451/Microsoft.Data.Sqlite.dll": {}
-        },
-        "native": {
-          "runtimes/win7-x86/native/sqlite3.dll": {}
         }
       },
       "Microsoft.Dnx.Compilation.Abstractions/1.0.0-rc1-final": {
@@ -2022,24 +1865,6 @@
           "lib/net451/EntityFramework.InMemory.dll": {}
         }
       },
-      "EntityFramework.MicrosoftSqlServer/7.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "EntityFramework.Relational": "7.0.0-rc1-final"
-        },
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": {
-          "lib/net451/EntityFramework.MicrosoftSqlServer.dll": {}
-        },
-        "runtime": {
-          "lib/net451/EntityFramework.MicrosoftSqlServer.dll": {}
-        }
-      },
       "EntityFramework.Relational/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -2061,57 +1886,17 @@
           "lib/net451/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.Sqlite/7.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "EntityFramework.Relational": "7.0.0-rc1-final",
-          "Microsoft.Data.Sqlite": "1.0.0-rc1-final"
-        },
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": {
-          "lib/net451/EntityFramework.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/net451/EntityFramework.Sqlite.dll": {}
-        }
-      },
-      "FluentModelBuilder/1.0.0-alpha2": {
+      "FluentModelBuilder/1.0.0-alpha4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
           "EntityFramework.Core": "7.0.0-rc1-final"
-        }
+        },
+        "frameworkAssemblies": [
+          "System.Runtime"
+        ]
       },
-      "FluentModelBuilder.InMemory/1.0.0-alpha2": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
-        "dependencies": {
-          "EntityFramework.InMemory": "7.0.0-rc1-final",
-          "FluentModelBuilder": null
-        }
-      },
-      "FluentModelBuilder.Sqlite/1.0.0-alpha2": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
-        "dependencies": {
-          "EntityFramework.Sqlite": "7.0.0-rc1-final",
-          "FluentModelBuilder": null
-        }
-      },
-      "FluentModelBuilder.SqlServer/1.0.0-alpha2": {
-        "type": "project",
-        "framework": "DNX,Version=v4.5.1",
-        "dependencies": {
-          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
-          "FluentModelBuilder": null
-        }
-      },
-      "FluentModelBuilder.TestTarget/1.0.0-alpha2": {
+      "FluentModelBuilder.TestTarget/1.0.0-alpha4": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -2424,28 +2209,6 @@
         },
         "runtime": {
           "lib/net451/Microsoft.AspNet.WebUtilities.dll": {}
-        }
-      },
-      "Microsoft.Data.Sqlite/1.0.0-rc1-final": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
-        },
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core",
-          "System.Data"
-        ],
-        "compile": {
-          "lib/net451/Microsoft.Data.Sqlite.dll": {}
-        },
-        "runtime": {
-          "lib/net451/Microsoft.Data.Sqlite.dll": {}
-        },
-        "native": {
-          "runtimes/win7-x64/native/sqlite3.dll": {}
         }
       },
       "Microsoft.Dnx.Compilation.Abstractions/1.0.0-rc1-final": {
@@ -2944,23 +2707,11 @@
     }
   },
   "libraries": {
-    "FluentModelBuilder/1.0.0-alpha2": {
+    "FluentModelBuilder/1.0.0-alpha4": {
       "type": "project",
       "path": "../../src/FluentModelBuilder/project.json"
     },
-    "FluentModelBuilder.InMemory/1.0.0-alpha2": {
-      "type": "project",
-      "path": "../../src/FluentModelBuilder.InMemory/project.json"
-    },
-    "FluentModelBuilder.Sqlite/1.0.0-alpha2": {
-      "type": "project",
-      "path": "../../src/FluentModelBuilder.Sqlite/project.json"
-    },
-    "FluentModelBuilder.SqlServer/1.0.0-alpha2": {
-      "type": "project",
-      "path": "../../src/FluentModelBuilder.SqlServer/project.json"
-    },
-    "FluentModelBuilder.TestTarget/1.0.0-alpha2": {
+    "FluentModelBuilder.TestTarget/1.0.0-alpha4": {
       "type": "project",
       "path": "../FluentModelBuilder.TestTarget/project.json"
     },
@@ -2998,22 +2749,6 @@
         "lib/netcore50/EntityFramework.InMemory.xml"
       ]
     },
-    "EntityFramework.MicrosoftSqlServer/7.0.0-rc1-final": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "FMB2MgT5aXMF7qGMwf5AGcmpNFoT4s1w0QJ5h+L8W4gyMxWpYamGp9hms7rOSAWY44ZDl5ZMpxiTfu3nY3Nqeg==",
-      "files": [
-        "EntityFramework.MicrosoftSqlServer.7.0.0-rc1-final.nupkg",
-        "EntityFramework.MicrosoftSqlServer.7.0.0-rc1-final.nupkg.sha512",
-        "EntityFramework.MicrosoftSqlServer.nuspec",
-        "lib/dotnet5.4/EntityFramework.MicrosoftSqlServer.dll",
-        "lib/dotnet5.4/EntityFramework.MicrosoftSqlServer.xml",
-        "lib/net451/EntityFramework.MicrosoftSqlServer.dll",
-        "lib/net451/EntityFramework.MicrosoftSqlServer.xml",
-        "lib/netcore50/EntityFramework.MicrosoftSqlServer.dll",
-        "lib/netcore50/EntityFramework.MicrosoftSqlServer.xml"
-      ]
-    },
     "EntityFramework.Relational/7.0.0-rc1-final": {
       "type": "package",
       "serviceable": true,
@@ -3028,22 +2763,6 @@
         "lib/net451/EntityFramework.Relational.xml",
         "lib/netcore50/EntityFramework.Relational.dll",
         "lib/netcore50/EntityFramework.Relational.xml"
-      ]
-    },
-    "EntityFramework.Sqlite/7.0.0-rc1-final": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "B+h4HHUnCSN/d4DIxW89B6q4efcZzQjajQb1yrlALEeZuCBDIzO0nrEdRZsRSNqJaNzmxRu/OsYqrZVOORUrGw==",
-      "files": [
-        "EntityFramework.Sqlite.7.0.0-rc1-final.nupkg",
-        "EntityFramework.Sqlite.7.0.0-rc1-final.nupkg.sha512",
-        "EntityFramework.Sqlite.nuspec",
-        "lib/dotnet5.4/EntityFramework.Sqlite.dll",
-        "lib/dotnet5.4/EntityFramework.Sqlite.xml",
-        "lib/net451/EntityFramework.Sqlite.dll",
-        "lib/net451/EntityFramework.Sqlite.xml",
-        "lib/netcore50/EntityFramework.Sqlite.dll",
-        "lib/netcore50/EntityFramework.Sqlite.xml"
       ]
     },
     "Ix-Async/1.2.5": {
@@ -3269,29 +2988,6 @@
         "Microsoft.AspNet.WebUtilities.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.WebUtilities.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.WebUtilities.nuspec"
-      ]
-    },
-    "Microsoft.Data.Sqlite/1.0.0-rc1-final": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "54F32OBWIWMIpeKggCMEX+Bp/TiAiKzBaQ4z+IRr61eNSnJhxMnLE/QWDs5YbCtbDlWIB4+VBC1rnT8PFGCtdw==",
-      "files": [
-        "build/net451/Microsoft.Data.Sqlite.props",
-        "build/netcore50/Microsoft.Data.Sqlite.targets",
-        "build/netcore50/win10-arm/native/sqlite3.dll",
-        "build/netcore50/win10-x64/native/sqlite3.dll",
-        "build/netcore50/win10-x86/native/sqlite3.dll",
-        "lib/dotnet5.4/Microsoft.Data.Sqlite.dll",
-        "lib/dotnet5.4/Microsoft.Data.Sqlite.xml",
-        "lib/net451/Microsoft.Data.Sqlite.dll",
-        "lib/net451/Microsoft.Data.Sqlite.xml",
-        "lib/netcore50/Microsoft.Data.Sqlite.dll",
-        "lib/netcore50/Microsoft.Data.Sqlite.xml",
-        "Microsoft.Data.Sqlite.1.0.0-rc1-final.nupkg",
-        "Microsoft.Data.Sqlite.1.0.0-rc1-final.nupkg.sha512",
-        "Microsoft.Data.Sqlite.nuspec",
-        "runtimes/win7-x64/native/sqlite3.dll",
-        "runtimes/win7-x86/native/sqlite3.dll"
       ]
     },
     "Microsoft.Dnx.Compilation.Abstractions/1.0.0-rc1-final": {
@@ -3947,10 +3643,8 @@
       "xunit.runner.dnx >= 2.1.0-rc1-build204",
       "FluentModelBuilder ",
       "FluentModelBuilder.TestTarget ",
-      "FluentModelBuilder.InMemory ",
-      "FluentModelBuilder.SqlServer ",
-      "FluentModelBuilder.Sqlite ",
-      "Microsoft.AspNet.Identity.EntityFramework >= 3.0.0-rc1-final"
+      "Microsoft.AspNet.Identity.EntityFramework >= 3.0.0-rc1-final",
+      "EntityFramework.InMemory >= 7.0.0-rc1-final"
     ],
     "DNX,Version=v4.5.1": []
   }

@@ -1,28 +1,33 @@
-using System;
+using System.Linq;
 using System.Reflection;
-using FluentModelBuilder;
-using FluentModelBuilder.Core.Contributors.Extensions;
-using FluentModelBuilder.Extensions;
-using FluentModelBuilder.SqlServer.Extensions;
 using Microsoft.Data.Entity;
 
 namespace ModelBuilderSample
 {
     public class ProjectDbContext : DbContext
     {
-        public ProjectDbContext(IServiceProvider serviceProvider) : base(serviceProvider)
-        {
+        //public ProjectDbContext(IServiceProvider serviceProvider) : base(serviceProvider)
+        //{
             
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //}
+        //protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //{
+        //    //options.ConfigureModel()
+        //    //    .Entities(
+        //    //        entities =>
+        //    //            entities.Discover(from =>
+        //    //            from.AssemblyContaining<ProjectDbContext>().BaseType<Entity>())).WithSqlServerDatabase("Data Source=.;Initial Catalog=eftest;Integrated Security=SSPI;");
+
+
+        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            options.ConfigureModel()
-                .Entities(
-                    entities =>
-                        entities.Discover(from =>
-                        from.AssemblyContaining<ProjectDbContext>().BaseType<Entity>())).WithSqlServerDatabase("Data Source=.;Initial Catalog=eftest;Integrated Security=SSPI;");
-
-
+            var types = typeof (ProjectDbContext).GetTypeInfo()
+                .Assembly.GetExportedTypes()
+                .Where(x => x.Namespace.EndsWith(".Entities"));
+            foreach (var type in types)
+                modelBuilder.Entity(type);
+            base.OnModelCreating(modelBuilder);
         }
     }
 
