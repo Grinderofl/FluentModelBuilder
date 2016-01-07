@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Configuration;
+using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata.Conventions.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -22,7 +23,13 @@ namespace FluentModelBuilder.Extensions
             return type.GetInterfaces().Any(x => x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == interfaceType);
         }
 
-        public static void ConfigureEntityFramework(this IServiceCollection services, Action<FluentModelBuilderConfiguration> configurationAction)
+        /// <summary>
+        /// Fluently configures DbContext for application
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configurationAction"></param>
+        public static void ConfigureEntityFramework(this IServiceCollection services,
+            Action<FluentModelBuilderConfiguration> configurationAction)
         {
             var configuration = new FluentModelBuilderConfiguration();
             configurationAction(configuration);
