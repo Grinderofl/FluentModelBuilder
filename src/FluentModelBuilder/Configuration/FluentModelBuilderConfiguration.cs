@@ -23,10 +23,10 @@ namespace FluentModelBuilder.Configuration
 
         public ConventionSetAlterationCollection Alterations = new ConventionSetAlterationCollection();
 
-        internal void Apply(InternalModelBuilder builder)
+        internal void Apply(InternalModelBuilder builder, BuilderScope scope)
         {
             foreach(var b in _builders)
-                b.Apply(builder);
+                b.Apply(builder, scope);
         }
 
         internal void Apply(Microsoft.Data.Entity.Metadata.Conventions.ConventionSet conventionSet)

@@ -20,5 +20,10 @@ namespace FluentModelBuilder.Tests.Core
         {
             return EntityTypes.ElementAt(elementIndex).GetProperties().OrderBy(x => x.Name);
         }
+
+        protected IProperty GetElementProperty(int elementIndex, int propertyIndex)
+        {
+            return GetProperties(elementIndex).ElementAt(propertyIndex);
+        }
     }
 }

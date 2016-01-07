@@ -1,4 +1,5 @@
-﻿using FluentModelBuilder.Configuration;
+﻿using FluentModelBuilder.Builder;
+using FluentModelBuilder.Configuration;
 using FluentModelBuilder.Conventions;
 using Microsoft.Data.Entity.Metadata.Conventions;
 
@@ -15,7 +16,8 @@ namespace FluentModelBuilder.Alterations
 
         public void Alter(ConventionSet conventions)
         {
-            conventions.ModelInitializedConventions.Add(new FluentModelBuilderConvention(_configuration));
+            conventions.ModelInitializedConventions.Add(new FluentModelBuilderConvention(_configuration, BuilderScope.Early));
+            conventions.ModelBuiltConventions.Add(new FluentModelBuilderConvention(_configuration, BuilderScope.Late));
         }
     }
 }

@@ -26,6 +26,8 @@ namespace FluentModelBuilder.Builder
 
         public readonly IEntityAutoConfiguration Configuration;
 
+        private BuilderScope _scope = BuilderScope.Early;
+
         public AutoModelBuilder() : this(new DefaultEntityAutoConfiguration())
         {
             
@@ -34,6 +36,12 @@ namespace FluentModelBuilder.Builder
         public AutoModelBuilder(IEntityAutoConfiguration configuration)
         {
             Configuration = configuration;
+        }
+
+        public AutoModelBuilder Scope(BuilderScope scope)
+        {
+            _scope = scope;
+            return this;
         }
 
         /// <summary>
@@ -247,8 +255,10 @@ namespace FluentModelBuilder.Builder
             mappingOverride.Override(builder);
         }
 
-        internal void Apply(InternalModelBuilder builder)
+        internal void Apply(InternalModelBuilder builder, BuilderScope scope)
         {
+            if (_scope != scope) return;
+
             _alterations.Apply(this);
             AddEntities(builder);
             ApplyOverrides(builder);

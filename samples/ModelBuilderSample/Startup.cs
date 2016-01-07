@@ -25,7 +25,7 @@ namespace ModelBuilderSample
                 context.Set<TestEntity>().Add(new TestEntity() {Name = "Hi"});
                 context.SaveChanges();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
             }
