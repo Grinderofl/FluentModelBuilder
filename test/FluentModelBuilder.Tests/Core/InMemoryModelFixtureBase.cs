@@ -6,13 +6,6 @@ namespace FluentModelBuilder.Tests.Core
 {
     public abstract class InMemoryModelFixtureBase<TContext> : ModelFixtureBase<TContext> where TContext : DbContext
     {
-        //protected override void ConfigureServices(IServiceCollection services)
-        //{
-        //    ConfigureServicesCore(services);
-        //}
-
-        //protected abstract void ConfigureServicesCore(IServiceCollection services);
-
         protected override void ConfigureContext(DbContextOptionsBuilder builder)
         {
             builder.UseInMemoryDatabase();

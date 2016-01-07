@@ -11,7 +11,7 @@ namespace FluentModelBuilder.Tests.Core
 
         protected ModelFixtureBase()
         {
-            Model = Provider.GetService<DbContext>().Model;
+            Model = Provider.GetService<TContext>().Model;
         }
 
         protected override void ConfigureServices(IServiceCollection services)
