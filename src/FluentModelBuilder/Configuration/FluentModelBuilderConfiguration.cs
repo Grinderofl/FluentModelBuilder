@@ -25,10 +25,10 @@ namespace FluentModelBuilder.Configuration
 
         public ConventionSetAlterationCollection Alterations = new ConventionSetAlterationCollection();
 
-        internal void Apply(ModelBuilder builder, BuilderScope scope)
+        internal void Apply(CustomizeParams parameters)
         {
             foreach(var b in _builders)
-                b.Apply(builder, scope);
+                b.Apply(parameters);
         }
 
         internal void Apply(ConventionSet conventionSet)

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Configuration;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +22,11 @@ namespace FluentModelBuilder.Extensions
         public static bool ClosesInterface(this Type type, Type interfaceType)
         {
             return type.GetInterfaces().Any(x => x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == interfaceType);
+        }
+
+        public static bool IsDbContextType(this Type type)
+        {
+            return typeof (DbContext).IsAssignableFrom(type);
         }
 
         /// <summary>
