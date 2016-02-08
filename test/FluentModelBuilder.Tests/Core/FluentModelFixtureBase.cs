@@ -1,6 +1,6 @@
 using FluentModelBuilder.Configuration;
 using FluentModelBuilder.Extensions;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentModelBuilder.Tests.Core

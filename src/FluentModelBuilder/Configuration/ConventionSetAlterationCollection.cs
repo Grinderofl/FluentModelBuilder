@@ -1,7 +1,7 @@
 using System.Reflection;
 using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Core;
-using Microsoft.Data.Entity.Metadata.Conventions;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace FluentModelBuilder.Configuration
 {

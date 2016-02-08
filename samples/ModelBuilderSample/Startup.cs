@@ -3,10 +3,10 @@ using System.Reflection;
 using FluentModelBuilder;
 using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Configuration;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Metadata.Builders;
 using Microsoft.Extensions.DependencyInjection;
 using FluentModelBuilder.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ModelBuilderSample
 {

@@ -3,8 +3,8 @@ using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Builder;
 using FluentModelBuilder.Configuration;
 using FluentModelBuilder.Tests.Core;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Data.Entity.Metadata.Builders;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Xunit;
 
 namespace FluentModelBuilder.Tests

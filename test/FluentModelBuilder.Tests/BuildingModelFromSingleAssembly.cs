@@ -6,8 +6,7 @@ using FluentModelBuilder.Configuration;
 using FluentModelBuilder.Tests.Core;
 using FluentModelBuilder.Tests.Entities;
 using FluentModelBuilder.TestTarget;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Metadata;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 

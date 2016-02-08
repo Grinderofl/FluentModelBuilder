@@ -7,8 +7,9 @@ using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Builder.Sources;
 using FluentModelBuilder.Configuration;
 using FluentModelBuilder.Extensions;
-using Microsoft.Data.Entity.Metadata.Builders;
-using Microsoft.Data.Entity.Metadata.Internal;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FluentModelBuilder.Builder
 {
@@ -16,11 +17,14 @@ namespace FluentModelBuilder.Builder
     {
         private readonly IDictionary<Type, object> _entityTypeBuilderCache = new Dictionary<Type, object>();
         private readonly IList<InlineOverride> _inlineOverrides = new List<InlineOverride>();
+        private readonly IList<IModelBuilderOverride> _modelBuilderOverrides = new List<IModelBuilderOverride>();
 
         private readonly List<ITypeSource> _typeSources = new List<ITypeSource>();
 
         private readonly List<Type> _includedTypes = new List<Type>();
         private readonly List<Type> _ignoredTypes = new List<Type>();
+
+        private readonly List<Type> _dbContextTypes = new List<Type>();
 
         private readonly AutoModelBuilderAlterationCollection _alterations = new AutoModelBuilderAlterationCollection();
 
@@ -84,6 +88,8 @@ namespace FluentModelBuilder.Builder
         public AutoModelBuilder UseOverridesFromAssembly(Assembly assembly)
         {
             _alterations.Add(new EntityTypeOverrideAlteration(assembly));
+            _alterations.Add(new ModelBuilderOverrideAlteration(assembly));
+            //_modelBuilderOverrides.Add(new EntityTypeOverrideModelBuilderOverride(assembly));
             return this;
         }
 
@@ -249,16 +255,31 @@ namespace FluentModelBuilder.Builder
             return this;
         }
 
-        private object EntityTypeBuilder(InternalModelBuilder builder, Type type)
+        /// <summary>
+        /// Override the ModelBuilder
+        /// </summary>
+        /// <param name="modelBuilderOverride">Type of IModelBuilderOverride</param>
+        public void Override(IModelBuilderOverride modelBuilderOverride)
         {
-            if (!_entityTypeBuilderCache.ContainsKey(type))
-            {
-                var internalEntityTypeBuilder = builder.Entity(type, ConfigurationSource.Explicit);
-                var entityTypeBuilderType = typeof (EntityTypeBuilder<>).MakeGenericType(type);
-                var entityTypeBuilderInstance = Activator.CreateInstance(entityTypeBuilderType, internalEntityTypeBuilder);
-                _entityTypeBuilderCache.Add(type, entityTypeBuilderInstance);
-            }
-            return _entityTypeBuilderCache[type];
+            _modelBuilderOverrides.Add(modelBuilderOverride);
+        }
+
+        private object EntityTypeBuilder(ModelBuilder builder, Type type)
+        {
+            var entityMethod = typeof (ModelBuilder).GetMethods(BindingFlags.Public | BindingFlags.Instance).FirstOrDefault(x => x.Name == "Entity" && x.IsGenericMethod);
+            
+            if (entityMethod == null) return null;
+            var genericEntityMethod = entityMethod.MakeGenericMethod(type);
+            return genericEntityMethod.Invoke(builder, null);
+            //var entityTypeBuilder = builder.Entity(type);
+            //return builder.Entity(type);
+            //if (!_entityTypeBuilderCache.ContainsKey(type))
+            //{
+            //    var entityTypeBuilderType = typeof(EntityTypeBuilder<>).MakeGenericType(type);
+            //    var entityTypeBuilderInstance = Activator.CreateInstance(entityTypeBuilderType, entityTypeBuilder);
+            //    _entityTypeBuilderCache.Add(type, entityTypeBuilderInstance);
+            //}
+            //return _entityTypeBuilderCache[type];
         }
 
         private void OverrideHelper<T>(EntityTypeBuilder<T> builder, IEntityTypeOverride<T> mappingOverride) where T : class
@@ -266,7 +287,7 @@ namespace FluentModelBuilder.Builder
             mappingOverride.Override(builder);
         }
 
-        internal void Apply(InternalModelBuilder builder, BuilderScope scope)
+        internal void Apply(ModelBuilder builder, BuilderScope scope)
         {
             if (_scope != scope) return;
 
@@ -275,7 +296,7 @@ namespace FluentModelBuilder.Builder
             ApplyOverrides(builder);
         }
 
-        private void AddEntities(InternalModelBuilder builder)
+        private void AddEntities(ModelBuilder builder)
         {
             var types = _typeSources.SelectMany(x => x.GetTypes());
             foreach (var type in types)
@@ -285,11 +306,11 @@ namespace FluentModelBuilder.Builder
                 if (!ShouldMap(type))
                     continue;
 
-                builder.Entity(type, ConfigurationSource.Explicit);
+                builder.Entity(type);
             }
         }
 
-        private void ApplyOverrides(InternalModelBuilder builder)
+        private void ApplyOverrides(ModelBuilder builder)
         {
             foreach (var inlineOverride in _inlineOverrides)
             {

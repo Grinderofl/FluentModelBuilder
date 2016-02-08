@@ -5,9 +5,9 @@ using FluentModelBuilder.Configuration;
 using FluentModelBuilder.Tests.Core;
 using FluentModelBuilder.Tests.Entities;
 using FluentModelBuilder.TestTarget;
-using Microsoft.Data.Entity;
 using Xunit;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace FluentModelBuilder.Tests
 {

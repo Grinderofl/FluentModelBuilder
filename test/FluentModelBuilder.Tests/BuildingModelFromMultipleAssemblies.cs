@@ -2,10 +2,10 @@ using System;
 using FluentModelBuilder.Configuration;
 using FluentModelBuilder.Tests.Core;
 using FluentModelBuilder.TestTarget;
-using Microsoft.Data.Entity;
 using Xunit;
 using System.Linq;
 using FluentModelBuilder.Tests.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace FluentModelBuilder.Tests
 {

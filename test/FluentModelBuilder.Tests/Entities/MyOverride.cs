@@ -1,7 +1,7 @@
 using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Tests.Entities;
 using FluentModelBuilder.TestTarget;
-using Microsoft.Data.Entity.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FluentModelBuilder.Tests
 {

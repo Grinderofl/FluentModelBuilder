@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Reflection;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace ModelBuilderSample
 {
@@ -20,15 +20,19 @@ namespace ModelBuilderSample
 
 
         //}
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public ProjectDbContext()
         {
-            var types = typeof (ProjectDbContext).GetTypeInfo()
-                .Assembly.GetExportedTypes()
-                .Where(x => x.Namespace.EndsWith(".Entities"));
-            foreach (var type in types)
-                modelBuilder.Entity(type);
-            base.OnModelCreating(modelBuilder);
+            
         }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    var types = typeof (ProjectDbContext).GetTypeInfo()
+        //        .Assembly.GetExportedTypes()
+        //        .Where(x => x.Namespace.EndsWith(".Entities"));
+        //    foreach (var type in types)
+        //        modelBuilder.Entity(type);
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 
     public class MyEntityOne

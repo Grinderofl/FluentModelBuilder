@@ -1,7 +1,7 @@
 ﻿using FluentModelBuilder.Builder;
 using FluentModelBuilder.Configuration;
 using FluentModelBuilder.Conventions;
-using Microsoft.Data.Entity.Metadata.Conventions;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace FluentModelBuilder.Alterations
 {
@@ -16,8 +16,8 @@ namespace FluentModelBuilder.Alterations
 
         public void Alter(ConventionSet conventions)
         {
-            conventions.ModelInitializedConventions.Add(new FluentModelBuilderConvention(_configuration, BuilderScope.PreModelCreating));
-            conventions.ModelBuiltConventions.Add(new FluentModelBuilderConvention(_configuration, BuilderScope.PostModelCreating));
+            //conventions.ModelInitializedConventions.Add(new FluentModelBuilderConvention(_configuration, BuilderScope.PreModelCreating));
+            //conventions.ModelBuiltConventions.Add(new FluentModelBuilderConvention(_configuration, BuilderScope.PostModelCreating));
         }
     }
 }

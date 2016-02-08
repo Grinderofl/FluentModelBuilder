@@ -7,16 +7,21 @@
   "licenseUrl": "",
   "dependencies": {
     "xunit": "2.1.0",
-    "xunit.runner.dnx": "2.1.0-rc1-build204",
     "FluentModelBuilder": "",
     "FluentModelBuilder.TestTarget": "",
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
-    "EntityFramework.InMemory": "7.0.0-rc1-final"
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0-*",
+    "xunit.runner.aspnet": "2.0.0-aspnet-*"
   },
-  "commands": { 
-    "test": "xunit.runner.dnx"
+  "commands": {
+    "test": "xunit.runner.aspnet"
   },
+  "testRunner":"xunit",
   "frameworks": {
-    "dnx451": { }
+    "net451": {
+      "frameworkAssemblies": {
+        "System.Threading.Tasks": ""
+      }
+    }
   }
 }

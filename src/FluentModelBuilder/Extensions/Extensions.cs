@@ -3,8 +3,8 @@ using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Configuration;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata.Conventions.Internal;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -33,9 +33,10 @@ namespace FluentModelBuilder.Extensions
         {
             var configuration = new FluentModelBuilderConfiguration();
             configurationAction(configuration);
-            configuration.Alterations.Add(new FluentModelBuilderConventionSetAlteration(configuration));
-            services.AddInstance(configuration);
-            services.Replace(ServiceDescriptor.Singleton<ICoreConventionSetBuilder, AutoCoreConventionSetBuilder>());
+            //configuration.Alterations.Add(new FluentModelBuilderConventionSetAlteration(configuration));
+            services.AddSingleton(configuration);
+            services.Replace(ServiceDescriptor.Singleton<IModelCustomizer, AutoModelCustomizer>());
+            //services.Replace(ServiceDescriptor.Singleton<ICoreConventionSetBuilder, AutoCoreConventionSetBuilder>());
         }
     }
 }

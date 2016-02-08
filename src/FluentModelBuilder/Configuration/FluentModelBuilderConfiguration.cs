@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using FluentModelBuilder.Builder;
-using Microsoft.Data.Entity.Metadata.Internal;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FluentModelBuilder.Configuration
 {
@@ -23,13 +25,13 @@ namespace FluentModelBuilder.Configuration
 
         public ConventionSetAlterationCollection Alterations = new ConventionSetAlterationCollection();
 
-        internal void Apply(InternalModelBuilder builder, BuilderScope scope)
+        internal void Apply(ModelBuilder builder, BuilderScope scope)
         {
             foreach(var b in _builders)
                 b.Apply(builder, scope);
         }
 
-        internal void Apply(Microsoft.Data.Entity.Metadata.Conventions.ConventionSet conventionSet)
+        internal void Apply(ConventionSet conventionSet)
         {
             foreach(var alteration in Alterations)
                 alteration.Alter(conventionSet);

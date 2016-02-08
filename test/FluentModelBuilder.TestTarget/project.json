@@ -9,6 +9,10 @@
     "FluentModelBuilder": ""
   },
   "frameworks": {
-    "dnx451": { }
+    "net451": {
+      "frameworkAssemblies": {
+        "System.Reflection": ""
+      }
+    }
   }
 }
