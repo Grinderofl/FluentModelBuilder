@@ -68,7 +68,7 @@ namespace FluentModelBuilder.Builder
         public AutoModelBuilder Context<TContext>(Func<TContext, bool> predicate = null) where TContext : DbContext
         {
             if (predicate == null)
-                _dbContextSelectors.Add(x => typeof (DbContext).IsAssignableFrom(typeof (TContext)));
+                _dbContextSelectors.Add(x => x.GetType() == typeof (TContext));
             else
                 _dbContextSelectors.Add(predicate as Func<DbContext, bool>);
             return this;
@@ -118,15 +118,15 @@ namespace FluentModelBuilder.Builder
             return this;
         }
 
-        /// <summary>
-        /// Add mapping overrides from this assembly (assembly executing this code)
-        /// </summary>
-        /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder UseOverridesFromThisAssembly()
-        {
-            var assembly = FindTheCallingAssembly();
-            return UseOverridesFromAssembly(assembly);
-        }
+        ///// <summary>
+        ///// Add mapping overrides from this assembly (assembly executing this code)
+        ///// </summary>
+        ///// <returns>AutoModelBuilder</returns>
+        //public AutoModelBuilder UseOverridesFromThisAssembly()
+        //{
+        //    var assembly = FindTheCallingAssembly();
+        //    return UseOverridesFromAssembly(assembly);
+        //}
 
         /// <summary>
         /// Adds entities from the <see cref="ITypeSource"/>
@@ -209,32 +209,32 @@ namespace FluentModelBuilder.Builder
             return AddEntityAssembly(typeof (T).GetTypeInfo().Assembly);
         }
 
-        /// <summary>
-        /// Adds entities from the calling assembly (assembly executing this code)
-        /// </summary>
-        /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddEntitiesFromThisAssembly()
-        {
-            var assembly = FindTheCallingAssembly();
-            return AddEntityAssembly(assembly);
-        }
+        ///// <summary>
+        ///// Adds entities from the calling assembly (assembly executing this code)
+        ///// </summary>
+        ///// <returns>AutoModelBuilder</returns>
+        //public AutoModelBuilder AddEntitiesFromThisAssembly()
+        //{
+        //    var assembly = FindTheCallingAssembly();
+        //    return AddEntityAssembly(assembly);
+        //}
 
-        private static Assembly FindTheCallingAssembly()
-        {
-            var trace = new StackTrace();
+        //private static Assembly FindTheCallingAssembly()
+        //{
+        //    var trace = new StackTrace();
 
-            var thisAssembly = typeof(AutoModelBuilder).GetTypeInfo().Assembly;
-            Assembly callingAssembly = null;
-            for (var i = 0; i < trace.FrameCount; i++)
-            {
-                var frame = trace.GetFrame(i);
-                var assembly = frame.GetMethod().DeclaringType.Assembly;
-                if (assembly == thisAssembly) continue;
-                callingAssembly = assembly;
-                break;
-            }
-            return callingAssembly;
-        }
+        //    var thisAssembly = typeof(AutoModelBuilder).GetTypeInfo().Assembly;
+        //    Assembly callingAssembly = null;
+        //    for (var i = 0; i < trace.FrameCount; i++)
+        //    {
+        //        var frame = trace.GetFrame(i);
+        //        var assembly = frame.GetMethod().DeclaringType.Assembly;
+        //        if (assembly == thisAssembly) continue;
+        //        callingAssembly = assembly;
+        //        break;
+        //    }
+        //    return callingAssembly;
+        //}
 
         internal void AddOverride(Type type, Action<object> action)
         {

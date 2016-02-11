@@ -46,4 +46,5 @@ namespace FluentModelBuilder.Tests
             Assert.Equal(name, properties.ElementAt(propertyIndex).Name);
         }
     }
+
 }

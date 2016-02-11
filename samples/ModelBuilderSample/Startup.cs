@@ -41,7 +41,7 @@ namespace ModelBuilderSample
             services.ConfigureEntityFramework(
                 mappings =>
                     mappings.Add(
-                        From.ThisAssembly().UseOverridesFromThisAssembly()));
+                        From.AssemblyOf<Program>().UseOverridesFromAssemblyOf<Program>()));
             //services.ConfigureContext(x => x.AddAlteration(new EntityTypeAlterationRegistryItem(typeof(TestEntity), typeof(TestEntityOverride))));
         }
     }

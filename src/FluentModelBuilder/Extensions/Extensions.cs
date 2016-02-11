@@ -42,7 +42,6 @@ namespace FluentModelBuilder.Extensions
             //configuration.Alterations.Add(new FluentModelBuilderConventionSetAlteration(configuration));
             services.AddSingleton(configuration);
             services.Replace(ServiceDescriptor.Singleton<IModelCustomizer, AutoModelCustomizer>());
-            //services.Replace(ServiceDescriptor.Singleton<ICoreConventionSetBuilder, AutoCoreConventionSetBuilder>());
         }
     }
 }

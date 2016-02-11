@@ -11,6 +11,7 @@
     "FluentModelBuilder.TestTarget": "",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.InMemory": "1.0.0-*",
+    "Microsoft.NETCore.Platforms": "1.0.1-*",
     "xunit.runner.aspnet": "2.0.0-aspnet-*"
   },
   "commands": {
@@ -18,7 +19,7 @@
   },
   "testRunner":"xunit",
   "frameworks": {
-    "net451": {
+    "dnx451": {
       "frameworkAssemblies": {
         "System.Threading.Tasks": ""
       }
