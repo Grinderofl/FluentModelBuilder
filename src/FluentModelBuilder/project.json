@@ -30,5 +30,8 @@
         "System.ComponentModel": "4.0.1-*"
       }
     }
+  },
+  "tools": {
+    "dotnet-publish-iis": "1.0.0-*"
   }
 }
