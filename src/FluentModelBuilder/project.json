@@ -6,18 +6,29 @@
   "projectUrl": "https://github.com/Grinderofl/FluentModelBuilder",
   "licenseUrl": "https://github.com/Grinderofl/FluentModelBuilder/blob/master/LICENSE.md",
   "dependencies": {
-    "Microsoft.EntityFrameworkCore": "1.0.0-*"
+    "Microsoft.EntityFrameworkCore": "1.0.0-*",
+    "Microsoft.NETCore.Platforms": "1.0.1-*",
+    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-*",
+    "Microsoft.Extensions.DependencyInjection": "1.0.0-*"
   },
 
   "frameworks": {
-    "dnx451": {},
     "net451": {
-      "frameworkAssemblies": {
-        "System.Runtime": ""
-      }
     },
-    "dotnet5.4": {
-
+    "netstandard1.3": {
+      "imports": [ "dotnet5.4" ],
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-*",
+        "System.Collections": "4.0.11-*",
+        "System.Linq": "4.1.0-*",
+        "System.Runtime": "4.1.0-*",
+        "System.Threading": "4.0.11-*",
+        "System.Reflection": "4.1.0-*",
+        "System.Reflection.Extensions": "4.0.1-*",
+        "System.Reflection.Primitives": "4.0.1-*",
+        "System.Runtime.Extensions": "4.1.0-*",
+        "System.ComponentModel": "4.0.1-*"
+      }
     }
   }
 }

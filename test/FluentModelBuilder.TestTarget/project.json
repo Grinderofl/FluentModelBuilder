@@ -6,18 +6,12 @@
   "projectUrl": "",
   "licenseUrl": "",
   "dependencies": {
-    "FluentModelBuilder": ""
+    "FluentModelBuilder": "1.0.0-*"
   },
   "frameworks": {
-    "dnx451": {},
     "net451": {
       "frameworkAssemblies": {
         "System.Reflection": ""
-      }
-    },
-    "dotnet5.4": {
-      "dependencies": {
-        "System.Reflection": "4.1.0-*"
       }
     }
   }

@@ -7,7 +7,7 @@
   "licenseUrl": "",
 
   "dependencies": {
-    "FluentModelBuilder": "",
+    "FluentModelBuilder": "1.0.0-*",
     "Microsoft.EntityFrameworkCore": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.Commands": "1.0.0-*"
