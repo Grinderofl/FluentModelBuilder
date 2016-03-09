@@ -13,9 +13,9 @@ namespace FluentModelBuilder.Configuration
         public virtual bool ShouldMap(Type type)
         {
             return !type.ClosesInterface(typeof (IEntityTypeOverride<>)) &&
-                   !type.IsNestedPrivate &&
-                   !type.IsDefined(typeof (CompilerGeneratedAttribute), false) &&
-                   type.IsClass;
+                   !type.GetTypeInfo().IsNestedPrivate &&
+                   !type.GetTypeInfo().IsDefined(typeof (CompilerGeneratedAttribute), false) &&
+                   type.GetTypeInfo().IsClass;
         }
 
         public bool ShouldApplyToContext(DbContext context)
