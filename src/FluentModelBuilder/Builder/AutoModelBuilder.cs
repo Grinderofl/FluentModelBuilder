@@ -39,7 +39,19 @@ namespace FluentModelBuilder.Builder
         public AutoModelBuilder(IEntityAutoConfiguration configuration)
         {
             Configuration = configuration;
+            Scope = new PropertyBuilder(this);
         }
+
+        /// <summary>
+        /// Specify the scope of this AutoModelBuilder, default is PreModelCreating
+        /// <remarks>
+        /// You would use this to change when the changes should be applied to the model - whether PreModelCreating,
+        /// i.e. before Entity Framework's own model creation, or PostModelCreating, i.e. after Entity Framework
+        /// has already created its own model. This is useful for things like overriding the base properties
+        /// of IdentityDbContext entities, like UserName, Email, etc.
+        /// </remarks>
+        /// </summary>
+        public PropertyBuilder Scope { get; }
 
         /// <summary>
         /// Specify the scope of this AutoModelBuilder, default is PreModelCreating
@@ -52,7 +64,7 @@ namespace FluentModelBuilder.Builder
         /// </summary>
         /// <param name="scope">Scope to use</param>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder Scope(BuilderScope scope)
+        internal AutoModelBuilder SetScope(BuilderScope scope)
         {
             _scope = scope;
             return this;

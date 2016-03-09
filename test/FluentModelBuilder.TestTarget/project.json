@@ -10,9 +10,9 @@
   },
   "frameworks": {
     "net451": {
-      "frameworkAssemblies": {
-        "System.Reflection": ""
-      }
+    },
+    "netstandard1.3": {
+      "imports": [ "dotnet5.4", "portable-windows8+net45+wp8" ]
     }
   }
 }

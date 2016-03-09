@@ -15,12 +15,18 @@
   },
   "testRunner":"xunit",
   "frameworks": {
-    "dnx451": {
+    "net451": {
       "dependencies": {
         "xunit.runner.console": "2.1.0"
       },
       "frameworkAssemblies": {
         "System.Threading.Tasks": ""
+      }
+    },
+    "netstandardapp1.5": {
+      "imports": [ "dnxcore50", "portable-windows8+net45+wp8" ],
+      "dependencies": {
+        "dotnet-test-xunit": "1.0.0-dev-*"
       }
     }
   }
