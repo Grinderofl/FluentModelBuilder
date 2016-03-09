@@ -15,13 +15,13 @@ namespace FluentModelBuilder.Builder
 
         public AutoModelBuilder PreModelCreating()
         {
-            _autoModelBuilder.SetScope(BuilderScope.PreModelCreating);
+            _autoModelBuilder.UseScope(BuilderScope.PreModelCreating);
             return _autoModelBuilder;
         }
 
         public AutoModelBuilder PostModelCreating()
         {
-            _autoModelBuilder.SetScope(BuilderScope.PostModelCreating);
+            _autoModelBuilder.UseScope(BuilderScope.PostModelCreating);
             return _autoModelBuilder;
         }
     }
