@@ -1,6 +1,9 @@
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Builder;
+using FluentModelBuilder.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace FluentModelBuilder.Configuration
@@ -9,7 +12,10 @@ namespace FluentModelBuilder.Configuration
     {
         public virtual bool ShouldMap(Type type)
         {
-            return type.GetTypeInfo().IsClass;
+            return !type.ClosesInterface(typeof (IEntityTypeOverride<>)) &&
+                   !type.IsNestedPrivate &&
+                   !type.IsDefined(typeof (CompilerGeneratedAttribute), false) &&
+                   type.IsClass;
         }
 
         public bool ShouldApplyToContext(DbContext context)
