@@ -33,7 +33,6 @@ namespace FluentModelBuilder.Builder
 
         public AutoModelBuilder() : this(new DefaultEntityAutoConfiguration())
         {
-            
         }
         
         public AutoModelBuilder(IEntityAutoConfiguration configuration)
@@ -261,7 +260,7 @@ namespace FluentModelBuilder.Builder
         public AutoModelBuilder Override(Type overrideType)
         {
             var overrideMethod = typeof(AutoModelBuilder)
-                .GetMethod("OverrideHelper", BindingFlags.NonPublic | BindingFlags.Instance);
+                .GetMethod(nameof(OverrideHelper), BindingFlags.NonPublic | BindingFlags.Instance);
             if (overrideMethod == null)
                 return this;
 
@@ -279,6 +278,11 @@ namespace FluentModelBuilder.Builder
                 
             }
             return this;
+        }
+
+        private void OverrideHelper<T>(EntityTypeBuilder<T> builder, IEntityTypeOverride<T> mappingOverride) where T : class
+        {
+            mappingOverride.Override(builder);
         }
 
         /// <summary>
@@ -370,8 +374,11 @@ namespace FluentModelBuilder.Builder
         {
             if (!Configuration.ShouldApplyToScope(scope))
                 return false;
-            if (_scope != null && _scope != scope)
+            if (_scope == null)
+                return scope == BuilderScope.PostModelCreating;
+            if (_scope != scope)
                 return false;
+
             return true;
         }
 
