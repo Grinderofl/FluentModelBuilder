@@ -132,23 +132,25 @@ namespace FluentModelBuilder.Configuration
             return new AutoModelBuilder(configuration);
         }
 
-        ///// <summary>
-        ///// Map classes from this assembly
-        ///// </summary>
-        ///// <returns>AutoModelBuilder</returns>
-        //public static AutoModelBuilder ThisAssembly()
-        //{
-        //    return new AutoModelBuilder().AddEntitiesFromThisAssembly();
-        //}
+#if NET451
+        /// <summary>
+        /// Map classes from this assembly
+        /// </summary>
+        /// <returns>AutoModelBuilder</returns>
+        public static AutoModelBuilder ThisAssembly()
+        {
+            return new AutoModelBuilder().AddEntitiesFromThisAssembly();
+        }
 
-        ///// <summary>
-        ///// Map classes from this assembly with supplied configuration
-        ///// </summary>
-        ///// <param name="configuration">Configuration to use</param>
-        ///// <returns>AutoModelBuilder</returns>
-        //public static AutoModelBuilder ThisAssembly(IEntityAutoConfiguration configuration)
-        //{
-        //    return new AutoModelBuilder(configuration).AddEntitiesFromThisAssembly();
-        //}
+        /// <summary>
+        /// Map classes from this assembly with supplied configuration
+        /// </summary>
+        /// <param name="configuration">Configuration to use</param>
+        /// <returns>AutoModelBuilder</returns>
+        public static AutoModelBuilder ThisAssembly(IEntityAutoConfiguration configuration)
+        {
+            return new AutoModelBuilder(configuration).AddEntitiesFromThisAssembly();
+        }
+#endif
     }
 }

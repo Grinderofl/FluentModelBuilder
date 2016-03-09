@@ -237,30 +237,67 @@ namespace FluentModelBuilder.Builder
             _modelBuilderOverrides.Add(modelBuilderOverride);
         }
 
-        ///// <summary>
-        ///// Add mapping overrides from this assembly (assembly executing this code)
-        ///// </summary>
-        ///// <returns>AutoModelBuilder</returns>
-        //public AutoModelBuilder UseOverridesFromThisAssembly()
-        //{
-        //    var assembly = FindTheCallingAssembly();
-        //    return UseOverridesFromAssembly(assembly);
-        //}
+#if NET451
+
+        /// <summary>
+        /// Add mapping overrides from this assembly (assembly executing this code)
+        /// </summary>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder UseOverridesFromThisAssembly()
+        {
+            var assembly = FindTheCallingAssembly();
+            return UseOverridesFromAssembly(assembly);
+        }
+
+#endif
 
         #endregion
 
 
+        #region Entities
+
         /// <summary>
-        /// Adds entities from the <see cref="ITypeSource"/>
+        /// Adds entities from specific assembly
         /// </summary>
-        /// <param name="typeSource"><see cref="ITypeSource"/> to use</param>
+        /// <param name="assembly">Assembly to use</param>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddTypeSource(ITypeSource typeSource)
+        public AutoModelBuilder AddEntityAssembly(Assembly assembly)
         {
-            _typeSources.Add(typeSource);
-            return this;
+            return AddTypeSource(new AssemblyTypeSource(assembly));
         }
 
+        /// <summary>
+        /// Adds entities from specific assembly
+        /// </summary>
+        /// <typeparam name="T">Type contained in required assembly</typeparam>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddEntityAssemblyOf<T>()
+        {
+            return AddEntityAssembly(typeof(T).GetTypeInfo().Assembly);
+        }
+
+        /// <summary>
+        /// Adds entities from specific assembly
+        /// </summary>
+        /// <param name="type">Type contained in required assembly</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddEntityAssemblyOf(Type type)
+        {
+            return AddEntityAssembly(type.GetTypeInfo().Assembly);
+        }
+
+#if NET451
+
+        /// <summary>
+        /// Adds entities from the calling assembly (assembly executing this code)
+        /// </summary>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddEntitiesFromThisAssembly()
+        {
+            var assembly = FindTheCallingAssembly();
+            return AddEntityAssembly(assembly);
+        }
+#endif
         /// <summary>
         /// Explicitly includes a type to be used as part of the model
         /// </summary>
@@ -311,52 +348,51 @@ namespace FluentModelBuilder.Builder
             return this;
         }
 
-        /// <summary>
-        /// Adds entities from specific assembly
-        /// </summary>
-        /// <param name="assembly">Assembly to use</param>
-        /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddEntityAssembly(Assembly assembly)
-        {
-            return AddTypeSource(new AssemblyTypeSource(assembly));
-        }
+#endregion
 
         /// <summary>
-        /// Adds entities from specific assembly
+        /// Adds entities from the <see cref="ITypeSource"/>
         /// </summary>
-        /// <typeparam name="T">Type contained in required assembly</typeparam>
+        /// <param name="typeSource"><see cref="ITypeSource"/> to use</param>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddEntityAssemblyOf<T>()
+        public AutoModelBuilder AddTypeSource(ITypeSource typeSource)
         {
-            return AddEntityAssembly(typeof (T).GetTypeInfo().Assembly);
+            _typeSources.Add(typeSource);
+            return this;
         }
 
-        ///// <summary>
-        ///// Adds entities from the calling assembly (assembly executing this code)
-        ///// </summary>
-        ///// <returns>AutoModelBuilder</returns>
-        //public AutoModelBuilder AddEntitiesFromThisAssembly()
-        //{
-        //    var assembly = FindTheCallingAssembly();
-        //    return AddEntityAssembly(assembly);
-        //}
 
-        //private static Assembly FindTheCallingAssembly()
-        //{
-        //    var trace = new StackTrace();
+#if NET451
+        private static Assembly FindTheCallingAssembly()
+        {
+            var trace = new StackTrace();
 
-        //    var thisAssembly = typeof(AutoModelBuilder).GetTypeInfo().Assembly;
-        //    Assembly callingAssembly = null;
-        //    for (var i = 0; i < trace.FrameCount; i++)
-        //    {
-        //        var frame = trace.GetFrame(i);
-        //        var assembly = frame.GetMethod().DeclaringType.Assembly;
-        //        if (assembly == thisAssembly) continue;
-        //        callingAssembly = assembly;
-        //        break;
-        //    }
-        //    return callingAssembly;
-        //}
+            var thisAssembly = typeof(AutoModelBuilder).GetTypeInfo().Assembly;
+            Assembly callingAssembly = null;
+            for (var i = 0; i < trace.FrameCount; i++)
+            {
+                var frame = trace.GetFrame(i);
+                var assembly = frame.GetMethod().DeclaringType.Assembly;
+                if (assembly == thisAssembly) continue;
+                callingAssembly = assembly;
+                break;
+            }
+            return callingAssembly;
+        }
+
+#endif
+        internal void Apply(CustomizeParams parameters)
+        {
+            if (!ShouldApplyToContext(parameters.DbContext))
+                return;
+
+            if (!ShouldApplyToScope(parameters.Scope))
+                return;
+
+            _alterations.Apply(this);
+            AddEntities(parameters.ModelBuilder);
+            ApplyOverrides(parameters.ModelBuilder);
+        }
 
         internal void AddOverride(Type type, Action<object> action)
         {
@@ -370,25 +406,15 @@ namespace FluentModelBuilder.Builder
 
         private object EntityTypeBuilder(ModelBuilder builder, Type type)
         {
-            var entityMethod = typeof (ModelBuilder).GetMethods(BindingFlags.Public | BindingFlags.Instance).FirstOrDefault(x => x.Name == "Entity" && x.IsGenericMethod);
-            
-            if (entityMethod == null) return null;
-            var genericEntityMethod = entityMethod.MakeGenericMethod(type);
-            return genericEntityMethod.Invoke(builder, null);
+            var entityMethod =
+                typeof (ModelBuilder).GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                    .FirstOrDefault(x => x.Name == "Entity" && x.IsGenericMethod);
+
+            var genericEntityMethod = entityMethod?.MakeGenericMethod(type);
+            return genericEntityMethod?.Invoke(builder, null);
         }
 
-        internal void Apply(CustomizeParams parameters)
-        {
-            if (!ShouldApplyToContext(parameters.DbContext))
-                return;
-
-            if (!ShouldApplyToScope(parameters.Scope))
-                return;
-
-            _alterations.Apply(this);
-            AddEntities(parameters.ModelBuilder);
-            ApplyOverrides(parameters.ModelBuilder);
-        }
+        
 
         private void AddEntities(ModelBuilder builder)
         {
