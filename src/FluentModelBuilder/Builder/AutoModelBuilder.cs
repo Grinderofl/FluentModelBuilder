@@ -64,7 +64,7 @@ namespace FluentModelBuilder.Builder
         /// </summary>
         /// <param name="scope">Scope to use</param>
         /// <returns>AutoModelBuilder</returns>
-        internal AutoModelBuilder SetScope(BuilderScope scope)
+        public AutoModelBuilder UseScope(BuilderScope scope)
         {
             _scope = scope;
             return this;
