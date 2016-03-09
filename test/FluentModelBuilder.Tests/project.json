@@ -10,7 +10,8 @@
     "FluentModelBuilder": "1.0.0-*",
     "FluentModelBuilder.TestTarget": "1.0.0-*",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0-*"    
+    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0-*",
+    
   },
   "testRunner":"xunit",
   "frameworks": {
