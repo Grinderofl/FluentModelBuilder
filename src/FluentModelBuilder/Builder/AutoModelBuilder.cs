@@ -316,20 +316,6 @@ namespace FluentModelBuilder.Builder
             if (entityMethod == null) return null;
             var genericEntityMethod = entityMethod.MakeGenericMethod(type);
             return genericEntityMethod.Invoke(builder, null);
-            //var entityTypeBuilder = builder.Entity(type);
-            //return builder.Entity(type);
-            //if (!_entityTypeBuilderCache.ContainsKey(type))
-            //{
-            //    var entityTypeBuilderType = typeof(EntityTypeBuilder<>).MakeGenericType(type);
-            //    var entityTypeBuilderInstance = Activator.CreateInstance(entityTypeBuilderType, entityTypeBuilder);
-            //    _entityTypeBuilderCache.Add(type, entityTypeBuilderInstance);
-            //}
-            //return _entityTypeBuilderCache[type];
-        }
-
-        private void OverrideHelper<T>(EntityTypeBuilder<T> builder, IEntityTypeOverride<T> mappingOverride) where T : class
-        {
-            mappingOverride.Override(builder);
         }
 
         internal void Apply(CustomizeParams parameters)
