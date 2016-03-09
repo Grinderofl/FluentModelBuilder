@@ -10,8 +10,7 @@
     "FluentModelBuilder": "1.0.0-*",
     "FluentModelBuilder.TestTarget": "1.0.0-*",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0-*",
-    "Microsoft.NETCore.Platforms": "1.0.1-*"
+    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0-*"    
   },
   "testRunner":"xunit",
   "frameworks": {
@@ -24,9 +23,10 @@
       }
     },
     "netstandardapp1.5": {
-      "imports": [ "dnxcore50", "portable-windows8+net45+wp8" ],
+      "imports": [ "dnxcore50", "portable-windows8+net452+win81" ],
       "dependencies": {
-        "dotnet-test-xunit": "1.0.0-dev-*"
+        "dotnet-test-xunit": "1.0.0-dev-*",
+        "Microsoft.NETCore.Platforms": "1.0.1-*"
       }
     }
   }

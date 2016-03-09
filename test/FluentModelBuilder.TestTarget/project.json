@@ -12,7 +12,7 @@
     "net451": {
     },
     "netstandard1.3": {
-      "imports": [ "dotnet5.4", "portable-windows8+net45+wp8" ]
+      "imports": [ "dotnet5.4", "portable-windows8+net452+win81" ]
     }
   }
 }
