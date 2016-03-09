@@ -19,10 +19,7 @@ namespace FluentModelBuilder.Configuration
 
         public bool ShouldApplyToScope(BuilderScope scope)
         {
-            return scope == BuilderScope.PostModelCreating;
+            return true;
         }
     }
-
-
-
 }

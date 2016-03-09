@@ -23,6 +23,14 @@
         "System.Threading.Tasks": ""
       }
     },
+    "dnx451": {
+      "dependencies": {
+        "xunit.runner.console": "2.1.0"
+      },
+      "frameworkAssemblies": {
+        "System.Threading.Tasks": ""
+      }
+    },
     "netstandardapp1.5": {
       "imports": [ "dnxcore50", "portable-windows8+net452+win81" ],
       "dependencies": {

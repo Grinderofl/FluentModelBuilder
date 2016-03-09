@@ -39,7 +39,6 @@ namespace FluentModelBuilder.Extensions
         {
             var configuration = new FluentModelBuilderConfiguration();
             configurationAction(configuration);
-            //configuration.Alterations.Add(new FluentModelBuilderConventionSetAlteration(configuration));
             services.AddSingleton(configuration);
             services.Replace(ServiceDescriptor.Singleton<IModelCustomizer, AutoModelCustomizer>());
         }

@@ -10,6 +10,7 @@ using FluentModelBuilder.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentModelBuilder.Builder
 {
@@ -41,6 +42,8 @@ namespace FluentModelBuilder.Builder
             Scope = new PropertyBuilder(this);
         }
 
+        #region Scope
+
         /// <summary>
         /// Specify the scope of this AutoModelBuilder, default is PreModelCreating
         /// <remarks>
@@ -63,11 +66,16 @@ namespace FluentModelBuilder.Builder
         /// </summary>
         /// <param name="scope">Scope to use</param>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder UseScope(BuilderScope scope)
+        public AutoModelBuilder UseScope(BuilderScope? scope)
         {
             _scope = scope;
             return this;
         }
+
+        #endregion
+
+
+        #region Context
 
         /// <summary>
         /// Add a DbContext selector to be used to determine whether this AutoModelBuilder should be used
@@ -95,9 +103,14 @@ namespace FluentModelBuilder.Builder
         {
             return Context<DbContext>(predicate);
         }
+
+        #endregion
         
+
+        #region Alterations
+
         /// <summary>
-        /// Add additional alterations to be used with this AutoModelBuilder
+        /// Configures alterations to be used with this AutoModelBuilder
         /// </summary>
         /// <param name="alterationDelegate">Action delegate for alteration</param>
         /// <returns>AutoModelBuilder</returns>
@@ -106,6 +119,45 @@ namespace FluentModelBuilder.Builder
             alterationDelegate(_alterations);
             return this;
         }
+
+        /// <summary>
+        /// Adds an alteration to be used with this AutoModelBuilder
+        /// </summary>
+        /// <typeparam name="TAlteration">Alteration to use</typeparam>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddAlteration<TAlteration>() where TAlteration : IAutoModelBuilderAlteration
+        {
+            return AddAlteration(typeof (TAlteration));
+        }
+
+        /// <summary>
+        /// Adds an alteration to be used with this AutoModelBuilder
+        /// </summary>
+        /// <param name="type">Type of Alteration to use. Expects to be IAutoModelBuilderAlteration</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddAlteration(Type type)
+        {
+            if(!type.ClosesInterface(typeof(IAutoModelBuilderAlteration)))
+                throw new ArgumentException($"Type does not implement interface {nameof(IAutoModelBuilderAlteration)}", nameof(type));
+            return
+                Alterations(
+                    a => a.Add(ActivatorUtilities.CreateInstance(null, type, null) as IAutoModelBuilderAlteration));
+        }
+
+        /// <summary>
+        /// Adds an alteration to be used with this AutoModelBuilder
+        /// </summary>
+        /// <param name="alteration">Alteration to use</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddAlteration(IAutoModelBuilderAlteration alteration)
+        {
+            return Alterations(a => a.Add(alteration));
+        }
+
+        #endregion
+
+
+        #region Overrides
 
         /// <summary>
         /// Add mapping overrides defined in assembly of T
@@ -129,6 +181,62 @@ namespace FluentModelBuilder.Builder
             return this;
         }
 
+        /// <summary>
+        /// Adds an IEntityTypeOverride via reflection
+        /// </summary>
+        /// <param name="overrideType">Type of override, expected to be IEntityTypeOverride</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder Override(Type overrideType)
+        {
+            var overrideMethod = typeof(AutoModelBuilder)
+                .GetMethod(nameof(OverrideHelper), BindingFlags.NonPublic | BindingFlags.Instance);
+            if (overrideMethod == null)
+                return this;
+
+            var overrideInterfaces = overrideType.GetInterfaces().Where(x => x.IsEntityTypeOverrideType()).ToList();
+            var overrideInstance = Activator.CreateInstance(overrideType);
+
+            foreach (var overrideInterface in overrideInterfaces)
+            {
+                var entityType = overrideInterface.GetGenericArguments().First();
+                AddOverride(entityType, instance =>
+                {
+                    overrideMethod.MakeGenericMethod(entityType)
+                        .Invoke(this, new[] { instance, overrideInstance });
+                });
+
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Override the mapping of specific entity
+        /// <remarks>
+        /// Can also be used to add single entities that are not picked up via assembly scanning
+        /// </remarks>
+        /// </summary>
+        /// <typeparam name="T">Type of entity to override</typeparam>
+        /// <param name="builderAction">Action to perform override</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder Override<T>(Action<EntityTypeBuilder<T>> builderAction = null) where T : class
+        {
+            _inlineOverrides.Add(new InlineOverride(typeof(T), x =>
+            {
+                if (x is EntityTypeBuilder<T>)
+                    builderAction?.Invoke((EntityTypeBuilder<T>)x);
+            }));
+            return this;
+        }
+
+        /// <summary>
+        /// Override the ModelBuilder
+        /// </summary>
+        /// <param name="modelBuilderOverride">Type of IModelBuilderOverride</param>
+        public void Override(IModelBuilderOverride modelBuilderOverride)
+        {
+            _modelBuilderOverrides.Add(modelBuilderOverride);
+        }
+
         ///// <summary>
         ///// Add mapping overrides from this assembly (assembly executing this code)
         ///// </summary>
@@ -138,6 +246,9 @@ namespace FluentModelBuilder.Builder
         //    var assembly = FindTheCallingAssembly();
         //    return UseOverridesFromAssembly(assembly);
         //}
+
+        #endregion
+
 
         /// <summary>
         /// Adds entities from the <see cref="ITypeSource"/>
@@ -252,65 +363,9 @@ namespace FluentModelBuilder.Builder
             _inlineOverrides.Add(new InlineOverride(type, action));
         }
 
-        /// <summary>
-        /// Adds an IEntityTypeOverride via reflection
-        /// </summary>
-        /// <param name="overrideType">Type of override, expected to be IEntityTypeOverride</param>
-        /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder Override(Type overrideType)
-        {
-            var overrideMethod = typeof(AutoModelBuilder)
-                .GetMethod(nameof(OverrideHelper), BindingFlags.NonPublic | BindingFlags.Instance);
-            if (overrideMethod == null)
-                return this;
-
-            var overrideInterfaces = overrideType.GetInterfaces().Where(x => x.IsEntityTypeOverrideType()).ToList();
-            var overrideInstance = Activator.CreateInstance(overrideType);
-            
-            foreach (var overrideInterface in overrideInterfaces)
-            {
-                var entityType = overrideInterface.GetGenericArguments().First();
-                AddOverride(entityType, instance =>
-                {
-                    overrideMethod.MakeGenericMethod(entityType)
-                        .Invoke(this, new[] { instance, overrideInstance });
-                });
-                
-            }
-            return this;
-        }
-
         private void OverrideHelper<T>(EntityTypeBuilder<T> builder, IEntityTypeOverride<T> mappingOverride) where T : class
         {
             mappingOverride.Override(builder);
-        }
-
-        /// <summary>
-        /// Override the mapping of specific entity
-        /// <remarks>
-        /// Can also be used to add single entities that are not picked up via assembly scanning
-        /// </remarks>
-        /// </summary>
-        /// <typeparam name="T">Type of entity to override</typeparam>
-        /// <param name="builderAction">Action to perform override</param>
-        /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder Override<T>(Action<EntityTypeBuilder<T>> builderAction = null) where T : class
-        {
-            _inlineOverrides.Add(new InlineOverride(typeof(T), x =>
-            {
-                if (x is EntityTypeBuilder<T>)
-                    builderAction?.Invoke((EntityTypeBuilder<T>) x);
-            }));
-            return this;
-        }
-
-        /// <summary>
-        /// Override the ModelBuilder
-        /// </summary>
-        /// <param name="modelBuilderOverride">Type of IModelBuilderOverride</param>
-        public void Override(IModelBuilderOverride modelBuilderOverride)
-        {
-            _modelBuilderOverrides.Add(modelBuilderOverride);
         }
 
         private object EntityTypeBuilder(ModelBuilder builder, Type type)
