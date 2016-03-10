@@ -30,7 +30,7 @@ namespace FluentModelBuilder.Extensions
         }
 
         /// <summary>
-        /// Fluently configures DbContext for application
+        /// Fluently configures Entity Framework for application
         /// </summary>
         /// <param name="services"></param>
         /// <param name="configurationAction"></param>
@@ -41,6 +41,20 @@ namespace FluentModelBuilder.Extensions
             configurationAction(configuration);
             services.AddSingleton(configuration);
             services.Replace(ServiceDescriptor.Singleton<IModelCustomizer, AutoModelCustomizer>());
+        }
+
+        /// <summary>
+        /// Fluently configures Entity Framework for application
+        /// </summary>
+        /// <param name="builder">Entity Framework Services Builder</param>
+        /// <param name="configurationAction">Configuration action to perform</param>
+        /// <returns></returns>
+        public static EntityFrameworkServicesBuilder Configure(this EntityFrameworkServicesBuilder builder,
+            Action<FluentModelBuilderConfiguration> configurationAction)
+        {
+            var services = builder.GetInfrastructure();
+            services.ConfigureEntityFramework(configurationAction);
+            return builder;
         }
     }
 }
