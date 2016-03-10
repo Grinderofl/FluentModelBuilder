@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace FluentModelBuilder.Builder
 {
-    public class PropertyBuilder
+    public class ScopeBuilder
     {
         private readonly AutoModelBuilder _autoModelBuilder;
-        public PropertyBuilder(AutoModelBuilder autoModelBuilder)
+        public ScopeBuilder(AutoModelBuilder autoModelBuilder)
         {
             _autoModelBuilder = autoModelBuilder;
         }

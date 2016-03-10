@@ -38,8 +38,10 @@ namespace FluentModelBuilder.Builder
         
         public AutoModelBuilder(IEntityAutoConfiguration configuration)
         {
+            if(configuration == null)
+                throw new ArgumentNullException(nameof(configuration));
             Configuration = configuration;
-            Scope = new PropertyBuilder(this);
+            Scope = new ScopeBuilder(this);
         }
 
         #region Scope
@@ -53,7 +55,7 @@ namespace FluentModelBuilder.Builder
         /// of IdentityDbContext entities, like UserName, Email, etc.
         /// </remarks>
         /// </summary>
-        public PropertyBuilder Scope { get; }
+        public ScopeBuilder Scope { get; }
 
         /// <summary>
         /// Specify the scope of this AutoModelBuilder, default is PreModelCreating
@@ -245,7 +247,7 @@ namespace FluentModelBuilder.Builder
         /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder UseOverridesFromThisAssembly()
         {
-            var assembly = FindTheCallingAssembly();
+            var assembly = FindCallingAssembly();
             return UseOverridesFromAssembly(assembly);
         }
 
@@ -294,7 +296,7 @@ namespace FluentModelBuilder.Builder
         /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder AddEntitiesFromThisAssembly()
         {
-            var assembly = FindTheCallingAssembly();
+            var assembly = FindCallingAssembly();
             return AddEntityAssembly(assembly);
         }
 #endif
@@ -363,10 +365,9 @@ namespace FluentModelBuilder.Builder
 
 
 #if NET451
-        private static Assembly FindTheCallingAssembly()
+        private static Assembly FindCallingAssembly()
         {
             var trace = new StackTrace();
-
             var thisAssembly = typeof(AutoModelBuilder).GetTypeInfo().Assembly;
             Assembly callingAssembly = null;
             for (var i = 0; i < trace.FrameCount; i++)
@@ -381,6 +382,7 @@ namespace FluentModelBuilder.Builder
         }
 
 #endif
+
         internal void Apply(CustomizeParams parameters)
         {
             if (!ShouldApplyToContext(parameters.DbContext))
