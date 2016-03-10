@@ -9,6 +9,12 @@ namespace FluentModelBuilder.Builder
 
         public InlineOverride(Type type, Action<object> action)
         {
+            if(type == null)
+                throw new ArgumentNullException(nameof(type));
+
+            if(action == null)
+                throw new ArgumentNullException(nameof(action));
+
             Type = type;
             _action = action;
         }

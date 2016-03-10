@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
 
@@ -9,6 +10,8 @@ namespace FluentModelBuilder.Configuration
 
         public AutoCoreConventionSetBuilder(FluentModelBuilderConfiguration configuration)
         {
+            if(configuration == null)
+                throw new ArgumentNullException(nameof(configuration));
             _configuration = configuration;
         }
 

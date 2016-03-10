@@ -383,7 +383,7 @@ namespace FluentModelBuilder.Builder
 
 #endif
 
-        internal void Apply(CustomizeParams parameters)
+        internal void Apply(BuilderContext parameters)
         {
             if (!ShouldApplyToContext(parameters.DbContext))
                 return;

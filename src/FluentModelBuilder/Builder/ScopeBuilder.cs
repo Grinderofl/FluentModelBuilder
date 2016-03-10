@@ -10,6 +10,8 @@ namespace FluentModelBuilder.Builder
         private readonly AutoModelBuilder _autoModelBuilder;
         public ScopeBuilder(AutoModelBuilder autoModelBuilder)
         {
+            if(autoModelBuilder == null)
+                throw new ArgumentNullException(nameof(autoModelBuilder));
             _autoModelBuilder = autoModelBuilder;
         }
 

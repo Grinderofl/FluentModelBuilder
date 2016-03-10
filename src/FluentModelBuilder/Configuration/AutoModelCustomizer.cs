@@ -1,3 +1,4 @@
+using System;
 using FluentModelBuilder.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -10,16 +11,30 @@ namespace FluentModelBuilder.Configuration
 
         public AutoModelCustomizer(FluentModelBuilderConfiguration configuration)
         {
+            if (configuration == null)
+                throw new ArgumentNullException(nameof(configuration));
             _configuration = configuration;
         }
 
         public override void Customize(ModelBuilder modelBuilder, DbContext dbContext)
         {
-            var preModelCreatingParams = new CustomizeParams(dbContext, modelBuilder, BuilderScope.PreModelCreating);
-            _configuration.Apply(preModelCreatingParams);
+            var preModelCreatingParams = BuildPreModelCreatingParameters(modelBuilder, dbContext);
+            var postModelCreatingParams = BuildPostModelCreatingParameters(modelBuilder, dbContext);
+
+            ApplyConfiguration(preModelCreatingParams);
             base.Customize(modelBuilder, dbContext);
-            var postModelCreatingParams = new CustomizeParams(dbContext, modelBuilder, BuilderScope.PostModelCreating);
-            _configuration.Apply(postModelCreatingParams);
+            ApplyConfiguration(postModelCreatingParams);
         }
+
+        private void ApplyConfiguration(CustomizeParams @params)
+        {
+            _configuration.Apply(@params);
+        }
+
+        private static CustomizeParams BuildPostModelCreatingParameters(ModelBuilder modelBuilder, DbContext dbContext)
+            => new CustomizeParams(dbContext, modelBuilder, BuilderScope.PostModelCreating);
+
+        private static CustomizeParams BuildPreModelCreatingParameters(ModelBuilder modelBuilder, DbContext dbContext)
+            => new CustomizeParams(dbContext, modelBuilder, BuilderScope.PreModelCreating);
     }
 }
