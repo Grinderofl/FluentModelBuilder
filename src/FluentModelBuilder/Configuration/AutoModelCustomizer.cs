@@ -26,15 +26,15 @@ namespace FluentModelBuilder.Configuration
             ApplyConfiguration(postModelCreatingParams);
         }
 
-        private void ApplyConfiguration(CustomizeParams @params)
+        private void ApplyConfiguration(BuilderContext @params)
         {
             _configuration.Apply(@params);
         }
 
-        private static CustomizeParams BuildPostModelCreatingParameters(ModelBuilder modelBuilder, DbContext dbContext)
-            => new CustomizeParams(dbContext, modelBuilder, BuilderScope.PostModelCreating);
+        private static BuilderContext BuildPostModelCreatingParameters(ModelBuilder modelBuilder, DbContext dbContext)
+            => new BuilderContext(dbContext, modelBuilder, BuilderScope.PostModelCreating);
 
-        private static CustomizeParams BuildPreModelCreatingParameters(ModelBuilder modelBuilder, DbContext dbContext)
-            => new CustomizeParams(dbContext, modelBuilder, BuilderScope.PreModelCreating);
+        private static BuilderContext BuildPreModelCreatingParameters(ModelBuilder modelBuilder, DbContext dbContext)
+            => new BuilderContext(dbContext, modelBuilder, BuilderScope.PreModelCreating);
     }
 }
