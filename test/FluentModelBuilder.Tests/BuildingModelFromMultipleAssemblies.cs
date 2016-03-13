@@ -11,6 +11,10 @@ namespace FluentModelBuilder.Tests
 {
     public class BuildingModelFromMultipleAssemblies : TestBase<MultiAssemblyFixture, DbContext>
     {
+        public BuildingModelFromMultipleAssemblies():this(new MultiAssemblyFixture())
+        {
+            
+        }
         public BuildingModelFromMultipleAssemblies(MultiAssemblyFixture fixture) : base(fixture)
         {
         }

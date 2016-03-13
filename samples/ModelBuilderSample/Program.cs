@@ -36,10 +36,10 @@ namespace ModelBuilderSample
 
         public void Configure(IServiceCollection services)
         {
-            services.AddEntityFramework()
+            services
+                .AddEntityFrameworkSqlServer()
                 .AddDbContext<ProjectDbContext>(
-                    c => c.UseSqlServer("Data Source=.;Initial Catalog=eftest;Integrated Security=SSPI;"))
-                .AddSqlServer();
+                    c => c.UseSqlServer("Data Source=.;Initial Catalog=eftest;Integrated Security=SSPI;"));
             services.ConfigureEntityFramework(
                 mappings =>
                     mappings.Add(

@@ -11,6 +11,10 @@ namespace FluentModelBuilder.Tests
 {
     public class BuildingModelFromEmptyWithOverrides : TestBase<EmptyFixture, DbContext>
     {
+        public BuildingModelFromEmptyWithOverrides():this(new EmptyFixture())
+        {
+            
+        }
         public BuildingModelFromEmptyWithOverrides(EmptyFixture fixture) : base(fixture)
         {
         }

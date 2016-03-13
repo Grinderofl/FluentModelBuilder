@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -16,13 +17,14 @@ namespace FluentModelBuilder.Tests.Core
 
         protected override void ConfigureServices(IServiceCollection services)
         {
-            var entityFrameworkServices = services.AddEntityFramework().AddDbContext<TContext>(ConfigureContext);
-            ConfigureEntityFrameworkServices(entityFrameworkServices);
+            services.AddEntityFrameworkInMemoryDatabase().AddDbContext<TContext>(ConfigureContext);
             ConfigureServicesCore(services);
+            //ConfigureEntityFrameworkServices(entityFrameworkServices);
+
         }
 
         protected abstract void ConfigureServicesCore(IServiceCollection services);
-        protected abstract void ConfigureEntityFrameworkServices(EntityFrameworkServicesBuilder entityFrameworkServices);
-        protected abstract void ConfigureContext(DbContextOptionsBuilder builder);
+        //protected abstract void ConfigureEntityFrameworkServices(EntityFrameworkServicesBuilder entityFrameworkServices);
+        protected abstract void ConfigureContext(IServiceProvider serviceProvider, DbContextOptionsBuilder builder);
     }
 }
