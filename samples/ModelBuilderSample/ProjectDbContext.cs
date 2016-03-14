@@ -6,6 +6,10 @@ namespace ModelBuilderSample
 {
     public class ProjectDbContext : DbContext
     {
+        public ProjectDbContext(DbContextOptions options):base(options)
+        {
+            
+        }
     }
 
     

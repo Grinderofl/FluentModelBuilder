@@ -22,7 +22,6 @@ namespace FluentModelBuilder.Tests
                 new ServiceCollection();
             services
                     .AddEntityFrameworkInMemoryDatabase()
-                    
                     .AddDbContext<ContextOne>((p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p))
                     .AddDbContext<ContextTwo>((p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p));
             services.ConfigureEntityFramework(x => x.Add(From.AssemblyOf<EntityBase>(new TestConfiguration()).Context<ContextTwo>()));
@@ -34,12 +33,16 @@ namespace FluentModelBuilder.Tests
 
     internal class ContextOne : DbContext
     {
-
+        public ContextOne(DbContextOptions options):base(options)
+        {
+            
+        }
     }
 
     internal class ContextTwo : DbContext
     {
-
+        public ContextTwo(DbContextOptions options):base(options)
+            { }
     }
 
     public class BuildingModelForSpecificContext : IClassFixture<BuildingModelForSpecificContextFixture>

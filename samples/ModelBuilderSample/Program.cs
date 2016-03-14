@@ -3,6 +3,7 @@ using FluentModelBuilder;
 using FluentModelBuilder.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FluentModelBuilder.Extensions;
+using FluentModelBuilder.Tests;
 using Microsoft.EntityFrameworkCore;
 
 namespace ModelBuilderSample
@@ -11,10 +12,20 @@ namespace ModelBuilderSample
     {
         public void Main(string[] args)
         {
+            //var prov =
+            //    new ServiceCollection().AddScoped<TestClass>().AddSingleton(new TestDependency() {Name = "Hello"}).BuildServiceProvider();
+
+            //var testClass = prov.GetService<TestClass>();
+
+            var fixture = new IdentityContextOverridingIdentityFixture();
+            var test = new BuildingModelFromIdentityContextAndOverridingIdentity(fixture);
+            test.MapsEntityProperty("AccessFailedCount", 2, 0);
+
             IServiceProvider provider = BuildServiceProvider();
             try
             {
-                var context = provider.GetService<ProjectDbContext>();
+                //var testClass = provider.GetService<TestClass>();
+                var context = provider.GetService<DbContext>();
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
                 context.Set<TestEntity>().Add(new TestEntity() { Name = "Hi" });
@@ -36,14 +47,39 @@ namespace ModelBuilderSample
 
         public void Configure(IServiceCollection services)
         {
-            services
-                .AddEntityFrameworkSqlServer()
-                .AddDbContext<ProjectDbContext>(
-                    c => c.UseSqlServer("Data Source=.;Initial Catalog=eftest;Integrated Security=SSPI;"));
-            services.ConfigureEntityFramework(
-                mappings =>
-                    mappings.Add(
-                        From.AssemblyOf<Program>().UseOverridesFromAssemblyOf<Program>()));
+            services.AddEntityFrameworkInMemoryDatabase()
+                .AddDbContext<DbContext>(
+                    (p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p));
+            services.AddScoped<TestClass>();
+            //services
+            //    .AddEntityFrameworkSqlServer()
+            //    .AddDbContext<ProjectDbContext>(
+            //        (p, c) => c.UseSqlServer("Data Source=.;Initial Catalog=eftest;Integrated Security=SSPI;").UseInternalServiceProvider(p));
+            //services.ConfigureEntityFramework(
+            //    mappings =>
+            //        mappings.Add(
+            //            From.AssemblyOf<Program>(new ProgramConfiguration()).UseOverridesFromAssemblyOf<Program>()));
         }
+    }
+
+    public class TestClass
+    {
+        public TestDependency Dependency { get; set; }
+
+
+        protected TestClass() : this(new TestDependency())
+        {
+            
+        }
+
+        public TestClass(TestDependency dependency)
+        {
+            Dependency = dependency;
+        }
+    }
+
+    public class TestDependency
+    {
+        public string Name { get; set; }
     }
 }

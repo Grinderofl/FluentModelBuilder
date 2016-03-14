@@ -8,8 +8,10 @@
 
   "dependencies": {
     "FluentModelBuilder": "1.0.0-*",
+    "FluentModelBuilder.Tests": "1.0.0-*",
     "Microsoft.EntityFrameworkCore": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0-*",
     "Microsoft.EntityFrameworkCore.Commands": "1.0.0-*"
   },
 

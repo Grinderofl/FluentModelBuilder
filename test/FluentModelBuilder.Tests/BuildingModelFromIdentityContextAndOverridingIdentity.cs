@@ -46,7 +46,7 @@ namespace FluentModelBuilder.Tests
 
     public class IdentityContextOverridingIdentityFixture : FluentModelFixtureBase<IdentityDbContext>
     {
-        internal class IdentityUserOverride : IEntityTypeOverride<IdentityUser>
+        public class IdentityUserOverride : IEntityTypeOverride<IdentityUser>
         {
             public void Override(EntityTypeBuilder<IdentityUser> mapping)
             {
