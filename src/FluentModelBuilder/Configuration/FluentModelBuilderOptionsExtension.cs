@@ -1,7 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using FluentModelBuilder.Builder;
 using FluentModelBuilder.Extensions;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,7 +10,7 @@ namespace FluentModelBuilder.Configuration
 {
     public class FluentModelBuilderOptionsExtension : IDbContextOptionsExtension
     {
-        public virtual AutoModelBuilder AutoModelBuilder { get; set; }
+        internal IList<Action<FluentModelBuilderConfiguration>> ConfigurationActions = new List<Action<FluentModelBuilderConfiguration>>(); 
 
         public FluentModelBuilderOptionsExtension()
         {
@@ -17,38 +18,22 @@ namespace FluentModelBuilder.Configuration
 
         public FluentModelBuilderOptionsExtension(FluentModelBuilderOptionsExtension copyFrom)
         {
-            AutoModelBuilder = copyFrom.AutoModelBuilder;
+            ConfigurationActions = copyFrom.ConfigurationActions;
         }
 
         public void ApplyServices(IServiceCollection services)
         {
-            if(AutoModelBuilder != null)
-                services.ConfigureEntityFramework(c => c.Add(AutoModelBuilder));
+            if(ConfigurationActions.Any())
+                services.ConfigureEntityFramework(conf =>
+                {
+                    foreach (var action in ConfigurationActions)
+                        action(conf);
+                });
+        }
+
+        public void Configure(Action<FluentModelBuilderConfiguration> action)
+        {
+            ConfigurationActions.Add(action);
         }
     }
-
-    public class FluentModelBuilderOptionsBuilder
-    {
-        private readonly DbContextOptionsBuilder _builder;
-
-        public FluentModelBuilderOptionsBuilder(DbContextOptionsBuilder builder)
-        {
-            _builder = builder;
-        }
-
-        public virtual FluentModelBuilderOptionsBuilder Add(AutoModelBuilder builder)
-            => SetOption(x => x.AutoModelBuilder = builder);
-        
-
-        protected virtual FluentModelBuilderOptionsBuilder SetOption(
-            Action<FluentModelBuilderOptionsExtension> setAction)
-        {
-            var extension = new FluentModelBuilderOptionsExtension();
-            setAction(extension);
-            ((IDbContextOptionsBuilderInfrastructure)_builder).AddOrUpdateExtension(extension);
-            return this;
-        }
-    }
-
-
 }

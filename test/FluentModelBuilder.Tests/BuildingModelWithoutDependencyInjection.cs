@@ -19,7 +19,7 @@ namespace FluentModelBuilder.Tests
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddDbContext<DbContext>(
-                c => c.UseInMemoryDatabase().Configure(From.Empty().Override<SingleEntity>()));
+                c => c.UseInMemoryDatabase().Configure(mappings => mappings.Add(From.Empty().Override<SingleEntity>())));
             serviceCollection.Replace(
                 ServiceDescriptor.Scoped<DbContext>(s =>
                 {
