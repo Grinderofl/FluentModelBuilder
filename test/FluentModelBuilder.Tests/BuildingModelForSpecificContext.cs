@@ -4,6 +4,7 @@ using FluentModelBuilder.Extensions;
 using FluentModelBuilder.Tests.Core;
 using FluentModelBuilder.TestTarget;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
@@ -19,10 +20,10 @@ namespace FluentModelBuilder.Tests
         {
             var services =
                 new ServiceCollection();
-            services.AddEntityFramework()
-                    .AddInMemoryDatabase()
-                    .AddDbContext<ContextOne>(x => x.UseInMemoryDatabase())
-                    .AddDbContext<ContextTwo>(x => x.UseInMemoryDatabase());
+            services
+                    .AddEntityFrameworkInMemoryDatabase()
+                    .AddDbContext<ContextOne>((p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p))
+                    .AddDbContext<ContextTwo>((p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p));
             services.ConfigureEntityFramework(x => x.Add(From.AssemblyOf<EntityBase>(new TestConfiguration()).Context<ContextTwo>()));
             var provider = services.BuildServiceProvider();
             ModelOne = provider.GetService<ContextOne>().Model;
@@ -32,12 +33,16 @@ namespace FluentModelBuilder.Tests
 
     internal class ContextOne : DbContext
     {
-
+        public ContextOne(DbContextOptions options):base(options)
+        {
+            
+        }
     }
 
     internal class ContextTwo : DbContext
     {
-
+        public ContextTwo(DbContextOptions options):base(options)
+            { }
     }
 
     public class BuildingModelForSpecificContext : IClassFixture<BuildingModelForSpecificContextFixture>

@@ -8,8 +8,9 @@ namespace FluentModelBuilder.Tests.Core
     public abstract class FluentModelFixtureBase<TContext> : InMemoryModelFixtureBase<TContext>
         where TContext : DbContext
     {
-        protected override void ConfigureServicesCore(IServiceCollection services)
+        protected override void ConfigureServices(IServiceCollection services)
         {
+            base.ConfigureServices(services);
             services.ConfigureEntityFramework(ConfigureMappings);
         }
 

@@ -10,7 +10,7 @@
     "FluentModelBuilder": "1.0.0-*",
     "FluentModelBuilder.TestTarget": "1.0.0-*",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0-*"
     
   },
   "testRunner":"xunit",
@@ -20,7 +20,9 @@
         "xunit.runner.console": "2.1.0"
       },
       "frameworkAssemblies": {
-        "System.Threading.Tasks": ""
+        "System.Threading.Tasks": "",
+        "System.Runtime": "",
+        "System.ComponentModel": ""
       }
     },
     "dnx451": {
@@ -28,7 +30,9 @@
         "xunit.runner.console": "2.1.0"
       },
       "frameworkAssemblies": {
-        "System.Threading.Tasks": ""
+        "System.Threading.Tasks": "",
+        "System.Runtime": "",
+        "System.ComponentModel": ""
       }
     },
     "netstandardapp1.5": {

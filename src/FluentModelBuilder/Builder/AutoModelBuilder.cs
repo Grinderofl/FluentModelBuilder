@@ -420,7 +420,7 @@ namespace FluentModelBuilder.Builder
 
         private void AddEntities(ModelBuilder builder)
         {
-            var types = _typeSources.SelectMany(x => x.GetTypes());
+            var types = _typeSources.SelectMany(x => x.GetTypes()).Distinct();
             foreach (var type in types)
             {
                 if (!Configuration.ShouldMap(type))
