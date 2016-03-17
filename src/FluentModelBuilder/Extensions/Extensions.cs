@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Alterations;
+using FluentModelBuilder.Builder;
 using FluentModelBuilder.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -55,6 +56,36 @@ namespace FluentModelBuilder.Extensions
             var services = builder.GetInfrastructure();
             services.ConfigureEntityFramework(configurationAction);
             return builder;
+        }
+
+        /// <summary>
+        /// Fluently configures AutoModelBuilder for Entity Framework for application
+        /// </summary>
+        /// <param name="optionsBuilder">DbContestOptionsBuilder</param>
+        /// <param name="autoModelBuilder">AutoModelBuilder</param>
+        /// <returns>DbContextOptionsBuilder</returns>
+        public static DbContextOptionsBuilder Configure(this DbContextOptionsBuilder optionsBuilder,
+            AutoModelBuilder autoModelBuilder)
+        {
+            ((IDbContextOptionsBuilderInfrastructure) optionsBuilder).AddOrUpdateExtension(
+                new FluentModelBuilderOptionsExtension());
+            var builder = new FluentModelBuilderOptionsBuilder(optionsBuilder);
+            builder.Add(autoModelBuilder);
+            return optionsBuilder;
+        }
+
+        /// <summary>
+        /// Fluently configures AutoModelBuilder for Entity Framework for application
+        /// </summary>
+        /// <typeparam name="TConfiguration">Configuration to use</typeparam>
+        /// <param name="optionsBuilder">DbContextOptionsBuilder</param>
+        /// <param name="builderAction">Action to perform on AutoModelBuilder</param>
+        /// <returns>DbContextOptionsBuilder</returns>
+        public static DbContextOptionsBuilder Configure<TConfiguration>(this DbContextOptionsBuilder optionsBuilder, Action<AutoModelBuilder> builderAction) where TConfiguration : IEntityAutoConfiguration, new()
+        {
+            var builder = From.Empty(new TConfiguration());
+            optionsBuilder.Configure(builder);
+            return optionsBuilder;
         }
     }
 }

@@ -17,9 +17,12 @@ namespace ModelBuilderSample
 
             //var testClass = prov.GetService<TestClass>();
 
-            var fixture = new MultipleAssemblyFixtureWithOverrides();
-            var test = new BuildingModelFromMultipleAssembliesWithOverrides(fixture);
-            test.MapsEntityProperty(0, 0, "Id");
+            var test = new BuildingModelWithoutDependencyInjection();
+            test.BuildsModel();
+
+            //var fixture = new MultipleAssemblyFixtureWithOverrides();
+            //var test = new BuildingModelFromMultipleAssembliesWithOverrides(fixture);
+            //test.MapsEntityProperty(0, 0, "Id");
             //test.MapsEntityProperty("AccessFailedCount", 2, 0);
 
             IServiceProvider provider = BuildServiceProvider();
