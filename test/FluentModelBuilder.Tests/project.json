@@ -20,7 +20,9 @@
         "xunit.runner.console": "2.1.0"
       },
       "frameworkAssemblies": {
-        "System.Threading.Tasks": ""
+        "System.Threading.Tasks": "",
+        "System.Runtime": "",
+        "System.ComponentModel": ""
       }
     },
     "dnx451": {
@@ -28,7 +30,9 @@
         "xunit.runner.console": "2.1.0"
       },
       "frameworkAssemblies": {
-        "System.Threading.Tasks": ""
+        "System.Threading.Tasks": "",
+        "System.Runtime": "",
+        "System.ComponentModel": ""
       }
     },
     "netstandardapp1.5": {

@@ -17,9 +17,10 @@ namespace ModelBuilderSample
 
             //var testClass = prov.GetService<TestClass>();
 
-            var fixture = new IdentityContextOverridingIdentityFixture();
-            var test = new BuildingModelFromIdentityContextAndOverridingIdentity(fixture);
-            test.MapsEntityProperty("AccessFailedCount", 2, 0);
+            var fixture = new MultipleAssemblyFixtureWithOverrides();
+            var test = new BuildingModelFromMultipleAssembliesWithOverrides(fixture);
+            test.MapsEntityProperty(0, 0, "Id");
+            //test.MapsEntityProperty("AccessFailedCount", 2, 0);
 
             IServiceProvider provider = BuildServiceProvider();
             try
