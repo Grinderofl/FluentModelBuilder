@@ -32,7 +32,7 @@ namespace FluentModelBuilder.Tests.Core
 
                             return instance;
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             return null;
                         }

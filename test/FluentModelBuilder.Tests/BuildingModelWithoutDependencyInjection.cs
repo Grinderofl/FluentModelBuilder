@@ -30,7 +30,7 @@ namespace FluentModelBuilder.Tests
 
                         return instance;
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         return null;
                     }
