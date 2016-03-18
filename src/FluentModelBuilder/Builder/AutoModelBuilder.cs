@@ -31,9 +31,16 @@ namespace FluentModelBuilder.Builder
         public readonly IEntityAutoConfiguration Configuration;
 
         private BuilderScope? _scope;
+        private Func<Type, bool> _whereClause = null;
+        private readonly AutoConfigurationExpressions _expressions = new AutoConfigurationExpressions();
 
-        public AutoModelBuilder() : this(new DefaultEntityAutoConfiguration())
+        public AutoModelBuilder() : this(new AutoConfigurationExpressions())
         {
+        }
+
+        public AutoModelBuilder(AutoConfigurationExpressions expressions) : this(new ExpressionBasedEntityAutoConfiguration(expressions))
+        {
+            _expressions = expressions;
         }
         
         public AutoModelBuilder(IEntityAutoConfiguration configuration)
@@ -43,6 +50,38 @@ namespace FluentModelBuilder.Builder
             Configuration = configuration;
             Scope = new ScopeBuilder(this);
         }
+
+        #region Where
+
+        protected bool HasUserDefinedConfiguration => !(Configuration is ExpressionBasedEntityAutoConfiguration);
+
+        /// <summary>
+        /// Alter the Expression based configuration options, when not wanting to use user-defined configuration.
+        /// </summary>
+        /// <param name="configurationAction">Action to perform on Expression Configuration</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder Setup(Action<AutoConfigurationExpressions> configurationAction)
+        {
+            if(HasUserDefinedConfiguration)
+                throw new InvalidOperationException("Cannot use Setup method when using user-defined IEntityAutoConfiguration instance.");
+            configurationAction(_expressions);
+            return this;
+        }
+
+        /// <summary>
+        /// Specify a criteria to determine which types will be mapped. Cannot be used with user-defined configuration.
+        /// </summary>
+        /// <param name="where">Criteria for determining types</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder Where(Func<Type, bool> where)
+        {
+            if(HasUserDefinedConfiguration)
+                throw new InvalidOperationException("Cannot use Where method when using user-defined IEntityAutoConfiguration instance.");
+            _whereClause = where;
+            return this;
+        }
+
+        #endregion
 
         #region Scope
 
@@ -425,6 +464,10 @@ namespace FluentModelBuilder.Builder
             {
                 if (!Configuration.ShouldMap(type))
                     continue;
+
+                if (_whereClause != null && !_whereClause(type))
+                    continue;
+
                 if (!ShouldMap(type))
                     continue;
 

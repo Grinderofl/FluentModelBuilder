@@ -18,12 +18,12 @@ namespace FluentModelBuilder.Configuration
                    type.GetTypeInfo().IsClass;
         }
 
-        public bool ShouldApplyToContext(DbContext context)
+        public virtual bool ShouldApplyToContext(DbContext context)
         {
             return true;
         }
 
-        public bool ShouldApplyToScope(BuilderScope scope)
+        public virtual bool ShouldApplyToScope(BuilderScope scope)
         {
             return true;
         }
