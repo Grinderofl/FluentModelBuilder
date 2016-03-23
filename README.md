@@ -1,6 +1,6 @@
 # FluentModelBuilder
 
-Provides an entry point for configuring entities and conventions of Entity Framework Core through a fluent, convention-based, and automated way, inspired by Fluent NHibernate.
+Provides an entry point for configuring entities and conventions of Entity Framework Core through a fluent, convention-based, and automated way, inspired by [Fluent NHibernate](https://github.com/jagregory/fluent-nhibernate).
 
 ## Getting started
 * Read the [introduction](https://github.com/Grinderofl/FluentModelBuilder/wiki/1.-Introduction)
