@@ -2,17 +2,13 @@
   "version": "1.0.0-*",
   "description": "FluentModelBuilder.TestTarget Class Library",
   "authors": [ "Nero" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
   "dependencies": {
     "FluentModelBuilder": "1.0.0-*"
   },
   "frameworks": {
-    "net451": {
+    "netstandard1.5": {
+      "imports": [ "dnxcore50", "portable-net45+win8+wp8" ]
     },
-    "netstandard1.3": {
-      "imports": [ "dotnet5.4", "portable-windows8+net452+win81" ]
-    }
+    "net451": {} 
   }
 }

@@ -21,22 +21,22 @@ namespace FluentModelBuilder.Tests.Core
         protected override void ConfigureServices(IServiceCollection services)
         {
             services.AddEntityFrameworkInMemoryDatabase().AddDbContext<TContext>(ConfigureContext);
-            services.Replace(
-                ServiceDescriptor.Scoped<TContext>(
-                    provider =>
-                    {
-                        var options = provider.GetService<DbContextOptions>();
-                        try
-                        {
-                            var instance = ActivatorUtilities.CreateInstance<TContext>(provider, options);
+            //services.Replace(
+            //    ServiceDescriptor.Scoped<TContext>(
+            //        provider =>
+            //        {
+            //            var options = provider.GetService<DbContextOptions>();
+            //            try
+            //            {
+            //                var instance = ActivatorUtilities.CreateInstance<TContext>(provider, options);
 
-                            return instance;
-                        }
-                        catch (Exception)
-                        {
-                            return null;
-                        }
-                    }));
+            //                return instance;
+            //            }
+            //            catch (Exception)
+            //            {
+            //                return null;
+            //            }
+            //        }));
             //ConfigureServicesCore(services);
             //ConfigureEntityFrameworkServices(entityFrameworkServices);
 
