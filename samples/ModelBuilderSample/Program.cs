@@ -37,10 +37,9 @@ namespace ModelBuilderSample
 
         public static void Configure(IServiceCollection services)
         {
-            services.AddEntityFrameworkInMemoryDatabase()
-                .AddDbContext<DbContext>(
+            services.AddDbContext<DbContext>(
                     (p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p));
-            services.AddScoped<TestClass>();
+            
         }
     }
 

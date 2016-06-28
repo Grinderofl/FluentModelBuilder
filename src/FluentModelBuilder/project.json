@@ -11,11 +11,11 @@
     "NETStandard.Library": "1.6.0",
     "Microsoft.EntityFrameworkCore": "1.0.0",
     "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
-    "Microsoft.Extensions.DependencyInjection": "1.0.0",
-    "System.Diagnostics.StackTrace": "4.0.1"
+    "Microsoft.Extensions.DependencyInjection": "1.0.0"
   },
 
   "frameworks": {
+    "net451":{},
     "netstandard1.6": {
       "imports": [ "dnxcore50" ]
     }

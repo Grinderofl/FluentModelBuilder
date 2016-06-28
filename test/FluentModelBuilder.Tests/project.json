@@ -4,20 +4,23 @@
   "authors": [ "Nero" ],
   "dependencies": {
     "xunit": "2.1.0",
-    "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
     "Microsoft.EntityFrameworkCore.InMemory": "1.0.0",
     "FluentModelBuilder": "1.0.0",
-    "FluentModelBuilder.TestTarget": "1.0.0",
-    "Microsoft.NETCore.App": {
-      "version": "1.0.0",
-      "type": "platform"
-    }
+    "FluentModelBuilder.TestTarget": "1.0.0"
   },
   "testRunner": "xunit",
   "frameworks": {
+    
     "netcoreapp1.0": {
-      "imports": [ "dnxcore50" ]
+      "imports": [ "dnxcore50" ],
+      "dependencies": {
+        "dotnet-test-xunit": "1.0.0-*",
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0",
+          "type": "platform"
+        }
+      }
     }
   }
 }
