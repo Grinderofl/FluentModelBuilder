@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0",
   "description": "Provides a fluent way to configure your DbContext's Model",
   "authors": [ "Nero Sule" ],
@@ -8,10 +8,11 @@
     "licenseUrl": "https://github.com/Grinderofl/FluentModelBuilder/blob/master/LICENSE.md"
   },
   "dependencies": {
-    "NETStandard.Library": "1.6.0", 
+    "NETStandard.Library": "1.6.0",
     "Microsoft.EntityFrameworkCore": "1.0.0",
     "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
-    "Microsoft.Extensions.DependencyInjection": "1.0.0"
+    "Microsoft.Extensions.DependencyInjection": "1.0.0",
+    "System.Diagnostics.StackTrace": "4.0.1"
   },
 
   "frameworks": {

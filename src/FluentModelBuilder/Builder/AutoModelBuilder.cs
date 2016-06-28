@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Alterations;
@@ -9,7 +8,6 @@ using FluentModelBuilder.Configuration;
 using FluentModelBuilder.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentModelBuilder.Builder
@@ -31,7 +29,7 @@ namespace FluentModelBuilder.Builder
         public readonly IEntityAutoConfiguration Configuration;
 
         private BuilderScope? _scope;
-        private Func<Type, bool> _whereClause = null;
+        private Func<Type, bool> _whereClause;
         private readonly AutoConfigurationExpressions _expressions = new AutoConfigurationExpressions();
 
         public AutoModelBuilder() : this(new AutoConfigurationExpressions())
@@ -278,20 +276,6 @@ namespace FluentModelBuilder.Builder
             _modelBuilderOverrides.Add(modelBuilderOverride);
         }
 
-#if NET451
-
-        /// <summary>
-        /// Add mapping overrides from this assembly (assembly executing this code)
-        /// </summary>
-        /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder UseOverridesFromThisAssembly()
-        {
-            var assembly = FindCallingAssembly();
-            return UseOverridesFromAssembly(assembly);
-        }
-
-#endif
-
         #endregion
 
 
@@ -327,18 +311,6 @@ namespace FluentModelBuilder.Builder
             return AddEntityAssembly(type.GetTypeInfo().Assembly);
         }
 
-#if NET451
-
-        /// <summary>
-        /// Adds entities from the calling assembly (assembly executing this code)
-        /// </summary>
-        /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddEntitiesFromThisAssembly()
-        {
-            var assembly = FindCallingAssembly();
-            return AddEntityAssembly(assembly);
-        }
-#endif
         /// <summary>
         /// Explicitly includes a type to be used as part of the model
         /// </summary>
@@ -401,26 +373,6 @@ namespace FluentModelBuilder.Builder
             _typeSources.Add(typeSource);
             return this;
         }
-
-
-#if NET451
-        private static Assembly FindCallingAssembly()
-        {
-            var trace = new StackTrace();
-            var thisAssembly = typeof(AutoModelBuilder).GetTypeInfo().Assembly;
-            Assembly callingAssembly = null;
-            for (var i = 0; i < trace.FrameCount; i++)
-            {
-                var frame = trace.GetFrame(i);
-                var assembly = frame.GetMethod().DeclaringType.Assembly;
-                if (assembly == thisAssembly) continue;
-                callingAssembly = assembly;
-                break;
-            }
-            return callingAssembly;
-        }
-
-#endif
 
         internal void Apply(BuilderContext parameters)
         {

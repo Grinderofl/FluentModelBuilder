@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Builder;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentModelBuilder.Alterations
 {

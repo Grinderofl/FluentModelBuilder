@@ -132,25 +132,5 @@ namespace FluentModelBuilder.Configuration
         /// <returns></returns>
         public static AutoModelBuilder Expression(Func<Type, bool> expression) => Empty().Where(expression);
 
-#if NET451
-    /// <summary>
-    /// Map classes from this assembly
-    /// </summary>
-    /// <returns>AutoModelBuilder</returns>
-        public static AutoModelBuilder ThisAssembly()
-        {
-            return new AutoModelBuilder().AddEntitiesFromThisAssembly();
-        }
-
-        /// <summary>
-        /// Map classes from this assembly with supplied configuration
-        /// </summary>
-        /// <param name="configuration">Configuration to use</param>
-        /// <returns>AutoModelBuilder</returns>
-        public static AutoModelBuilder ThisAssembly(IEntityAutoConfiguration configuration)
-        {
-            return new AutoModelBuilder(configuration).AddEntitiesFromThisAssembly();
-        }
-#endif
     }
 }
