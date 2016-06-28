@@ -8,14 +8,9 @@
 
   "dependencies": {
     "FluentModelBuilder": "1.0.0",
-    "FluentModelBuilder.Tests": "1.0.0",
     "Microsoft.EntityFrameworkCore": "1.0.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
-    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0",
-    "Microsoft.NETCore.App": {
-      "type": "platform",
-      "version": "1.0.0"
-    }
+    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0"
   },
 
   "commands": {
@@ -24,8 +19,15 @@
   },
 
   "frameworks": {
+    "net451": {},
     "netcoreapp1.0": {
-      "imports": [ "dnxcore50" ]
+      "imports": [ "dnxcore50" ],
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        }
+      }
     }
   }
 }

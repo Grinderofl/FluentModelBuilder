@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Alterations;
+using FluentModelBuilder.Builder;
 using FluentModelBuilder.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -35,14 +36,28 @@ namespace FluentModelBuilder.Extensions
         /// </summary>
         /// <param name="services"></param>
         /// <param name="configurationAction"></param>
-        public static void ConfigureEntityFramework(this IServiceCollection services,
+        public static IServiceCollection ConfigureEntityFramework(this IServiceCollection services,
             Action<FluentModelBuilderConfiguration> configurationAction)
         {
             var configuration = new FluentModelBuilderConfiguration();
             configurationAction(configuration);
             services.AddSingleton(configuration);
             services.Replace(ServiceDescriptor.Singleton<IModelCustomizer, AutoModelCustomizer>());
+            return services;
         }
+
+        /// <summary>
+        ///     Fluently configures Entity Framework for application
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="builders"></param>
+        /// <returns></returns>
+        public static IServiceCollection ConfigureEntityFramework(this IServiceCollection services, params AutoModelBuilder[] builders) 
+            => services.ConfigureEntityFramework(x =>
+            {
+                foreach (var builder in builders)
+                    x.Add(builder);
+            });
 
         /// <summary>
         ///     Fluently configures Entity Framework for application

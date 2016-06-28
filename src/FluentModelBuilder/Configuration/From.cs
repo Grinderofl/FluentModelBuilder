@@ -111,6 +111,46 @@ namespace FluentModelBuilder.Configuration
             => Assembly(typeof (T).GetTypeInfo().Assembly, configuration);
 
         /// <summary>
+        ///     Map classes from the assembly containing
+        ///     <typeparam name="T"></typeparam>
+        ///     with supplied expression
+        /// </summary>
+        /// <typeparam name="T">Type contained in the required assembly</typeparam>
+        /// <param name="expression">Expression to use</param>
+        /// <returns>AutoModelBuilder</returns>
+        public static AutoModelBuilder AssemblyOf<T>(Func<Type, bool> expression)
+            => Assembly(typeof (T).GetTypeInfo().Assembly, expression);
+
+
+        /// <summary>
+        ///     Map classes from the assembly containing the provided type
+        /// </summary>
+        /// <param name="type">Type contained in the required assembly</param>
+        /// <returns>AutoModelBuilder</returns>
+        public static AutoModelBuilder AssemblyOf(Type type)
+            => Assembly(type.GetTypeInfo().Assembly);
+
+        /// <summary>
+        ///     Map classes from the assembly containing the provided type
+        ///     with supplied configuration
+        /// </summary>
+        /// <param name="type">Type contained in the required assembly</param>
+        /// <param name="configuration">Configuration to use</param>
+        /// <returns>AutoModelBuilder</returns>
+        public static AutoModelBuilder AssemblyOf(Type type, IEntityAutoConfiguration configuration)
+            => Assembly(type.GetTypeInfo().Assembly, configuration);
+
+        /// <summary>
+        ///     Map classes from the assembly containing the provided type
+        ///     with supplied expression
+        /// </summary>
+        /// <param name="type">Type contained in the required assembly</param>
+        /// <param name="expression">Expression to use</param>
+        /// <returns>AutoModelBuilder</returns>
+        public static AutoModelBuilder AssemblyOf(Type type, Func<Type, bool> expression)
+            => Assembly(type.GetTypeInfo().Assembly, expression);
+
+        /// <summary>
         ///     Map classes based on all manual specifications
         /// </summary>
         /// <remarks>

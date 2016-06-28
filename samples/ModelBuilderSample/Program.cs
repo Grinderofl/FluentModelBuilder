@@ -3,7 +3,6 @@ using FluentModelBuilder;
 using FluentModelBuilder.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FluentModelBuilder.Extensions;
-using FluentModelBuilder.Tests;
 using Microsoft.EntityFrameworkCore;
 
 namespace ModelBuilderSample
@@ -38,8 +37,8 @@ namespace ModelBuilderSample
         public static void Configure(IServiceCollection services)
         {
             services.AddDbContext<DbContext>(
-                    (p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p));
-            
+                (p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p));
+            services.ConfigureEntityFramework(From.AssemblyOf<TestClass>(new ProgramConfiguration()));
         }
     }
 

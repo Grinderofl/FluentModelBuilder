@@ -24,7 +24,7 @@ namespace FluentModelBuilder.Tests
                     .AddEntityFrameworkInMemoryDatabase()
                     .AddDbContext<ContextOne>((p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p))
                     .AddDbContext<ContextTwo>((p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p));
-            services.ConfigureEntityFramework(x => x.Add(From.AssemblyOf<EntityBase>(new TestConfiguration()).Context<ContextTwo>()));
+            services.ConfigureEntityFramework(From.AssemblyOf<EntityBase>(new TestConfiguration()).Context<ContextTwo>());
             var provider = services.BuildServiceProvider();
             ModelOne = provider.GetService<ContextOne>().Model;
             ModelTwo = provider.GetService<ContextTwo>().Model;
