@@ -2,11 +2,9 @@ using System;
 using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Alterations;
-using FluentModelBuilder.Builder;
 using FluentModelBuilder.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -22,7 +20,9 @@ namespace FluentModelBuilder.Extensions
 
         public static bool ClosesInterface(this Type type, Type interfaceType)
         {
-            return type.GetInterfaces().Any(x => x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == interfaceType);
+            return
+                type.GetInterfaces()
+                    .Any(x => x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == interfaceType);
         }
 
         public static bool IsDbContextType(this Type type)
@@ -31,7 +31,7 @@ namespace FluentModelBuilder.Extensions
         }
 
         /// <summary>
-        /// Fluently configures Entity Framework for application
+        ///     Fluently configures Entity Framework for application
         /// </summary>
         /// <param name="services"></param>
         /// <param name="configurationAction"></param>
@@ -45,7 +45,7 @@ namespace FluentModelBuilder.Extensions
         }
 
         /// <summary>
-        /// Fluently configures Entity Framework for application
+        ///     Fluently configures Entity Framework for application
         /// </summary>
         /// <param name="builder">Entity Framework Services Builder</param>
         /// <param name="configurationAction">Configuration action to perform</param>
@@ -59,7 +59,7 @@ namespace FluentModelBuilder.Extensions
         }
 
         /// <summary>
-        /// Fluently configures AutoModelBuilder for Entity Framework for application
+        ///     Fluently configures AutoModelBuilder for Entity Framework for application
         /// </summary>
         /// <param name="optionsBuilder">DbContestOptionsBuilder</param>
         /// <param name="action">AutoModelBuilder</param>

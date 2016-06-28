@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FluentModelBuilder.Builder;
 using FluentModelBuilder.Extensions;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +9,8 @@ namespace FluentModelBuilder.Configuration
 {
     public class FluentModelBuilderOptionsExtension : IDbContextOptionsExtension
     {
-        internal IList<Action<FluentModelBuilderConfiguration>> ConfigurationActions = new List<Action<FluentModelBuilderConfiguration>>(); 
+        internal IList<Action<FluentModelBuilderConfiguration>> ConfigurationActions =
+            new List<Action<FluentModelBuilderConfiguration>>();
 
         public FluentModelBuilderOptionsExtension()
         {
@@ -23,7 +23,7 @@ namespace FluentModelBuilder.Configuration
 
         public void ApplyServices(IServiceCollection services)
         {
-            if(ConfigurationActions.Any())
+            if (ConfigurationActions.Any())
                 services.ConfigureEntityFramework(conf =>
                 {
                     foreach (var action in ConfigurationActions)

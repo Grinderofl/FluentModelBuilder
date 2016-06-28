@@ -1,5 +1,4 @@
 using System;
-using FluentModelBuilder.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
@@ -19,7 +18,7 @@ namespace FluentModelBuilder.Configuration
         {
             var extension = new FluentModelBuilderOptionsExtension();
             setAction(extension);
-            ((IDbContextOptionsBuilderInfrastructure)_builder).AddOrUpdateExtension(extension);
+            ((IDbContextOptionsBuilderInfrastructure) _builder).AddOrUpdateExtension(extension);
             return this;
         }
 

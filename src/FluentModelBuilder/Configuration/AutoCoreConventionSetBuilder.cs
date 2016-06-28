@@ -10,7 +10,7 @@ namespace FluentModelBuilder.Configuration
 
         public AutoCoreConventionSetBuilder(FluentModelBuilderConfiguration configuration)
         {
-            if(configuration == null)
+            if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration));
             _configuration = configuration;
         }

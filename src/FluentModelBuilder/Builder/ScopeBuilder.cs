@@ -5,15 +5,16 @@ namespace FluentModelBuilder.Builder
     public class ScopeBuilder
     {
         private readonly AutoModelBuilder _autoModelBuilder;
+
         public ScopeBuilder(AutoModelBuilder autoModelBuilder)
         {
-            if(autoModelBuilder == null)
+            if (autoModelBuilder == null)
                 throw new ArgumentNullException(nameof(autoModelBuilder));
             _autoModelBuilder = autoModelBuilder;
         }
 
         /// <summary>
-        /// Instructs this AutoModelBuilder to only execute on PreModelCreating
+        ///     Instructs this AutoModelBuilder to only execute on PreModelCreating
         /// </summary>
         /// <returns></returns>
         public AutoModelBuilder PreModelCreating()
@@ -23,7 +24,7 @@ namespace FluentModelBuilder.Builder
         }
 
         /// <summary>
-        /// Instructs this AutoModelBuilder to only execute on PostModelCreating
+        ///     Instructs this AutoModelBuilder to only execute on PostModelCreating
         /// </summary>
         /// <returns></returns>
         public AutoModelBuilder PostModelCreating()
@@ -33,7 +34,8 @@ namespace FluentModelBuilder.Builder
         }
 
         /// <summary>
-        /// Instructs this AutoModelBuilder to decide execution scope through configuration, which defaults to PostModelCreating
+        ///     Instructs this AutoModelBuilder to decide execution scope through configuration, which defaults to
+        ///     PostModelCreating
         /// </summary>
         /// <returns></returns>
         public AutoModelBuilder Default()

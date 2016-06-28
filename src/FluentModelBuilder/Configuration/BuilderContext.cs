@@ -11,7 +11,7 @@ namespace FluentModelBuilder.Configuration
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
 
-            if(modelBuilder == null)
+            if (modelBuilder == null)
                 throw new ArgumentNullException(nameof(modelBuilder));
 
             DbContext = context;

@@ -9,7 +9,8 @@ namespace FluentModelBuilder.Builder.Sources
     {
         private readonly IEnumerable<AssemblyTypeSource> _sources;
 
-        public CombinedAssemblyTypeSource(IEnumerable<Assembly> sources) : this(sources.Select(x => new AssemblyTypeSource(x)))
+        public CombinedAssemblyTypeSource(IEnumerable<Assembly> sources)
+            : this(sources.Select(x => new AssemblyTypeSource(x)))
         {
         }
 

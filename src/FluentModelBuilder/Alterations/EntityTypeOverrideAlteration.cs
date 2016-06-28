@@ -25,7 +25,7 @@ namespace FluentModelBuilder.Alterations
                 where entity != null
                 select type;
 
-            foreach(var type in types)
+            foreach (var type in types)
                 builder.Override(type);
         }
     }

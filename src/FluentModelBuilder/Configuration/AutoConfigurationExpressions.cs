@@ -6,10 +6,9 @@ namespace FluentModelBuilder.Configuration
 {
     public class AutoConfigurationExpressions
     {
-        public Func<Type, bool> ShouldMap;
-
         public Func<DbContext, bool> ShouldApplyToContext;
 
         public Func<BuilderScope, bool> ShouldApplyToScope;
+        public Func<Type, bool> ShouldMap;
     }
 }
