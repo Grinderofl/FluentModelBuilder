@@ -1,9 +1,6 @@
 {
   "version": "1.0.0",
   "description": "FluentModelBuilder.Tests Class Library",
-  "buildOptions": {
-    "emitEntryPoint": true
-  },
   "authors": [ "Nero" ],
   "dependencies": {
     "xunit": "2.1.0",
