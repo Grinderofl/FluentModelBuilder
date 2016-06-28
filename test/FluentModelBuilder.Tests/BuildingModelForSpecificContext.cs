@@ -33,7 +33,7 @@ namespace FluentModelBuilder.Tests
 
     internal class ContextOne : DbContext
     {
-        public ContextOne(DbContextOptions options):base(options)
+        public ContextOne(DbContextOptions<ContextOne> options):base(options)
         {
             
         }
@@ -41,7 +41,7 @@ namespace FluentModelBuilder.Tests
 
     internal class ContextTwo : DbContext
     {
-        public ContextTwo(DbContextOptions options):base(options)
+        public ContextTwo(DbContextOptions<ContextTwo> options):base(options)
             { }
     }
 

@@ -12,23 +12,9 @@ namespace ModelBuilderSample
     {
         public static void Main(string[] args)
         {
-            //var prov =
-            //    new ServiceCollection().AddScoped<TestClass>().AddSingleton(new TestDependency() {Name = "Hello"}).BuildServiceProvider();
-
-            //var testClass = prov.GetService<TestClass>();
-
-            var test = new BuildingModelWithoutDependencyInjection();
-            test.BuildsModel();
-
-            //var fixture = new MultipleAssemblyFixtureWithOverrides();
-            //var test = new BuildingModelFromMultipleAssembliesWithOverrides(fixture);
-            //test.MapsEntityProperty(0, 0, "Id");
-            //test.MapsEntityProperty("AccessFailedCount", 2, 0);
-
             IServiceProvider provider = BuildServiceProvider();
             try
             {
-                //var testClass = provider.GetService<TestClass>();
                 var context = provider.GetService<DbContext>();
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -55,14 +41,6 @@ namespace ModelBuilderSample
                 .AddDbContext<DbContext>(
                     (p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p));
             services.AddScoped<TestClass>();
-            //services
-            //    .AddEntityFrameworkSqlServer()
-            //    .AddDbContext<ProjectDbContext>(
-            //        (p, c) => c.UseSqlServer("Data Source=.;Initial Catalog=eftest;Integrated Security=SSPI;").UseInternalServiceProvider(p));
-            //services.ConfigureEntityFramework(
-            //    mappings =>
-            //        mappings.Add(
-            //            From.AssemblyOf<Program>(new ProgramConfiguration()).UseOverridesFromAssemblyOf<Program>()));
         }
     }
 
