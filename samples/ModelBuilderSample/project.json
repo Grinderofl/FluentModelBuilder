@@ -2,26 +2,30 @@
   "version": "1.0.0-*",
   "description": "ModelBuilderSample Console Application",
   "authors": [ "Nero" ],
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
 
   "dependencies": {
-    "FluentModelBuilder": "1.0.0-*",
-    "FluentModelBuilder.Tests": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0-*" 
+    "FluentModelBuilder": "1.0.0",
+    "FluentModelBuilder.Tests": "1.0.0",
+    "Microsoft.EntityFrameworkCore": "1.0.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
+    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0",
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.0"
+    }
   },
 
   "commands": {
     "ModelBuilderSample": "ModelBuilderSample",
-    "ef" : "EntityFramework.Commands"
+    "ef": "EntityFramework.Commands"
   },
 
   "frameworks": {
     "netcoreapp1.0": {
-      "imports": [ "dnxcore50", "portable-net452+win8" ],
-      "dependencies": {
-        "Microsoft.NETCore.App": "1.0.0-*"
-      }
+      "imports": [ "dnxcore50" ]
     }
   }
 }

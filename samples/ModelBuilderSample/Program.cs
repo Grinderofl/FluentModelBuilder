@@ -10,7 +10,7 @@ namespace ModelBuilderSample
 {
     public class Program
     {
-        public void Main(string[] args)
+        public static void Main(string[] args)
         {
             //var prov =
             //    new ServiceCollection().AddScoped<TestClass>().AddSingleton(new TestDependency() {Name = "Hello"}).BuildServiceProvider();
@@ -42,14 +42,14 @@ namespace ModelBuilderSample
             Console.Read();
         }
 
-        private IServiceProvider BuildServiceProvider()
+        private static IServiceProvider BuildServiceProvider()
         {
             var services = new ServiceCollection();
             Configure(services);
             return services.BuildServiceProvider();
         }
 
-        public void Configure(IServiceCollection services)
+        public static void Configure(IServiceCollection services)
         {
             services.AddEntityFrameworkInMemoryDatabase()
                 .AddDbContext<DbContext>(
