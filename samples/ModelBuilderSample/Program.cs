@@ -37,8 +37,14 @@ namespace ModelBuilderSample
         public static void Configure(IServiceCollection services)
         {
             services.AddDbContext<DbContext>(
-                (p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p));
-            services.ConfigureEntityFramework(From.AssemblyOf<TestClass>(new ProgramConfiguration()));
+                x => x.UseInMemoryDatabase().Configure(f => f.UsingAssemblyOf<TestClass>(new ProgramConfiguration())));
+            //services.AddEntityFrameworkInMemoryDatabase();
+            //services.AddAndConfigureDbContext(x => x.UseInMemoryDatabase(),
+            //    From.AssemblyOf<TestClass>(new ProgramConfiguration()));
+            //services.AddDbContext<DbContext>(
+            //    (p, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(p));
+            //services.AddAndConfigureDbContext<DbContext>(x => x.UseInMemoryDatabase(), From.AssemblyOf<TestClass>(new ProgramConfiguration()));
+            //services.ConfigureEntityFramework(From.AssemblyOf<TestClass>(new ProgramConfiguration()));
         }
     }
 

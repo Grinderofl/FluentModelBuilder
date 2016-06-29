@@ -1,7 +1,4 @@
 using System;
-using System.Linq;
-using System.Reflection;
-using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Builder;
 using FluentModelBuilder.Configuration;
 using Microsoft.EntityFrameworkCore;
@@ -11,26 +8,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace FluentModelBuilder.Extensions
 {
-    public static class Extensions
+    public static class ServiceCollectionExtensions
     {
-        public static bool IsEntityTypeOverrideType(this Type type)
-        {
-            return type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof (IEntityTypeOverride<>) &&
-                   type.GetGenericArguments().Length > 0;
-        }
-
-        public static bool ClosesInterface(this Type type, Type interfaceType)
-        {
-            return
-                type.GetInterfaces()
-                    .Any(x => x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == interfaceType);
-        }
-
-        public static bool IsDbContextType(this Type type)
-        {
-            return typeof (DbContext).IsAssignableFrom(type);
-        }
-
         /// <summary>
         ///     Fluently configures Entity Framework for application
         /// </summary>
@@ -87,6 +66,30 @@ namespace FluentModelBuilder.Extensions
             var builder = new FluentModelBuilderOptionsBuilder(optionsBuilder);
             builder.Configuration(action);
             return optionsBuilder;
+        }
+
+        
+        public static IServiceCollection AddAndConfigureDbContext(this IServiceCollection services, Action<DbContextOptionsBuilder> action)
+        {
+            return services.AddAndConfigureDbContext<DbContext>(action, null);
+        }
+
+        public static IServiceCollection AddAndConfigureDbContext(this IServiceCollection services, Action<DbContextOptionsBuilder> action, AutoModelBuilder builder)
+        {
+            return services.AddAndConfigureDbContext<DbContext>(action, builder);
+        }
+
+        public static IServiceCollection AddAndConfigureDbContext<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> action, AutoModelBuilder builder) where TContext : DbContext
+        {
+            services.AddEntityFramework();
+            services.AddDbContext<TContext>(((provider, optionsBuilder) =>
+            {
+                optionsBuilder.UseInternalServiceProvider(provider);
+                action(optionsBuilder);
+            }));
+            if(builder != null)
+                services.ConfigureEntityFramework(builder);
+            return services;
         }
     }
 }
