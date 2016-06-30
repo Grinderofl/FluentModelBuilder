@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace FluentModelBuilder.Configuration
 {
-    public class AutoModelCustomizer : ModelCustomizer
+    public class FluentModelCustomizer : ModelCustomizer
     {
         private readonly FluentModelBuilderConfiguration _configuration;
 
-        public AutoModelCustomizer(FluentModelBuilderConfiguration configuration)
+        public FluentModelCustomizer(FluentModelBuilderConfiguration configuration)
         {
             if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration));
