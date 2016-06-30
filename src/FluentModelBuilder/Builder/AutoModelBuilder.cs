@@ -69,6 +69,7 @@ namespace FluentModelBuilder.Builder
                 return;
 
             _alterations.Apply(this);
+            ApplyModelBuilderOverrides(parameters.ModelBuilder);
             AddEntities(parameters.ModelBuilder);
             ApplyOverrides(parameters.ModelBuilder);
         }
@@ -94,6 +95,11 @@ namespace FluentModelBuilder.Builder
             return genericEntityMethod?.Invoke(builder, null);
         }
 
+        private void ApplyModelBuilderOverrides(ModelBuilder builder)
+        {
+            foreach(var modelBuilderOverride in _modelBuilderOverrides)
+                modelBuilderOverride.Override(builder);
+        }
 
         private void AddEntities(ModelBuilder builder)
         {
