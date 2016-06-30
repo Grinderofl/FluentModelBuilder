@@ -3,7 +3,7 @@
 namespace FluentModelBuilder.Alterations
 {
     /// <summary>
-    ///     Provides a way to override the configuration of a single entity
+    ///     Provides a way to override the configuration/mappings of a single entity
     /// </summary>
     /// <remarks>You would use this instead of &lt; EF6's EntityTypeConfiguration class</remarks>
     /// <typeparam name="T">Type of entity to override</typeparam>

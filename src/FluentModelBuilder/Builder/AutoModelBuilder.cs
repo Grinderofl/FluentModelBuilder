@@ -69,6 +69,7 @@ namespace FluentModelBuilder.Builder
                 return;
 
             _alterations.Apply(this);
+            ApplyModelBuilderOverrides(parameters.ModelBuilder);
             AddEntities(parameters.ModelBuilder);
             ApplyOverrides(parameters.ModelBuilder);
         }
@@ -94,6 +95,11 @@ namespace FluentModelBuilder.Builder
             return genericEntityMethod?.Invoke(builder, null);
         }
 
+        private void ApplyModelBuilderOverrides(ModelBuilder builder)
+        {
+            foreach(var modelBuilderOverride in _modelBuilderOverrides)
+                modelBuilderOverride.Override(builder);
+        }
 
         private void AddEntities(ModelBuilder builder)
         {
@@ -278,10 +284,8 @@ namespace FluentModelBuilder.Builder
         /// </summary>
         /// <typeparam name="TAlteration">Alteration to use</typeparam>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddAlteration<TAlteration>() where TAlteration : IAutoModelBuilderAlteration
-        {
-            return AddAlteration(typeof (TAlteration));
-        }
+        public AutoModelBuilder AddAlteration<TAlteration>() where TAlteration : IAutoModelBuilderAlteration 
+            => AddAlteration(typeof (TAlteration));
 
         /// <summary>
         ///     Adds an alteration to be used with this AutoModelBuilder
@@ -303,10 +307,44 @@ namespace FluentModelBuilder.Builder
         /// </summary>
         /// <param name="alteration">Alteration to use</param>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddAlteration(IAutoModelBuilderAlteration alteration)
-        {
-            return Alterations(a => a.Add(alteration));
-        }
+        public AutoModelBuilder AddAlteration(IAutoModelBuilderAlteration alteration) 
+            => Alterations(a => a.Add(alteration));
+
+        /// <summary>
+        ///     Adds all alterations from provided assembly to be used with this AutoModelBuilder
+        /// </summary>
+        /// <param name="assembly">Assembly to scan for alterations</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddAlterationsFromAssembly(Assembly assembly) 
+            => Alterations(a => a.AddFromAssembly(assembly));
+
+        /// <summary>
+        ///     Adds all alterations from the assembly of provided type to be used with this AutoModelBuilder
+        /// </summary>
+        /// <typeparam name="T">Type contained in the assembly to be scanned</typeparam>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddAlterationsFromAssemblyOf<T>()
+            => Alterations(a => a.AddFromAssemblyOf<T>());
+
+        /// <summary>
+        ///     Adds all alterations from the assembly of provided type to be used with this AutoModelBuilder
+        /// </summary>
+        /// <param name="type">Type contained in the assembly to be scanned</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddAlterationsFromAssemblyOf(Type type)
+            => Alterations(a => a.AddFromAssembly(type.GetTypeInfo().Assembly));
+
+        /// <summary>
+        ///     Adds all alterations from provided assemblies to be used with this AutoModelBuilder
+        /// </summary>
+        /// <param name="assemblies">Assemblies to scan for alterations</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddAlterationsFromAssemblies(IEnumerable<Assembly> assemblies)
+            => Alterations(a =>
+            {
+                foreach (var asssembly in assemblies)
+                    a.AddFromAssembly(asssembly);
+            });
 
         #endregion
 
@@ -318,9 +356,16 @@ namespace FluentModelBuilder.Builder
         /// <typeparam name="T">Type contained in required assembly</typeparam>
         /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder UseOverridesFromAssemblyOf<T>()
-        {
-            return UseOverridesFromAssembly(typeof (T).GetTypeInfo().Assembly);
-        }
+            => UseOverridesFromAssemblyOf(typeof (T));
+
+        /// <summary>
+        ///     Add mapping overrides defined in assembly of the provided type
+        /// </summary>
+        /// <param name="type">Type contained in the required assembly</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder UseOverridesFromAssemblyOf(Type type)
+            => UseOverridesFromAssembly(type.GetTypeInfo().Assembly);
+        
 
         /// <summary>
         ///     Add mapping overrides from specified assembly
@@ -331,6 +376,18 @@ namespace FluentModelBuilder.Builder
         {
             _alterations.Add(new EntityTypeOverrideAlteration(assembly));
             _alterations.Add(new ModelBuilderOverrideAlteration(assembly));
+            return this;
+        }
+
+        /// <summary>
+        ///     Add mapping overrides from specified assemblies
+        /// </summary>
+        /// <param name="assemblies">Assemblies to use</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder UseOverridesFromAssemblies(IEnumerable<Assembly> assemblies)
+        {
+            foreach (var assembly in assemblies)
+                UseOverridesFromAssembly(assembly);
             return this;
         }
 
@@ -374,8 +431,9 @@ namespace FluentModelBuilder.Builder
         {
             _inlineOverrides.Add(new InlineOverride(typeof (T), x =>
             {
-                if (x is EntityTypeBuilder<T>)
-                    builderAction?.Invoke((EntityTypeBuilder<T>) x);
+                var builder = x as EntityTypeBuilder<T>;
+                if (builder != null)
+                    builderAction?.Invoke(builder);
             }));
             return this;
         }
@@ -384,10 +442,20 @@ namespace FluentModelBuilder.Builder
         ///     Override the ModelBuilder
         /// </summary>
         /// <param name="modelBuilderOverride">Type of IModelBuilderOverride</param>
-        public void Override(IModelBuilderOverride modelBuilderOverride)
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder Override(IModelBuilderOverride modelBuilderOverride)
         {
             _modelBuilderOverrides.Add(modelBuilderOverride);
+            return this;
         }
+
+        /// <summary>
+        ///     Override the ModelBuilder
+        /// </summary>
+        /// <typeparam name="TOverride">Type of IModelBuilderOverride</typeparam>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder UseOverride<TOverride>() where TOverride : IModelBuilderOverride, new()
+            => Override(new TOverride());
 
         #endregion
 
@@ -398,9 +466,18 @@ namespace FluentModelBuilder.Builder
         /// </summary>
         /// <param name="assembly">Assembly to use</param>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddEntityAssembly(Assembly assembly)
+        public AutoModelBuilder AddEntityAssembly(Assembly assembly) 
+            => AddTypeSource(new AssemblyTypeSource(assembly));
+
+        /// <summary>
+        ///     Adds entities from specified assemblies
+        /// </summary>
+        /// <param name="assemblies">Assemblies to use</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddEntityAssemblies(IEnumerable<Assembly> assemblies)
         {
-            return AddTypeSource(new AssemblyTypeSource(assembly));
+            AddTypeSource(new CombinedAssemblyTypeSource(assemblies));
+            return this;
         }
 
         /// <summary>
@@ -408,30 +485,24 @@ namespace FluentModelBuilder.Builder
         /// </summary>
         /// <typeparam name="T">Type contained in required assembly</typeparam>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddEntityAssemblyOf<T>()
-        {
-            return AddEntityAssembly(typeof (T).GetTypeInfo().Assembly);
-        }
+        public AutoModelBuilder AddEntityAssemblyOf<T>() 
+            => AddEntityAssembly(typeof (T).GetTypeInfo().Assembly);
 
         /// <summary>
         ///     Adds entities from specific assembly
         /// </summary>
         /// <param name="type">Type contained in required assembly</param>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddEntityAssemblyOf(Type type)
-        {
-            return AddEntityAssembly(type.GetTypeInfo().Assembly);
-        }
+        public AutoModelBuilder AddEntityAssemblyOf(Type type) 
+            => AddEntityAssembly(type.GetTypeInfo().Assembly);
 
         /// <summary>
         ///     Explicitly includes a type to be used as part of the model
         /// </summary>
         /// <typeparam name="T">Type to include</typeparam>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder IncludeBase<T>()
-        {
-            return IncludeBase(typeof (T));
-        }
+        public AutoModelBuilder IncludeBase<T>() 
+            => IncludeBase(typeof (T));
 
         /// <summary>
         ///     Explicitly includes a type to be used as part of the model
@@ -454,10 +525,8 @@ namespace FluentModelBuilder.Builder
         /// </remarks>
         /// <typeparam name="T">Type to ignore</typeparam>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder IgnoreBase<T>()
-        {
-            return IgnoreBase(typeof (T));
-        }
+        public AutoModelBuilder IgnoreBase<T>() 
+            => IgnoreBase(typeof (T));
 
         /// <summary>
         ///     Ignores a type and ensures it will not be used as part of the model
