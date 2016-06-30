@@ -284,10 +284,8 @@ namespace FluentModelBuilder.Builder
         /// </summary>
         /// <typeparam name="TAlteration">Alteration to use</typeparam>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddAlteration<TAlteration>() where TAlteration : IAutoModelBuilderAlteration
-        {
-            return AddAlteration(typeof (TAlteration));
-        }
+        public AutoModelBuilder AddAlteration<TAlteration>() where TAlteration : IAutoModelBuilderAlteration 
+            => AddAlteration(typeof (TAlteration));
 
         /// <summary>
         ///     Adds an alteration to be used with this AutoModelBuilder
@@ -309,10 +307,44 @@ namespace FluentModelBuilder.Builder
         /// </summary>
         /// <param name="alteration">Alteration to use</param>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddAlteration(IAutoModelBuilderAlteration alteration)
-        {
-            return Alterations(a => a.Add(alteration));
-        }
+        public AutoModelBuilder AddAlteration(IAutoModelBuilderAlteration alteration) 
+            => Alterations(a => a.Add(alteration));
+
+        /// <summary>
+        ///     Adds all alterations from provided assembly to be used with this AutoModelBuilder
+        /// </summary>
+        /// <param name="assembly">Assembly to scan for alterations</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddAlterationsFromAssembly(Assembly assembly) 
+            => Alterations(a => a.AddFromAssembly(assembly));
+
+        /// <summary>
+        ///     Adds all alterations from the assembly of provided type to be used with this AutoModelBuilder
+        /// </summary>
+        /// <typeparam name="T">Type contained in the assembly to be scanned</typeparam>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddAlterationsFromAssemblyOf<T>()
+            => Alterations(a => a.AddFromAssemblyOf<T>());
+
+        /// <summary>
+        ///     Adds all alterations from the assembly of provided type to be used with this AutoModelBuilder
+        /// </summary>
+        /// <param name="type">Type contained in the assembly to be scanned</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddAlterationsFromAssemblyOf(Type type)
+            => Alterations(a => a.AddFromAssembly(type.GetTypeInfo().Assembly));
+
+        /// <summary>
+        ///     Adds all alterations from provided assemblies to be used with this AutoModelBuilder
+        /// </summary>
+        /// <param name="assemblies">Assemblies to scan for alterations</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddAlterationsFromAssemblies(IEnumerable<Assembly> assemblies)
+            => Alterations(a =>
+            {
+                foreach (var asssembly in assemblies)
+                    a.AddFromAssembly(asssembly);
+            });
 
         #endregion
 
