@@ -69,9 +69,9 @@ namespace FluentModelBuilder.Builder
                 return;
 
             _alterations.Apply(this);
-            ApplyModelBuilderOverrides(parameters.ModelBuilder);
             AddEntities(parameters.ModelBuilder);
             ApplyOverrides(parameters.ModelBuilder);
+            ApplyModelBuilderOverrides(parameters.ModelBuilder);
         }
 
         internal void AddOverride(Type type, Action<object> action)
