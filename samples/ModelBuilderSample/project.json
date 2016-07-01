@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.0-*",
+  "version": "1.0.0",
   "description": "ModelBuilderSample Console Application",
   "authors": [ "Nero" ],
   "buildOptions": {
@@ -7,7 +7,7 @@
   },
 
   "dependencies": {
-    "FluentModelBuilder": "1.0.0",
+    "FluentModelBuilder": "1.1.0",
     "Microsoft.EntityFrameworkCore": "1.0.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
     "Microsoft.EntityFrameworkCore.InMemory": "1.0.0"
