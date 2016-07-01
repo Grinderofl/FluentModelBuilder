@@ -38,48 +38,25 @@ namespace FluentModelBuilder.Extensions
                     x.Add(builder);
             });
 
-        /// <summary>
-        ///     Fluently configures Entity Framework for application
-        /// </summary>
-        /// <param name="builder">Entity Framework Services Builder</param>
-        /// <param name="configurationAction">Configuration action to perform</param>
-        /// <returns></returns>
-        public static EntityFrameworkServicesBuilder Configure(this EntityFrameworkServicesBuilder builder,
-            Action<FluentModelBuilderConfiguration> configurationAction)
-        {
-            var services = builder.GetInfrastructure();
-            services.ConfigureEntityFramework(configurationAction);
-            return builder;
-        }
-
-        /// <summary>
-        ///     Fluently configures AutoModelBuilder for Entity Framework for application
-        /// </summary>
-        /// <param name="optionsBuilder">DbContestOptionsBuilder</param>
-        /// <param name="action">AutoModelBuilder</param>
-        /// <returns>DbContextOptionsBuilder</returns>
-        public static DbContextOptionsBuilder Configure(this DbContextOptionsBuilder optionsBuilder,
-            Action<FluentModelBuilderConfiguration> action)
-        {
-            ((IDbContextOptionsBuilderInfrastructure) optionsBuilder).AddOrUpdateExtension(
-                new FluentModelBuilderOptionsExtension());
-            var builder = new FluentModelBuilderOptionsBuilder(optionsBuilder);
-            builder.Configuration(action);
-            return optionsBuilder;
-        }
-
         
-        public static IServiceCollection AddAndConfigureDbContext(this IServiceCollection services, Action<DbContextOptionsBuilder> action)
-        {
-            return services.AddAndConfigureDbContext<DbContext>(action, null);
-        }
 
-        public static IServiceCollection AddAndConfigureDbContext(this IServiceCollection services, Action<DbContextOptionsBuilder> action, AutoModelBuilder builder)
-        {
-            return services.AddAndConfigureDbContext<DbContext>(action, builder);
-        }
+        /// <summary>
+        ///     Adds anonymous DbContext to service collection
+        /// </summary>
+        /// <param name="services">Service Collection</param>
+        /// <param name="action">Configuration action</param>
+        /// <returns>IServiceCollection</returns>
+        public static IServiceCollection AddDbContext(this IServiceCollection services,
+            Action<DbContextOptionsBuilder> action) => services.AddDbContext<DbContext>(action);
 
-        public static IServiceCollection AddAndConfigureDbContext<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> action, AutoModelBuilder builder) where TContext : DbContext
+        /// <summary>
+        ///     Adds anonymous DbContext to service collection and configures it using fluent API
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="action"></param>
+        /// <param name="fluentAction"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddAndConfigureDbContext<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> action, Action<FluentModelBuilderConfiguration> fluentAction) where TContext : DbContext
         {
             services.AddEntityFramework();
             services.AddDbContext<TContext>(((provider, optionsBuilder) =>
@@ -87,8 +64,26 @@ namespace FluentModelBuilder.Extensions
                 optionsBuilder.UseInternalServiceProvider(provider);
                 action(optionsBuilder);
             }));
-            if(builder != null)
-                services.ConfigureEntityFramework(builder);
+            services.ConfigureEntityFramework(fluentAction);
+            return services;
+        }
+
+        /// <summary>
+        ///     Adds anonymous DbContext to service collection and configures it using From API
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="action"></param>
+        /// <param name="builders"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddAndConfigureDbContext<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> action, params AutoModelBuilder[] builders) where TContext : DbContext
+        {
+            services.AddEntityFramework();
+            services.AddDbContext<TContext>(((provider, optionsBuilder) =>
+            {
+                optionsBuilder.UseInternalServiceProvider(provider);
+                action(optionsBuilder);
+            }));
+            services.ConfigureEntityFramework(builders);
             return services;
         }
     }
