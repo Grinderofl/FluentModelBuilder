@@ -3,7 +3,7 @@
 Provides an entry point for configuring entities and conventions of Entity Framework Core through a fluent, convention-based, and automated way, inspired by [Fluent NHibernate](https://github.com/jagregory/fluent-nhibernate).
 
 ## Getting started
-* Read the [introduction](https://github.com/Grinderofl/FluentModelBuilder/wiki/1.-Introduction)
+* Read the [Introduction](https://github.com/Grinderofl/FluentModelBuilder/wiki/0.-Introduction)
 * Get latest binaries from [NuGet](https://www.nuget.org/packages/FluentModelBuilder/)
 * Set up your project
 
