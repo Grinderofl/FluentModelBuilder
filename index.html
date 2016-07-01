@@ -1,172 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
+    <title>FluentModelBuilder by Grinderofl</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>FluentModelBuilder by Grinderofl</title>
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>FluentModelBuilder</h1>
-        <h2>Fluently configure EntityFramework 7 DbContext</h2>
-        <a href="https://github.com/Grinderofl/FluentModelBuilder" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
+    <section class="page-header">
+      <h1 class="project-name">FluentModelBuilder</h1>
+      <h2 class="project-tagline">Fluently configure EntityFramework 7 DbContext</h2>
+      <a href="https://github.com/Grinderofl/FluentModelBuilder" class="btn">View on GitHub</a>
+      <a href="https://github.com/Grinderofl/FluentModelBuilder/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Grinderofl/FluentModelBuilder/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h2>
-<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
-
-<p><strong>FluentModelBuilder</strong> provides an entry point for Entity Framework 7 Model customization programmatically, instead of using <code>DbSet</code> or <code>OnModelCreating</code> override. This gives the DbContext customization a more modular and automatic approach.</p>
-
-<h3>
-<a id="goals" class="anchor" href="#goals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Goals</h3>
-
-<p><a href="https://github.com/aspnet/EntityFramework">Entity Framework 7</a> is a ground-up rework of Microsoft's ORM platform. Unfortunately, it also means all of the features previous EF's had will need to be re-implemented. That's a lot of work, understandably so, but sadly a whole lot of features are still missing. One of the biggest offenders is the ability to customize your backing model from anywhere else than your subclassed DbContext, where in EF6 and earlier, there were several means of doing this, currently there is only one officially supported way - building your model yourself, but it has the pitfall of not being considerate with the DbContext's <code>DbSet</code> properties.</p>
-
-<p>Cue <strong>FluentModelBuilder</strong>: It adds a model convention which updates the <code>InternalModelBuilder</code> used by <code>ModelBuilder</code> in <code>OnModelCreating</code> method. FluentModelBuilder runs prior to all other configuration, so anything that is in <code>OnModelCreating</code> of a DbContext overrides convention-based configuration.</p>
-
-<h1>
-<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h1>
-
-<p>Here are a couple of examples to show you it works:</p>
+    <section class="main-content">
+      <h1>
+<a id="introducing-fluentmodelbuilder" class="anchor" href="#introducing-fluentmodelbuilder" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introducing FluentModelBuilder</h1>
 
 <h2>
-<a id="example-1---dbcontext-with-specific-entities" class="anchor" href="#example-1---dbcontext-with-specific-entities" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 1 - DbContext with specific entities</h2>
+<a id="what-is-it" class="anchor" href="#what-is-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is it</h2>
 
-<h3>
-<a id="subclassing-dbcontext" class="anchor" href="#subclassing-dbcontext" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subclassing DbContext</h3>
-
-<div class="highlight highlight-source-cs"><pre><span class="pl-c">// ApplicationContext.cs</span>
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">ApplicationContext</span> : <span class="pl-k">DbContext</span>
-{
-  <span class="pl-k">public</span> DbSet&lt;EntityOne&gt; <span class="pl-en">EntityOnes</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; } <span class="pl-c">// Available as both context.EntityOnes and context.Set&lt;EntityOne&gt;();</span>
-  <span class="pl-k">public</span> DbSet&lt;EntityTwo&gt; <span class="pl-en">EntityTwos</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; } <span class="pl-c">// Available as both context.EntityTwos and context.Set&lt;EntityTwo&gt;();</span>
-
-  <span class="pl-k">protected</span> <span class="pl-k">override</span> <span class="pl-k">void</span> <span class="pl-en">OnModelCreating</span>(<span class="pl-k">ModelBuilder</span> <span class="pl-smi">builder</span>)
-  {
-    <span class="pl-c">// Alternatively:</span>
-    builder.Entity&lt;EntityThree&gt;(); <span class="pl-c">// Available as context.Set&lt;EntityThree&gt;();</span>
-  }
-}
-
-<span class="pl-c">// Startup.cs</span>
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Startup</span>
-{
-    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">Configure</span>(<span class="pl-k">IServiceCollection</span> <span class="pl-smi">services</span>)
-    {
-        services.AddEntityFramework()
-            .AddDbContext&lt;ApplicationContext&gt;(x =&gt; x.UseInMemoryDatabase())
-            .AddInMemory();
-    }
-}</pre></div>
-
-<h3>
-<a id="fluentmodelbuilder-equivalent" class="anchor" href="#fluentmodelbuilder-equivalent" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FluentModelBuilder equivalent</h3>
-
-<div class="highlight highlight-source-cs"><pre><span class="pl-c">// Startup.cs</span>
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Startup</span>
-{
-    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">Configure</span>(<span class="pl-k">IServiceCollection</span> <span class="pl-smi">services</span>)
-    {
-        services.AddEntityFramework()
-            .AddDbContext&lt;DbCotnext&gt;(x =&gt; x.UseInMemoryDatabase())
-            .AddInMemory();
-
-        services.ConfigureEntityFramework(mappings =&gt;
-            mappings.Add(From.Empty()
-                .Override&lt;EntityOne&gt;()
-                .Override&lt;EntityTwo&gt;()
-                .Override&lt;EntityThree&gt;()));
-    }
-}</pre></div>
+<p>If you're writing an application with .NET Core using Entity Framework Core, you may want to have a better way of customising your backing model. <code>FluentModelBuilder</code> is a drop-in extension for doing exactly that in a fluent manner.</p>
 
 <h2>
-<a id="example-2---dbcontext-with-discovered-entities" class="anchor" href="#example-2---dbcontext-with-discovered-entities" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example 2 - DbContext with discovered entities</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
-<h3>
-<a id="subclassing-dbcontext-1" class="anchor" href="#subclassing-dbcontext-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subclassing DbContext</h3>
+<p>NuGet:</p>
 
-<div class="highlight highlight-source-cs"><pre><span class="pl-c">// ApplicationContext.cs</span>
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">ApplicationContext</span> : <span class="pl-k">DbContext</span>
-{
-    <span class="pl-k">protected</span> <span class="pl-k">override</span> <span class="pl-k">void</span> <span class="pl-en">OnModelCreating</span>(<span class="pl-k">ModelBuilder</span> <span class="pl-smi">builder</span>)
-    {
-        <span class="pl-k">var</span> types = <span class="pl-k">typeof</span> (ApplicationContext).GetTypeInfo()
-                .Assembly.GetExportedTypes()
-                .Where(x =&gt; x.GetTypeInfo().Namespace.EndsWith(<span class="pl-s"><span class="pl-pds">"</span>.Entities<span class="pl-pds">"</span></span>));
-            <span class="pl-k">foreach</span> (<span class="pl-k">var</span> type <span class="pl-k">in</span> types)
-                modelBuilder.Entity(type);
-    }
-}
+<div class="highlight highlight-source-cs"><pre>Install-Package FluentModelBuilder</pre></div>
 
-<span class="pl-c">// Startup.cs</span>
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Startup</span>
-{
-    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">Configure</span>(<span class="pl-k">IServiceCollection</span> <span class="pl-smi">services</span>)
-    {
-        services.AddEntityFramework()
-            .AddDbContext&lt;ApplicationContext&gt;(x =&gt; x.UseInMemoryDatabase())
-            .AddInMemory();
-    }
-}</pre></div>
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use</h2>
 
-<h3>
-<a id="fluentmodelbuilder-equivalent-1" class="anchor" href="#fluentmodelbuilder-equivalent-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FluentModelBuilder equivalent</h3>
+<p>To extend your pre-existing DbContext, just use <code>Configure</code> inside <code>AddDbContext&lt;TContext&gt;()</code>:</p>
 
-<div class="highlight highlight-source-cs"><pre><span class="pl-c">// Startup.cs</span>
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Startup</span>
-{
-    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">Configure</span>(<span class="pl-k">IServiceCollection</span> <span class="pl-smi">services</span>)
-    {
-    services.AddEntityFramework()
-            .AddDbContext&lt;DbCotnext&gt;(x =&gt; x.UseInMemoryDatabase())
-            .AddInMemory();
-        services.ConfigureEntityFramework(mappings =&gt;
-            mappings.Add(From.AssemblyOf&lt;Startup&gt;(<span class="pl-k">new</span> EntityConfiguration()))
-    }
-}
+<div class="highlight highlight-source-cs"><pre><span class="pl-c">// Scan assembly of YourContext for entities</span>
 
-<span class="pl-c">// EntityConfiguration.cs</span>
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">EntityConfiguration</span> : <span class="pl-k">DefaultEntityAutoConfiguration</span>
+services.AddDbContext&lt;YourContext&gt;(opt =&gt; 
+    opt
+        .UseSqlServer(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>)
+        .Configure(fluently =&gt; 
+            fluently
+                .Using(type =&gt; type.Namespace.EndsWith(<span class="pl-s"><span class="pl-pds">"</span>Entities<span class="pl-pds">"</span></span>))
+                .AddEntityAssemblyOf&lt;YourContext&gt;()));</pre></div>
+
+<p>For more complex configuration, implement <code>IEntityAutoConfiguration</code> or subclass from <code>DefaultEntityAutoConfiguration</code>:</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-c">// Pick up all concrete types that inherit from Entity</span>
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyEntityAutoConfiguration</span> : <span class="pl-k">DefaultEntityAutoConfiguration</span>
 {
     <span class="pl-k">public</span> <span class="pl-k">override</span> <span class="pl-k">bool</span> <span class="pl-en">ShouldMap</span>(<span class="pl-k">Type</span> <span class="pl-smi">type</span>)
     {
-        <span class="pl-k">return</span> type.GetTypeInfo().Namespace.EndsWith(<span class="pl-s"><span class="pl-pds">"</span>.Entities<span class="pl-pds">"</span></span>);
+        <span class="pl-k">return</span> <span class="pl-c1">base</span>.ShouldMap(type) &amp;&amp; type.GetTypeInfo().IsSubClassOf(<span class="pl-k">typeof</span>(Entity));
     }
+}
+
+<span class="pl-c">// Configure service</span>
+services.AddDbContext&lt;YourContext&gt;(opt =&gt; 
+    opt
+        .UseSqlServer(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>)
+        .Configure(fluently =&gt;
+            fluently
+                .Using(<span class="pl-k">new</span> MyEntityAutoConfiguration())
+                .AddEntityAssemblyOf&lt;YourContext&gt;()));</pre></div>
+
+<p>You can also use it in your DbContext's configure method. Example given using <code>From</code> entry point</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-c">// Inside DbContext</span>
+<span class="pl-k">protected</span> <span class="pl-k">override</span> <span class="pl-k">void</span> OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    optionsBuilder.Configure(
+        From.AssemblyOf&lt;YourContext&gt;(<span class="pl-k">new</span> MyEntityAutoConfiguration()));
 }</pre></div>
-        </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/Grinderofl/FluentModelBuilder/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/Grinderofl/FluentModelBuilder/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+<p>If you want to put all your entity maps into separate files, implement <code>IEntityTypeOverride&lt;T&gt;</code> and add the assembly for overrides:</p>
 
-          <p class="repo-owner"><a href="https://github.com/Grinderofl/FluentModelBuilder"></a> is maintained by <a href="https://github.com/Grinderofl">Grinderofl</a>.</p>
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyEntityOverride</span> : <span class="pl-k">IEntityTypeOverride</span>&lt;<span class="pl-k">MyEntity</span>&gt;
+{
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">Override</span>(EntityTypeBuilder&lt;MyEntity&gt; mapping)
+    {
+        mapping.ToTable(<span class="pl-s"><span class="pl-pds">"</span>MyEntities<span class="pl-pds">"</span></span>);
+    }
+}
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
+<span class="pl-c">// From-syntax, without the Configure() bit</span>
+
+From
+    .AssemblyOf&lt;YourContext&gt;(<span class="pl-k">new</span> MyEntityAutoConfiguration())
+    .UseOverridesFromAssemblyOf&lt;YourContext&gt;();
+</pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Grinderofl/FluentModelBuilder">FluentModelBuilder</a> is maintained by <a href="https://github.com/Grinderofl">Grinderofl</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
 
             <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
