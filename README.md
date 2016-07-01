@@ -5,8 +5,6 @@ Provides an entry point for configuring entities and conventions of Entity Frame
 ## Getting started
 * Read the [Introduction](https://github.com/Grinderofl/FluentModelBuilder/wiki/0.-Introduction)
 * Get latest binaries from [NuGet](https://www.nuget.org/packages/FluentModelBuilder/)
-* Set up your project
-
 
 
 ## NuGet:
