@@ -18,7 +18,10 @@ namespace FluentModelBuilder.Extensions
         {
             return
                 type.GetInterfaces()
-                    .Any(x => IntrospectionExtensions.GetTypeInfo(x).IsGenericType && x.GetGenericTypeDefinition() == interfaceType);
+                    .Any(
+                        x =>
+                        x == interfaceType ||
+                            (x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == interfaceType));
         }
 
         public static bool IsDbContextType(this Type type)

@@ -5,6 +5,7 @@ using System.Reflection;
 using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Builder.Sources;
 using FluentModelBuilder.Configuration;
+using FluentModelBuilder.Conventions;
 using FluentModelBuilder.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -22,7 +23,7 @@ namespace FluentModelBuilder.Builder
 
         private readonly List<Type> _includedTypes = new List<Type>();
         private readonly IList<InlineOverride> _inlineOverrides = new List<InlineOverride>();
-        private readonly IList<IModelBuilderOverride> _modelBuilderOverrides = new List<IModelBuilderOverride>();
+        private readonly IList<IModelBuilderConvention> _modelBuilderOverrides = new List<IModelBuilderConvention>();
 
         private readonly List<ITypeSource> _typeSources = new List<ITypeSource>();
 
@@ -375,7 +376,7 @@ namespace FluentModelBuilder.Builder
         public AutoModelBuilder UseOverridesFromAssembly(Assembly assembly)
         {
             _alterations.Add(new EntityTypeOverrideAlteration(assembly));
-            _alterations.Add(new ModelBuilderOverrideAlteration(assembly));
+            _alterations.Add(new ModelBuilderConventionAlteration(assembly));
             return this;
         }
 
@@ -441,20 +442,20 @@ namespace FluentModelBuilder.Builder
         /// <summary>
         ///     Override the ModelBuilder
         /// </summary>
-        /// <param name="modelBuilderOverride">Type of IModelBuilderOverride</param>
+        /// <param name="modelBuilderConvention">Type of IModelBuilderConvention</param>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder Override(IModelBuilderOverride modelBuilderOverride)
+        public AutoModelBuilder Override(IModelBuilderConvention modelBuilderConvention)
         {
-            _modelBuilderOverrides.Add(modelBuilderOverride);
+            _modelBuilderOverrides.Add(modelBuilderConvention);
             return this;
         }
 
         /// <summary>
         ///     Override the ModelBuilder
         /// </summary>
-        /// <typeparam name="TOverride">Type of IModelBuilderOverride</typeparam>
+        /// <typeparam name="TOverride">Type of IModelBuilderConvention</typeparam>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder UseOverride<TOverride>() where TOverride : IModelBuilderOverride, new()
+        public AutoModelBuilder UseOverride<TOverride>() where TOverride : IModelBuilderConvention, new()
             => Override(new TOverride());
 
         #endregion
