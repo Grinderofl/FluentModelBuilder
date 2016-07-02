@@ -1,51 +1,57 @@
 using System;
-using FluentModelBuilder.Configuration;
-using FluentModelBuilder.Tests.Core;
-using FluentModelBuilder.TestTarget;
-using Xunit;
 using System.Linq;
+using FluentModelBuilder.Tests.Core;
 using FluentModelBuilder.Tests.Entities;
 using Microsoft.EntityFrameworkCore;
+using Xunit;
+using FluentModelBuilder.TestTarget;
+using FluentModelBuilder.Configuration;
 
 namespace FluentModelBuilder.Tests
 {
-    public class BuildingModelFromMultipleAssemblies : TestBase<MultiAssemblyFixture, DbContext>
+    public class BuildingModelFromAssemblyWithConventions : TestBase<AssemblyWithConventionsFixture, DbContext>
     {
-        public BuildingModelFromMultipleAssemblies(MultiAssemblyFixture fixture) : base(fixture)
+        public BuildingModelFromAssemblyWithConventions(AssemblyWithConventionsFixture fixture) : base(fixture)
         {
         }
 
         [Theory]
-        [InlineData(0, typeof(EntityOneWannabe))]
         [InlineData(1, typeof(EntityOne))]
-        [InlineData(2, typeof(EntityTwo))]
+        [InlineData(0, typeof(SingleEntity))]
         public void MapsEntity(int index, Type expectedType)
         {
             Assert.Equal(expectedType, EntityTypes.ElementAt(index).ClrType);
         }
 
         [Theory]
-        [InlineData(0, 0, "Id")]
-        [InlineData(0, 1, "LookAtMe")]
+        [InlineData(0, 0, "DateProperty")]
+        [InlineData(0, 1, "Id")]
 
         [InlineData(1, 0, "Id")]
         [InlineData(1, 1, "IgnoredInOverride")]
         [InlineData(1, 2, "NotIgnored")]
-
-        [InlineData(2, 0, "Id")]
         public void MapsEntityProperty(int elementIndex, int propertyIndex, string name)
         {
             var properties = GetProperties(elementIndex);
             Assert.Equal(name, properties.ElementAt(propertyIndex).Name);
         }
+
     }
 
-    public class MultiAssemblyFixture : FluentModelFixtureBase<DbContext>
+    public class AssemblyWithConventionsFixture : FluentModelFixtureBase<DbContext>
     {
         protected override void ConfigureMappings(FluentModelBuilderConfiguration configuration)
         {
-            configuration.Add(
-                From.AssemblyOf<EntityBase>(new TestConfiguration()).AddEntitiesFromAssemblyOf<EntityOneWannabe>());
+            configuration.Add(From.Empty(new TestConfiguration()).UseConventionsFromAssemblyOf<SingleEntity>());
+        }
+    }
+
+    public class Convention : Conventions.IModelBuilderConvention
+    {
+        public void Override(ModelBuilder builder)
+        {
+            builder.Entity<EntityOne>();
+            builder.Entity<SingleEntity>();
         }
     }
 }

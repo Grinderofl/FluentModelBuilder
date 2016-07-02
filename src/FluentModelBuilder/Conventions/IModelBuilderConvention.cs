@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace FluentModelBuilder.Alterations
+namespace FluentModelBuilder.Conventions
 {
     /// <summary>
     ///     Provides a way to override the configuration of the ModelBuilder
     /// </summary>
-    public interface IModelBuilderOverride
+    public interface IModelBuilderConvention
     {
         void Override(ModelBuilder modelBuilder);
     }

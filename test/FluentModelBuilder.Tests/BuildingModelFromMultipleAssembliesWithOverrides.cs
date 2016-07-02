@@ -15,7 +15,7 @@ namespace FluentModelBuilder.Tests
         {
             configuration.Add(
                 From.AssemblyOf<EntityBase>(new TestConfiguration())
-                    .AddEntityAssemblyOf<EntityOneWannabe>()
+                    .AddEntitiesFromAssemblyOf<EntityOneWannabe>()
                     .UseOverridesFromAssemblyOf<EntityBase>()
                     .UseOverridesFromAssemblyOf<EntityOneWannabe>());
         }
