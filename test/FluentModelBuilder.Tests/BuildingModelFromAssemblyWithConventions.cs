@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Xunit;
 using FluentModelBuilder.TestTarget;
 using FluentModelBuilder.Configuration;
+using FluentModelBuilder.Conventions;
 
 namespace FluentModelBuilder.Tests
 {
@@ -46,7 +47,7 @@ namespace FluentModelBuilder.Tests
         }
     }
 
-    public class Convention : Conventions.IModelBuilderConvention
+    public class Convention : IModelBuilderConvention
     {
         public void Override(ModelBuilder builder)
         {
