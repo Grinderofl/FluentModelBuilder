@@ -26,7 +26,7 @@ namespace FluentModelBuilder.Alterations
                 select type;
 
             foreach (var type in types)
-                builder.Override(type);
+                builder.UseOverride(type);
         }
     }
 }

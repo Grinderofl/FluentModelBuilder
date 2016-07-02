@@ -397,7 +397,7 @@ namespace FluentModelBuilder.Builder
         /// </summary>
         /// <param name="overrideType">Type of override, expected to be IEntityTypeOverride</param>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder Override(Type overrideType)
+        public AutoModelBuilder UseOverride(Type overrideType)
         {
             var overrideMethod = typeof (AutoModelBuilder)
                 .GetMethod(nameof(OverrideHelper), BindingFlags.NonPublic | BindingFlags.Instance);
@@ -438,6 +438,7 @@ namespace FluentModelBuilder.Builder
             }));
             return this;
         }
+        #endregion
 
         /// <summary>
         ///     Add a convention for the ModelBuilder
@@ -470,7 +471,7 @@ namespace FluentModelBuilder.Builder
             return this;
         }
 
-        #endregion
+
 
         #region Entities
 
