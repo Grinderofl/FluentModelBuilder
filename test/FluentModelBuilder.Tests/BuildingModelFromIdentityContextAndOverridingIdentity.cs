@@ -57,7 +57,7 @@ namespace FluentModelBuilder.Tests
 
         protected override void ConfigureMappings(FluentModelBuilderConfiguration configuration)
         {
-            configuration.Add(From.Empty().Override(typeof (IdentityUserOverride)).Scope.PostModelCreating());
+            configuration.Add(From.Empty().UseOverride(typeof (IdentityUserOverride)).Scope.PostModelCreating());
         }
     }
 }

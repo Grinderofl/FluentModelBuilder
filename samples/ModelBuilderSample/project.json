@@ -7,7 +7,7 @@
   },
 
   "dependencies": {
-    "FluentModelBuilder": "1.1.1",
+    "FluentModelBuilder": "1.2.1",
     "Microsoft.EntityFrameworkCore": "1.0.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
     "Microsoft.EntityFrameworkCore.InMemory": "1.0.0"
