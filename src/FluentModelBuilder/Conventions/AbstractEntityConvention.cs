@@ -10,7 +10,7 @@ namespace FluentModelBuilder.Conventions
         {
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
-                Override(entityType.GetProperties().Where(x => x));
+                Override(entityType);
             }
         }
 

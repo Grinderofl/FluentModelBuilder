@@ -598,5 +598,28 @@ namespace FluentModelBuilder.Builder
         }
 
         #endregion
+
+        #region All
+
+        /// <summary>
+        ///     Adds Alterations, Entities, Conventions, and Overrides (in this order) from specified assembly
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <returns></returns>
+        public AutoModelBuilder AddFromAssembly(Assembly assembly)
+        {
+            AddAlterationsFromAssembly(assembly);
+            AddEntitiesFromAssembly(assembly);
+            UseConventionsFromAssembly(assembly);
+            UseOverridesFromAssembly(assembly);
+            return this;
+        }
+
+
+
+
+        #endregion
+
+
     }
 }
