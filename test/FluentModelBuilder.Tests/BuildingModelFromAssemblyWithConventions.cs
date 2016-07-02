@@ -42,7 +42,7 @@ namespace FluentModelBuilder.Tests
     {
         protected override void ConfigureMappings(FluentModelBuilderConfiguration configuration)
         {
-            configuration.Add(From.Empty(new TestConfiguration()).UseOverridesFromAssemblyOf<SingleEntity>());
+            configuration.Add(From.Empty(new TestConfiguration()).UseConventionsFromAssemblyOf<SingleEntity>());
         }
     }
 
