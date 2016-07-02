@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Humanizer;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FluentModelBuilder.Relational.Generators
@@ -13,6 +14,6 @@ namespace FluentModelBuilder.Relational.Generators
         }
 
         public virtual string CreateName(IEntityType entityType)
-            => _shouldPluralize ? Inflector.Inflector.Pluralize(entityType.DisplayName()) : entityType.DisplayName();
+            => _shouldPluralize ? entityType.DisplayName().Pluralize() : entityType.DisplayName();
     }
 }

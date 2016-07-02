@@ -10,20 +10,12 @@
   "dependencies": {
     "FluentModelBuilder": "1.2.1",
     "Microsoft.EntityFrameworkCore.Relational": "1.0.0",
-    "NETStandard.Library": "1.6.0"
+    "Humanizer.Core": "2.0.1" 
   },
 
   "frameworks": {
-    "net451": {
-      "dependencies": {
-        "Inflector": "1.0.0"
-      }
-    },
-    "net452": {
-      "dependencies": {
-        "Inflector": "1.0.0"
-      }
-    },
+    "net451": {},
+    "net452": {},
     "netstandard1.6": {
       "imports": "dnxcore50"
     }
