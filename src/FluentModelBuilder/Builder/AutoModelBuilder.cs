@@ -23,7 +23,7 @@ namespace FluentModelBuilder.Builder
 
         private readonly List<Type> _includedTypes = new List<Type>();
         private readonly IList<InlineOverride> _inlineOverrides = new List<InlineOverride>();
-        private readonly IList<IModelBuilderConvention> _modelBuilderOverrides = new List<IModelBuilderConvention>();
+        private readonly IList<IModelBuilderConvention> _modelBuilderConventions = new List<IModelBuilderConvention>();
 
         private readonly List<ITypeSource> _typeSources = new List<ITypeSource>();
 
@@ -98,7 +98,7 @@ namespace FluentModelBuilder.Builder
 
         private void ApplyModelBuilderOverrides(ModelBuilder builder)
         {
-            foreach(var modelBuilderOverride in _modelBuilderOverrides)
+            foreach(var modelBuilderOverride in _modelBuilderConventions)
                 modelBuilderOverride.Override(builder);
         }
 
@@ -440,23 +440,35 @@ namespace FluentModelBuilder.Builder
         }
 
         /// <summary>
-        ///     Override the ModelBuilder
+        ///     Add a convention for the ModelBuilder
         /// </summary>
-        /// <param name="modelBuilderConvention">Type of IModelBuilderConvention</param>
+        /// <param name="modelBuilderConvention">Convention to add</param>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder Override(IModelBuilderConvention modelBuilderConvention)
+        public AutoModelBuilder UseConvention(IModelBuilderConvention modelBuilderConvention)
         {
-            _modelBuilderOverrides.Add(modelBuilderConvention);
+            _modelBuilderConventions.Add(modelBuilderConvention);
             return this;
         }
 
         /// <summary>
-        ///     Override the ModelBuilder
+        ///     Add a convention for the ModelBuilder
         /// </summary>
-        /// <typeparam name="TOverride">Type of IModelBuilderConvention</typeparam>
+        /// <typeparam name="TConvention">Type of IModelBuilderConvention</typeparam>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder UseOverride<TOverride>() where TOverride : IModelBuilderConvention, new()
-            => Override(new TOverride());
+        public AutoModelBuilder UseConvention<TConvention>() where TConvention : IModelBuilderConvention, new()
+            => UseConvention(new TConvention());
+
+        /// <summary>
+        ///     Add conventions for the ModelBuilder
+        /// </summary>
+        /// <param name="modelBuilderConventions">Conventions to add</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder UseConventions(IEnumerable<IModelBuilderConvention> modelBuilderConventions)
+        {
+            foreach(var convention in modelBuilderConventions)
+                _modelBuilderConventions.Add(convention);
+            return this;
+        }
 
         #endregion
 

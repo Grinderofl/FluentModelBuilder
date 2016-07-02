@@ -24,7 +24,7 @@ namespace FluentModelBuilder.Alterations
                 select type;
 
             foreach (var type in types)
-                builder.Override(Activator.CreateInstance(type) as IModelBuilderConvention);
+                builder.UseConvention(Activator.CreateInstance(type) as IModelBuilderConvention);
         }
     }
 }
