@@ -45,7 +45,7 @@ namespace FluentModelBuilder.Tests
         protected override void ConfigureMappings(FluentModelBuilderConfiguration configuration)
         {
             configuration.Add(
-                From.AssemblyOf<EntityBase>(new TestConfiguration()).AddEntityAssemblyOf<EntityOneWannabe>());
+                From.AssemblyOf<EntityBase>(new TestConfiguration()).AddEntitiesFromAssemblyOf<EntityOneWannabe>());
         }
     }
 }

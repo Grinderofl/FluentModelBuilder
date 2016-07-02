@@ -1,0 +1,31 @@
+{
+  "version": "1.2.1",
+  "description": "Extensions and conventions for Relational Entity Framework Core configuration using FluentModelBuilder",
+  "authors": [ "Nero Sule" ],
+  "packOptions": {
+    "tags": [ "Fluent", "ModelBuilder", "FluentModelBuilder", "EntityFramework", "EF", "Relational" ],
+    "projectUrl": "https://github.com/Grinderofl/FluentModelBuilder",
+    "licenseUrl": "https://github.com/Grinderofl/FluentModelBuilder/blob/master/LICENSE.md"
+  },
+  "dependencies": {
+    "FluentModelBuilder": "1.2.1",
+    "Microsoft.EntityFrameworkCore.Relational": "1.0.0",
+    "NETStandard.Library": "1.6.0"
+  },
+
+  "frameworks": {
+    "net451": {
+      "dependencies": {
+        "Inflector": "1.0.0"
+      }
+    },
+    "net452": {
+      "dependencies": {
+        "Inflector": "1.0.0"
+      }
+    },
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}
