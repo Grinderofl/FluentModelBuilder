@@ -604,8 +604,8 @@ namespace FluentModelBuilder.Builder
         /// <summary>
         ///     Adds Alterations, Entities, Conventions, and Overrides (in this order) from specified assembly
         /// </summary>
-        /// <param name="assembly"></param>
-        /// <returns></returns>
+        /// <param name="assembly">Assembly to add from</param>
+        /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder AddFromAssembly(Assembly assembly)
         {
             AddAlterationsFromAssembly(assembly);
@@ -615,8 +615,35 @@ namespace FluentModelBuilder.Builder
             return this;
         }
 
+        /// <summary>
+        ///     Adds Alterations, Entities, Conventions, and Overrides (in this order) from specified assemblies
+        /// </summary>
+        /// <param name="assemblies">Assemblies to add from</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddFromAssemblies(IEnumerable<Assembly> assemblies)
+        {
+            AddAlterationsFromAssemblies(assemblies);
+            AddEntitiesFromAssemblies(assemblies);
+            UseConventionsFromAssemblies(assemblies);
+            UseOverridesFromAssemblies(assemblies);
+            return this;
+        }
 
+        /// <summary>
+        ///     Adds Alterations, Entities, Conventions, and Overrides (in this order) from assembly containing the specified type
+        /// </summary>
+        /// <param name="type">Type contained in the assembly to add from</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddFromAssemblyOf(Type type)
+            => AddFromAssembly(type.GetTypeInfo().Assembly);
 
+        /// <summary>
+        ///     Adds Alterations, Entities, Conventions, and Overrides (in this order) from assembly containing the specified type
+        /// </summary>
+        /// <typeparam name="T">Type contained in the assembly to add from</typeparam>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddFromAssemblyOf<T>()
+            => AddFromAssemblyOf(typeof(T));
 
         #endregion
 
