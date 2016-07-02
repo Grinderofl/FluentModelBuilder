@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace FluentModelBuilder.Conventions
@@ -9,7 +10,7 @@ namespace FluentModelBuilder.Conventions
         {
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
-                Override(entityType);
+                Override(entityType.GetProperties().Where(x => x));
             }
         }
 
