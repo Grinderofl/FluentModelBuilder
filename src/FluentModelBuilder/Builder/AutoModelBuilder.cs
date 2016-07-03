@@ -116,7 +116,7 @@ namespace FluentModelBuilder.Builder
         {
             foreach (var modelBuilderOverride in 
                     _conventionFactories.Select(x => x.Create(serviceProvider)))
-                modelBuilderOverride.Override(builder);
+                modelBuilderOverride.Apply(builder);
         }
 
         private void AddEntities(ModelBuilder builder)

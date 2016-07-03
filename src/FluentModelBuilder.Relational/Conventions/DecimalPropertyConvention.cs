@@ -23,7 +23,7 @@ namespace FluentModelBuilder.Relational.Conventions
             _scale = scale;
         }
 
-        protected override void Override(IMutableEntityType entityType)
+        protected override void Apply(IMutableEntityType entityType)
         {
             foreach (var property in entityType.GetProperties().Where(x => x.ClrType == typeof(decimal)))
             {

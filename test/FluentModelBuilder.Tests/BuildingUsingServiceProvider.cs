@@ -3,6 +3,10 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
+using FluentModelBuilder.Alterations;
+using FluentModelBuilder.Builder;
+using FluentModelBuilder.Extensions;
+using FluentModelBuilder.TestTarget;
 
 namespace FluentModelBuilder
 {

@@ -6,14 +6,14 @@ namespace FluentModelBuilder.Conventions
 {
     public abstract class AbstractEntityConvention : IModelBuilderConvention
     {
-        public virtual void Override(ModelBuilder modelBuilder)
+        public virtual void Apply(ModelBuilder modelBuilder)
         {
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
-                Override(entityType);
+                Apply(entityType);
             }
         }
 
-        protected abstract void Override(IMutableEntityType entityType);
+        protected abstract void Apply(IMutableEntityType entityType);
     }
 }

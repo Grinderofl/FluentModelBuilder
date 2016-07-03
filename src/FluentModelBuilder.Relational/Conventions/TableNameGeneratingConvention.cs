@@ -16,7 +16,7 @@ namespace FluentModelBuilder.Relational.Conventions
             _generator = generator;
         }
 
-        protected override void Override(IMutableEntityType entityType)
+        protected override void Apply(IMutableEntityType entityType)
         {
             entityType.Relational().TableName = _generator.CreateName(entityType);
         }
