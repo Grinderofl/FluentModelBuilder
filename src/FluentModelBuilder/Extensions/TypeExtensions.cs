@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using FluentModelBuilder.Alterations;
@@ -24,9 +25,21 @@ namespace FluentModelBuilder.Extensions
                             (x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == interfaceType));
         }
 
+        public static bool IsSubclassOf(this Type type, Type superClassType)
+        {
+            return type.GetTypeInfo().IsSubclassOf(superClassType);
+        }
+
         public static bool IsDbContextType(this Type type)
         {
             return typeof(DbContext).IsAssignableFrom(type);
         }
+
+        public static IEnumerable<Type> GetTypesImplementingInterface(this Assembly assembly, Type interfaceType)
+        {
+            return
+                assembly.GetExportedTypes().Where(x => x.ClosesInterface(interfaceType));
+        }
+        
     }
 }

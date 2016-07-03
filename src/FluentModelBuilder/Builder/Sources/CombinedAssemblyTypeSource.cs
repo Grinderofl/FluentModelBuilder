@@ -23,10 +23,5 @@ namespace FluentModelBuilder.Builder.Sources
         {
             return _sources.SelectMany(x => x.GetTypes()).ToArray();
         }
-
-        public string GetIdentifier()
-        {
-            return "Combined source";
-        }
     }
 }

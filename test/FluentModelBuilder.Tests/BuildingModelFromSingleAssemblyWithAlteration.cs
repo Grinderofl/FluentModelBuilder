@@ -18,19 +18,24 @@ namespace FluentModelBuilder.Tests
         }
 
         [Theory]
-        [InlineData(0, typeof(EntityOne))]
-        [InlineData(1, typeof(EntityTwo))]
+        [InlineData(0, typeof(SingleEntity))]
+        [InlineData(1, typeof(EntityOne))]
+        [InlineData(2, typeof(EntityTwo))]
         public void MapsEntity(int index, Type expectedType)
         {
             Assert.Equal(expectedType, EntityTypes.ElementAt(index).ClrType);
         }
 
         [Theory]
-        [InlineData(0, 0, "Id")]
-        [InlineData(0, 1, "IgnoredInOverride")]
-        [InlineData(0, 2, "NotIgnored")]
+        [InlineData(0, 0, "DateProperty")]
+        [InlineData(0, 1, "Id")]
 
         [InlineData(1, 0, "Id")]
+        [InlineData(1, 1, "IgnoredInOverride")]
+        [InlineData(1, 2, "NotIgnored")]
+
+        [InlineData(2, 0, "Id")]
+        [InlineData(2, 1, "NotProperty")]
         public void MapsEntityProperty(int elementIndex, int propertyIndex, string name)
         {
             var properties = GetProperties(elementIndex);
@@ -51,7 +56,7 @@ namespace FluentModelBuilder.Tests
         protected override void ConfigureMappings(FluentModelBuilderConfiguration configuration)
         {
             configuration.Add(
-                From.AssemblyOf<EntityBase>(new TestConfiguration()).Alterations(a => a.Add<TestAlteration>()));
+                From.AssemblyOf<EntityBase>(new TestConfiguration()).AddAlteration<TestAlteration>());
         }
     }
 }

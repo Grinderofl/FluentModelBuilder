@@ -1,0 +1,402 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" InitialTargets="ValidateSolutionConfiguration" ToolsVersion="14.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore')" />
+  <Import Project="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/before.FluentModelBuilder.sln.targets" Condition="Exists ('/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/before.FluentModelBuilder.sln.targets')" />
+  <UsingTask TaskName="CreateTemporaryVCProject" AssemblyName="Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <UsingTask TaskName="ResolveVCProjectOutput" AssemblyName="Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <PropertyGroup>
+    <SolutionDir>/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/</SolutionDir>
+    <SolutionExt>.sln</SolutionExt>
+    <SolutionFileName>FluentModelBuilder.sln</SolutionFileName>
+    <SolutionName>FluentModelBuilder</SolutionName>
+    <SolutionPath>/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/FluentModelBuilder.sln</SolutionPath>
+  </PropertyGroup>
+  <ItemGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+  </ItemGroup>
+  <ItemGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+  </ItemGroup>
+  <ItemGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+  </ItemGroup>
+  <ItemGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+    <BuildLevel0 Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </BuildLevel0>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == '' ">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == '' ">
+    <Platform>Any CPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(AspNetConfiguration)' == '') ">
+    <AspNetConfiguration>$(Configuration)</AspNetConfiguration>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+        <ProjectConfiguration Project="{C581A878-2B7A-43EB-9A72-D2163657AE42}">Debug|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{275AF5D9-350C-4EFA-85A4-834650A48E1E}">Debug|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{1A9B08E3-0CB6-4228-955C-F6CF4ED3D8F5}">Debug|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{4313E85C-24E3-4905-9C5D-1E33076672FB}">Debug|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{94002380-35DB-4C92-BE38-DC06B8B722B2}">Debug|AnyCPU</ProjectConfiguration>
+      </SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+        <ProjectConfiguration Project="{C581A878-2B7A-43EB-9A72-D2163657AE42}">Debug|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{275AF5D9-350C-4EFA-85A4-834650A48E1E}">Debug|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{1A9B08E3-0CB6-4228-955C-F6CF4ED3D8F5}">Debug|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{4313E85C-24E3-4905-9C5D-1E33076672FB}">Debug|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{94002380-35DB-4C92-BE38-DC06B8B722B2}">Debug|AnyCPU</ProjectConfiguration>
+      </SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+        <ProjectConfiguration Project="{C581A878-2B7A-43EB-9A72-D2163657AE42}">Release|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{275AF5D9-350C-4EFA-85A4-834650A48E1E}">Release|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{1A9B08E3-0CB6-4228-955C-F6CF4ED3D8F5}">Release|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{4313E85C-24E3-4905-9C5D-1E33076672FB}">Release|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{94002380-35DB-4C92-BE38-DC06B8B722B2}">Release|AnyCPU</ProjectConfiguration>
+      </SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+        <ProjectConfiguration Project="{C581A878-2B7A-43EB-9A72-D2163657AE42}">Release|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{275AF5D9-350C-4EFA-85A4-834650A48E1E}">Release|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{1A9B08E3-0CB6-4228-955C-F6CF4ED3D8F5}">Release|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{4313E85C-24E3-4905-9C5D-1E33076672FB}">Release|AnyCPU</ProjectConfiguration>
+        <ProjectConfiguration Project="{94002380-35DB-4C92-BE38-DC06B8B722B2}">Release|AnyCPU</ProjectConfiguration>
+      </SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" />
+    <ProjectReference Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" />
+    <ProjectReference Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" />
+    <ProjectReference Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" />
+    <ProjectReference Include="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" />
+  </ItemGroup>
+  <Target Name="ValidateSolutionConfiguration">
+    <Warning Text="On windows, an environment variable 'Platform' is set to MCD sometimes, and this overrides the Platform property for xbuild, which could be an invalid Platform for this solution file. And so you are getting the following error. You could override it by either setting the environment variable to nothing, as&#xA;   set Platform=&#xA;Or explicity specify its value on the command line, as&#xA;   xbuild Foo.sln /p:Platform=Release" Condition="('$(CurrentSolutionConfigurationContents)' == '') and ('$(SkipInvalidConfigurations)' != 'true') and '$(Platform)' == 'MCD' and '$(OS)' == 'Windows_NT'" />
+    <Error Text="Invalid solution configuration and platform: &quot;$(Configuration)|$(Platform)&quot;." Condition="('$(CurrentSolutionConfigurationContents)' == '') and ('$(SkipInvalidConfigurations)' != 'true')" />
+    <Warning Text="Invalid solution configuration and platform: &quot;$(Configuration)|$(Platform)&quot;." Condition="('$(CurrentSolutionConfigurationContents)' == '') and ('$(SkipInvalidConfigurations)' == 'true')" />
+    <Message Text="Building solution configuration &quot;$(Configuration)|$(Platform)&quot;." Condition="'$(CurrentSolutionConfigurationContents)' != ''" />
+  </Target>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter\*" Condition="'$(ImportByWildcardAfterSolution)' != 'false' and Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter')" />
+  <Import Project="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/after.FluentModelBuilder.sln.targets" Condition="Exists ('/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/after.FluentModelBuilder.sln.targets')" />
+  <Target Name="GetFrameworkPath">
+    <GetFrameworkPath>
+      <Output TaskParameter="Path" PropertyName="TargetFrameworkPath" />
+    </GetFrameworkPath>
+  </Target>
+  <Target Name="FluentModelBuilder" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="FluentModelBuilder:Clean" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') " />
+  </Target>
+  <Target Name="FluentModelBuilder:Rebuild" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="FluentModelBuilder:Publish" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder/FluentModelBuilder.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') " />
+  </Target>
+  <Target Name="ModelBuilderSample" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="ModelBuilderSample:Clean" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') " />
+  </Target>
+  <Target Name="ModelBuilderSample:Rebuild" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="ModelBuilderSample:Publish" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/samples/ModelBuilderSample/ModelBuilderSample.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') " />
+  </Target>
+  <Target Name="FluentModelBuilder_Tests" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="FluentModelBuilder_Tests:Clean" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') " />
+  </Target>
+  <Target Name="FluentModelBuilder_Tests:Rebuild" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="FluentModelBuilder_Tests:Publish" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.Tests/FluentModelBuilder.Tests.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') " />
+  </Target>
+  <Target Name="FluentModelBuilder_TestTarget" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="FluentModelBuilder_TestTarget:Clean" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') " />
+  </Target>
+  <Target Name="FluentModelBuilder_TestTarget:Rebuild" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="FluentModelBuilder_TestTarget:Publish" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/test/FluentModelBuilder.TestTarget/FluentModelBuilder.TestTarget.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') " />
+  </Target>
+  <Target Name="FluentModelBuilder_Relational" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="FluentModelBuilder_Relational:Clean" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Clean" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') " />
+  </Target>
+  <Target Name="FluentModelBuilder_Relational:Rebuild" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Rebuild" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') ">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+  <Target Name="FluentModelBuilder_Relational:Publish" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Debug; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'x86') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') " />
+    <MSBuild Projects="/Volumes/C/Projects/Personal/ConventionModelBuilder/Repositories/ConventionModelBuilder/src/FluentModelBuilder.Relational/FluentModelBuilder.Relational.xproj" ToolsVersion="$(ProjectToolsVersion)" Targets="Publish" Properties="Configuration=Release; Platform=AnyCPU; BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'x86') " />
+  </Target>
+  <Target Name="Build" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Condition="'@(BuildLevel0)' != ''" Projects="@(BuildLevel0)" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=%(Configuration); Platform=%(Platform); BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" RunEachTargetSeparately="true">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <Message Condition="'@(SkipLevel0)' != ''" Text="The project '%(SkipLevel0.Identity)' is disabled for solution configuration '$(Configuration)|$(Platform)'." />
+    <Warning Condition="'@(MissingConfigLevel0)' != ''" Text="The project configuration for project '%(MissingConfigLevel0.Identity)' corresponding to the solution configuration '$(Configuration)|$(Platform)' was not found." />
+    <CallTarget Targets="" RunEachTargetSeparately="true" />
+  </Target>
+  <Target Name="Clean" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Condition="'@(BuildLevel0)' != ''" Projects="@(BuildLevel0)" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=%(Configuration); Platform=%(Platform); BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Targets="Clean" RunEachTargetSeparately="true" />
+    <Message Condition="'@(SkipLevel0)' != ''" Text="The project '%(SkipLevel0.Identity)' is disabled for solution configuration '$(Configuration)|$(Platform)'." />
+    <Warning Condition="'@(MissingConfigLevel0)' != ''" Text="The project configuration for project '%(MissingConfigLevel0.Identity)' corresponding to the solution configuration '$(Configuration)|$(Platform)' was not found." />
+    <CallTarget Targets="" RunEachTargetSeparately="true" />
+  </Target>
+  <Target Name="Rebuild" Condition="'$(CurrentSolutionConfigurationContents)' != ''" Outputs="@(CollectedBuildOutput)">
+    <MSBuild Condition="'@(BuildLevel0)' != ''" Projects="@(BuildLevel0)" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=%(Configuration); Platform=%(Platform); BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Targets="Rebuild" RunEachTargetSeparately="true">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+    <Message Condition="'@(SkipLevel0)' != ''" Text="The project '%(SkipLevel0.Identity)' is disabled for solution configuration '$(Configuration)|$(Platform)'." />
+    <Warning Condition="'@(MissingConfigLevel0)' != ''" Text="The project configuration for project '%(MissingConfigLevel0.Identity)' corresponding to the solution configuration '$(Configuration)|$(Platform)' was not found." />
+    <CallTarget Targets="" RunEachTargetSeparately="true" />
+  </Target>
+  <Target Name="Publish" Condition="'$(CurrentSolutionConfigurationContents)' != ''">
+    <MSBuild Condition="'@(BuildLevel0)' != ''" Projects="@(BuildLevel0)" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=%(Configuration); Platform=%(Platform); BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" Targets="Publish" RunEachTargetSeparately="true" />
+    <Message Condition="'@(SkipLevel0)' != ''" Text="The project '%(SkipLevel0.Identity)' is disabled for solution configuration '$(Configuration)|$(Platform)'." />
+    <Warning Condition="'@(MissingConfigLevel0)' != ''" Text="The project configuration for project '%(MissingConfigLevel0.Identity)' corresponding to the solution configuration '$(Configuration)|$(Platform)' was not found." />
+    <CallTarget Targets="" RunEachTargetSeparately="true" />
+  </Target>
+</Project>
