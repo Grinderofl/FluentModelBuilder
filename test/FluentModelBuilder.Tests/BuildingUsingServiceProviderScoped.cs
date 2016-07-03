@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,7 +6,7 @@ using Xunit;
 
 namespace FluentModelBuilder
 {
-    public class BuildingUsingServiceProviderSingleton
+    public class BuildingUsingServiceProviderScoped
     {
         [Fact]
         public void UsesServiceProviderToDisccoverEntities()
@@ -15,8 +15,8 @@ namespace FluentModelBuilder
             serviceCollection.AddEntityFrameworkInMemoryDatabase()
                 .AddDbContext<DbContext>((sp, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(sp));
             serviceCollection.ConfigureEntityFramework(f => f.Using().AddAlteration<DependingAlteration>());
-            serviceCollection.AddSingleton<Dependency>();
-            serviceCollection.AddSingleton<DependingAlteration>();
+            serviceCollection.AddScoped<Dependency>();
+            serviceCollection.AddScoped<DependingAlteration>();
             var provider = serviceCollection.BuildServiceProvider();
 
             var dbContext = provider.GetService<DbContext>();
