@@ -460,7 +460,6 @@ namespace FluentModelBuilder.Builder
         public AutoModelBuilder UseConvention(IModelBuilderConvention modelBuilderConvention)
         {
             _conventionFactories.Add(new InstancedObjectFactory<IModelBuilderConvention>(modelBuilderConvention));
-            //_modelBuilderConventions.Add(modelBuilderConvention);
             return this;
         }
 
@@ -492,7 +491,6 @@ namespace FluentModelBuilder.Builder
         {
             foreach (var convention in modelBuilderConventions)
                 _conventionFactories.Add(new InstancedObjectFactory<IModelBuilderConvention>(convention));
-                //_modelBuilderConventions.Add(convention);
             return this;
         }
 
@@ -506,9 +504,6 @@ namespace FluentModelBuilder.Builder
             var types = assembly.GetTypesImplementingInterface(typeof(IModelBuilderConvention));
             foreach(var type in types)
                 _conventionFactories.Add(new TypeBasedObjectFactory<IModelBuilderConvention>(type));
-            //_alterationFactories.Add(
-            //    new InstancedObjectFactory<IAutoModelBuilderAlteration>(new ModelBuilderConventionAlteration(assembly)));
-            //_alterations.Add(new ModelBuilderConventionAlteration(assembly));
             return this;
         }
 
@@ -521,7 +516,6 @@ namespace FluentModelBuilder.Builder
         {
             foreach (var assembly in assemblies)
                 UseConventionsFromAssembly(assembly);
-                //_alterations.Add(new ModelBuilderConventionAlteration(assembly));
             return this;
         }
 
