@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,18 +9,19 @@ using FluentModelBuilder.Builder;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.TestTarget;
 using FluentModelBuilder.Conventions;
+using FluentModelBuilder.Builder.Sources;
 
 namespace FluentModelBuilder
 {
-    public class BuildingUsingServiceProviderSingleton
+    public class BuildingUsingTypeSourceFromServiceProviderSingleton
     {
         [Fact]
-        public void UsesServiceProviderToDisccoverEntities()
+        public void UsesServiceProviderToDiscoverEntities()
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddEntityFrameworkInMemoryDatabase()
                 .AddDbContext<DbContext>((sp, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(sp));
-            serviceCollection.ConfigureEntityFramework(f => f.Using().AddAlteration<DependingAlteration>());
+            serviceCollection.ConfigureEntityFramework(f => f.Using<DependingSource>());
             serviceCollection.AddSingleton<Dependency>();
             var provider = serviceCollection.BuildServiceProvider();
 
@@ -35,26 +37,18 @@ namespace FluentModelBuilder
             public Type GetEntity => typeof(EntityOne);
         }
 
-        private class DependingAlteration : IAutoModelBuilderAlteration
-        {
-            public void Alter(AutoModelBuilder builder)
-            {
-                builder.UseConvention<DependingConvention>();
-            }
-        }
-        
-        private class DependingConvention : IModelBuilderConvention
+        private class DependingSource : ITypeSource
         {
             private Dependency _dependency;
 
-            public DependingConvention(Dependency dependency)
+            public DependingSource(Dependency dependency)
             {
                 _dependency = dependency;
             }
 
-            public void Apply(ModelBuilder builder)
+            public IEnumerable<Type> GetTypes()
             {
-                builder.Entity(_dependency.GetEntity);
+                yield return _dependency.GetEntity;
             }
         }
 

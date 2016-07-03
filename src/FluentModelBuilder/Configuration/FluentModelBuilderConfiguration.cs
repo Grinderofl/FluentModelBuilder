@@ -11,8 +11,6 @@ namespace FluentModelBuilder.Configuration
     {
         private readonly IList<AutoModelBuilder> _builders = new List<AutoModelBuilder>();
 
-        public ConventionSetAlterationCollection Alterations = new ConventionSetAlterationCollection();
-
         /// <summary>
         ///     Map classes using provided type source
         /// </summary>
@@ -175,12 +173,6 @@ namespace FluentModelBuilder.Configuration
         {
             foreach (var b in _builders)
                 b.Apply(parameters);
-        }
-
-        internal void Apply(ConventionSet conventionSet)
-        {
-            foreach (var alteration in Alterations)
-                alteration.Alter(conventionSet);
         }
     }
 }

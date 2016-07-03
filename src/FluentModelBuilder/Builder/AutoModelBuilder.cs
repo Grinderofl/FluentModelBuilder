@@ -11,7 +11,6 @@ using FluentModelBuilder.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentModelBuilder.Builder
 {
@@ -32,8 +31,6 @@ namespace FluentModelBuilder.Builder
         private readonly IList<IObjectFactory<IModelBuilderConvention>> _conventionFactories =
             new List<IObjectFactory<IModelBuilderConvention>>();
         
-        //private readonly List<ITypeSource> _typeSources = new List<ITypeSource>();
-
         public readonly IEntityAutoConfiguration Configuration;
 
         private BuilderScope? _scope;
@@ -716,6 +713,7 @@ namespace FluentModelBuilder.Builder
         /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder AddFromAssembly(Assembly assembly)
         {
+            AddTypeSourcesFromAssembly(assembly);
             AddAlterationsFromAssembly(assembly);
             AddEntitiesFromAssembly(assembly);
             UseConventionsFromAssembly(assembly);
@@ -730,6 +728,7 @@ namespace FluentModelBuilder.Builder
         /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder AddFromAssemblies(IEnumerable<Assembly> assemblies)
         {
+            AddTypeSourcesFromAssemblies(assemblies);
             AddAlterationsFromAssemblies(assemblies);
             AddEntitiesFromAssemblies(assemblies);
             UseConventionsFromAssemblies(assemblies);
