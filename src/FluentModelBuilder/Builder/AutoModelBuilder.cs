@@ -468,7 +468,7 @@ namespace FluentModelBuilder.Builder
         /// </summary>
         /// <typeparam name="TConvention">Type of IModelBuilderConvention</typeparam>
         /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder UseConvention<TConvention>() where TConvention : IModelBuilderConvention, new()
+        public AutoModelBuilder UseConvention<TConvention>() where TConvention : IModelBuilderConvention
             => UseConvention(typeof(TConvention));
 
         /// <summary>

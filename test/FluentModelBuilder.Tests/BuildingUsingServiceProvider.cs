@@ -7,6 +7,7 @@ using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Builder;
 using FluentModelBuilder.Extensions;
 using FluentModelBuilder.TestTarget;
+using FluentModelBuilder.Conventions;
 
 namespace FluentModelBuilder
 {
@@ -20,7 +21,6 @@ namespace FluentModelBuilder
                 .AddDbContext<DbContext>((sp, x) => x.UseInMemoryDatabase().UseInternalServiceProvider(sp));
             serviceCollection.ConfigureEntityFramework(f => f.Using().AddAlteration<DependingAlteration>());
             serviceCollection.AddSingleton<Dependency>();
-            serviceCollection.AddSingleton<DependingAlteration>();
             var provider = serviceCollection.BuildServiceProvider();
 
             var dbContext = provider.GetService<DbContext>();
@@ -39,9 +39,24 @@ namespace FluentModelBuilder
         {
             public void Alter(AutoModelBuilder builder)
             {
-                builder.Override<EntityOne>();
+                builder.UseConvention<DependingConvention>();
             }
         }
         
+        private class DependingConvention : IModelBuilderConvention
+        {
+            private Dependency _dependency;
+
+            public DependingConvention(Dependency dependency)
+            {
+                _dependency = dependency;
+            }
+
+            public void Apply(ModelBuilder builder)
+            {
+                builder.Entity(_dependency.GetEntity);
+            }
+        }
+
     }
 }
