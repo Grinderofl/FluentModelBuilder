@@ -20,7 +20,7 @@ namespace FluentModelBuilder.Tests.Conventions
             var builder = new ModelBuilder(new CoreConventionSetBuilder().CreateConventionSet());
             builder.Entity<SingleEntity>();
 
-            convention.Override(builder);
+            convention.Apply(builder);
 
             Assert.Equal("SingleEntities", builder.Entity<SingleEntity>().Metadata.Relational().TableName);
         }

@@ -7,6 +7,6 @@ namespace FluentModelBuilder.Conventions
     /// </summary>
     public interface IModelBuilderConvention
     {
-        void Override(ModelBuilder modelBuilder);
+        void Apply(ModelBuilder modelBuilder);
     }
 }

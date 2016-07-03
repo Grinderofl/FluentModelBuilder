@@ -6,6 +6,5 @@ namespace FluentModelBuilder.Builder.Sources
     public interface ITypeSource
     {
         IEnumerable<Type> GetTypes();
-        string GetIdentifier();
     }
 }

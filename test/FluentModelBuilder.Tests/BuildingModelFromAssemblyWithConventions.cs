@@ -49,7 +49,7 @@ namespace FluentModelBuilder.Tests
 
     public class Convention : IModelBuilderConvention
     {
-        public void Override(ModelBuilder builder)
+        public void Apply(ModelBuilder builder)
         {
             builder.Entity<EntityOne>();
             builder.Entity<SingleEntity>();

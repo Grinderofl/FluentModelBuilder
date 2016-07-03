@@ -18,10 +18,5 @@ namespace FluentModelBuilder.Builder.Sources
         {
             return _assembly.GetTypes().OrderBy(x => x.FullName);
         }
-
-        public string GetIdentifier()
-        {
-            return _assembly.FullName;
-        }
     }
 }
