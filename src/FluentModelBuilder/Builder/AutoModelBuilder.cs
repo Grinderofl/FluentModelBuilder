@@ -24,13 +24,15 @@ namespace FluentModelBuilder.Builder
         private readonly List<Type> _includedTypes = new List<Type>();
         private readonly IList<InlineOverride> _inlineOverrides = new List<InlineOverride>();
 
+        private readonly IList<IObjectFactory<ITypeSource>> _tyeSourceFactories = new List<IObjectFactory<ITypeSource>>();
+
         private readonly IList<IObjectFactory<IAutoModelBuilderAlteration>> _alterationFactories =
             new List<IObjectFactory<IAutoModelBuilderAlteration>>();
 
         private readonly IList<IObjectFactory<IModelBuilderConvention>> _conventionFactories =
             new List<IObjectFactory<IModelBuilderConvention>>();
         
-        private readonly List<ITypeSource> _typeSources = new List<ITypeSource>();
+        //private readonly List<ITypeSource> _typeSources = new List<ITypeSource>();
 
         public readonly IEntityAutoConfiguration Configuration;
 
@@ -56,17 +58,6 @@ namespace FluentModelBuilder.Builder
             Scope = new ScopeBuilder(this);
         }
 
-        /// <summary>
-        ///     Adds entities from the <see cref="ITypeSource" />
-        /// </summary>
-        /// <param name="typeSource"><see cref="ITypeSource" /> to use</param>
-        /// <returns>AutoModelBuilder</returns>
-        public AutoModelBuilder AddTypeSource(ITypeSource typeSource)
-        {
-            _typeSources.Add(typeSource);
-            return this;
-        }
-
         internal void Apply(BuilderContext parameters)
         {
             if (!ShouldApplyToContext(parameters.DbContext))
@@ -78,7 +69,7 @@ namespace FluentModelBuilder.Builder
             var serviceProvider = parameters.DbContext.GetInfrastructure();
 
             ApplyAlterations(this, serviceProvider);
-            AddEntities(parameters.ModelBuilder);
+            AddEntities(parameters.ModelBuilder, serviceProvider);
             ApplyModelBuilderOverrides(parameters.ModelBuilder, serviceProvider);
             ApplyOverrides(parameters.ModelBuilder);
         }
@@ -119,9 +110,10 @@ namespace FluentModelBuilder.Builder
                 modelBuilderOverride.Apply(builder);
         }
 
-        private void AddEntities(ModelBuilder builder)
+        private void AddEntities(ModelBuilder builder, IServiceProvider serviceProvider)
         {
-            var types = _typeSources.SelectMany(x => x.GetTypes()).Distinct();
+            var types =
+                _tyeSourceFactories.Select(x => x.Create(serviceProvider)).SelectMany(x => x.GetTypes()).Distinct();
             foreach (var type in types)
             {
                 if (!Configuration.ShouldMap(type))
@@ -450,6 +442,93 @@ namespace FluentModelBuilder.Builder
 
         #endregion
 
+        #region TypeSources
+        
+        /// <summary>
+        ///     Adds entities from the <see cref="ITypeSource" />
+        /// </summary>
+        /// <param name="typeSource"><see cref="ITypeSource" /> to use</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddTypeSource(ITypeSource typeSource)
+        {
+            _tyeSourceFactories.Add(new InstancedObjectFactory<ITypeSource>(typeSource));
+            return this;
+        }
+
+
+        /// <summary>
+        ///     Adds entities from the provided type of typesource
+        /// </summary>
+        /// <param name="type">Type of typesource, expected to be ITypeSource</param>
+        /// <returns></returns>
+        public AutoModelBuilder AddTypeSource(Type type)
+        {
+            _tyeSourceFactories.Add(new TypeBasedObjectFactory<ITypeSource>(type));
+            return this;
+        }
+
+        /// <summary>
+        ///     Adds entities from the provided type of typesource
+        /// </summary>
+        /// <typeparam name="TSource">Type of typesource, expected to be ITypeSource</typeparam>
+        /// <returns></returns>
+        public AutoModelBuilder AddTypeSource<TSource>() where TSource : ITypeSource
+            => AddTypeSource(typeof(TSource));
+
+        /// <summary>
+        ///     Adds entities from the provided typesources
+        /// </summary>
+        /// <param name="typeSources">Typesources to add </param>
+        /// <returns></returns>
+        public AutoModelBuilder AddTypeSources(IEnumerable<ITypeSource> typeSources)
+        {
+            foreach (var source in typeSources)
+                AddTypeSource(source);
+            return this;
+        }
+
+        /// <summary>
+        ///     Adds entities from typesources found in given assembly
+        /// </summary>
+        /// <param name="assembly">Assembly to add typesources from</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddTypeSourcesFromAssembly(Assembly assembly)
+        {
+            var types = assembly.GetTypesImplementingInterface(typeof(ITypeSource));
+            foreach (var type in types)
+                AddTypeSource(type);
+            return this;
+        }
+
+        /// <summary>
+        ///     Adds entities from typesources found in given assemblies
+        /// </summary>
+        /// <param name="assemblies">Assemblies to add typesources from</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddTypeSourcesFromAssemblies(IEnumerable<Assembly> assemblies)
+        {
+            foreach (var assembly in assemblies)
+                AddTypeSourcesFromAssembly(assembly);
+            return this;
+        }
+
+        /// <summary>
+        ///     Adds entities from typesources found in the assembly containing the provided type
+        /// </summary>
+        /// <param name="type">Assembliy containing the provided type to add typesources from</param>
+        /// <returns>AutoModelBuilder</returns>
+        public AutoModelBuilder AddTypeSourcesFromAssemblyOf(Type type)
+            => AddTypeSourcesFromAssembly(type.GetTypeInfo().Assembly);
+
+        /// <summary>
+        ///     Adds entities from typesources found in the assembly containing the provided type
+        /// </summary>
+        /// <typeparam name="T">Assembliy containing the provided type to add typesources from</typeparam>
+        public AutoModelBuilder AddTypeSourcesFromAssemblyOf<T>()
+            => AddTypeSourcesFromAssemblyOf(typeof(T));
+
+        #endregion
+
         #region Conventions
 
         /// <summary>
@@ -679,3 +758,4 @@ namespace FluentModelBuilder.Builder
 
     }
 }
+

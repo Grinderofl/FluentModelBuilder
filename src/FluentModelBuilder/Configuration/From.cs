@@ -20,6 +20,13 @@ namespace FluentModelBuilder.Configuration
         public static AutoModelBuilder Source(ITypeSource source) => new AutoModelBuilder().AddTypeSource(source);
 
         /// <summary>
+        ///     Map classes from provided type source
+        /// </summary>
+        /// <typeparam name="TSource">Type source to use</typeparam>
+        /// <returns>AutoModelBuilder</returns>
+        public static AutoModelBuilder Source<TSource>() where TSource : ITypeSource => new AutoModelBuilder().AddTypeSource<TSource>();
+
+        /// <summary>
         ///     Map classes from provided type source with supplied configuration
         /// </summary>
         /// <param name="source">Type source to use</param>
@@ -29,6 +36,15 @@ namespace FluentModelBuilder.Configuration
             => new AutoModelBuilder(configuration).AddTypeSource(source);
 
         /// <summary>
+        ///     Map classes from provided type source with supplied configuration
+        /// </summary>
+        /// <typeparam name="TSource">Type source to use</typeparam>
+        /// <param name="configuration">Configuration to use</param>
+        /// <returns>AutoModelBuilder</returns>
+        public static AutoModelBuilder Source<TSource>(IEntityAutoConfiguration configuration)
+            where TSource : ITypeSource => new AutoModelBuilder(configuration).AddTypeSource<TSource>();
+
+        /// <summary>
         ///     Map classes from provided type source with supplied expression
         /// </summary>
         /// <param name="source">Type source to use</param>
@@ -36,6 +52,15 @@ namespace FluentModelBuilder.Configuration
         /// <returns>AutoModelBuilder</returns>
         public static AutoModelBuilder Source(ITypeSource source, Func<Type, bool> expression)
             => new AutoModelBuilder().AddTypeSource(source).Where(expression);
+
+        /// <summary>
+        ///     Map classes from provided type source with supplied expression
+        /// </summary>
+        /// <typeparam name="TSource">Type source to use</typeparam>
+        /// <param name="expression">Configuration to use</param>
+        /// <returns>AutoModelBuilder</returns>
+        public static AutoModelBuilder Source<TSource>(Func<Type, bool> expression) where TSource : ITypeSource
+            => new AutoModelBuilder().AddTypeSource<TSource>().Where(expression);
 
         /// <summary>
         ///     Map classes from provided assemblies
