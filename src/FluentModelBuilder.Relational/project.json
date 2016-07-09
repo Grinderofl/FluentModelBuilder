@@ -1,5 +1,5 @@
 {
-  "version": "1.3.1",
+  "version": "1.4.1",
   "description": "Extensions and conventions for Relational Entity Framework Core configuration using FluentModelBuilder",
   "authors": [ "Nero Sule" ],
   "packOptions": {

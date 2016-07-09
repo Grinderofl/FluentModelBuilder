@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using FluentModelBuilder.Alterations;
 using FluentModelBuilder.Builder;
 using FluentModelBuilder.Builder.Sources;
 
@@ -12,6 +13,9 @@ namespace FluentModelBuilder.Configuration
     /// </summary>
     public static class From
     {
+
+        #region Type Sources
+
         /// <summary>
         ///     Map classes from provided type source
         /// </summary>
@@ -61,6 +65,41 @@ namespace FluentModelBuilder.Configuration
         /// <returns>AutoModelBuilder</returns>
         public static AutoModelBuilder Source<TSource>(Func<Type, bool> expression) where TSource : ITypeSource
             => new AutoModelBuilder().AddTypeSource<TSource>().Where(expression);
+
+        #endregion
+
+        #region Alterations
+
+        public static AutoModelBuilder Alteration(IAutoModelBuilderAlteration alteration)
+            => Empty().AddAlteration(alteration);
+
+        public static AutoModelBuilder Alteration(IAutoModelBuilderAlteration alteration,
+                IEntityAutoConfiguration configuration)
+            => Empty(configuration).AddAlteration(alteration);
+
+        public static AutoModelBuilder Alterations(IEnumerable<IAutoModelBuilderAlteration> alterations)
+            => Empty().AddAlterations(alterations);
+
+        public static AutoModelBuilder Alterations(IEnumerable<IAutoModelBuilderAlteration> alterations,
+                IEntityAutoConfiguration configuration)
+            => Empty(configuration).AddAlterations(alterations);
+
+        public static AutoModelBuilder Alteration(Type type)
+            => Empty().AddAlteration(type);
+
+        public static AutoModelBuilder Alteration(Type type, IEntityAutoConfiguration configuration)
+            => Empty(configuration).AddAlteration(type);
+
+        public static AutoModelBuilder Alteration<TAlteration>() where TAlteration : IAutoModelBuilderAlteration
+            => Empty().AddAlteration<TAlteration>();
+
+        public static AutoModelBuilder Alteration<TAlteration>(IEntityAutoConfiguration configuration)
+            where TAlteration : IAutoModelBuilderAlteration
+        => Empty().AddAlteration<TAlteration>();
+
+        #endregion
+
+        #region Assemblies
 
         /// <summary>
         ///     Map classes from provided assemblies
@@ -175,6 +214,10 @@ namespace FluentModelBuilder.Configuration
         public static AutoModelBuilder AssemblyOf(Type type, Func<Type, bool> expression)
             => Assembly(type.GetTypeInfo().Assembly, expression);
 
+        #endregion
+
+        #region Empty
+
         /// <summary>
         ///     Map classes based on all manual specifications
         /// </summary>
@@ -192,6 +235,8 @@ namespace FluentModelBuilder.Configuration
         /// <returns>AutoModelBuilder</returns>
         public static AutoModelBuilder Empty(IEntityAutoConfiguration configuration)
             => new AutoModelBuilder(configuration);
+
+        #endregion
 
         /// <summary>
         ///     Map classes based on all manual specifications with supplied expression

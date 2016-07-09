@@ -95,7 +95,7 @@ namespace FluentModelBuilder.Builder
         private void ApplyAlterations(AutoModelBuilder autoModelBuilder, IServiceProvider serviceProvider)
         {
             if (_alterationsApplied) return;
-            foreach(var alteration in _alterationFactories.Select(x => x.Create(serviceProvider)))
+            foreach(var alteration in _alterationFactories.Select(x => x.Create(serviceProvider)).ToList())
                 alteration.Alter(autoModelBuilder);
             _alterationsApplied = true;
         }
@@ -282,6 +282,18 @@ namespace FluentModelBuilder.Builder
         /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder AddAlteration<TAlteration>() where TAlteration : IAutoModelBuilderAlteration 
             => AddAlteration(typeof (TAlteration));
+            
+        /// <summary>
+        ///     Adds alterations to be used with this AutoModelBuilder
+        /// </summary>
+        /// <param name="alterations"></param>
+        /// <returns></returns>
+        public AutoModelBuilder AddAlterations(IEnumerable<IAutoModelBuilderAlteration> alterations)
+        {
+            foreach(var alteration in alterations)
+                _alterationFactories.Add(new InstancedObjectFactory<IAutoModelBuilderAlteration>(alteration));
+            return this;
+        }
 
         /// <summary>
         ///     Adds an alteration to be used with this AutoModelBuilder
