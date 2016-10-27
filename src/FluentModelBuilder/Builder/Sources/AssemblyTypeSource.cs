@@ -16,7 +16,7 @@ namespace FluentModelBuilder.Builder.Sources
 
         public IEnumerable<Type> GetTypes()
         {
-            return _assembly.GetTypes().OrderBy(x => x.FullName);
+            return _assembly.ExportedTypes.OrderBy(x => x.FullName);
         }
     }
 }

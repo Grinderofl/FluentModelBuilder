@@ -1,14 +1,14 @@
 {
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "FluentModelBuilder.Tests Class Library",
   "authors": [ "Nero" ],
   "dependencies": {
     "xunit": "2.1.0",
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
-    "Microsoft.EntityFrameworkCore.InMemory": "1.0.0",
-    "FluentModelBuilder": "1.4.1",
-    "FluentModelBuilder.Relational": "1.4.1",
-    "FluentModelBuilder.TestTarget": "1.0.0",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.1.0-*",
+    "Microsoft.EntityFrameworkCore.InMemory": "1.1.0-*",
+    "FluentModelBuilder": "1.5.1",
+    "FluentModelBuilder.Relational": "1.5.1",
+    "FluentModelBuilder.TestTarget": "1.5.1",
     "FluentAssertions": "4.11.0"
   },
   "testRunner": "xunit",

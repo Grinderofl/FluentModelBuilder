@@ -1,5 +1,5 @@
 {
-  "version": "1.4.1",
+  "version": "1.5.1",
   "description": "Extensions and conventions for Relational Entity Framework Core configuration using FluentModelBuilder",
   "authors": [ "Nero Sule" ],
   "packOptions": {
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "FluentModelBuilder": "1.4.1",
-    "Microsoft.EntityFrameworkCore.Relational": "1.0.0",
+    "Microsoft.EntityFrameworkCore.Relational": "1.1.0-*",
     "Humanizer.Core": "2.0.1" 
   },
 
