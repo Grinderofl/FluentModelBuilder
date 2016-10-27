@@ -8,7 +8,7 @@
     "licenseUrl": "https://github.com/Grinderofl/FluentModelBuilder/blob/master/LICENSE.md"
   },
   "dependencies": {
-    "FluentModelBuilder": "1.4.1",
+    "FluentModelBuilder": "1.5.1",
     "Microsoft.EntityFrameworkCore.Relational": "1.1.0-*",
     "Humanizer.Core": "2.0.1" 
   },
