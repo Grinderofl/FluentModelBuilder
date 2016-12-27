@@ -33,7 +33,7 @@ cd $PSScriptRoot
 $repoFolder = $PSScriptRoot
 $env:REPO_FOLDER = $repoFolder
 
-$koreBuildZip="https://github.com/aspnet/KoreBuild/archive/master.zip"
+$koreBuildZip="https://github.com/aspnet/KoreBuild/archive/dev.zip"
 if ($env:KOREBUILD_ZIP)
 {
     $koreBuildZip=$env:KOREBUILD_ZIP
@@ -41,7 +41,7 @@ if ($env:KOREBUILD_ZIP)
 
 $buildFolder = ".build"
 $buildFile="$buildFolder\KoreBuild.ps1"
-Write-Host $buildFile
+
 if (!(Test-Path $buildFolder)) {
     Write-Host "Downloading KoreBuild from $koreBuildZip"    
     
