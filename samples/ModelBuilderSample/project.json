@@ -8,9 +8,9 @@
 
   "dependencies": {
     "FluentModelBuilder": "1.5.1",
-    "Microsoft.EntityFrameworkCore": "1.1.0-*",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0-*",
-    "Microsoft.EntityFrameworkCore.InMemory": "1.1.0-*"
+    "Microsoft.EntityFrameworkCore": "1.1.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
+    "Microsoft.EntityFrameworkCore.InMemory": "1.1.0"
   },
 
   "commands": {

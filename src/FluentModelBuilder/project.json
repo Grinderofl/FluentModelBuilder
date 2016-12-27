@@ -8,10 +8,10 @@
     "licenseUrl": "https://github.com/Grinderofl/FluentModelBuilder/blob/master/LICENSE.md"
   },
   "dependencies": {
-    "NETStandard.Library": "1.6.1-*",
-    "Microsoft.EntityFrameworkCore": "1.1.0-*",
-    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0-*",
-    "Microsoft.Extensions.DependencyInjection": "1.1.0-*"
+    "NETStandard.Library": "1.6.1",
+    "Microsoft.EntityFrameworkCore": "1.1.0",
+    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+    "Microsoft.Extensions.DependencyInjection": "1.1.0"
   },
 
   "frameworks": {
