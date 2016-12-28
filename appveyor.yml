@@ -1,9 +1,13 @@
-init:
-  - git config --global core.autocrlf true
+version: '{build}'
+image: Visual Studio 2015
+nuget:
+  disable_publish_on_pr: true
 build_script:
-  - build.cmd
-clone_depth: 1
+- ps: ./build -Target Publish
 test: off
-deploy: off
-artifacts:
-- path: '**\*.nupkg'
+
+#deploy:
+# - provider: Environment
+# name: Grinderofl-Nuget
+#  on:
+#    branch: develop
