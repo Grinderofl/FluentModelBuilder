@@ -1,0 +1,8 @@
+title: FluentModelBuilder
+description: Fluently configure EntityFramework Core DbContext
+google_analytics: UA-69079635-1
+show_downloads: true
+theme: jekyll-theme-tactile
+
+gems:
+  - jekyll-mentions
