@@ -37,7 +37,7 @@ public class MyEntityAutoConfiguration : DefaultEntityAutoConfiguration
 {
     public override bool ShouldMap(Type type)
     {
-        return base.ShouldMap(type) && type.GetTypeInfo().IsSubClassOf(typeof(Entity));
+        return base.ShouldMap(type) && type.GetTypeInfo().IsSubclassOf(typeof(Entity));
     }
 }
 
@@ -145,13 +145,47 @@ services.AddScoped<IDependency, MyDependency>();
 `Alter()` will execute prior to `GetTypes()`, which will execute before `Apply()`, and all three of them will have access to the dependency. As DbContext is capable of creating its own scope, the dependencies can be singletons, transient, or scoped.
 
 ### Conventions
-FluentModelBuilder has some degree of convention support. Currently there is a `DecimalPropertyConvention` and `PluralizingTableNameGeneratingConvention`. Those can be added like this:
+FluentModelBuilder has some degree of convention support. Currently there are following conventions:
+
+* `DecimalPropertyConvention` - specifies the precision and scale of decimal types by default
+* `PluralizingTableNameGeneratingConvention` - brings back automatically pluralized table names
+* `IgnoreReadOnlyPropertiesConvention` - automatically ignores all read-only properties from being included in the DB mapping
+
 
 ```c#
 From.AssemblyOf<YourContext>(new MyEntityConfiguration())
-    .UseConvention(new DecimalPropertyConvention())
+    .UseConvention(new DecimalPropertyConvention(5, 2))
+
     .UseConvention<PluralizingTableNameGeneratingConvention>();
 ```
 
-
 You can also inherit from `AbstractEntityConvention` which applies itself to every entity inside the currently built model.
+
+### Extensions
+
+With EF Core 1.1.0, the ability to specify property accessor type to be a field was provided. FluentModelBuilder uses this to its full advantage providing an extension point over property configuration:
+
+```c#
+public class TestEntityOverride : IEntityTypeOverride<TestEntity>
+{
+    public void Override(EntityTypeBuilder<TestEntity> mapping)
+    {
+        mapping.Property(x => x.SomePropertyName).Access(PropertyAccessor.CamelCasePrefixField);
+    }
+}
+
+public class TestEntity
+{
+    public string SomePropertyName { get { return _somePropertyName; } set { _somePropertyName = value; } }
+    private string _somePropertyName;
+}
+```
+
+Available accessor types:
+
+* LowerCaseField
+* LowerCasePrefixField
+* CamelCaseField
+* CamelCasePrefixField
+* Custom
+
