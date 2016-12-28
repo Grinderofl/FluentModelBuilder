@@ -5,6 +5,7 @@
 .vs/
 .idea/
 *.lock.json
+tools/
 
 # User-specific files
 *.suo

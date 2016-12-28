@@ -1,0 +1,25 @@
+assembly-versioning-scheme: MajorMinorPatch
+assembly-informational-format: '{NuGetVersionV2}'
+mode: ContinuousDeployment
+build-metadata-padding: 5
+major-version-bump-message: '\+semver:\s?(breaking|major)'
+minor-version-bump-message: '\+semver:\s?(feature|minor)'
+patch-version-bump-message: '\+semver:\s?(fix|patch)'
+next-version: 1.5.1
+branches: 
+  master:
+    increment: Inherit
+    prevent-increment-of-merged-branch-version: true
+  (pull|pull\-requests|pr)[/-]:
+    tag: preq
+    increment: Inherit
+    tag-number-pattern: '[/-](?<number>\d+)[-/]'
+    track-merge-target: true
+  dev(elop)?(ment)?$:
+    mode: ContinuousDelivery
+    tag: preview 
+    tag-number-pattern: '[/-](?<number>\d+)[-/]'
+  release?[/-]:
+    tag: release
+ignore:
+  sha: []
