@@ -1,10 +1,10 @@
-﻿{
-  "version": "1.0.0",
+{
+  "version": "1.5.1",
   "description": "FluentModelBuilder.TestTarget Class Library",
   "authors": [ "Nero" ],
   "dependencies": {
-    "FluentModelBuilder": "1.4.1",
-    "NETStandard.Library": "1.6.0"
+    "FluentModelBuilder": "1.5.1",
+    "NETStandard.Library": "1.6.1"
   },
   "frameworks": {
     "net451": {},

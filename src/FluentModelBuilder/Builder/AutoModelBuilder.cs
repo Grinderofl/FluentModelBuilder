@@ -85,7 +85,7 @@ namespace FluentModelBuilder.Builder
         private object EntityTypeBuilder(ModelBuilder builder, Type type)
         {
             var entityMethod =
-                typeof (ModelBuilder).GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                typeof (ModelBuilder).GetRuntimeMethods()
                     .FirstOrDefault(x => x.Name == "Entity" && x.IsGenericMethod);
 
             var genericEntityMethod = entityMethod?.MakeGenericMethod(type);
@@ -675,17 +675,17 @@ namespace FluentModelBuilder.Builder
         /// <returns>AutoModelBuilder</returns>
         public AutoModelBuilder UseOverride(Type overrideType)
         {
-            var overrideMethod = typeof (AutoModelBuilder)
-                .GetMethod(nameof(OverrideHelper), BindingFlags.NonPublic | BindingFlags.Instance);
+            var overrideMethod = typeof(AutoModelBuilder).GetTypeInfo().GetDeclaredMethod(nameof(OverrideHelper));
+                
             if (overrideMethod == null)
                 return this;
 
-            var overrideInterfaces = overrideType.GetInterfaces().Where(x => x.IsEntityTypeOverrideType()).ToList();
+            var overrideInterfaces = overrideType.GetTypeInfo().ImplementedInterfaces.Where(x => x.IsEntityTypeOverrideType()).ToList();
             var overrideInstance = Activator.CreateInstance(overrideType);
 
             foreach (var overrideInterface in overrideInterfaces)
             {
-                var entityType = overrideInterface.GetGenericArguments().First();
+                var entityType = overrideInterface.GetTypeInfo().GenericTypeArguments.First();
                 AddOverride(entityType, instance =>
                 {
                     overrideMethod.MakeGenericMethod(entityType)

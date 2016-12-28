@@ -15,13 +15,13 @@ namespace FluentModelBuilder.Alterations
 
         public void Alter(AutoModelBuilder builder)
         {
-            var types = from type in _assembly.GetExportedTypes()
+            var types = from type in _assembly.ExportedTypes
                 where !type.GetTypeInfo().IsAbstract
-                let entity = (from interfaceType in type.GetInterfaces()
+                let entity = (from interfaceType in type.GetTypeInfo().ImplementedInterfaces
                     where
                         interfaceType.GetTypeInfo().IsGenericType &&
                         interfaceType.GetGenericTypeDefinition() == typeof (IEntityTypeOverride<>)
-                    select interfaceType.GetGenericArguments()[0]).FirstOrDefault()
+                    select interfaceType.GenericTypeArguments[0]).FirstOrDefault()
                 where entity != null
                 select type;
 

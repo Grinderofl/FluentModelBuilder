@@ -3,6 +3,7 @@ using FluentModelBuilder.Conventions;
 using FluentModelBuilder.Relational.Generators;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FluentModelBuilder.Relational.Conventions
 {
@@ -16,9 +17,9 @@ namespace FluentModelBuilder.Relational.Conventions
             _generator = generator;
         }
 
-        protected override void Apply(IMutableEntityType entityType)
+        protected override void Apply(EntityTypeBuilder entityType)
         {
-            entityType.Relational().TableName = _generator.CreateName(entityType);
+            entityType.ToTable(_generator.CreateName(entityType.Metadata.RootType()));
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FluentModelBuilder.Conventions
 {
@@ -10,10 +11,11 @@ namespace FluentModelBuilder.Conventions
         {
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
-                Apply(entityType);
+                var entityTypeBuilder = modelBuilder.Entity(entityType.ClrType);
+                Apply(entityTypeBuilder);
             }
         }
 
-        protected abstract void Apply(IMutableEntityType entityType);
+        protected abstract void Apply(EntityTypeBuilder entityType);
     }
 }

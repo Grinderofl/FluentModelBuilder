@@ -12,13 +12,13 @@ namespace FluentModelBuilder.Extensions
         public static bool IsEntityTypeOverrideType(this Type type)
         {
             return type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(IEntityTypeOverride<>) &&
-                   type.GetGenericArguments().Length > 0;
+                   type.GetTypeInfo().GenericTypeArguments.Length > 0;
         }
 
         public static bool ClosesInterface(this Type type, Type interfaceType)
         {
             return
-                type.GetInterfaces()
+                type.GetTypeInfo().ImplementedInterfaces
                     .Any(
                         x =>
                         x == interfaceType ||
@@ -32,13 +32,13 @@ namespace FluentModelBuilder.Extensions
 
         public static bool IsDbContextType(this Type type)
         {
-            return typeof(DbContext).IsAssignableFrom(type);
+            return typeof(DbContext).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo());
         }
 
         public static IEnumerable<Type> GetTypesImplementingInterface(this Assembly assembly, Type interfaceType)
         {
             return
-                assembly.GetExportedTypes().Where(x => x.ClosesInterface(interfaceType));
+                assembly.ExportedTypes.Where(x => x.ClosesInterface(interfaceType));
         }
         
     }
