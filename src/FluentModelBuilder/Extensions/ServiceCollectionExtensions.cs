@@ -58,7 +58,6 @@ namespace FluentModelBuilder.Extensions
         /// <returns></returns>
         public static IServiceCollection AddAndConfigureDbContext<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> action, Action<FluentModelBuilderConfiguration> fluentAction) where TContext : DbContext
         {
-            services.AddEntityFramework();
             services.AddDbContext<TContext>(((provider, optionsBuilder) =>
             {
                 optionsBuilder.UseInternalServiceProvider(provider);
@@ -77,7 +76,6 @@ namespace FluentModelBuilder.Extensions
         /// <returns></returns>
         public static IServiceCollection AddAndConfigureDbContext<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> action, params AutoModelBuilder[] builders) where TContext : DbContext
         {
-            services.AddEntityFramework();
             services.AddDbContext<TContext>(((provider, optionsBuilder) =>
             {
                 optionsBuilder.UseInternalServiceProvider(provider);

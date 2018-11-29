@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Extensions and conventions for Relational Entity Framework Core configuration using FluentModelBuilder</Description>
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <Authors>Nero Sule</Authors>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <AssemblyName>FluentModelBuilder.Relational</AssemblyName>
+    <PackageId>FluentModelBuilder.Relational</PackageId>
+    <PackageTags>Fluent;ModelBuilder;FluentModelBuilder;EntityFramework;EF;Relational</PackageTags>
+    <PackageProjectUrl>https://github.com/Grinderofl/FluentModelBuilder</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/Grinderofl/FluentModelBuilder/blob/master/LICENSE.md</PackageLicenseUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluentModelBuilder\FluentModelBuilder.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.0.0" />
+    <PackageReference Include="Humanizer.Core" Version="2.5.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  
+</Project>

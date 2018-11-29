@@ -2,6 +2,7 @@ using System;
 using FluentModelBuilder.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace FluentModelBuilder.Configuration
 {
@@ -9,10 +10,11 @@ namespace FluentModelBuilder.Configuration
     {
         private readonly FluentModelBuilderConfiguration _configuration;
 
-        public FluentModelCustomizer(FluentModelBuilderConfiguration configuration)
+        public FluentModelCustomizer(FluentModelBuilderConfiguration configuration) : base(new ModelCustomizerDependencies(new DbSetFinder()))
         {
             if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration));
+
             _configuration = configuration;
         }
 
