@@ -3,6 +3,7 @@ using System.Linq;
 using FluentModelBuilder.Configuration;
 using FluentModelBuilder.Tests.Core;
 using FluentModelBuilder.Tests.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Xunit;
 

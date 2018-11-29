@@ -9,7 +9,7 @@ namespace FluentModelBuilder.Configuration
 {
     public class FluentModelBuilderOptionsExtension : IDbContextOptionsExtension
     {
-        internal IList<Action<FluentModelBuilderConfiguration>> ConfigurationActions =
+        private readonly IList<Action<FluentModelBuilderConfiguration>> _configurationActions =
             new List<Action<FluentModelBuilderConfiguration>>();
 
         public FluentModelBuilderOptionsExtension()
@@ -18,22 +18,36 @@ namespace FluentModelBuilder.Configuration
 
         public FluentModelBuilderOptionsExtension(FluentModelBuilderOptionsExtension copyFrom)
         {
-            ConfigurationActions = copyFrom.ConfigurationActions;
+            _configurationActions = copyFrom._configurationActions;
+        }
+        
+        public long GetServiceProviderHashCode()
+        {
+            return _configurationActions.GetHashCode();
         }
 
-        public void ApplyServices(IServiceCollection services)
+        public void Validate(IDbContextOptions options)
         {
-            if (ConfigurationActions.Any())
-                services.ConfigureEntityFramework(conf =>
-                {
-                    foreach (var action in ConfigurationActions)
-                        action(conf);
-                });
+            
         }
+
+        public string LogFragment { get; set; }
 
         public void Configure(Action<FluentModelBuilderConfiguration> action)
         {
-            ConfigurationActions.Add(action);
+            _configurationActions.Add(action);
+        }
+
+        public bool ApplyServices(IServiceCollection services)
+        {
+            if (_configurationActions.Any())
+                services.ConfigureEntityFramework(conf =>
+                {
+                    foreach (var action in _configurationActions)
+                        action(conf);
+                });
+
+            return true;
         }
     }
 }

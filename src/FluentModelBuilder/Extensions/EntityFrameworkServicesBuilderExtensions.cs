@@ -16,8 +16,7 @@ namespace FluentModelBuilder.Extensions
         public static EntityFrameworkServicesBuilder Configure(this EntityFrameworkServicesBuilder builder,
             Action<FluentModelBuilderConfiguration> configurationAction)
         {
-            var services = builder.GetInfrastructure();
-            services.ConfigureEntityFramework(configurationAction);
+            builder.Configure(configurationAction);
             return builder;
         }
 
@@ -30,8 +29,7 @@ namespace FluentModelBuilder.Extensions
         public static EntityFrameworkServicesBuilder Configure(this EntityFrameworkServicesBuilder builder,
             params AutoModelBuilder[] builders)
         {
-            var services = builder.GetInfrastructure();
-            services.ConfigureEntityFramework(builders);
+            builder.Configure(builders);
             return builder;
         }
     }

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>ModelBuilderSample Console Application</Description>
+    <Authors>Nero Sule</Authors>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>ModelBuilderSample</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>ModelBuilderSample</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\FluentModelBuilder\FluentModelBuilder.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6A86CB26-0EB1-455B-A038-7266F35AECFF}"
 EndProject
@@ -11,19 +11,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FluentModelBuilder", "src\FluentModelBuilder\FluentModelBuilder.xproj", "{C581A878-2B7A-43EB-9A72-D2163657AE42}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{F326621D-3449-4537-A47E-1FD72B30D2E2}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ModelBuilderSample", "samples\ModelBuilderSample\ModelBuilderSample.xproj", "{275AF5D9-350C-4EFA-85A4-834650A48E1E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F2B33CA3-B383-4768-9CB6-E9FB974DE9F2}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FluentModelBuilder.Tests", "test\FluentModelBuilder.Tests\FluentModelBuilder.Tests.xproj", "{1A9B08E3-0CB6-4228-955C-F6CF4ED3D8F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentModelBuilder", "src\FluentModelBuilder\FluentModelBuilder.csproj", "{C581A878-2B7A-43EB-9A72-D2163657AE42}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FluentModelBuilder.TestTarget", "test\FluentModelBuilder.TestTarget\FluentModelBuilder.TestTarget.xproj", "{4313E85C-24E3-4905-9C5D-1E33076672FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelBuilderSample", "samples\ModelBuilderSample\ModelBuilderSample.csproj", "{275AF5D9-350C-4EFA-85A4-834650A48E1E}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FluentModelBuilder.Relational", "src\FluentModelBuilder.Relational\FluentModelBuilder.Relational.xproj", "{94002380-35DB-4C92-BE38-DC06B8B722B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentModelBuilder.Tests", "test\FluentModelBuilder.Tests\FluentModelBuilder.Tests.csproj", "{1A9B08E3-0CB6-4228-955C-F6CF4ED3D8F5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentModelBuilder.TestTarget", "test\FluentModelBuilder.TestTarget\FluentModelBuilder.TestTarget.csproj", "{4313E85C-24E3-4905-9C5D-1E33076672FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentModelBuilder.Relational", "src\FluentModelBuilder.Relational\FluentModelBuilder.Relational.csproj", "{94002380-35DB-4C92-BE38-DC06B8B722B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,5 +83,8 @@ Global
 		{1A9B08E3-0CB6-4228-955C-F6CF4ED3D8F5} = {F2B33CA3-B383-4768-9CB6-E9FB974DE9F2}
 		{4313E85C-24E3-4905-9C5D-1E33076672FB} = {F2B33CA3-B383-4768-9CB6-E9FB974DE9F2}
 		{94002380-35DB-4C92-BE38-DC06B8B722B2} = {6A86CB26-0EB1-455B-A038-7266F35AECFF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B81975D-3519-476E-9516-571C9C8C1982}
 	EndGlobalSection
 EndGlobal
